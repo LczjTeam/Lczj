@@ -1,0 +1,297 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="lib/html5shiv.js"></script>
+<script type="text/javascript" src="lib/respond.min.js"></script>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="static/h-ui/css/H-ui.min.css" />
+<link rel="stylesheet" type="text/css" href="static/h-ui.admin/css/H-ui.admin.css" />
+<link rel="stylesheet" type="text/css" href="lib/Hui-iconfont/1.0.8/iconfont.css" />
+<link rel="stylesheet" type="text/css" href="static/h-ui.admin/skin/default/skin.css" id="skin" />
+<link rel="stylesheet" type="text/css" href="static/h-ui.admin/css/style.css" />
+<link rel="stylesheet" href="lib/zTree/v3/css/zTreeStyle/zTreeStyle.css" type="text/css">
+<!--[if IE 6]>
+<script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+<title>产品分类</title>
+	<style>
+		.page_title h2 {
+			font-size: 15px;
+			font-weight: bold;
+			margin-top: .28rem;
+			margin-bottom: .14rem;
+			line-height: 0.1;
+		}
+		.fl {
+			float: left;
+		}
+		.fr {
+			float: right;
+		}
+		.page_title {
+			height: 40px;
+			line-height: 40px;
+			border-bottom: 1px #b6b6b6 solid;
+			margin: 15px;
+		}
+		.table {
+			width: 100%;
+			table-layout: fixed;
+			margin: 5px 15px;
+			font-size: .28em;
+
+		}
+		table {
+			border-collapse: collapse;
+			border-color: grey;
+		}
+		table th{
+			text-align: center;
+			font-size: 15px;
+		}
+		.page_title .top_rt_btn {
+			display: inline-block;
+			height: 30px;
+			line-height: 30px;
+			padding: 0 15px;
+			border: 1px #d2d2d2 solid;
+			background: #f8f8f8;
+			color: #19a97b;
+			vertical-align: middle;
+			cursor: pointer;
+		}
+
+
+		.table th {
+			border: 1px #d2d2d2 solid;
+			height: 40px;
+			line-height: 40px;
+
+		}
+		td, th {
+			padding: 0;
+		}
+		body {
+			font-family: "Microsoft YaHei";
+
+			line-height: 1;
+			color: #333;
+			background-color: white;
+		}
+		.center {
+
+		}
+		.table td {
+			border: 1px #d2d2d2 solid;
+			padding: 10px 8px;
+			position: relative;
+			text-align: center;
+		}
+		.table tr:nth-child(odd) {
+			background: #f8f8f8;
+		}
+		.table td .link_icon {
+			font-size: 24px;
+			font-family: 'adminthemesregular';
+			color: #19a97b;
+		}
+		.table td a {
+			color: #19a97b;
+			margin: 0 5px;
+			cursor: pointer;
+			font-size: 25px;
+		}
+		.mtb {
+			margin: 5px 15px;
+			overflow: hidden;
+		}
+		.select {
+			padding: 0 5px;
+			height: 38px;
+			font-size: 12px;
+			border: 1px #139667 solid;
+			vertical-align: middle;
+			appearance: button;
+			-webkit-appearance: button;
+			width: 70px;
+		}
+		.textbox_225 {
+			width: 225px;
+		}
+		.textbox {
+			border: 1px #139667 solid;
+			height: 26px;
+			line-height: 26px;
+			padding: 5px;
+			font-size: 12px;
+			vertical-align: middle;
+		}
+		.group_btn {
+			border: 1px #139667 solid;
+			background: #19a97b;
+			color: white;
+			padding: 0 15px;
+			height: 38px;
+			cursor: pointer;
+			display: inline-block;
+			vertical-align: middle;
+		}
+
+
+		.paging {
+			margin: 8px 0;
+			overflow: hidden;
+			text-align: right;
+		}
+		.paging a {
+			background: #19a97b;
+			border: 1px #139667 solid;
+			color: white;
+			padding: 5px 8px;
+			display: inline-block;
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 订单管理 <span class="c-gray en">&gt;</span> 订单列表 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+<table class="table">
+	<div class="page_title">
+		<h2 class="fl">订单列表示例</h2>
+		<a class="fr top_rt_btn add_icon">添加商品</a>
+	</div>
+	<section class="mtb">
+		<select class="select">
+			<option>订单状态</option>
+			<option>待付款</option>
+			<option>待发货</option>
+			<option>待评价</option>
+		</select>
+		<input type="text" class="textbox textbox_225" placeholder="输入订单编号或收件人姓名/电话..."/>
+		<input type="button" value="查询" class="group_btn"/>
+	</section>
+	<table class="table">
+		<tr>
+			<th>订单编号</th>
+			<th>收件人</th>
+			<th>联系电话</th>
+			<th>收件人地址</th>
+			<th>订单金额</th>
+			<th>配送方式</th>
+			<th>操作</th>
+		</tr>
+		<tr>
+			<td class="center">201602011207</td>
+			<td>DeathGhost</td>
+			<td>18300000000</td>
+			<td>
+				<address>陕西省西安市未央区幸福路222号</address>
+			</td>
+			<td class="center"><strong class="rmb_icon">59.00</strong></td>
+			<td class="center">申通快递</td>
+			<td class="center">
+				<a href="#" title="查看订单" class="Hui-iconfont" target="_blank">&#xe687;</a>
+				<a href="#" title="删除" class="Hui-iconfont">&#xe609;</a>
+			</td>
+		</tr>
+		<tr>
+			<td class="center">201602011207</td>
+			<td>DeathGhost</td>
+			<td>18300000000</td>
+			<td>
+				<address>陕西省西安市未央区幸福路222号</address>
+			</td>
+			<td class="center"><strong class="rmb_icon">59.00</strong></td>
+			<td class="center">圆通快递</td>
+			<td class="center">
+				<a href="#" title="查看订单" class="Hui-iconfont" target="_blank">&#xe687;</a>
+				<a href="#" title="删除" class="Hui-iconfont">&#xe609;</a>
+			</td>
+		</tr>
+	</table>
+	<aside class="paging">
+		<a>第一页</a>
+		<a>1</a>
+		<a>2</a>
+		<a>3</a>
+		<a>…</a>
+		<a>1004</a>
+		<a>最后一页</a>
+	</aside>
+</table>
+<!--_footer 作为公共模版分离出去-->
+<script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="lib/layer/2.4/layer.js"></script>
+<script type="text/javascript" src="static/h-ui/js/H-ui.min.js"></script>
+<script type="text/javascript" src="static/h-ui.admin/js/H-ui.admin.js"></script> <!--/_footer 作为公共模版分离出去-->
+
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript" src="lib/zTree/v3/js/jquery.ztree.all-3.5.min.js"></script> 
+<script type="text/javascript">
+var setting = {
+	view: {
+		dblClickExpand: false,
+		showLine: false,
+		selectedMulti: false
+	},
+	data: {
+		simpleData: {
+			enable:true,
+			idKey: "id",
+			pIdKey: "pId",
+			rootPId: ""
+		}
+	},
+	callback: {
+		beforeClick: function(treeId, treeNode) {
+			var zTree = $.fn.zTree.getZTreeObj("tree");
+			if (treeNode.isParent) {
+				zTree.expandNode(treeNode);
+				return false;
+			} else {
+				demoIframe.attr("src",treeNode.file + ".html");
+				return true;
+			}
+		}
+	}
+};
+
+var zNodes =[
+	{ id:1, pId:0, name:"一级分类", open:true},
+	{ id:11, pId:1, name:"二级分类"},
+	{ id:111, pId:11, name:"三级分类"},
+	{ id:112, pId:11, name:"三级分类"},
+	{ id:113, pId:11, name:"三级分类"},
+	{ id:114, pId:11, name:"三级分类"},
+	{ id:115, pId:11, name:"三级分类"},
+	{ id:12, pId:1, name:"二级分类 1-2"},
+	{ id:121, pId:12, name:"三级分类 1-2-1"},
+	{ id:122, pId:12, name:"三级分类 1-2-2"},
+];
+		
+var code;
+		
+function showCode(str) {
+	if (!code) code = $("#code");
+	code.empty();
+	code.append("<li>"+str+"</li>");
+}
+		
+$(document).ready(function(){
+	var t = $("#treeDemo");
+	t = $.fn.zTree.init(t, setting, zNodes);
+	demoIframe = $("#testIframe");
+	//demoIframe.on("load", loadReady);
+	var zTree = $.fn.zTree.getZTreeObj("tree");
+	//zTree.selectNode(zTree.getNodeByParam("id",'11'));
+});
+</script>
+</body>
+</html>

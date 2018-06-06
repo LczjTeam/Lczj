@@ -1,0 +1,196 @@
+/*返回顶部*/
+.login-right h3 ,.login-bottom h3{
+    color: #FDA30E;
+    font-size: 22px;
+    margin-bottom: 23px;
+    cursor:pointer;
+}
+.sign-up {
+    display:none;
+
+}
+.sign-in{
+    display: none;
+}
+.single-bottom{
+    display: none;
+}
+.back_to_top {
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+    right: 40px;
+    position: relative;
+    bottom: 50px;
+    _position: absolute;
+}
+.back_to_top a:hover {
+    background-position: -50px 0px;
+}
+.back_to_top a {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+    background: url(../images/backtotop.gif) 0px 0px no-repeat;
+}
+/*//返回顶部*/
+
+                        /*水平跑马图片*/
+                        *{
+                            margin: 0;
+                            padding: 0;
+                            list-style-type: none;
+                        }
+.banner{
+    width: 100%;
+    /*height: 560px;*/
+    /*background: black;*/
+    /*子绝父相*/
+    position: relative;
+    /*超出部分全部隐藏，解决横向滚动条*/
+    overflow: hidden;
+}
+.banner ul{
+    position: absolute;
+}
+.banner ul li{
+    /*这个100%是相对于父盒子的（会把父盒子的宽度继承过来,如父盒子300%,这这里的100%就会相当于300%）*/
+    width: 100%;
+    height: 560px;
+    float: left;
+    background:  no-repeat center center;
+}
+
+.banner ol{
+
+    height: 20px;
+    background: rgba(0,0,0,0.5);
+    position: absolute;
+    left:50%;
+
+    bottom: 30px;
+    padding: 0 10px;
+    border-radius: 10px;
+}
+.banner ol li{
+    width: 10px;
+    height: 10px;
+    float: left;
+    margin: 5px 5px;
+    background: rgba(255,255,255,0.5);
+    border-radius: 50%;
+    cursor: pointer;
+}
+.banner ol .current{
+    background: rgba(255,255,255,1);
+}
+.banner i{
+    width: 58px;
+    height: 120px;
+    position: absolute;
+    top: 50%;
+    margin-top: -60px;
+    cursor: pointer;
+    border-radius: 5px;
+    display: none;
+}
+.banner .left{
+    left: 60px;
+    background: url('../images/left_right.png') no-repeat 0 0px;
+    background-color: #66afe9;
+}
+.banner .right{
+    right: 60px;
+    background: url('../images/left_right.png') no-repeat 0px -120px;
+    background-color: #66afe9;
+}
+.banner .left:hover , .banner .right:hover{
+    background-color: #d43f3a;
+}
+/*水平跑马图片*/
+
+  /*下载图标*/
+  .qq,.weixin{
+      float: left;
+      cursor:pointer;
+  }
+.login-quick{
+    position: fixed;
+    margin: auto auto auto 27%;
+}
+.login-quick span{
+    color: #78e0ef;
+    font-family: Lato;
+    font-size: 16px;
+    width: 75px;
+}
+/*下载图标*/
+
+/*<!-- 下拉显示透明-->*/
+
+     .dropdown-menu{
+     rgba(255, 255, 255, 0.73);
+
+     }
+      /*<!-- 下拉显示透明-->*/
+     /*中间商品展示设置新品照片大小*/
+                              .col-sm-6 {
+                                  width:32%;
+                                  float: left;
+
+                                  margin-left: 1%;
+                              }
+.col-sm-6-left,.col-sm-6-right,.col-sm-6-center{
+    width:100%;
+
+}
+.content-bottom{
+
+    position: relative;
+    height: 240px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+.block{
+    position: relative;
+    height: 40px;
+}
+/*中间商品展示设置新品照片大小*/
+                       /*三个图片展示*/
+           .sap_tabs{
+               clear:both;
+               padding: 0em 0 0em;
+               top: 25px;
+               position: relative;
+           }
+
+/*三个图片展示*/
+                 /*底部背景改变*/
+.coupons{
+  background:url(../images/coupons1.jpg)  no-repeat center;
+  background-size: 100% 100%;
+}
+
+.coupons-gd h4 {
+    color: #1447dd;
+}
+/*底部背景改变*/
+  /*软件下载*/
+
+.android-do ,.iphone-do{
+     position: relative;
+     float: left;
+     width: 100px;
+     display: table-cell;
+     vertical-align: middle;
+     text-align: center;
+ }
+.android-do-a:hover{
+    background-color: #ffe34b;
+}
+.iphone-do-a:hover{
+    background-color: #ffe34b;
+}
+
+ /*软件下载*/

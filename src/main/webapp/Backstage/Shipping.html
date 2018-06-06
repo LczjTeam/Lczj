@@ -1,0 +1,176 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="lib/html5shiv.js"></script>
+<script type="text/javascript" src="lib/respond.min.js"></script>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="static/h-ui/css/H-ui.min.css" />
+<link rel="stylesheet" type="text/css" href="static/h-ui.admin/css/H-ui.admin.css" />
+<link rel="stylesheet" type="text/css" href="lib/Hui-iconfont/1.0.8/iconfont.css" />
+<link rel="stylesheet" type="text/css" href="static/h-ui.admin/skin/default/skin.css" id="skin" />
+<link rel="stylesheet" type="text/css" href="static/h-ui.admin/css/style.css" />
+<!--[if IE 6]>
+<script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+	<style>
+		.page_title h2 {
+			font-size: 15px;
+			font-weight: bold;
+			margin-top: .28rem;
+			margin-bottom: .14rem;
+			line-height: 0.1;
+		}
+		.fl {
+			float: left;
+		}
+		.fr {
+			float: right;
+		}
+		.page_title {
+			height: 40px;
+			line-height: 40px;
+			border-bottom: 1px #b6b6b6 solid;
+			margin: 0;
+		}
+		.table {
+			width: 100%;
+			table-layout: fixed;
+			margin: 5px 0;
+			font-size: .28em;
+
+		}
+		table {
+			border-collapse: collapse;
+			border-color: grey;
+		}
+		table th{
+			text-align: center;
+			font-size: 15px;
+		}
+		.page_title .top_rt_btn {
+			display: inline-block;
+			height: 30px;
+			line-height: 30px;
+			padding: 0 15px;
+			border: 1px #d2d2d2 solid;
+			background: #f8f8f8;
+			color: #19a97b;
+			vertical-align: middle;
+			cursor: pointer;
+		}
+
+
+		.table th {
+			border: 1px #d2d2d2 solid;
+			height: 40px;
+			line-height: 40px;
+
+		}
+		td, th {
+			padding: 0;
+		}
+		body {
+			font-family: "Microsoft YaHei";
+
+			line-height: 1;
+			color: #333;
+			background-color: white;
+		}
+		.center {
+
+		}
+		.table td {
+			border: 1px #d2d2d2 solid;
+			padding: 10px 8px;
+			position: relative;
+			text-align: center;
+		}
+		.table tr:nth-child(odd) {
+			background: #f8f8f8;
+		}
+		.table td .link_icon {
+			font-size: 24px;
+			font-family: 'adminthemesregular';
+			color: #19a97b;
+		}
+		.table td a {
+			color: #19a97b;
+			margin: 0 5px;
+			cursor: pointer;
+			font-size: 25px;
+		}
+	</style>
+<title>品牌管理</title>
+</head>
+<body>
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 配送与支付 <span class="c-gray en">&gt;</span> 配送方式 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+<div class="page-container">
+	<div class="page_title">
+		<h2 class="fl">配送方式</h2>
+		<a href="product_detail.html" class="Hui-iconfont fr page_title top_rt_btn">&#xe610;&nbsp;添加配送方式</a>
+	</div>
+	<table class="table">
+		<tr class="table-head">
+			<th>缩略图</th>
+			<th>快递名称</th>
+			<th>快递描述</th>
+			<th>操作</th>
+		</tr>
+		<tr>
+			<td class="center"><img src="upload/shentong.png" width="165" height="65"/></td>
+			<td>申通快递</td>
+			<td><p>上海申通物流公司拥有247个独立城市营业所，179个营业厅，1220个操作点，快递初创于1993年，是一家以经营快递为主的国内合资（民营）企业。</p></td>
+			<td class="center">
+				<a href="product_detail.html" title="编辑" class="Hui-iconfont">&#xe60c;</a>
+				<a href="#" title="删除" class="Hui-iconfont">&#xe6e2;</a>
+			</td>
+		</tr>
+		<tr>
+			<td class="center"><img src="upload/yuantong.png" width="165" height="65"/></td>
+			<td>圆通快递</td>
+			<td><p>圆通速递创建于2000年5月28日,经过近十四年的发展,已成为一家集速递、航空、电子商务等业务为一体的大型企业集团,形成了集团化、网络化、规模化、品牌化经营的新...</p></td>
+			<td class="center">
+				<a href="product_detail.html" title="编辑" class="Hui-iconfont">&#xe60c;</a>
+				<a href="#" title="删除" class="Hui-iconfont">&#xe6e2;</a>
+			</td>
+		</tr>
+		<tr>
+			<td class="center"><img src="upload/yunda.png" width="165" height="65"/></td>
+			<td>韵达快递</td>
+			<td><p>“韵达快递”品牌创立于1999年8月，总部位于中国上海，现已成为集快递、物流、电子商务配送和仓储服务为一体的全国网络型品牌快递企业，服务范围覆盖国内31个省（区、市）及港澳台地区。</p></td>
+			<td class="center">
+				<a href="product_detail.html" title="编辑" class="Hui-iconfont">&#xe60c;</a>
+				<a href="#" title="删除" class="Hui-iconfont">&#xe6e2;</a>
+			</td>
+		</tr>
+	</table>
+</div>
+<!--_footer 作为公共模版分离出去-->
+<script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="lib/layer/2.4/layer.js"></script>
+<script type="text/javascript" src="static/h-ui/js/H-ui.min.js"></script>
+<script type="text/javascript" src="static/h-ui.admin/js/H-ui.admin.js"></script> <!--/_footer 作为公共模版分离出去-->
+
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript" src="lib/My97DatePicker/4.8/WdatePicker.js"></script> 
+<script type="text/javascript" src="lib/datatables/1.10.0/jquery.dataTables.min.js"></script> 
+<script type="text/javascript" src="lib/laypage/1.2/laypage.js"></script>
+<script type="text/javascript">
+$('.table-sort').dataTable({
+	"aaSorting": [[ 1, "desc" ]],//默认第几个排序
+	"bStateSave": true,//状态保存
+	"aoColumnDefs": [
+	  //{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
+	  {"orderable":false,"aTargets":[0,6]}// 制定列不参与排序
+	]
+});
+</script>
+</body>
+</html>
