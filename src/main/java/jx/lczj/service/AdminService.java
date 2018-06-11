@@ -28,6 +28,13 @@ public class AdminService {
     MenuDao menuDao;
 
 
+    /**
+     * 管理员登录
+     * @param admin
+     * @param pwd
+     * @param session
+     * @return
+     */
     public AdminVo login(String admin, String pwd, HttpSession session) {
         T_admin t_admin = adminDao.loadById(admin);
         //用户不存在或者无效

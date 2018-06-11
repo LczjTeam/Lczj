@@ -20,10 +20,19 @@ public class RoleService {
     @Resource
     RoleDao roleDao;
 
+    /**
+     * 获取角色信息
+     * @return
+     */
     public List<T_role> loadList() {
         return roleDao.loadList();
     }
 
+    /**
+     * 删除角色信息
+     * @param role
+     * @return
+     */
     @Transactional
     public boolean delete(String role) {
         try {
@@ -39,10 +48,22 @@ public class RoleService {
         }
     }
 
+    /**
+     * 更新角色信息
+     * @param role
+     * @param name
+     * @return
+     */
     public boolean update(String role, String name) {
         return roleDao.update(role,name);
     }
 
+    /**
+     * 添加角色信息
+     * @param role
+     * @param name
+     * @return
+     */
     public boolean add(String role, String name) {
         return roleDao.insert(role,name);
     }
