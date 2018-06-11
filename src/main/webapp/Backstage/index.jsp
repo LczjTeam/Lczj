@@ -30,7 +30,7 @@
                 <ul class="nav" id="side-menu">
                     <li class="nav-header">
                         <div class="dropdown profile-element">
-                            <span><img alt="image" class="img-circle" src="img/profile_small.jpg" /></span>
+                            <div style="height: 70px;width: 70px;border-radius:50%;"><img alt="image" height="100%" width="100%" src="../heads/${sessionScope.admin.t_admin.admin}.png" /></div>
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                 <span class="clear">
                                <span class="block m-t-xs"><strong class="font-bold">${sessionScope.admin.t_admin.name}</strong></span>
@@ -38,7 +38,7 @@
                                 </span>
                             </a>
                             <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                                <li><a class="J_menuItem" href="form_avatar.html">修改头像</a>
+                                <li><a class="J_menuItem" href="headpic.jsp">修改头像</a>
                                 </li>
                                 <li><a class="J_menuItem" href="profile.html">修改资料</a>
                                 </li>
