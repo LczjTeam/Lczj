@@ -27,20 +27,14 @@
                     <div class="ibox-title">
                         <h5>角色</small></h5>
                         <div class="ibox-tools">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="table_data_tables.html#">
-                                <i class="fa fa-wrench"></i>
+                            <a  data-toggle="modal" data-target="#role_add_modal" >
+                                <i class="fa fa-plus"></i>&nbsp;添加
                             </a>
-                            <ul class="dropdown-menu dropdown-user">
-                                <li><a href="table_data_tables.html#">选项1</a>
-                                </li>
-                                <li><a href="table_data_tables.html#">选项2</a>
-                                </li>
-                            </ul>
                         </div>
                     </div>
                     <div class="ibox-content">
 
-                        <table class="table table-striped table-bordered table-hover dataTables-example">
+                        <table id="role_table" class="table table-striped table-bordered table-hover ">
                             <thead>
                                 <tr>
                                     <th>角色</th>
@@ -65,8 +59,30 @@
             </div>
         </div>
 
+        <!--角色信息添加-->
+        <div class="modal inmodal" id="role_add_modal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog ">
+                <div class="modal-content animated bounceInRight">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">关闭</span>
+                        </button>
+                        <i class="fa fa-laptop modal-icon"></i>
+                        <h4 class="modal-title">角色信息添加</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group"><label>角色</label> <input type="text" id="role_add_role" placeholder="" class="form-control"></div>
+                        <div class="form-group"><label>名称</label> <input type="text" id="role_add_name" placeholder="请输入角色名称" class="form-control"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
+                        <a id="btn_add_save" class="btn btn-primary">添加</a>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-        <div class="modal inmodal" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <!--角色信息修改-->
+        <div class="modal inmodal" id="role_edit_modal" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog ">
                 <div class="modal-content animated bounceInRight">
                     <div class="modal-header">
@@ -100,7 +116,7 @@
     <script>
         $(document).ready(function(){
 
-            var table = $(".dataTables-example");
+            var table = $("#role_table");
             table.dataTable({
                 "columnDefs": [{ // set default column settings
                     'orderable': false,
@@ -141,6 +157,65 @@
             });
 
             /**
+             * 添加
+             */
+             $("#btn_add_save").click(function(e){
+                var delok = true;
+                var params={};
+                params.role = $('#role_add_role').val();
+                params.name =$('#role_add_name').val();
+                $.ajax({
+                    async: false,
+                    type: "POST",
+                    url: "../role/add",//注意路径
+                    data: params,
+                    dataType: "json",
+                    success: function (data) {
+                        if (data) {
+                            return;
+                        } else {
+                            delok = false;
+                        }
+                    },
+                    error: function (data) {
+                        delok = false;
+                    }
+                });
+                if (!delok) {
+                    swal({
+                        title: "添加失败！",
+                        text: "",
+                        type: "error",
+                        allowOutsideClick: true,
+                        showConfirmButton: true,
+                        showCancelButton: false,
+                        confirmButtonClass: "btn-danger",
+                        confirmButtonText: "OK",
+                    });
+                    return;
+                }
+                table.fnAddData([
+                    $('#role_add_role').val(),
+                    $('#role_add_name').val(),
+                    '<a class="edit"  ><i class="fa fa-edit"></i>&nbsp;编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="delete" ><i class="fa fa-trash"></i>&nbsp;删除</a>'
+                ]);
+                table.fnDraw();
+                $('#role_add_role').val('');
+                $('#role_add_name').val('');
+                 $('#role_add_modal').modal('hide')
+                swal({
+                    title: "添加成功！",
+                    text: "",
+                    type: "success",
+                    allowOutsideClick: true,
+                    showConfirmButton: true,
+                    showCancelButton: false,
+                    confirmButtonClass: "btn-success",
+                    confirmButtonText: "OK",
+                });
+            });
+
+            /**
              * 编辑
              */
             var  EditRow = -1;
@@ -152,7 +227,7 @@
                 //alert(aData[0]);
                 $('#role_edit_role').val(aData[0]);
                 $('#role_edit_name').val(aData[1]);
-                $('#myModal').modal('show')
+                $('#role_edit_modal').modal('show')
 
             });
 
@@ -198,6 +273,7 @@
                 table.fnDraw();
                 $('#role_edit_role').val('');
                 $('#role_edit_name').val('');
+                $('#role_edit_modal').modal('hide')
                 swal({
                     title: "保存成功！",
                     text: "",
