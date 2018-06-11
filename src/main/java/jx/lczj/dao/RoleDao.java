@@ -1,7 +1,9 @@
 package jx.lczj.dao;
 
 import jx.lczj.model.T_role;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 
@@ -13,4 +15,20 @@ public interface RoleDao {
 
     @Select("select * from T_ROLE")
     public List<T_role> loadList();
+
+    @Delete("delete from T_ROLE_MENU WHERE role = #{0}")
+    public void deleteRole_Menu(String role);
+
+    @Delete("delete from T_USER_ROLE WHERE role = #{0}")
+    public void deleteRole_Admin(String role);
+
+    @Delete("delete from T_ROLE  WHERE role = #{0}")
+    public void delete(String role);
+
+    @Update("update T_ROLE set name = #{1}  WHERE ROLE = #{0}")
+    public boolean update(String role, String name);
+
+    @Update("insert int T_ROLE(role,name) values (#{0},#{1}) ")
+    public boolean insert(String role, String name);
+
 }

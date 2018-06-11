@@ -27,6 +27,23 @@ public class RoleController {
        return roleService.loadList();
     }
 
+    @RequestMapping("/add")
+    @ResponseBody
+    public boolean add(String role,String name){
+        return roleService.add(role,name);
+    }
 
+    @RequestMapping("/update")
+    @ResponseBody
+    public boolean update(String role,String name){
+        return roleService.update(role,name);
+    }
+
+
+    @RequestMapping("/delete")
+    @ResponseBody
+    public boolean delete(String role){
+        return roleService.delete(role);
+    }
 
 }
