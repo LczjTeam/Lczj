@@ -28,7 +28,7 @@ public interface RoleDao {
     @Update("update T_ROLE set name = #{1}  WHERE ROLE = #{0}")
     public boolean update(String role, String name);
 
-    @Update("insert int T_ROLE(role,name) values (#{0},#{1}) ")
+    @Update("insert into T_ROLE(role,name) values (#{0},#{1}) ")
     public boolean insert(String role, String name);
 
 }
