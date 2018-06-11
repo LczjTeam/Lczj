@@ -13,6 +13,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("sms")
 public class SmsController {
 
+    /**
+     * 获取短信验证码
+     * @param phone
+     * @return
+     */
     @RequestMapping(value = "/icode")
     @ResponseBody
     public String upload(String phone) {

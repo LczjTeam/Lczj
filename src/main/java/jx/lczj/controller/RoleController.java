@@ -21,18 +21,34 @@ public class RoleController {
     @Autowired
     RoleService roleService;
 
+    /**
+     * 角色信息
+     * @return
+     */
     @RequestMapping("/list")
     @ResponseBody
     public List<T_role> list(){
        return roleService.loadList();
     }
 
+    /**
+     * 添加
+     * @param role
+     * @param name
+     * @return
+     */
     @RequestMapping("/add")
     @ResponseBody
     public boolean add(String role,String name){
         return roleService.add(role,name);
     }
 
+    /**
+     * 更新
+     * @param role
+     * @param name
+     * @return
+     */
     @RequestMapping("/update")
     @ResponseBody
     public boolean update(String role,String name){
@@ -40,6 +56,11 @@ public class RoleController {
     }
 
 
+    /**
+     * 删除
+     * @param role
+     * @return
+     */
     @RequestMapping("/delete")
     @ResponseBody
     public boolean delete(String role){

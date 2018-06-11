@@ -26,6 +26,13 @@ public class AdminController {
     @Autowired
     AdminService adminService;
 
+    /**
+     * 管理员登录
+     * @param admin
+     * @param pwd
+     * @param session
+     * @return
+     */
     @RequestMapping("/login")
     @ResponseBody
     public AdminVo Login(String admin, String pwd, HttpSession session){
