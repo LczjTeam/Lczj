@@ -53,6 +53,7 @@ $(document).ready(function(){
         }
     });
 
+    $("#loading-role").css('display','none');
     /**
      * 添加
      */
