@@ -66,7 +66,7 @@
                         <ul class="nav nav-second-level">
                             <c:forEach items="${itm.menus}" var="menu" >
                             <li>
-                                <a class="J_menuItem" href="index_v1.html" data-index="0">${menu.title}</a>
+                                <a class="J_menuItem" href="${menu.url}" data-index="0">${menu.title}</a>
                             </li>
                             </c:forEach>
                         </ul>
