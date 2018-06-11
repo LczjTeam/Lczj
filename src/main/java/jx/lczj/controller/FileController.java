@@ -5,6 +5,7 @@ package jx.lczj.controller;
  */
 
 import jx.lczj.utils.OpenCVUtil;
+import jx.lczj.viewmodel.AdminVo;
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.core.Rect;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.util.ArrayList;
 
@@ -142,5 +144,42 @@ public class FileController {
             return "-3";
         }
     }
+
+
+    /**
+     * 用户头像
+     * @param file
+     * @return
+     */
+    @RequestMapping(value = "/uploaduserhead")
+    @ResponseBody
+    public boolean userhead(MultipartFile file, HttpSession session, HttpServletRequest request) {
+
+        AdminVo adminVo = (AdminVo)session.getAttribute("admin");
+        String  code = adminVo.getT_admin().getAdmin();
+        System.out.println(code);
+
+        String path = request.getSession().getServletContext().getRealPath("heads");
+
+        String fileName = file.getOriginalFilename();
+        System.out.println(fileName);
+        System.out.println(path);
+        File targetFile = new File(path, code+".png");
+
+        if(targetFile.exists()){
+            targetFile.delete();
+        }
+
+        //保存
+        try {
+            file.transferTo(targetFile);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+
+        return true;
+    }
+
 
 }
