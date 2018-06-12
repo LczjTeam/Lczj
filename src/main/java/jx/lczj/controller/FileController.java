@@ -36,6 +36,12 @@ public class FileController {
     @ResponseBody
     public String upload(MultipartFile file,String sex,String age,String station,HttpServletRequest request) {
 
+
+
+
+
+
+
         System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
         String ctimes = System.currentTimeMillis()+"";
         System.out.println("开始");
@@ -62,6 +68,11 @@ public class FileController {
         String src_url = path+"\\"+fileName;
         String dst_url = path+"/withGlasses/"+ctimes+"_withGlasses.jpg";
         String glasses_url = "";
+
+        File file1 = new File(dst_url);
+        if(!file1.exists()){
+            file1.mkdirs();
+        }
 
         System.out.println("age:"+age+"，sex:"+sex);
 
