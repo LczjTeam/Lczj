@@ -36,12 +36,6 @@ public class FileController {
     @ResponseBody
     public String upload(MultipartFile file,String sex,String age,String station,HttpServletRequest request) {
 
-
-
-
-
-
-
         System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
         String ctimes = System.currentTimeMillis()+"";
         System.out.println("开始");
