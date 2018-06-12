@@ -40,7 +40,7 @@
                             <ul class="dropdown-menu animated fadeInRight m-t-xs">
                                 <li><a class="J_menuItem" href="headpic.jsp">修改头像</a>
                                 </li>
-                                <li><a class="J_menuItem" href="profile.html">修改资料</a>
+                                <li><a class="J_menuItem" href="userinfo.jsp">修改资料及密码</a>
                                 </li>
                                 <li class="divider"></li>
                                 <li><a href="login.jsp">安全退出</a>
