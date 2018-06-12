@@ -12,6 +12,7 @@
     <title>登录</title>
     <link rel="shortcut icon" href="favicon.ico"> <link href="css/bootstrap.min.css?v=3.3.5" rel="stylesheet">
     <link href="css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+    <link href="css/plugins/sweetalert/sweetalert.css" rel="stylesheet">
 
     <link href="css/animate.min.css" rel="stylesheet">
     <link href="css/style.min.css?v=4.0.0" rel="stylesheet"><base target="_blank">
@@ -46,40 +47,22 @@
             </form>
         </div>
     </div>
+
+    <div class="spiner-example" style="display: none;" id="loading-role">
+        <div class="sk-spinner sk-spinner-wave">
+            <div class="sk-rect1"></div>
+            <div class="sk-rect2"></div>
+            <div class="sk-rect3"></div>
+            <div class="sk-rect4"></div>
+            <div class="sk-rect5"></div>
+        </div>
+    </div>
+
     <script src="js/jquery.min.js?v=2.1.4"></script>
     <script src="js/bootstrap.min.js?v=3.3.5"></script>
-    <script type="text/javascript" src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>
-    <script >
+    <script src="js/plugins/sweetalert/sweetalert.min.js"></script>
 
-        $("#btn_login").click(function(){
-            var params={};
-            params.admin =$("#admin").val();
-            params.pwd =$("#pwd").val();
-            $.ajax({
-                async: false,
-                type: "POST",
-                url: "../admin/login",//注意路径
-                data: params,
-                dataType: "json",
-                success: function (data) {
-                    console.log(JSON.stringify(data,null,4));
-                    if(data.t_admin == null){
-                        alert("账号不存在或无效 ！");
-                    }else if (data.menuVos==null){
-                        alert("密码错误 ！");
-                    }else{
-                        window.location.href="index.jsp";
-                    }
-                },
-                error: function (data) {
-                    console.log(JSON.stringify(data,null,4));
-                    alert("登陆出错 ！");
-                }
-            });
-        });
-
-
-    </script>
+    <script src="custom-js/login.js" ></script>
 
 </body>
 
