@@ -40,4 +40,17 @@ public class AdminController {
         return adminService.login(admin,pwd,session);
     }
 
+    /**
+     * 更新管理员信息及密码
+     * @param admin
+     * @param pwd
+     * @param name
+     * @param session
+     * @return
+     */
+    @RequestMapping("/update")
+    @ResponseBody
+    public boolean update(String admin,String name, String pwd, HttpSession session){
+        return adminService.update(admin,pwd,name,session);
+    }
 }
