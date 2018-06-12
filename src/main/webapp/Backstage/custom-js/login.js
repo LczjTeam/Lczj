@@ -10,6 +10,24 @@ $(document).ready(function() {
             var params={};
             params.admin =$("#admin").val();
             params.pwd =$("#pwd").val();
+
+            if(params.admin =='' || params.pwd == ''){
+                $("#loding-login").css('display','none');
+
+                swal({
+                    title: "账号和密码不能为空！",
+                    text: "",
+                    type: "warning",
+                    allowOutsideClick: true,
+                    showConfirmButton: true,
+                    showCancelButton: false,
+                    confirmButtonClass: "btn-danger",
+                    confirmButtonText: "OK",
+                });
+                clearInterval(int);
+                return ;
+            }
+
             $.ajax({
                 async: false,
                 type: "POST",
