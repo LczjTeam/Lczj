@@ -63,7 +63,7 @@ public class FileController {
         String dst_url = path+"/withGlasses/"+ctimes+"_withGlasses.jpg";
         String glasses_url = "";
 
-        File file1 = new File(dst_url);
+        File file1 = new File(path+"/withGlasses/");
         if(!file1.exists()){
             file1.mkdirs();
         }
