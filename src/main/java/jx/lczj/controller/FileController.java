@@ -50,6 +50,8 @@ public class FileController {
             targetFile.mkdirs();
         }
 
+
+
         //保存
         try {
             file.transferTo(targetFile);
@@ -165,6 +167,11 @@ public class FileController {
         System.out.println(fileName);
         System.out.println(path);
         File targetFile = new File(path, code+".png");
+
+
+        if(!targetFile.exists()){
+            targetFile.mkdirs();
+        }
 
         if(targetFile.exists()){
             targetFile.delete();

@@ -28,14 +28,19 @@ public class LoginFilter implements Filter {
         String requestURI = req.getRequestURI().substring(req.getRequestURI().indexOf("/", 1), req.getRequestURI().length());
         System.out.println("requestURI=" + requestURI);
         //访问除login.jsp（登录页面）和验证码servlet之外的jsp/servlet都要进行验证
-        /*if (!requestURI.contains("/login.jsp") && !"/servlet/LoginFilter".equals(requestURI) && !"/index".equals(requestURI) && !"/upload".equals(requestURI) ) {
-            HttpSession session = req.getSession(false);
+        if (    requestURI.contains("Backstage") &&
+                !requestURI.contains("/login.jsp")
+                && !"/servlet/LoginFilter".equals(requestURI)
+                && !"/files/upload".equals(requestURI)
+                && !"/sms/icode".equals(requestURI)
+                ) {
+            HttpSession session = req.getSession();
             //判断session中是否有用户信息，如果没有则重定向到登录页面
-            if (session == null || session.getAttribute("admin") == null) {
-                res.sendRedirect(req.getContextPath() + "/pages/login.jsp");
+            if ( (session == null || session.getAttribute("admin") == null ) ) {
+                res.sendRedirect(req.getContextPath() + "/Backstage/login.jsp");
                 return;
             }
-        }*/
+        }
         //继续访问其他资源
         chain.doFilter(req, res);
     }

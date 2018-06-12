@@ -48,7 +48,7 @@
         </div>
     </div>
 
-    <div class="spiner-example" style="display: none;" id="loading-role">
+    <div class="spiner-example" style="display: none;" id="loding-login">
         <div class="sk-spinner sk-spinner-wave">
             <div class="sk-rect1"></div>
             <div class="sk-rect2"></div>
