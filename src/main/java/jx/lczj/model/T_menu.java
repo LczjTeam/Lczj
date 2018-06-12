@@ -3,6 +3,10 @@ package jx.lczj.model;
 /**
  * Created by 14260 on 2018/6/10.
  */
+
+/**
+ * 菜单
+ */
 public class T_menu {
 
     private String menu;    //编号  not null,

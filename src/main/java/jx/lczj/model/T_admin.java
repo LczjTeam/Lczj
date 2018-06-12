@@ -5,6 +5,10 @@ import java.io.Serializable;
 /**
  * Created by 14260 on 2018/6/10.
  */
+
+/**
+ * 管理员
+ */
 public class T_admin implements Serializable{
     private String admin;  //   用户账号
     private String name;   //   用户名

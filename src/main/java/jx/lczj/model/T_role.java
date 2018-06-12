@@ -3,6 +3,10 @@ package jx.lczj.model;
 /**
  * Created by 14260 on 2018/6/11.
  */
+
+/**
+ * 角色
+ */
 public class T_role {
     private String role;
     private String name;
