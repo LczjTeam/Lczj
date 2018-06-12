@@ -50,6 +50,8 @@ $(function () {
         nodeIcon: "glyphicon glyphicon-bookmark",
         data: e,
         onNodeSelected: function (e, o) {
+
+            //点击事件
             alert("<p>您单击了 " + o.text + "</p>");
         }
     })
