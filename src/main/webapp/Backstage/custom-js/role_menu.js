@@ -43,67 +43,14 @@ $(function () {
             backColor: "red",
             href: "http://www.tesco.com",
             tags: ["available", "0"]
-        }],
-        t = '[{"text": "父节点 1","nodes": [{"text": "子节点 1","nodes": [{"text": "孙子节点 1"},{"text": "孙子节点 2"}]},{"text": "子节点 2"}]},{"text": "父节点 2"},{"text": "父节点 3"},{"text": "父节点 4"},{"text": "父节点 5"}]';
-    $("#treeview1").treeview({data: e}), $("#treeview2").treeview({
-        levels: 1,
-        data: e
-    }), $("#treeview3").treeview({levels: 99, data: e}), $("#treeview4").treeview({
-        color: "#428bca",
-        data: e
-    }), $("#treeview5").treeview({
-        color: "#428bca",
-        expandIcon: "glyphicon glyphicon-chevron-right",
-        collapseIcon: "glyphicon glyphicon-chevron-down",
-        nodeIcon: "glyphicon glyphicon-bookmark",
-        data: e
-    }), $("#treeview6").treeview({
-        color: "#428bca",
-        expandIcon: "glyphicon glyphicon-stop",
-        collapseIcon: "glyphicon glyphicon-unchecked",
-        nodeIcon: "glyphicon glyphicon-user",
-        showTags: !0,
-        data: e
-    }), $("#treeview7").treeview({
+        }];
+        $("#treeview7").treeview({
         color: "#428bca",
         showBorder: !1,
         nodeIcon: "glyphicon glyphicon-bookmark",
-        data: e
-    }), $("#treeview8").treeview({
-        expandIcon: "glyphicon glyphicon-stop",
-        collapseIcon: "glyphicon glyphicon-unchecked",
-        nodeIcon: "glyphicon glyphicon-user",
-        color: "yellow",
-        backColor: "purple",
-        onhoverColor: "orange",
-        borderColor: "red",
-        showBorder: !1,
-        showTags: !0,
-        highlightSelected: !0,
-        selectedColor: "yellow",
-        selectedBackColor: "darkorange",
-        data: e
-    }), $("#treeview9").treeview({
-        expandIcon: "glyphicon glyphicon-stop",
-        collapseIcon: "glyphicon glyphicon-unchecked",
-        nodeIcon: "glyphicon glyphicon-user",
-        color: "yellow",
-        backColor: "purple",
-        onhoverColor: "orange",
-        borderColor: "red",
-        showBorder: !1,
-        showTags: !0,
-        highlightSelected: !0,
-        selectedColor: "yellow",
-        selectedBackColor: "darkorange",
-        data: o
-    }), $("#treeview10").treeview({
-        color: "#428bca",
-        enableLinks: !0,
-        data: e
-    }), $("#treeview11").treeview({
-        color: "#428bca", data: e, onNodeSelected: function (e, o) {
-            $("#event_output").prepend("<p>您单击了 " + o.text + "</p>")
+        data: e,
+        onNodeSelected: function (e, o) {
+            alert("<p>您单击了 " + o.text + "</p>");
         }
-    }), $("#treeview12").treeview({data: t})
+    })
 });
