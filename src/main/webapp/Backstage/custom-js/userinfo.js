@@ -70,12 +70,16 @@ $().ready(function () {
             e && r && !this.value && (this.value = e + "." + r)
     }),
     $("#btn_alter_info").click(function () {
+
         //修改管理员信息及密码
         var delok = true;
         var params={};
         params.admin = $('#admin').val();
         params.name =$('#admin_name').val();
         params.pwd =$('#password').val();
+        if(params.name=='' || params.pwd=='' || params.pwd!=$('#confirm_password').val()) {
+            return ;
+        }
         $.ajax({
             async: false,
             type: "POST",
