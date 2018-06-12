@@ -55,7 +55,7 @@
                         <option value='elem_100'>elem 100</option>
                     </select>
                     <div  >
-                        <a class="btn btn-primary">保存修改</a>
+                        <a class="btn btn-primary" id="btn_save_change">保存修改</a>
                     </div>
                 </div>
             </div>
@@ -69,10 +69,16 @@
     <script src="plugins/multi-select/js/jquery.multi-select.js"></script>
     <script type="text/javascript">
         // run pre selected options
-        $('#pre-selected-options').multiSelect();
+        $('#pre-selected-options').multiSelect({
+            afterSelect: function (values) {
+                alert("Select value: " + values);
+            },
+            afterDeselect: function (values) {
+                alert("Deselect value: " + values);
+            }
+        });
         $('.ms-selectable').prepend("<div style='text-align: left;' ><i class='glyphicon glyphicon-hand-right\n'></i>&nbsp;未拥有</div>");
         $('.ms-selection').prepend("<div style='text-align: left;' ><i class='glyphicon glyphicon-hand-right\n'></i>&nbsp;未拥有</div>");
-
     </script>
     <script src="custom-js/role_menu.js"></script>
 
