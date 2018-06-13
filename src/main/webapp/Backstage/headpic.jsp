@@ -22,32 +22,43 @@
     <link href="plugins/css/plugins.css" rel="stylesheet">
     <link href="css/plugins/sweetalert/sweetalert.css" rel="stylesheet">
 
-    <link href="css/style.min.css?v=4.0.0" rel="stylesheet"><base target="_blank">
-
+    <link href="css/animate.min.css" rel="stylesheet">
+    <link href="css/style.min.css?v=4.0.0" rel="stylesheet">
 </head>
     <!-- END HEAD -->
-    <body>
-    <div>
-        <form id="headpic_form" class="center-block"  style="margin-left: 50px;margin-top: 50px;">
-            <div class="fileinput fileinput-new" data-provides="fileinput">
-                <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
-                    <img src="../heads/${sessionScope.admin.t_admin.admin}.png" alt="" /> </div>
-                <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"> </div>
-                <div>
-                    <span class="btn default btn-file">
-                        <span class="fileinput-new">选择图片</span>
-                        <span class="fileinput-exists"> 修改 </span>
-                        <input type="file" name="file"> </span>
-                    <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> 移除 </a>
+    <body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-sm-12 ">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>修改头像</h5>
+                    </div>
+                    <div class="ibox-content " style="height: auto;width: 100%;height: 450px;" >
+                        <form id="headpic_form" class="center-block"  style="margin-left: 50px;margin-top: 50px;">
+                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                            <div class="fileinput-new thumbnail" style="width: 200px; height: 200px;">
+                                <img src="../heads/${sessionScope.admin.t_admin.admin}.png" alt="" /> </div>
+                            <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"> </div>
+                            <div>
+                                <span class="btn default btn-file">
+                                    <span class="fileinput-new">选择图片</span>
+                                    <span class="fileinput-exists"> 修改 </span>
+                                    <input type="file" name="file"> </span>
+                                <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> 移除 </a>
+                            </div>
+                        </div>
+                        <div class="clearfix margin-top-10">
+                            <span class="label label-danger">注意!</span> 请使用 IE10+、 FF3.6+、 Safari6.0+、 Chrome6.0+ 、 Opera11.1+ 浏览器进行头像修改。
+                        </div>
+                        <div class="clearfix margin-top-10">
+                            <a id="btn_alter_headpic" class="btn btn-success">确认修改 </a>
+                        </div>
+                    </form>
                 </div>
+             </div>
             </div>
-            <div class="clearfix margin-top-10">
-                <span class="label label-danger">注意!</span> 请使用 IE10+、 FF3.6+、 Safari6.0+、 Chrome6.0+ 、 Opera11.1+ 浏览器进行头像修改。
-            </div>
-            <div class="clearfix margin-top-10">
-                <a id="btn_alter_headpic" class="btn btn-success">确认修改 </a>
-            </div>
-        </form>
+        </div>
     </div>
     <script src="js/jquery.min.js?v=2.1.4"></script>
     <script src="js/bootstrap.min.js?v=3.3.5"></script>
