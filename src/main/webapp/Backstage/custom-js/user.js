@@ -104,7 +104,11 @@ $(document).ready(function(){
             $('#user_add_user').val(),
             $('#user_add_name').val(),
             '有效',
-            '<a class="edit"  ><i class="fa fa-edit"></i>&nbsp;编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="delete" ><i class="fa fa-trash"></i>&nbsp;删除</a>'
+            '<a class="edit"  ><i class="fa fa-edit"></i>&nbsp;编辑</a>' +
+            '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' +
+            '<a class="delete" ><i class="fa fa-trash"></i>&nbsp;删除</a>' +
+            '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' +
+            '<a class="pwd"><i class="fa fa-trash"></i>&nbsp;密码重置</a>'
         ]);
         table.fnDraw();
         $('#user_add_user').val('');
