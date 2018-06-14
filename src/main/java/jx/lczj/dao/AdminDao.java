@@ -36,4 +36,7 @@ public interface AdminDao {
 
     @Update("update T_ADMIN SET PWD = '123456' WHERE admin = #{0} ")
     boolean resetPwd(String admin);
+
+    @Update("update T_ADMIN set name= #{1} , pwd = #{2} where admin = #{0}")
+    boolean update(String admin, String name, String pwd);
 }

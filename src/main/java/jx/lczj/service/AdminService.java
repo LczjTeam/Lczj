@@ -108,22 +108,7 @@ public class AdminService {
     public boolean update1(String admin, String name,String isvalid, HttpSession session) {
         try {
             boolean ok = adminDao.update1(admin,name,isvalid);
-            if(ok){
-                try {
-                    AdminVo adminVo = (AdminVo) session.getAttribute("admin");
-                    T_admin t_admin = new T_admin();
-                    t_admin.setAdmin(admin);
-                    t_admin.setName(name);
-                    t_admin.setIsvalid(isvalid);
-                    adminVo.setT_admin(t_admin);
-                    session.setAttribute("admin",adminVo);
-                }catch (Exception e){
-                    throw  new RuntimeException(e.getMessage());
-                }
-                return true;
-            }else{
-                return false;
-            }
+            return true;
         }catch (Exception e){
             throw  new RuntimeException(e.getMessage());
         }
@@ -150,5 +135,30 @@ public class AdminService {
 
     public boolean resetPwd(String admin) {
         return adminDao.resetPwd(admin);
+    }
+
+    public boolean update(String admin, String name, String pwd, HttpSession session) {
+
+        try {
+            boolean ok = adminDao.update(admin,name,pwd);
+            if(ok){
+                try {
+                    AdminVo adminVo = (AdminVo) session.getAttribute("admin");
+                    T_admin t_admin = new T_admin();
+                    t_admin.setAdmin(admin);
+                    t_admin.setName(name);
+                    t_admin.setPwd(pwd);
+                    adminVo.setT_admin(t_admin);
+                    session.setAttribute("admin",adminVo);
+                }catch (Exception e){
+                    throw  new RuntimeException(e.getMessage());
+                }
+                return true;
+            }else{
+                return false;
+            }
+        }catch (Exception e){
+            throw  new RuntimeException(e.getMessage());
+        }
     }
 }
