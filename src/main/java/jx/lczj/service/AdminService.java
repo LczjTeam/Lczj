@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
-import java.awt.*;
 import java.util.*;
 import java.util.List;
 
@@ -28,6 +27,14 @@ public class AdminService {
     @Resource
     MenuDao menuDao;
 
+
+    /**
+     * 获取用户信息
+     * @return
+     */
+    public List<T_admin> loadList() {
+        return adminDao.loadList();
+    }
 
     /**
      * 管理员登录
@@ -74,29 +81,40 @@ public class AdminService {
         }catch (Exception e){
             return  new AdminVo();
         }
-
     }
 
+
     /**
-     * 更新管理员信息及密码
+     *
      * @param admin
-     * @param pwd
+     * @param name
+     * @param isvalid
+     * @return
+     */
+    public boolean add(String admin, String name,String isvalid) {
+        return adminDao.add(admin,name,isvalid);
+    }
+
+
+    /**
+     * 更新管理员信息
+     * @param admin
+     * @param isvalid
      * @param name
      * @param session
      * @return
      */
     @Transactional
-    public boolean update(String admin, String pwd, String name, HttpSession session) {
+    public boolean update1(String admin, String name,String isvalid, HttpSession session) {
         try {
-            boolean ok = adminDao.update(admin,name,pwd);
+            boolean ok = adminDao.update1(admin,name,isvalid);
             if(ok){
                 try {
                     AdminVo adminVo = (AdminVo) session.getAttribute("admin");
                     T_admin t_admin = new T_admin();
                     t_admin.setAdmin(admin);
                     t_admin.setName(name);
-                    t_admin.setPwd(pwd);
-                    t_admin.setIsvalid("1");
+                    t_admin.setIsvalid(isvalid);
                     adminVo.setT_admin(t_admin);
                     session.setAttribute("admin",adminVo);
                 }catch (Exception e){
@@ -109,6 +127,28 @@ public class AdminService {
         }catch (Exception e){
             throw  new RuntimeException(e.getMessage());
         }
+    }
 
+    /**
+     * 删除角色信息
+     * @param admin
+     * @return
+     */
+    @Transactional
+    public boolean delete(String admin) {
+        try {
+            //删除用户的角色信息
+            adminDao.deleteRoleDiv(admin);
+            //删除用户信息
+            System.out.println("admin:"+admin);
+            adminDao.delete(admin);
+            return true;
+        }catch (Exception e){
+            throw new RuntimeException(e.getMessage());
+        }
+    }
+
+    public boolean resetPwd(String admin) {
+        return adminDao.resetPwd(admin);
     }
 }
