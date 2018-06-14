@@ -39,40 +39,43 @@ public class MenuController {
         System.out.println(menu);
         return menuService.loadById(menu);
     }
-        /**
-         * 添加
-         * @param role
-         * @param name
-         * @return
-         */
-   /* @RequestMapping("/add")
-    @ResponseBody
-    public boolean add(String role,String name){
-        return menuService.add(role,name);
-    }*/
 
-        /**
-         * 更新
-         * @return
-         */
+
+    /**
+     * 更新
+     * @return
+     */
     @RequestMapping("/update")
     @ResponseBody
     public boolean update(String menu, String title, String parents,String url,String method,int sort_no,int visible , String css){
         return menuService.update(menu, title, parents, url, method, sort_no, visible, css);
 
     }
+    /**
+     * 添加
+     * @return
+     */
+    @RequestMapping("/add")
+    @ResponseBody
+    public boolean add(String menu, String title, String parents,String url,String method,int sort_no,int visible , String css){
+        System.out.println(" menu:"+ menu+" title:"+ title+" parents:"+ parents+" url:"+ url+" method:"+ method+" sort_no:"+ sort_no+" visible:"+ visible+" css:"+ css);
+
+        return menuService.add(menu, title, parents, url, method, sort_no, visible, css);
+
+    }
 
 
     /**
-         * 删除
-         * @param role
-         * @return
-         *//*
+     * 删除
+     * @param menu
+     * @return
+     */
     @RequestMapping("/delete")
     @ResponseBody
-    public boolean delete(String role){
-        return menuService.delete(role);
-    }*/
+    public boolean delete(String menu){
+        System.out.println(menu);
+        return menuService.delete(menu);
+    }
 
     /**
      * 获取根节点

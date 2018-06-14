@@ -3,6 +3,8 @@ package jx.lczj.dao;
 
 import javafx.scene.Parent;
 import jx.lczj.model.T_menu;
+import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
@@ -27,4 +29,14 @@ public interface MenuDao {
 
     @Update("update T_MENU set title = #{1},parents = #{2},url = #{3},method = #{4},sort_no = #{5},visible = #{6},css = #{7} WHERE Menu = #{0}")
     public boolean update(String menu, String title, String parents,String url,String method,int sort_no,int visible , String css);
+
+
+    @Insert("insert into T_MENU (menu,title ,parents,url,method,sort_no ,visible ,css ) values (#{0},#{1},#{2},#{3},#{4},#{5},#{6},#{7})")
+    boolean add(String menu, String title, String parents, String url, String method, int sort_no, int visible, String css);
+
+    @Delete("delete from T_MENU where menu = #{0} or parents = #{0}")
+    boolean delete(String menu);
+
+    @Delete("delete from T_ROLE_MENU where menu = #{0} ")
+    boolean deleteRole_Menu(String menu);
 }

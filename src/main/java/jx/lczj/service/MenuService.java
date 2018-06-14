@@ -5,6 +5,7 @@ import jx.lczj.dao.MenuDao;
 import jx.lczj.model.T_menu;
 import jx.lczj.viewmodel.MenuVo;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
@@ -60,43 +61,30 @@ public class MenuService {
         return menuDao.loadRoot();
     }
 
-    /**
-     * 获取全部节点
-     *
-     * @param
-     */
-//    public List<T_menu> getAllCode(){
-//        return MenuDao.allCode();
-//    }
+    public boolean add(String menu, String title, String parents, String url, String method, int sort_no, int visible, String css) {
+        return menuDao.add(menu, title, parents, url, method, sort_no, visible, css);
+    }
+
+
     /**
      * 删除菜单信息
-     * @param role
+     * @param menu
      * @return
      */
-    //@Transactional
-  /*  public boolean delete(String role) {
+    @Transactional
+   public boolean delete(String menu) {
         try {
            // 删除角色菜单分配
-            MenuDao.deleteRole_Menu(role);
-            //删除角色用户分配
-            MenuDao.deleteRole_Admin(role);
+            menuDao.deleteRole_Menu(menu);
             //删除角色信息
-            MenuDao.delete(role);
+            menuDao.delete(menu);
             return  true;
         }catch (Exception e){
             throw new RuntimeException(e.getMessage());
         }
-    }*/
+    }
 
 
 
-    /**
-     * 添加菜单信息
-     * @param role
-     * @param name
-     * @return
-     */
-   /* public boolean add(String role, String name) {
-        return roleDao.insert(role,name);
-    }*/
+
 }
