@@ -219,10 +219,13 @@ $(document).ready(function () {
                 }
             },
             error: function (data) {
+                console.log(JSON.stringify(data,null,4));
+
                 delok = false;
             }
         });
         if (!delok) {
+
             swal({
                 title: "保存失败！",
                 text: "",
