@@ -77,6 +77,14 @@ public class AdminController {
         return adminService.update1(admin,name,isvalid,session);
     }
 
+    @RequestMapping("/update")
+    @ResponseBody
+    public boolean update(String admin,String name,String pwd, HttpSession session){
+        System.out.println("admin:"+admin+",name:"+name+",isvalid:"+pwd);
+        return adminService.update(admin,name,pwd,session);
+    }
+
+
     /**
      * 删除
      * @param admin
