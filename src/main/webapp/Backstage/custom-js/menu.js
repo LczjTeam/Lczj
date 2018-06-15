@@ -81,6 +81,7 @@ $(document).ready(function () {
                         var curt = {};
                         curt.id = itms.menu;
                         curt.text = itms.title;
+                        curt.icon = 'glyphicon glyphicon-leaf';
                         item.children.push(curt);
                     }
                     dataTank.push(item);
@@ -117,10 +118,10 @@ $(document).ready(function () {
         },
         "types": {
             "default": {
-                "icon": "fa fa-folder icon-state-warning icon-lg"
+                "icon": "glyphicon glyphicon-th-large "
             },
             "file": {
-                "icon": "fa fa-file icon-state-warning icon-lg"
+                "icon": "fa fa-file "
             }
         }
 
