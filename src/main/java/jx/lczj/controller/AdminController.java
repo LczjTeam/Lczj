@@ -64,7 +64,7 @@ public class AdminController {
 
 
     /**
-     * 更新管理员信息及密码
+     * 更新管理员信息
      * @param admin
      * @param name
      * @param session
@@ -77,6 +77,14 @@ public class AdminController {
         return adminService.update1(admin,name,isvalid,session);
     }
 
+    /**
+     * 管理员信息修改及密码修改
+     * @param admin
+     * @param name
+     * @param pwd
+     * @param session
+     * @return
+     */
     @RequestMapping("/update")
     @ResponseBody
     public boolean update(String admin,String name,String pwd, HttpSession session){
@@ -98,7 +106,7 @@ public class AdminController {
     }
 
     /**
-     *
+     *密码重置
      * @param admin
      * @return
      */
@@ -107,6 +115,16 @@ public class AdminController {
     public boolean resetPwd(String admin){
         return adminService.resetPwd(admin);
     }
+
+
+
+    @RequestMapping("/user_role_update")
+    @ResponseBody
+    public boolean userRoleUpdate(String admin,String roles){
+        return adminService.userRoleUpdate(admin,roles);
+    }
+
+
 
 
 }

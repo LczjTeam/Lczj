@@ -39,4 +39,7 @@ public interface AdminDao {
 
     @Update("update T_ADMIN set name= #{1} , pwd = #{2} where admin = #{0}")
     boolean update(String admin, String name, String pwd);
+
+    @Insert("insert into T_USER_ROLE (admin ,role) values (#{0},#{1})")
+    boolean addRoleDiv(String admin, String role);
 }

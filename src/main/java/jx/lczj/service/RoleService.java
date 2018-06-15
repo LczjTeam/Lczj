@@ -67,4 +67,9 @@ public class RoleService {
     public boolean add(String role, String name) {
         return roleDao.insert(role,name);
     }
+
+
+    public List<T_role> loadByAdminId(String admin) {
+        return roleDao.loadByAdminId(admin);
+    }
 }

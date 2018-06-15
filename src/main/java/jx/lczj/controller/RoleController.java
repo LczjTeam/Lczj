@@ -67,4 +67,13 @@ public class RoleController {
         return roleService.delete(role);
     }
 
+
+
+    @RequestMapping("/loadByAdminId")
+    @ResponseBody
+    public List<T_role>  loadByAdminId(String admin){
+        return roleService.loadByAdminId(admin);
+    }
+
+
 }

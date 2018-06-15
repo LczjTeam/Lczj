@@ -137,6 +137,7 @@ public class AdminService {
         return adminDao.resetPwd(admin);
     }
 
+    @Transactional
     public boolean update(String admin, String name, String pwd, HttpSession session) {
 
         try {
@@ -160,5 +161,23 @@ public class AdminService {
         }catch (Exception e){
             throw  new RuntimeException(e.getMessage());
         }
+    }
+
+    @Transactional
+    public boolean userRoleUpdate(String admin, String roles) {
+
+        try {
+            String[] ss = roles.split(",");
+            ;
+            boolean ok = adminDao.deleteRoleDiv(admin);
+            for (String role: ss) {
+                System.out.println(role);
+                boolean ok1 = adminDao.addRoleDiv(admin,role);
+            }
+            return true;
+        }catch (Exception e){
+            throw  new RuntimeException(e.getMessage());
+        }
+
     }
 }

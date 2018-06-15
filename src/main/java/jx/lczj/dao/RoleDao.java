@@ -31,4 +31,6 @@ public interface RoleDao {
     @Update("insert into T_ROLE(role,name) values (#{0},#{1}) ")
     public boolean insert(String role, String name);
 
+    @Select("select * from T_ROLE where role in (select role from T_USER_ROLE WHERE admin = #{0})")
+    List<T_role> loadByAdminId(String admin);
 }
