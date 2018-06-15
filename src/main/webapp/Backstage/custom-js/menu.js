@@ -205,6 +205,21 @@ $(document).ready(function () {
         params.sort_no =$('#sort_no').val();
         params.visible =$('#visible').val();
         params.css =$('#css').val();
+
+        if(params.menu =='' || params.title  == '' || params.sort_no  == '' ){
+            swal({
+                title: "编号、名称、序号不能为空！",
+                text: "",
+                type: "warning",
+                allowOutsideClick: true,
+                showConfirmButton: true,
+                showCancelButton: false,
+                confirmButtonClass: "btn-danger",
+                confirmButtonText: "OK",
+            });
+            return;
+        }
+
         $.ajax({
             async: false,
             type: "POST",
@@ -268,6 +283,20 @@ $(document).ready(function () {
         params.sort_no =$('#sort_no').val();
         params.visible =$('#visible').val();
         params.css =$('#css').val();
+
+        if(params.menu =='' || params.title  == '' || params.sort_no  == '' ){
+            swal({
+                title: "编号、名称、序号不能为空！",
+                text: "",
+                type: "warning",
+                allowOutsideClick: true,
+                showConfirmButton: true,
+                showCancelButton: false,
+                confirmButtonClass: "btn-danger",
+                confirmButtonText: "OK",
+            });
+            return;
+        }
 
 
         $.ajax({

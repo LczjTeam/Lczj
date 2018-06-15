@@ -62,6 +62,21 @@ $(document).ready(function(){
         var params={};
         params.role = $('#role_add_role').val();
         params.name =$('#role_add_name').val();
+
+        if(params.role =='' || params.name == '' ){
+            swal({
+                title: "角色、名称不能为空！",
+                text: "",
+                type: "warning",
+                allowOutsideClick: true,
+                showConfirmButton: true,
+                showCancelButton: false,
+                confirmButtonClass: "btn-danger",
+                confirmButtonText: "OK",
+            });
+            return;
+        }
+
         $.ajax({
             async: false,
             type: "POST",
@@ -136,6 +151,19 @@ $(document).ready(function(){
         var params={};
         params.role = $('#role_edit_role').val();
         params.name =$('#role_edit_name').val();
+        if(params.role =='' || params.name == '' ){
+            swal({
+                title: "名称不能为空！",
+                text: "",
+                type: "warning",
+                allowOutsideClick: true,
+                showConfirmButton: true,
+                showCancelButton: false,
+                confirmButtonClass: "btn-danger",
+                confirmButtonText: "OK",
+            });
+            return;
+        }
         $.ajax({
             async: false,
             type: "POST",

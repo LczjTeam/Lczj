@@ -70,6 +70,19 @@ $(document).ready(function(){
         params.admin = $('#user_add_user').val();
         params.name =$('#user_add_name').val();
         params.isvalid = '1';
+        if(params.admin == ''|| params.name == '' ){
+            swal({
+                title: "账号、名称不能为空！",
+                text: "",
+                type: "warning",
+                allowOutsideClick: true,
+                showConfirmButton: true,
+                showCancelButton: false,
+                confirmButtonClass: "btn-danger",
+                confirmButtonText: "OK",
+            });
+            return;
+        }
         $.ajax({
             async: false,
             type: "POST",
@@ -153,6 +166,21 @@ $(document).ready(function(){
         params.admin = $('#user_edit_user').val();
         params.name =$('#user_edit_name').val();
         params.isvalid = validValue;
+
+        if(params.name == '' ){
+            swal({
+                title: "名称不能为空！",
+                text: "",
+                type: "warning",
+                allowOutsideClick: true,
+                showConfirmButton: true,
+                showCancelButton: false,
+                confirmButtonClass: "btn-danger",
+                confirmButtonText: "OK",
+            });
+            return;
+        }
+
         $.ajax({
             async: false,
             type: "POST",
@@ -356,7 +384,7 @@ $(document).ready(function(){
     });
 
 
-    $("#btn_edit_save").click(function(e){
+   /* $("#btn_edit_save").click(function(e){
         var nRow = EditRow;
         var delok = true;
         var params={};
@@ -364,6 +392,20 @@ $(document).ready(function(){
         params.admin = $('#user_edit_user').val();
         params.name =$('#user_edit_name').val();
         params.isvalid = validValue;
+        if(params.name == '' ){
+            swal({
+                title: "名称不能为空！",
+                text: "",
+                type: "warning",
+                allowOutsideClick: true,
+                showConfirmButton: true,
+                showCancelButton: false,
+                confirmButtonClass: "btn-danger",
+                confirmButtonText: "OK",
+            });
+            return;
+        }
+
         $.ajax({
             async: false,
             type: "POST",
@@ -413,5 +455,5 @@ $(document).ready(function(){
             confirmButtonClass: "btn-success",
             confirmButtonText: "OK",
         });
-    });
+    });*/
 });
