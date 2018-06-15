@@ -86,5 +86,12 @@ public class MenuService {
 
 
 
+    public List<T_menu> loadByRole(String role) {
+        return menuDao.loadByRole(role);
+    }
 
+    public List<T_menu> loadChildren() {
+        return menuDao.loadChildren();
+
+    }
 }

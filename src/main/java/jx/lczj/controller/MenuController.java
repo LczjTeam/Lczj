@@ -40,6 +40,29 @@ public class MenuController {
         return menuService.loadById(menu);
     }
 
+    /**
+     * 通过角色查询菜单信息
+     * @param role
+     * @return
+     */
+    @RequestMapping("/loadByRole")
+    @ResponseBody
+    public List<T_menu> loadByRole(String role){
+        System.out.println(role);
+        return menuService.loadByRole(role);
+    }
+
+    /**
+     * 通过查询子菜单信息
+     * @return
+     */
+    @RequestMapping("/loadChildren")
+    @ResponseBody
+    public List<T_menu> loadChildren(){
+        System.out.println();
+        return menuService.loadChildren();
+    }
+
 
     /**
      * 更新

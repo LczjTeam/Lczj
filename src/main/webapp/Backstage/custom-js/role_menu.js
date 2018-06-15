@@ -1,59 +1,146 @@
 $(function () {
-    var e = [/*{
-            text: "父节点 1",
-            href: "#parent1",
-            tags: ["4"],
-            nodes: [{
-                text: "子节点 1",
-                href: "#child1",
-                tags: ["2"],
-                nodes: [{text: "孙子节点 1", href: "#grandchild1", tags: ["0"]}, {
-                    text: "孙子节点 2",
-                    href: "#grandchild2",
-                    tags: ["0"]
-                }]
-            }, {text: "子节点 2", href: "#child2", tags: ["0"]}]
-        },*/ {text: "父节点 2", href: "#parent2", tags: ["0"]}, {text: "父节点 3", href: "#parent3", tags: ["0"]}, {
-            text: "父节点 4",
-            href: "#parent4",
-            tags: ["0"]
-        }, {text: "父节点 5", href: "#parent5", tags: ["0"]}], o = [{
-            text: "父节点 1",
-            tags: ["2"],
-            nodes: [{
-                text: "子节点 1",
-                tags: ["3"],
-                nodes: [{text: "孙子节点 1", tags: ["6"]}, {text: "孙子节点 2", tags: ["3"]}]
-            }, {text: "子节点 2", tags: ["3"]}]
-        }, {text: "父节点 2", tags: ["7"]},
-        {
-            text: "父节点 3",
-            icon: "glyphicon glyphicon-earphone",
-            href: "#demo",
-            tags: ["11"]
-        }, {
-            text: "父节点 4",
-            icon: "glyphicon glyphicon-cloud-download",
-            href: "/demo.html",
-            tags: ["19"],
-            selected: !0
-        }, {
-            text: "父节点 5",
-            icon: "glyphicon glyphicon-certificate",
-            color: "pink",
-            backColor: "red",
-            href: "http://www.tesco.com",
-            tags: ["available", "0"]
-        }];
+
+    var options = '';
+    $.ajax({
+        async: false,
+        type: "POST",
+        url: "../menu/list", //注意路径
+        data: {},
+        dataType: "json",
+        success: function (data) {
+            console.log(JSON.stringify(data,null,4));
+
+            var str = '';
+            for(var i = 0;i < data.length; i++){
+                str+= '<optgroup label="'+data[i].menu.title+'">';
+                for (var j= 0;j < data[i].menus.length; j++){
+                    str+='<option value='+data[i].menus[j].menu+' >'+data[i].menus[j].title+'</option>';
+
+                }
+                str+='</optgroup>';
+            }
+            options = str;
+            $('#pre-selected-options').html(str);
+
+            $('#pre-selected-options').multiSelect({
+                selectableOptgroup: true
+            });
+            $('.ms-selectable').prepend("<div style='text-align: left;' ><i class='glyphicon glyphicon-hand-right\n'></i>&nbsp;未拥有</div>");
+            $('.ms-selection').prepend("<div style='text-align: left;' ><i class='glyphicon glyphicon-hand-right\n'></i>&nbsp;已拥有</div>");
+
+        },
+        error: function (data) {
+            console.log(JSON.stringify(data,null,4));
+            //alert("数据获取失败 ！");
+            swal({
+                title: "数据获取失败！",
+                text: "",
+                type: "error",
+                allowOutsideClick: true,
+                showConfirmButton: true,
+                showCancelButton: false,
+                confirmButtonClass: "btn-danger",
+                confirmButtonText: "OK",
+            });
+        }
+    });
+
+
+    var datas = [];
+    $.ajax({
+        async: false,
+        type: "POST",
+        url: "../role/list",       //注意路径
+        data: {},
+        dataType: "json",
+        success: function (data) {
+            console.log(JSON.stringify(data,null,4));
+
+            for(var i = 0;i < data.length; i++){
+                var itm = {};
+                itm.text = data[i].name+'('+data[i].role+')';
+                itm.icon = "glyphicon glyphicon-user";
+                itm.href= "#";
+                itm.selected= !0;
+                datas.push(itm);
+            }
+        },
+        error: function (data) {
+            console.log(JSON.stringify(data,null,4));
+            //alert("数据获取失败 ！");
+            swal({
+                title: "数据获取失败！",
+                text: "",
+                type: "error",
+                allowOutsideClick: true,
+                showConfirmButton: true,
+                showCancelButton: false,
+                confirmButtonClass: "btn-danger",
+                confirmButtonText: "OK",
+            });
+        }
+    });
+
+
+    var _role = '';
     $("#treeview7").treeview({
         color: "#428bca",
         showBorder: !1,
         nodeIcon: "glyphicon glyphicon-bookmark",
-        data: e,
-        onNodeSelected: function (e, o) {
+        data: datas,
 
+        onNodeSelected: function (e, o) {
             //节点点击事件
-            alert("<p>您单击了 " + o.text + "</p>");
+            //alert("<p>您单击了 " + o.text + "</p>");
+            var role = o.text;
+
+            role =  role.substr(role.indexOf('(')+1,(role.lastIndexOf(')')-role.indexOf('(')-1));
+            _role = role;
+            $.ajax({
+                async: false,
+                type: "POST",
+                url: "../menu/loadByRole",       //注意路径
+                data: {role: role},
+                dataType: "json",
+                success: function (data) {
+                    console.log(JSON.stringify(data,null,4));
+                    var val = [];
+                    for(var i = 0;i < data.length; i++){
+                        val.push(data[i].menu);
+                    }
+
+
+                    console.log(val)
+
+
+
+
+                    //设置值
+                    $('#pre-selected-options').val(val);
+                    $('#pre-selected-options').trigger('change');
+                    $('#pre-selected-options').multiSelect('refresh');
+
+                },
+                error: function (data) {
+                    console.log(JSON.stringify(data,null,4));
+                    //alert("数据获取失败 ！");
+                    swal({
+                        title: "数据获取失败！",
+                        text: "",
+                        type: "error",
+                        allowOutsideClick: true,
+                        showConfirmButton: true,
+                        showCancelButton: false,
+                        confirmButtonClass: "btn-danger",
+                        confirmButtonText: "OK",
+                    });
+                }
+            });
+
+
+
+
+
         }
     });
 
@@ -62,32 +149,84 @@ $(function () {
      */
     $('#btn_save_change').click(function(e){
 
+        if(_role==''){
+            swal({
+                title: "请先选择修改的角色！",
+                text: "",
+                type: "error",
+                allowOutsideClick: true,
+                showConfirmButton: true,
+                showCancelButton: false,
+                confirmButtonClass: "btn-danger",
+                confirmButtonText: "OK",
+            });
+            return ;
+        }
+
+        var vals = $('#pre-selected-options').val();
         //获取值
-        alert($('#pre-selected-options').val());
+        console.log(vals.toString());
+        var str = vals.toString();
 
 
-        //初始化【设置全部不选】
-        var lis2 = $('.ms-list')[0].childNodes;
-        for (var i = 0; i < lis2.length; i++) {
-            lis2[i].style.display = 'block';
+         alert(str);
+
+
+        var delok = true;
+        var params={};
+        params.role = _role;
+        params.menus = str;
+        console.log(JSON.stringify(params,null,4))
+        $.ajax({
+            async: false,
+            type: "POST",
+            url: "../role/role_menu_update",//注意路径
+            data: params,
+            dataType: "json",
+            success: function (data) {
+                if (data) {
+
+                    return;
+                } else {
+                    delok = false;
+                }
+            },
+            error: function (data) {
+                console.log(JSON.stringify(data,null,4));
+
+                delok = false;
+            }
+        });
+        if (!delok) {
+
+            swal({
+                title: "保存失败！",
+                text: "",
+                type: "error",
+                allowOutsideClick: true,
+                showConfirmButton: true,
+                showCancelButton: false,
+                confirmButtonClass: "btn-danger",
+                confirmButtonText: "OK",
+            });
+            return;
         }
 
+        swal({
+            title: "保存成功！",
+            text: "",
+            type: "success",
+            allowOutsideClick: true,
+            showConfirmButton: true,
+            showCancelButton: false,
+            confirmButtonClass: "btn-success",
+            confirmButtonText: "OK",
+        });
 
-        var lis = $('.ms-list')[1].childNodes;
-        for (var i = 0; i < lis.length; i++) {
-            lis[i].style.display = 'none';
-        }
 
-        var ops = $('#pre-selected-options').find('option');
 
-        for (var i = 0; i < ops.length; i++) {
-            ops[i].removeAttribute('selected');
-        }
 
-        //设置值
-        $('#pre-selected-options').val(['elem_3','elem_2']);
-        $('#pre-selected-options').trigger('change');
-        $('#pre-selected-options').multiSelect();
+
     });
 
 });

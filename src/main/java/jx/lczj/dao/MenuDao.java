@@ -39,4 +39,10 @@ public interface MenuDao {
 
     @Delete("delete from T_ROLE_MENU where menu = #{0} ")
     boolean deleteRole_Menu(String menu);
+
+    @Select("SELECT * from  T_MENU where MENU in (select menu from T_ROLE_MENU WHERE ROLE = #{0}) order by MENU,SORT_NO")
+    List<T_menu> loadByRole(String role);
+
+    @Select("SELECT * from  T_MENU where parents <> '0' order by MENU,SORT_NO")
+    List<T_menu> loadChildren();
 }

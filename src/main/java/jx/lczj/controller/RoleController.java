@@ -75,5 +75,11 @@ public class RoleController {
         return roleService.loadByAdminId(admin);
     }
 
+    @RequestMapping("/role_menu_update")
+    @ResponseBody
+    public boolean roleMenuUpdate(String role,String menus){
+        return roleService.roleMenuUpdate(role,menus);
+    }
+
 
 }

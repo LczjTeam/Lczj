@@ -33,4 +33,10 @@ public interface RoleDao {
 
     @Select("select * from T_ROLE where role in (select role from T_USER_ROLE WHERE admin = #{0})")
     List<T_role> loadByAdminId(String admin);
+
+    @Delete("delete from T_ROLE_MENU WHERE ROLE = #{0} ")
+    boolean deleteMenuDiv(String role);
+
+    @Update("insert into T_ROLE_MENU(role,menu) values (#{0},#{1}) ")
+    boolean addMenuDiv(String role, String menu);
 }

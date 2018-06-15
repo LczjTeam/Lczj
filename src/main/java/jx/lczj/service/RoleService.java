@@ -72,4 +72,21 @@ public class RoleService {
     public List<T_role> loadByAdminId(String admin) {
         return roleDao.loadByAdminId(admin);
     }
+
+    @Transactional
+    public boolean roleMenuUpdate(String role, String menus) {
+
+        try {
+            String[] ss = menus.split(",");
+            ;
+            boolean ok = roleDao.deleteMenuDiv(role);
+            for (String menu: ss) {
+                System.out.println(menu);
+                boolean ok1 = roleDao.addMenuDiv(role,menu);
+            }
+            return true;
+        }catch (Exception e){
+            throw  new RuntimeException(e.getMessage());
+        }
+    }
 }
