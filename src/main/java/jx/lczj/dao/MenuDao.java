@@ -21,7 +21,7 @@ public interface MenuDao {
     @Select("select * from T_MENU where PARENTS = '0' order by SORT_NO")
     public List<T_menu> loadRoot();
 
-    @Select("SELECT * from  T_MENU ORDER BY MENU,PARENTS")
+    @Select("SELECT * from  T_MENU WHERE PARENTS <> '0' ORDER BY MENU,SORT_NO ")
     public List<T_menu> allCode();
 
     @Select("SELECT * from  T_MENU where MENU =  #{0} ")

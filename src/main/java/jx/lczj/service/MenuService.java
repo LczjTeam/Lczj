@@ -28,7 +28,7 @@ public class MenuService {
            List<T_menu> list1 = new ArrayList<T_menu>();
            MenuVo menuVo1 = new MenuVo();
            for (T_menu menu1 : allCode){
-               if(Integer.parseInt(menu1.getParents())==t.getSort_no()*10){
+               if(menu1.getParents().equals(t.getMenu())){
                    list1.add(menu1);
                }
            }
