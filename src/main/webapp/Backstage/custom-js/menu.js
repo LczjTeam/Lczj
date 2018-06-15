@@ -14,6 +14,8 @@ $(document).ready(function () {
         $("#sort_no").val('');
         $("#css").val('');
         $("#menu_title").text('菜单信息添加');
+        $("#munu_title").removeAttr('readonly');
+
         $("#btn_add_menu").css('visibility','visible');
         $("#btn_alter_menu").css('visibility','hidden');
         $("#parents1").removeAttr('disabled');
@@ -137,6 +139,7 @@ $(document).ready(function () {
         $("#menu_title").text('菜单信息修改');
         $("#btn_add_menu").css('visibility','hidden');
         $("#btn_alter_menu").css('visibility','visible');
+        $("#munu_title").attr('readonly','readonly');
         var  id= data.selected;
         curtId = id;
         if(id=='') return;
