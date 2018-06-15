@@ -171,7 +171,7 @@ $(function () {
         var str = vals.toString();
 
 
-         alert(str);
+         //alert(str);
 
 
         var delok = true;
