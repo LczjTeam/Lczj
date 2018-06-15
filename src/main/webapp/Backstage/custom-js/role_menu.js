@@ -8,7 +8,7 @@ $(function () {
         data: {},
         dataType: "json",
         success: function (data) {
-            console.log(JSON.stringify(data,null,4));
+            //console.log(JSON.stringify(data,null,4));
 
             var str = '';
             for(var i = 0;i < data.length; i++){
@@ -30,7 +30,7 @@ $(function () {
 
         },
         error: function (data) {
-            console.log(JSON.stringify(data,null,4));
+           // console.log(JSON.stringify(data,null,4));
             //alert("数据获取失败 ！");
             swal({
                 title: "数据获取失败！",
@@ -54,7 +54,7 @@ $(function () {
         data: {},
         dataType: "json",
         success: function (data) {
-            console.log(JSON.stringify(data,null,4));
+           // console.log(JSON.stringify(data,null,4));
 
             for(var i = 0;i < data.length; i++){
                 var itm = {};
@@ -66,7 +66,7 @@ $(function () {
             }
         },
         error: function (data) {
-            console.log(JSON.stringify(data,null,4));
+          //  console.log(JSON.stringify(data,null,4));
             //alert("数据获取失败 ！");
             swal({
                 title: "数据获取失败！",
@@ -103,14 +103,14 @@ $(function () {
                 data: {role: role},
                 dataType: "json",
                 success: function (data) {
-                    console.log(JSON.stringify(data,null,4));
+                   // console.log(JSON.stringify(data,null,4));
                     var val = [];
                     for(var i = 0;i < data.length; i++){
                         val.push(data[i].menu);
                     }
 
 
-                    console.log(val)
+                    //console.log(val)
 
 
 
@@ -124,7 +124,7 @@ $(function () {
 
                 },
                 error: function (data) {
-                    console.log(JSON.stringify(data,null,4));
+                   // console.log(JSON.stringify(data,null,4));
                     //alert("数据获取失败 ！");
                     swal({
                         title: "数据获取失败！",
@@ -167,7 +167,7 @@ $(function () {
 
         var vals = $('#pre-selected-options').val();
         //获取值
-        console.log(vals.toString());
+       // console.log(vals.toString());
         var str = vals.toString();
 
 
@@ -178,7 +178,7 @@ $(function () {
         var params={};
         params.role = _role;
         params.menus = str;
-        console.log(JSON.stringify(params,null,4))
+     //   console.log(JSON.stringify(params,null,4))
         $.ajax({
             async: false,
             type: "POST",
@@ -194,7 +194,7 @@ $(function () {
                 }
             },
             error: function (data) {
-                console.log(JSON.stringify(data,null,4));
+                //console.log(JSON.stringify(data,null,4));
 
                 delok = false;
             }

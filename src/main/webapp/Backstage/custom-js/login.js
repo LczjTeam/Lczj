@@ -35,7 +35,7 @@ $(document).ready(function() {
                 data: params,
                 dataType: "json",
                 success: function (data) {
-                    console.log(JSON.stringify(data,null,4));
+                    //console.log(JSON.stringify(data,null,4));
                     if(data.t_admin == null){
                         swal({
                             title: "账号不存在或无效！",
@@ -64,7 +64,7 @@ $(document).ready(function() {
                     }
                 },
                 error: function (data) {
-                    console.log(JSON.stringify(data,null,4));
+                    //console.log(JSON.stringify(data,null,4));
                     swal({
                         title: "登陆出错！",
                         text: "",

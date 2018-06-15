@@ -24,12 +24,12 @@ $(document).ready(function(){
         data: params,
         dataType: "json",
         success: function (data) {
-            console.log(JSON.stringify(data,null,4));
+           // console.log(JSON.stringify(data,null,4));
             for (var i = 0; i < data.length; i++) {
-                console.log(JSON.stringify(data[i],null,4));
-                console.log(data[i].admin);
-                console.log(data[i].name)
-                console.log(data[i].isvalid);
+              //  console.log(JSON.stringify(data[i],null,4));
+               // console.log(data[i].admin);
+              //  console.log(data[i].name)
+              //  console.log(data[i].isvalid);
                 var itm = data[i];
                 table.fnAddData([
                     itm.admin,
@@ -44,7 +44,7 @@ $(document).ready(function(){
             }
         },
         error: function (data) {
-            console.log(JSON.stringify(data,null,4));
+          //  console.log(JSON.stringify(data,null,4));
             //alert("数据获取失败 ！");
             swal({
                 title: "数据获取失败！",
@@ -152,7 +152,7 @@ $(document).ready(function(){
         //alert(aData[0]);
         $('#user_edit_user').val(aData[0]);
         $('#user_edit_name').val(aData[1]);
-        console.log((aData[2]=='有效'? '1':'0'));
+      //  console.log((aData[2]=='有效'? '1':'0'));
         $('#user_edit_isvalid').val((aData[2]=='有效'? '1':'0'));
         $('#user_edit_modal').modal('show')
     });
@@ -242,8 +242,8 @@ $(document).ready(function(){
         var aData = table.fnGetData(nRow);
         //alert("delete:"+aData[0]);
 
-        console.log(aData[0]);
-        console.log(nRow);
+        //console.log(aData[0]);
+        //console.log(nRow);
 
         swal({
             title: "确认删除这一行数据 ?",

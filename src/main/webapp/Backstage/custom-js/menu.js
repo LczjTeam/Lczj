@@ -32,7 +32,7 @@ $(document).ready(function () {
         data: params,
         dataType: "json",
         success: function (data) {
-            console.log(JSON.stringify(data, null, 4));
+           // console.log(JSON.stringify(data, null, 4));
             var str ='<option value="0">根目录</option>';
             for (var i = 0; i < data.length; i++) {
                 str+='<option value="'+data[i].menu+'"> '+data[i].title+'  </option>'
@@ -40,7 +40,7 @@ $(document).ready(function () {
             $("#parents1").html(str);
         },
         error: function (data) {
-            console.log(JSON.stringify(data, null, 4));
+           // console.log(JSON.stringify(data, null, 4));
             swal({
                 title: "数据获取失败！",
                 text: "",
@@ -69,7 +69,7 @@ $(document).ready(function () {
             dataType: "json",
             success: function (data) {
 
-                console.log(JSON.stringify(data, null, 4));
+              //  console.log(JSON.stringify(data, null, 4));
                 var oldData = data;//获取Json数据
                 for (var i = 0; i < oldData.length; i++) { //提取所需值组成新数组
                     var item = {};
@@ -90,7 +90,7 @@ $(document).ready(function () {
                 }
             },
             error: function (data) {
-                console.log(JSON.stringify(data, null, 4));
+                //console.log(JSON.stringify(data, null, 4));
                 //alert("数据获取失败 ！");
                 swal({
                     title: "数据获取失败！",
@@ -143,7 +143,7 @@ $(document).ready(function () {
         var  id= data.selected;
         curtId = id;
         if(id=='') return;
-        console.log(id);
+       // console.log(id);
         var params={};
         params.menu = ''+id ;
         $.ajax({
@@ -153,7 +153,7 @@ $(document).ready(function () {
             data: params,
             dataType: "json",
             success: function (data) {
-                console.log(JSON.stringify(data,null,4));
+               // console.log(JSON.stringify(data,null,4));
                 var showdata = data;
 
                 $("#munu_title").val(showdata.menu);
@@ -171,7 +171,7 @@ $(document).ready(function () {
                 $("#visible").val(showdata.visible);
 
             }, error: function (data) {
-                console.log(JSON.stringify(data,null,4));
+               // console.log(JSON.stringify(data,null,4));
                 //alert("数据获取失败 ！");
                 swal({
                     title: "数据获取失败！",
@@ -238,7 +238,7 @@ $(document).ready(function () {
                 }
             },
             error: function (data) {
-                console.log(JSON.stringify(data,null,4));
+              //  console.log(JSON.stringify(data,null,4));
 
                 delok = false;
             }
@@ -318,7 +318,7 @@ $(document).ready(function () {
             },
             error: function (data)
             {
-                console.log(JSON.stringify(data,null,4));
+                //console.log(JSON.stringify(data,null,4));
                 delok = false;
             }
         });
@@ -410,7 +410,7 @@ $(document).ready(function () {
                 },
                 error: function (data)
                 {
-                    console.log(JSON.stringify(data,null,4));
+                   // console.log(JSON.stringify(data,null,4));
                     delok = false;
                 }
             });

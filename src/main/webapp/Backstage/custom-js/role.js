@@ -24,11 +24,11 @@ $(document).ready(function(){
         data: params,
         dataType: "json",
         success: function (data) {
-            console.log(JSON.stringify(data,null,4));
+          //  console.log(JSON.stringify(data,null,4));
             for (var i = 0; i < data.length; i++) {
-                console.log(JSON.stringify(data[i],null,4));
-                console.log(data[i].role);
-                console.log(data[i].name);
+              //  console.log(JSON.stringify(data[i],null,4));
+               // console.log(data[i].role);
+               // console.log(data[i].name);
                 var itm = data[i];
                 table.fnAddData([
                     itm.role,
@@ -38,7 +38,7 @@ $(document).ready(function(){
             }
         },
         error: function (data) {
-            console.log(JSON.stringify(data,null,4));
+          //  console.log(JSON.stringify(data,null,4));
             //alert("数据获取失败 ！");
             swal({
                 title: "数据获取失败！",

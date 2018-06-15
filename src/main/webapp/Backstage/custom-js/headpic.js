@@ -15,7 +15,7 @@ $().ready(function () {
             contentType: false,
             processData: false,
             success: function (returndata) {
-                console.log(JSON.stringify(returndata,null,4));
+                //console.log(JSON.stringify(returndata,null,4));
                 //window.location.href = "index.jsp";
                 swal({
                     title: "头像修改成功！",
@@ -30,7 +30,7 @@ $().ready(function () {
             },
             error: function (data) {
                 //alert("login failed");
-                console.log(JSON.stringify(data,null,4));
+               // console.log(JSON.stringify(data,null,4));
                 swal({
                     title: "头像修改失败！",
                     text: "",
