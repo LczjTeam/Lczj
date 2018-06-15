@@ -119,6 +119,8 @@ $(function () {
                     $('#pre-selected-options').val(val);
                     $('#pre-selected-options').trigger('change');
                     $('#pre-selected-options').multiSelect('refresh');
+                    $('.ms-selectable').prepend("<div style='text-align: left;' ><i class='glyphicon glyphicon-hand-right\n'></i>&nbsp;未拥有</div>");
+                    $('.ms-selection').prepend("<div style='text-align: left;' ><i class='glyphicon glyphicon-hand-right\n'></i>&nbsp;已拥有</div>");
 
                 },
                 error: function (data) {
