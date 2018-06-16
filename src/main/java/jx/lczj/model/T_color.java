@@ -15,4 +15,36 @@ public class T_color  implements Serializable{
     private String name; //颜色名称
     private String rgb;  //颜色rgb 颜色的rgb值，十六制，6位长度
 
+    @Override
+    public String toString() {
+        return "T_color{" +
+                "color=" + color +
+                ", name='" + name + '\'' +
+                ", rgb='" + rgb + '\'' +
+                '}';
+    }
+
+    public int getColor() {
+        return color;
+    }
+
+    public void setColor(int color) {
+        this.color = color;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getRgb() {
+        return rgb;
+    }
+
+    public void setRgb(String rgb) {
+        this.rgb = rgb;
+    }
 }
