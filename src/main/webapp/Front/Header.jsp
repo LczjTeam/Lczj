@@ -97,7 +97,7 @@
         </div>
         <div class="col-md-3 header-right footer-bottom">
             <ul>
-                <li><a href="Backstage/index.jsp" class="use1" <%--data-toggle="modal" data-target="#myModal4"--%>><span>Login</span></a>
+                <li><a href="Backstage/index.html" class="use1" <%--data-toggle="modal" data-target="#myModal4"--%>><span>Login</span></a>
 
                 </li>
                 <li><a class="fb" href="#"></a></li>
