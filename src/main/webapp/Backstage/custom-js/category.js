@@ -168,7 +168,7 @@ $(document).ready(function(){
         else if(Data=='室外'){
             data='2';
         }
-        else if(Data==''){
+        else if(Data=='运动'){
             data='3';
         }
         return data;
