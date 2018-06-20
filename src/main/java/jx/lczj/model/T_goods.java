@@ -21,8 +21,8 @@ public class T_goods implements Serializable {
     private  int  space;        //鼻尖距离
     private  int  length;       //镜腿长
     private  int  max_width;    //总宽度
-    private  int  suitable_sex;    //总宽度
-    private  int  price;    //总宽度
+    private  int  suitable_sex;    //适性别 0-通用，1-男，2-女
+    private  int  price;    //价格
 
 
     public String getGoods() {
@@ -118,6 +118,13 @@ public class T_goods implements Serializable {
     }
 
 
+
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+
     @Override
     public String toString() {
         return "T_goods{" +
@@ -134,9 +141,5 @@ public class T_goods implements Serializable {
                 ", suitable_sex=" + suitable_sex +
                 ", price=" + price +
                 '}';
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
     }
 }
