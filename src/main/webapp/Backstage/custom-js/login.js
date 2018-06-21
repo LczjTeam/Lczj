@@ -47,6 +47,8 @@ $(document).ready(function() {
                             confirmButtonClass: "btn-danger",
                             confirmButtonText: "OK",
                         });
+                        $("#loding-login").css('display','none');
+                        clearInterval(int);
                     }else if (data.menuVos==null){
                         swal({
                             title: "密码错误！",
@@ -58,7 +60,8 @@ $(document).ready(function() {
                             confirmButtonClass: "btn-danger",
                             confirmButtonText: "OK",
                         });
-
+                        $("#loding-login").css('display','none');
+                        clearInterval(int);
                     }else{
                         window.location.href="index.jsp";
                     }
@@ -75,10 +78,11 @@ $(document).ready(function() {
                         confirmButtonClass: "btn-danger",
                         confirmButtonText: "OK",
                     });
+                    $("#loding-login").css('display','none');
+                    clearInterval(int);
                 }
             });
-            $("#loding-login").css('display','none');
-            clearInterval(int);
+
 
 
         },1000);
