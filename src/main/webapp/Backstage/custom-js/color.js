@@ -294,6 +294,7 @@ $(document).ready(function(){
                 table.fnUpdate('<image style="width: 30px;height:30px;" src="../colors/'+datas.rgb+'"></image>', nRow, 2, false);
                 table.fnDraw();
                 $('#edit_file').val('');
+                $("#edit_img").attr('src','');
             },
             error:function (data) {
                 console.log(JSON.stringify(data,null,4));
