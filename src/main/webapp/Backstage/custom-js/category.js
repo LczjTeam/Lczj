@@ -70,9 +70,9 @@ $(document).ready(function(){
             occ='室内';
         }
         else if(Occ==2){
-            occ='室外'
+            occ='室外';
         }else if(Occ==3){
-            occ='运动'
+            occ='运动';
         }
         return occ;
     }
