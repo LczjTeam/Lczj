@@ -15,7 +15,7 @@ public class T_goods implements Serializable {
     private  int  category;     //类别
     private  int  brand;        //品牌
     private  String  name;      //名称
-    private  String  model;     //型号
+    private  String  models;     //型号
     private  int  width;        //镜面宽 '单位为mm';
     private  int  height;       //镜面高'单位为mm';
     private  int  space;        //鼻尖距离
@@ -57,12 +57,12 @@ public class T_goods implements Serializable {
         this.name = name;
     }
 
-    public String getModel() {
-        return model;
+    public String getModels() {
+        return models;
     }
 
-    public void setModel(String model) {
-        this.model = model;
+    public void setModels(String models) {
+        this.models = models;
     }
 
     public int getWidth() {
@@ -132,7 +132,7 @@ public class T_goods implements Serializable {
                 ", category=" + category +
                 ", brand=" + brand +
                 ", name='" + name + '\'' +
-                ", model='" + model + '\'' +
+                ", models='" + models + '\'' +
                 ", width=" + width +
                 ", height=" + height +
                 ", space=" + space +
