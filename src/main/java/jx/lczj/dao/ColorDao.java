@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
+import org.omg.IOP.TAG_CODE_SETS;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
@@ -37,11 +38,10 @@ public  interface  ColorDao {
      * @return
      */
     @Select("select * from T_COLOR WHERE COLOR = #{0}")
-   public boolean loadByColor(int color);
+   public T_color loadByColor(int color);
 
-    @Select("select * from T_COLOR WHERE COLOR = #{0}")
-    T_color loadColor(int color);
+
 
     @Update("update T_COLOR set NAME = #{1}, RGB = #{2} where COLOR = #{0}")
-    boolean updataColor(int color, String name, String rgb);
+    boolean updateColor(int color, String name, String rgb);
 }

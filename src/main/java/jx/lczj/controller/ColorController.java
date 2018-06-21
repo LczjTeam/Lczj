@@ -24,29 +24,8 @@ public class ColorController {
     @ResponseBody
     public  boolean addColor(MultipartFile file, HttpServletRequest request){
 
-        String ctimes = System.currentTimeMillis()+"";
-        System.out.println("开始");
-        String path = request.getSession().getServletContext().getRealPath("colors");
+        return colorService.add(file,request);
 
-        String fileName = ctimes+".jpg";
-        System.out.println(fileName);
-        System.out.println(path);
-        File targetFile = new File(path, fileName);
-        if(!targetFile.exists()){
-            targetFile.mkdirs();
-        }
-
-        //保存
-        try {
-            file.transferTo(targetFile);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
-        String rgb = fileName;
-        System.out.println(Integer.parseInt(request.getParameter("color")) + request.getParameter("color_name") + rgb );
-
-        return colorService.addColor(Integer.parseInt(request.getParameter("color")) ,request.getParameter("color_name") ,rgb);
     }
 
     @RequestMapping("/list")
@@ -64,54 +43,19 @@ public class ColorController {
 
     @RequestMapping("/loadByColor")
     @ResponseBody
-    public boolean loadByColor(int color){return colorService.loadByColor(color);}
+    public T_color loadByColor(String color){
+        System.out.println("color:"+color);
+        return colorService.loadByColor(Integer.parseInt(color));
+    }
 
-    /**
-     * 编辑
-     */
-    @RequestMapping("/loadColor")
-    @ResponseBody
-    public T_color loadColor(int color){ return colorService.loadColor(color); }
+
     /**
      * 编辑更新
      */
-    @RequestMapping("/updata")
+    @RequestMapping("/update")
     @ResponseBody
-    public boolean updataColor(MultipartFile colorFile,HttpServletRequest request){
+    public boolean updateColor(MultipartFile file,HttpServletRequest request) {
+        return colorService.update(file, request);
 
-        System.out.println("开始");
-        String path = request.getSession().getServletContext().getRealPath("colors");
-        //先吧颜色查询出来
-        T_color t_color = colorService.loadColor(Integer.parseInt(request.getParameter("color_edit")));
-        String rgb = t_color.getRgb();
-        //删除对应的图片
-        String d_rgb = path + "/" + rgb;
-        System.out.println(d_rgb);
-        File targetFile = new File(d_rgb);
-        if (targetFile.exists()) {
-            targetFile.delete();
-        }
-
-        String ctimes = System.currentTimeMillis()+"";
-        System.out.println("开始，保存");
-        String fileName = ctimes+".jpg";
-        System.out.println(fileName);
-        System.out.println(path);
-        File editFile = new File(path, fileName);
-        if(!editFile.exists()){
-            editFile.mkdirs();
-        }
-
-        //保存
-        try {
-            colorFile.transferTo(editFile);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
-        String editrgb = fileName;
-        System.out.println(Integer.parseInt(request.getParameter("color_edit")) + request.getParameter("name_edit") + editrgb );
-
-        return colorService.updataColor(Integer.parseInt(request.getParameter("color_edit")) ,request.getParameter("name_edit") ,editrgb);}
-
+    }
 }
