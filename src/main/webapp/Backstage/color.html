@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <title>H+ 后台主题UI框架 - 文件管理器</title>
+    <meta name="keywords" content="H+后台主题,后台bootstrap框架,会员中心主题,后台HTML,响应式后台">
+    <meta name="description" content="H+是一个完全响应式，基于Bootstrap3最新版本开发的扁平化主题，她采用了主流的左右两栏式布局，使用了Html5+CSS3等现代技术">
+
+    <link rel="shortcut icon" href="favicon.ico">
+    <link href="css/bootstrap.min.css?v=3.3.5" rel="stylesheet">
+    <link href="css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+
+    <link href="css/animate.min.css" rel="stylesheet">
+    <link href="css/style.min.css?v=4.0.0" rel="stylesheet"><base target="_blank">
+    <link rel="shortcut icon" href="favicon.ico"> <link href="css/bootstrap.min.css?v=3.3.5" rel="stylesheet">
+    <link href="css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+    <link href="css/animate.min.css" rel="stylesheet">
+    <link href="css/plugins/codemirror/codemirror.css" rel="stylesheet">
+    <link href="css/plugins/codemirror/ambiance.css" rel="stylesheet">
+    <link href="plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="plugins/bootstrap-switch/css/bootstrap-switch.css" rel="stylesheet">
+    <link href="plugins/bootstrap-fileinput/bootstrap-fileinput.css" rel="stylesheet">
+    <link href="plugins/css/components.css" rel="stylesheet">
+    <link href="plugins/css/plugins.css" rel="stylesheet">
+    <link href="css/plugins/sweetalert/sweetalert.css" rel="stylesheet">
+<style >
+   .wrapper .row .col-sm-3{
+       width: 30%;
+   }
+   .wrapper .row .col-sm-9{
+       width: 70%;
+   }
+    .file-name{
+        float: left;
+    }
+   .file-box{
+       height: 180px;
+   }
+</style>
+</head>
+
+<body class="gray-bg">
+<div class="spiner-example" id="loading-color">
+    <div class="sk-spinner sk-spinner-wave">
+        <div class="sk-rect1"></div>
+        <div class="sk-rect2"></div>
+        <div class="sk-rect3"></div>
+        <div class="sk-rect4"></div>
+        <div class="sk-rect5"></div>
+    </div>
+</div>
+<div class="wrapper wrapper-content">
+    <div class="row">
+         <div class="col-sm-3 animated fadeInRight">
+        <div class="row">
+            <div class="col-sm-12 ">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                    <h5>颜色添加</h5>
+                </div>
+                    <div class="ibox-content " style="height: auto;width: 100%;height: 500px;" >
+                        <form id="add_color" class="center-block  "  style="margin-left: 15%;margin-top: 10%;">
+                           <table style="margin-bottom: 8px;" >
+                            <tr> <td>ID:</td><td align="right"><input type="text" id="color" name="color "   class="form-control"></td></tr>
+                            <tr > <td>颜色:</td><td  align="right" ><input type="text" id="color_name" name="color_name"   class="form-control"></td></tr>
+                            </table>
+                            <div class="fileinput fileinput-new" data-provides="fileinput">
+                                <div class="fileinput-new thumbnail" style="width: 96px; height: 96px;">
+                                    <img src="img/p2.jpg" alt="" /> </div>
+                                <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 96px; max-height: 96px;"> </div>
+                                <div>
+                                <span class="btn default btn-file">
+                                    <span class="fileinput-new">选择颜色图片</span>
+                                    <span class="fileinput-exists"> 修改 </span>
+                                    <input type="file" name="file"> </span>
+                                    <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> 移除 </a>
+                                </div>
+                            </div>
+                            <div class="clearfix margin-top-10">
+                                <span class="label label-danger">注意!</span> 请使用 IE10+、 FF3.6+、 Safari6.0+、 Chrome6.0+ 、 Opera11.1+ 浏览器进行颜色修改。
+                            </div>
+                            <div class="clearfix margin-top-10">
+                                <a id="btn_add_color" class="btn btn-success">添加 </a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+         </div>
+
+        <div class="col-sm-9 animated fadeInRight">
+            <div class="row">
+                <div class="col-sm-12" id="colorlist">
+                    <div class="file-box">
+                       <span style="text-align: center" class="color_color" >ID:12</span>&nbsp;&nbsp;&nbsp;<span>颜色：绿色</span>
+                        <div class="file" >
+                            <span class="corner"></span>
+                            <div class="image">
+                                <img alt="image" class="img-responsive" src="img/p1.jpg">
+                            </div>
+                            <a class="file-name edit"  style="margin-left: 21%;"  >
+                                编辑
+                            </a>
+                            <a class="file-name delete " id="12"  >
+                                删除
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal inmodal" id="color_edit_modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog ">
+            <div class="modal-content animated bounceInRight">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">关闭</span>
+                    </button>
+                    <i class="fa fa-laptop modal-icon"></i>
+                    <h4 class="modal-title">颜色信息修改</h4>
+                </div>
+                <form id="edit_color">
+                <div class="modal-body">
+                    <div class="form-group" ><label>ID:</label> <input readonly type="text" id="color_edit_color" name="color_edit" placeholder="" class="form-control"></div>
+                    <div class="form-group"><label>颜色：</label> <input type="text" id="color_edit_name" name="name_edit" placeholder="请输入颜色名称" class="form-control" ></div>
+                </div>
+                    <div style="margin-left: 30%;">
+                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                            <div class="fileinput-new thumbnail" style="width: 96px; height: 96px;">
+                                <img src="" alt="" id="edit_ColorImg"/> </div>
+                                    <div class="fileinput-preview fileinput-exists thumbnail" style="max-width:96px; max-height: 96px;"> </div>
+                                    <div>
+                                    <span class="btn default btn-file">
+                                    <span class="fileinput-new">选择颜色图片</span>
+                                    <span class="fileinput-exists"> 修改 </span>
+                                    <input type="file" name="colorFile"> </span>
+                                        <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> 移除 </a>
+                                    </div>
+                        </div>
+                    </div>
+                <div class="clearfix margin-top-10" style="text-align: center">
+                    <span class="label label-danger">注意!</span> 请使用 IE10+、 FF3.6+、 Safari6.0+、 Chrome6.0+ 、 Opera11.1+ 浏览器进行颜色修改。
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
+                    <a id="btn_edit_save" class="btn btn-primary">保存</a>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="js/jquery.min.js?v=2.1.4"></script>
+<script src="js/bootstrap.min.js?v=3.3.5"></script>
+<script src="js/plugins/peity/jquery.peity.min.js"></script>
+<script src="js/plugins/codemirror/codemirror.js"></script>
+<script src="js/plugins/codemirror/mode/javascript/javascript.js"></script>
+<script src="js/content.min.js?v=1.0.0"></script>
+<script src="plugins/bootstrap-switch/js/bootstrap-switch.js"></script>
+<script src="plugins/bootstrap-fileinput/bootstrap-fileinput.js"></script>
+<script src="js/plugins/sweetalert/sweetalert.min.js"></script>
+<script src="plugins/bootstrap/js/bootstrap.js"></script>
+<script src="custom-js/color.js"></script>
+<script type="text/javascript" src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>
+</body>
+
+</html>
