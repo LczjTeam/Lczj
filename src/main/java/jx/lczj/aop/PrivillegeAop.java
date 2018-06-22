@@ -7,6 +7,7 @@ import jx.lczj.viewmodel.MenuVo;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
+import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -30,47 +31,62 @@ public class PrivillegeAop {
 
     @Before("controllerMethod()")
     public void doBefore(JoinPoint call){
-       try {
-           Class cls = call.getTarget().getClass();
-           String clazz = cls.getName();
-           // 获取目标对象上正在执行的方法名
-           String methodName = call.getSignature().getName();
-           //获取所需权限
-           String menu_name = PrivillegeAop.parse(cls, methodName);
-           HttpServletRequest request =((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-           HttpSession session =request.getSession();
-           if(session.getAttribute("admin")==null){
-               System.out.println("你尚未登录...");
-               throw new RuntimeException("你尚未登录");
-           }else if( !menu_name.equals("")){
-               System.out.println(menu_name+"权限检测中...");
-               //该方法需要权限制执行
-               boolean ok = false;
-               AdminVo avo =  (AdminVo)session.getAttribute("admin");
-               for (MenuVo mv: avo.getMenuVos()) {
-                   for (T_menu m : mv.getMenus()){
-                       if(m.getTitle().equals(menu_name)){
-                           ok = true;
-                           break;
-                       }
-                   }
-                   if(ok){
-                       break;
-                   }
-               }
-               if(!ok){
-                   System.out.println("权限不足....");
-                   throw new RuntimeException("权限不足！！");
-               }
-           }
-           System.out.println("拥有"+menu_name+"权限...");
-           System.out.println(clazz + "类的" + methodName + "方法开始了...");
 
+        try {
+            String clazz = call.getTarget().getClass().getName();
+            System.out.println("clazz：" + clazz);
 
-       }catch (Exception e){
+            // 获取目标对象上正在执行的方法名
+            String methodName = call.getSignature().getName();
+            System.out.println("methodName：" + methodName);
 
-           throw new RuntimeException(e.getMessage());
-       }
+            //获取所需权限
+            String menu_name = "";
+
+            MethodSignature methodSignature = (MethodSignature) call.getSignature();
+            Method method = methodSignature.getMethod();
+            if (method.isAnnotationPresent(Privilege.class)) {
+                //得到方法上的注解
+                Privilege privilege = method.getAnnotation(Privilege.class);
+                //得到注解中的name值
+                menu_name = privilege.value();
+            }
+            System.out.println("权限名称：" + menu_name);
+
+            HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+            HttpSession session = request.getSession();
+            if (session.getAttribute("admin") == null) {
+                System.out.println("你尚未登录...");
+                throw new RuntimeException("你尚未登录");
+            } else if (!menu_name.equals("")) {
+                System.out.println(menu_name + "权限检测中...");
+                //该方法需要权限制执行
+                boolean ok = false;
+                AdminVo avo = (AdminVo) session.getAttribute("admin");
+                for (MenuVo mv : avo.getMenuVos()) {
+                    for (T_menu m : mv.getMenus()) {
+                        if (m.getTitle().equals(menu_name)) {
+                            ok = true;
+                            break;
+                        }
+                    }
+                    if (ok) {
+                        break;
+                    }
+                }
+                if (!ok) {
+                    System.out.println("权限不足....");
+                    throw new RuntimeException("权限不足！！");
+                }
+            }
+            System.out.println("拥有" + menu_name + "权限...");
+            System.out.println(clazz + "类的" + methodName + "方法开始了...");
+
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+            throw new RuntimeException("方法不存在");
+        }
+
     }
 
     @AfterReturning("controllerMethod()")
@@ -94,26 +110,4 @@ public class PrivillegeAop {
     }
 
 
-    /**
-     * 解析注解
-     * @param targetClassName 目标类（Class形式）
-     * @param methodName 目标方法（在客户端调用哪个方法，methodName就代表哪个方法）
-     * @return
-     * @throws Exception
-     */
-    public static String parse(Class targetClassName,String methodName) throws Exception{
-        //获得目标方法
-        Method method = targetClassName.getMethod(methodName);
-
-        String methodAccess = "";
-        //判断目标方法上面是否存在@PrivilegeInfo注解
-        //@Privilege（name="savePerson"）
-        if(method.isAnnotationPresent(Privilege.class)){
-            //得到方法上的注解
-            Privilege privilege = method.getAnnotation(Privilege.class);
-            //得到注解中的name值
-            methodAccess = privilege.value();
-        }
-        return methodAccess;
-    }
 }
