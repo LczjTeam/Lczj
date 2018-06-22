@@ -13,7 +13,6 @@ public class T_category implements Serializable {
 
     private  int  category;  //编号
     private String name;     //名称
-    private String occasion; //使用场合  '只有固定的几个值1-室内，2-室外，3-运动，保存代码';
 
     public int getCategory() {
         return category;
@@ -31,20 +30,11 @@ public class T_category implements Serializable {
         this.name = name;
     }
 
-    public String getOccasion() {
-        return occasion;
-    }
-
-    public void setOccasion(String occasion) {
-        this.occasion = occasion;
-    }
-
     @Override
     public String toString() {
         return "T_category{" +
-                "occasion='" + occasion + '\'' +
+                "category=" + category +
                 ", name='" + name + '\'' +
-                ", category=" + category +
                 '}';
     }
 }

@@ -31,24 +31,22 @@ public class CategoryService {
      * 添加商品类别信息
      * @param category
      * @param name
-     * @param occasion
      * @return
      */
-    public boolean add(int category, String name, String occasion) {
-        return categoryDao.add(category,name,occasion);
+    public boolean add(int category, String name) {
+        return categoryDao.add(category,name);
     }
 
     /**
      * 更新商品类别信息
      * @param category
      * @param name
-     * @param occasion
      * @return
      */
     @Transactional
-    public boolean update(int category, String name, String occasion) {
+    public boolean update(int category, String name) {
         try {
-            boolean ok = categoryDao.update(category,name,occasion);
+            boolean ok = categoryDao.update(category,name);
             return true;
         }catch (Exception e){
             throw  new RuntimeException(e.getMessage());
