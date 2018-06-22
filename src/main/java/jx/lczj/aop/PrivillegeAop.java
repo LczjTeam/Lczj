@@ -31,11 +31,12 @@ public class PrivillegeAop {
     @Before("controllerMethod()")
     public void doBefore(JoinPoint call){
        try {
-           String clazz = call.getTarget().getClass().getName();
+           Class cls = call.getTarget().getClass();
+           String clazz = cls.getName();
            // 获取目标对象上正在执行的方法名
            String methodName = call.getSignature().getName();
            //获取所需权限
-           String menu_name = PrivillegeAop.parse(call.getTarget().getClass(), methodName);
+           String menu_name = PrivillegeAop.parse(cls, methodName);
            HttpServletRequest request =((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
            HttpSession session =request.getSession();
            if(session.getAttribute("admin")==null){
@@ -67,6 +68,7 @@ public class PrivillegeAop {
 
 
        }catch (Exception e){
+
            throw new RuntimeException(e.getMessage());
        }
     }
