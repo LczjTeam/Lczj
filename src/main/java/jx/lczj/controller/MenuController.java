@@ -1,6 +1,6 @@
 package jx.lczj.controller;
 
-import jx.lczj.anotation.MenuOperation;
+import jx.lczj.anotation.Privilege;
 import jx.lczj.model.T_menu;
 import jx.lczj.service.AdminService;
 import jx.lczj.service.MenuService;
@@ -69,7 +69,7 @@ public class MenuController {
      * 更新
      * @return
      */
-    @MenuOperation
+    @Privilege(value = "菜单管理")
     @RequestMapping("/update")
     @ResponseBody
     public boolean update(String menu, String title, String parents,String url,String method,int sort_no,int visible , String css){
@@ -80,7 +80,7 @@ public class MenuController {
      * 添加
      * @return
      */
-    @MenuOperation
+    @Privilege(value = "菜单管理")
     @RequestMapping("/add")
     @ResponseBody
     public boolean add(String menu, String title, String parents,String url,String method,int sort_no,int visible , String css){
@@ -96,7 +96,7 @@ public class MenuController {
      * @param menu
      * @return
      */
-    @MenuOperation
+    @Privilege(value = "菜单管理")
     @RequestMapping("/delete")
     @ResponseBody
     public boolean delete(String menu){
