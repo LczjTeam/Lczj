@@ -1,5 +1,6 @@
 package jx.lczj.controller;
 
+import jx.lczj.anotation.SysLogin;
 import jx.lczj.model.T_role;
 import jx.lczj.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,7 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -25,6 +25,7 @@ public class RoleController {
      * 角色信息
      * @return
      */
+    @SysLogin
     @RequestMapping("/list")
     @ResponseBody
     public List<T_role> list(){
