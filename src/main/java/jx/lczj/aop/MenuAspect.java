@@ -45,6 +45,7 @@ public class MenuAspect {
 
     @Around("controllerMethod()")
     public Object doBasicProfiling(ProceedingJoinPoint pjp) throws Throwable{
+        System.out.println("- - - - - - - - - - - - - - ");
         System.out.println("开始....");
         HttpServletRequest request =((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
         HttpSession session =request.getSession();
