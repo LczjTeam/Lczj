@@ -167,8 +167,8 @@ $(document).ready(function(){
         var params={};
         params.agesection = $('#age_edit_age').val();
         params.name =$('#age_edit_name').val();
-        params.minage = parseInt($('#age_edit_age').val());
-        params.maxage = parseInt($('#age_edit_name').val());
+        params.minage = parseInt($('#age_edit_min').val());
+        params.maxage = parseInt($('#age_edit_max').val());
 
         console.log(params.agesection);
         console.log(params.name);
