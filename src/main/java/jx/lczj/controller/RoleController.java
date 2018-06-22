@@ -1,8 +1,6 @@
 package jx.lczj.controller;
 
-import jx.lczj.anotation.RoleDivOperation;
-import jx.lczj.anotation.RoleOperation;
-import jx.lczj.anotation.SysLogin;
+import jx.lczj.anotation.Privilege;
 import jx.lczj.model.T_role;
 import jx.lczj.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +37,7 @@ public class RoleController {
      * @param name
      * @return
      */
-    @RoleOperation
+    @Privilege(value = "角色管理")
     @RequestMapping("/add")
     @ResponseBody
     public boolean add(String role,String name){
@@ -52,7 +50,7 @@ public class RoleController {
      * @param name
      * @return
      */
-    @RoleOperation
+    @Privilege(value = "角色管理")
     @RequestMapping("/update")
     @ResponseBody
     public boolean update(String role,String name){
@@ -65,7 +63,7 @@ public class RoleController {
      * @param role
      * @return
      */
-    @RoleOperation
+    @Privilege(value = "角色管理")
     @RequestMapping("/delete")
     @ResponseBody
     public boolean delete(String role){
@@ -86,7 +84,7 @@ public class RoleController {
      * @param menus
      * @return
      */
-    @RoleDivOperation
+    @Privilege(value = "角色授权")
     @RequestMapping("/role_menu_update")
     @ResponseBody
     public boolean roleMenuUpdate(String role,String menus){
