@@ -17,8 +17,6 @@
     <link href="plugins/css/components.min.css" rel="stylesheet">
     <link href="plugins/css/plugins.min.css" rel="stylesheet">
 
-
-
     <style>
         .btn-default{
             background-color: white;
@@ -116,7 +114,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">颜色：</label>
                                 <div class="col-sm-8">
-                                    <select  class="mt-multiselect btn btn-default" multiple="multiple" data-height="250" data-label="left" data-width="100%" data-filter="true" data-action-onchange="true">
+                                    <select  class="mt-multiselect btn btn-default" id="add_color" multiple="multiple" data-height="250" data-label="left" data-width="100%" data-filter="true" data-action-onchange="true">
                                         <option value="1">&nbsp;&nbsp;&nbsp;&nbsp;Option 1</option>
                                         <option value="2" selected="selected">&nbsp;&nbsp;&nbsp;&nbsp;Option 2</option>
                                         <option value="3" selected="selected">&nbsp;&nbsp;&nbsp;&nbsp;Option 3</option>
@@ -130,7 +128,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">适用年龄段：</label>
                                 <div class="col-sm-8">
-                                    <select class="mt-multiselect btn btn-default" multiple="multiple" data-height="250" data-label="left" data-width="100%" data-filter="true" data-action-onchange="true">
+                                    <select class="mt-multiselect btn btn-default" id="add_agesection" multiple="multiple" data-height="250" data-label="left" data-width="100%" data-filter="true" data-action-onchange="true">
                                         <option value="1">&nbsp;&nbsp;&nbsp;&nbsp;Option 1</option>
                                         <option value="2" selected="selected">&nbsp;&nbsp;&nbsp;&nbsp;儿童（0-12）</option>
                                         <option value="3" selected="selected">&nbsp;&nbsp;&nbsp;&nbsp;少年（12-16）</option>
@@ -142,7 +140,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">适用脸型：</label>
                                 <div class="col-sm-8">
-                                    <select class="mt-multiselect btn btn-default" multiple="multiple" data-height="250" data-label="left" data-width="100%" data-filter="true" data-action-onchange="true">
+                                    <select id="add_face" class="mt-multiselect btn btn-default" multiple="multiple" data-height="250" data-label="left" data-width="100%" data-filter="true" data-action-onchange="true">
                                         <option value="1">&nbsp;&nbsp;&nbsp;&nbsp;Option 1</option>
                                         <option value="2" selected="selected">&nbsp;&nbsp;&nbsp;&nbsp;儿童（0-12）</option>
                                         <option value="3" selected="selected">&nbsp;&nbsp;&nbsp;&nbsp;少年（12-16）</option>
@@ -154,7 +152,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">适用场景：</label>
                                 <div class="col-sm-8">
-                                    <select class="mt-multiselect btn btn-default" multiple="multiple" data-height="250" data-label="left" data-width="100%" data-filter="true" data-action-onchange="true">
+                                    <select id="add_occasion" class="mt-multiselect btn btn-default" multiple="multiple" data-height="250" data-label="left" data-width="100%" data-filter="true" data-action-onchange="true">
                                         <option value="1">&nbsp;&nbsp;&nbsp;&nbsp;Option 1</option>
                                         <option value="2" selected="selected">&nbsp;&nbsp;&nbsp;&nbsp;儿童（0-12）</option>
                                         <option value="3" selected="selected">&nbsp;&nbsp;&nbsp;&nbsp;少年（12-16）</option>
@@ -290,7 +288,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">颜色：</label>
                                 <div class="col-sm-8">
-                                    <select  class="mt-multiselect btn btn-default" multiple="multiple" data-height="250" data-label="left" data-width="100%" data-filter="true" data-action-onchange="true">
+                                    <select  class="mt-multiselect btn btn-default" id="edit_color" multiple="multiple" data-height="250" data-label="left" data-width="100%" data-filter="true" data-action-onchange="true">
                                         <option value="1">&nbsp;&nbsp;&nbsp;&nbsp;Option 1</option>
                                         <option value="2" selected="selected">&nbsp;&nbsp;&nbsp;&nbsp;Option 2</option>
                                         <option value="3" selected="selected">&nbsp;&nbsp;&nbsp;&nbsp;Option 3</option>
@@ -304,7 +302,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">适用年龄段：</label>
                                 <div class="col-sm-8">
-                                    <select class="mt-multiselect btn btn-default" multiple="multiple" data-height="250" data-label="left" data-width="100%" data-filter="true" data-action-onchange="true">
+                                    <select class="mt-multiselect btn btn-default" id="edit_agesection" multiple="multiple" data-height="250" data-label="left" data-width="100%" data-filter="true" data-action-onchange="true">
                                         <option value="1">&nbsp;&nbsp;&nbsp;&nbsp;Option 1</option>
                                         <option value="2" selected="selected">&nbsp;&nbsp;&nbsp;&nbsp;儿童（0-12）</option>
                                         <option value="3" selected="selected">&nbsp;&nbsp;&nbsp;&nbsp;少年（12-16）</option>
@@ -316,7 +314,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">适用脸型：</label>
                                 <div class="col-sm-8">
-                                    <select class="mt-multiselect btn btn-default" multiple="multiple" data-height="250" data-label="left" data-width="100%" data-filter="true" data-action-onchange="true">
+                                    <select id="edit_face" class="mt-multiselect btn btn-default" multiple="multiple" data-height="250" data-label="left" data-width="100%" data-filter="true" data-action-onchange="true">
                                         <option value="1">&nbsp;&nbsp;&nbsp;&nbsp;Option 1</option>
                                         <option value="2" selected="selected">&nbsp;&nbsp;&nbsp;&nbsp;儿童（0-12）</option>
                                         <option value="3" selected="selected">&nbsp;&nbsp;&nbsp;&nbsp;少年（12-16）</option>
@@ -328,7 +326,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">适用场景：</label>
                                 <div class="col-sm-8">
-                                    <select class="mt-multiselect btn btn-default" multiple="multiple" data-height="250" data-label="left" data-width="100%" data-filter="true" data-action-onchange="true">
+                                    <select id="edit_occasion" class="mt-multiselect btn btn-default" multiple="multiple" data-height="250" data-label="left" data-width="100%" data-filter="true" data-action-onchange="true">
                                         <option value="1">&nbsp;&nbsp;&nbsp;&nbsp;Option 1</option>
                                         <option value="2" selected="selected">&nbsp;&nbsp;&nbsp;&nbsp;儿童（0-12）</option>
                                         <option value="3" selected="selected">&nbsp;&nbsp;&nbsp;&nbsp;少年（12-16）</option>
@@ -606,11 +604,12 @@
     <script src="plugins/bootstrap-mutiselect/js/bootstrap-multiselect.js"></script>
     <script src="js/plugins/validate/messages_zh.min.js"></script>
     <script src="js/demo/form-validate-demo.min.js"></script>
-    <script src="plugins/bootstrap-mutiselect/custom/components-bootstrap-multiselect.js"></script>
     <script src="js/plugins/footable/footable.all.min.js"></script>
+    <script src="custom-js/good.js"></script>
     <script>
         $(document).ready(function(){$(".footable").footable();$(".footable2").footable()});
     </script>
+    <script src="plugins/bootstrap-mutiselect/custom/components-bootstrap-multiselect.js"></script>
 
 </body>
 
