@@ -27,7 +27,6 @@ public class RoleController {
      * 角色信息
      * @return
      */
-    @SysLogin
     @RequestMapping("/list")
     @ResponseBody
     public List<T_role> list(){
