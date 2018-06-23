@@ -42,6 +42,11 @@ public class ColorController {
     }
 
 
+    @RequestMapping("/loadByColor")
+    @ResponseBody
+    public T_color loadByColor(String color){
+        return colorService.loadByColor(Integer.parseInt(color));
+    }
 
 
     /**
