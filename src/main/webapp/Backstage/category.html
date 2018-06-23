@@ -36,10 +36,9 @@
                     <table id="category_table" class="table table-striped table-bordered table-hover ">
                         <thead>
                         <tr>
-                            <th  style="width:25%;">类别编号</th>
-                            <th  style="width:25%;">名称</th>
-                            <th  style="width:25%;">适用环境</th>
-                            <th style="width:25%;">操作</th>
+                            <th  style="width:30%;">类别编号</th>
+                            <th  style="width:30%;">名称</th>
+                            <th style="width:40%;">操作</th>
                         </tr>
                         </thead>
                         <tbody></tbody>
@@ -78,14 +77,6 @@
                         <label>商品名称</label>
                         <input type="text" id="category_add_name" placeholder="请输入商品名称" class="form-control">
                     </div>
-                    <div class="form-group">
-                        <label>商品名称</label>
-                        <select id="category_add_occasion" class="form-control m-b" name="account">
-                            <option value="1">室内</option>
-                            <option value="2">室外</option>
-                            <option value="3">运动</option>
-                        </select>
-                    </div>
 
                 </div>
                 <div class="modal-footer">
@@ -101,21 +92,21 @@
         <div class="modal-dialog ">
             <div class="modal-content animated bounceInRight">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">关闭</span>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">关闭</span>
                     </button>
                     <i class="fa fa-laptop modal-icon"></i>
                     <h4 class="modal-title">商品类别信息修改</h4>
                 </div>
                 <div class="modal-body">
-                    <div class="form-group"><label>商品编号</label> <input readonly type="text" id="category_edit_category" placeholder="" class="form-control"></div>
-                    <div class="form-group"><label>类别名称</label> <input type="text" id="category_edit_name" placeholder="请输入商品类别名称" class="form-control"></div>
                     <div class="form-group">
-                        <label>适用环境</label>
-                        <select id="category_edit_occasion" class="form-control m-b" name="account">
-                            <option value="1">室内</option>
-                            <option value="2">室外</option>
-                            <option value="3">运动</option>
-                        </select>
+                        <label>商品编号</label>
+                        <input readonly type="text" id="category_edit_category" placeholder="" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>类别名称</label>
+                        <input type="text" id="category_edit_name" placeholder="请输入商品类别名称" class="form-control">
                     </div>
                 </div>
                 <div class="modal-footer">
