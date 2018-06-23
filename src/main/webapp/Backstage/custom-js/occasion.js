@@ -29,17 +29,21 @@ $(document).ready(function(){
               //  console.log(JSON.stringify(data[i],null,4));
                // console.log(data[i].occasion);
                // console.log(data[i].name);
+
                 var itm = data[i];
                 table.fnAddData([
                     itm.occasion,
                     itm.name,
+                    itm.photo,
+                    '<image style="width: 30px;height:30px;" src="../occasion/'+itm.occasion+'_0.png"></image>',
+                    '<image style="width: 30px;height:30px;" src="../occasion/'+itm.occasion+'_1.png"></image>',
                     '<a class="edit"  ><i class="fa fa-edit"></i>&nbsp;编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="delete" ><i class="fa fa-trash"></i>&nbsp;删除</a>'
                 ]);
             }
         },
         error: function (data) {
-          //  console.log(JSON.stringify(data,null,4));
-            //alert("数据获取失败 ！");
+            console.log(JSON.stringify(data,null,4));
+            alert("数据获取失败 ！");
             swal({
                 title: "数据获取失败！",
                 text: "",
@@ -58,14 +62,94 @@ $(document).ready(function(){
      * 添加
      */
     $("#btn_add_save").click(function(e){
+
+        var formData = new FormData($("#add_occasion" )[0]);
+
+        if(formData.get("occasion_add_occasion")=='' || formData.get("occasion_add_name")=='' || formData.get("occasion_add_photo") == ''){
+            swal({
+                title: "场景、名字、英文名字不能为空！",
+                text: "",
+                type: "warning",
+                allowOutsideClick: true,
+                showConfirmButton: true,
+                showCancelButton: false,
+                confirmButtonClass: "btn-danger",
+                confirmButtonText: "OK",
+            });
+            return;
+        }
+
         var delok = true;
+        $.ajax({
+            async: false,
+            url:'../occasion/addoccasion',
+            type:'POST',
+            dataType: "json",
+            contentType: false,// 当有文件要上传时，此项是必须的，否则后台无法识别文件流的起始位置(详见：#1)
+            processData: false,// 是否序列化data属性，默认true(注意：false时type必须是post，详见：#2)
+            data:formData,
+            success:function (returndata) {
+                if (data) {
+                    delok =true;
+                } else {
+                    delok = false;
+                }
+            },
+            error: function (data) {
+                delok = false;
+            }
+        });
+        if (!delok) {
+            swal({
+                title: "添加失败！",
+                text: "",
+                type: "error",
+                allowOutsideClick: true,
+                showConfirmButton: true,
+                showCancelButton: false,
+                confirmButtonClass: "btn-danger",
+                confirmButtonText: "OK",
+            });
+
+
+            return;
+        }
+        table.fnAddData([
+            $('#occasion_add_occasion').val(),
+            $('#occasion_add_name').val(),
+            $('#occasion_add_photo ').val(),
+            '<image style="width: 30px;height:30px;" src="../occasion/'+$('#occasion_add_occasion').val()+'_0.png"></image>',
+            '<image style="width: 30px;height:30px;" src="../occasion/'+$('#occasion_add_occasion').val()+'_1.png"></image>',
+            '<a class="edit"  ><i class="fa fa-edit"></i>&nbsp;编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="delete" ><i class="fa fa-trash"></i>&nbsp;删除</a>'
+        ]);
+        table.fnDraw();
+        $('#occasion_add_occasion').val('');
+        $('#occasion_add_name').val('');
+        $('#occasion_add_photo ').val('');
+        $('#file1').val('');
+        $('#file2').val('');
+        $('#occasion_add_modal').modal('hide')
+        swal({
+            title: "添加成功！",
+            text: "",
+            type: "success",
+            allowOutsideClick: true,
+            showConfirmButton: true,
+            showCancelButton: false,
+            confirmButtonClass: "btn-success",
+            confirmButtonText: "OK",
+        });
+
+
+        /*var delok = true;
         var params={};
         params.occasion = $('#occasion_add_occasion').val();
         params.name =$('#occasion_add_name').val();
-
-        if(params.occasion =='' || params.name == '' ){
+        params.photo = $('#occasion_add_photo').val();
+        params.file1 = $('#file').val();
+        if(params.occasion =='' || params.name == '' || params.photo == '' || params.file1==''){
             swal({
-                title: "角色、名称不能为空！",
+                title: "角色、名称、英文名、彩色图不能为空！",
                 text: "",
                 type: "warning",
                 allowOutsideClick: true,
@@ -110,11 +194,15 @@ $(document).ready(function(){
         table.fnAddData([
             $('#occasion_add_occasion').val(),
             $('#occasion_add_name').val(),
+            $('#occasion_add_photo ').val(),
+            $('#file').val(),
             '<a class="edit"  ><i class="fa fa-edit"></i>&nbsp;编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="delete" ><i class="fa fa-trash"></i>&nbsp;删除</a>'
         ]);
         table.fnDraw();
         $('#occasion_add_occasion').val('');
         $('#occasion_add_name').val('');
+        $('#occasion_add_photo ').val();
+        $('#file').val();
         $('#occasion_add_modal').modal('hide')
         swal({
             title: "添加成功！",
@@ -126,6 +214,14 @@ $(document).ready(function(){
             confirmButtonClass: "btn-success",
             confirmButtonText: "OK",
         });
+
+        */
+
+
+
+
+
+
     });
 
     /**
@@ -138,22 +234,54 @@ $(document).ready(function(){
         EditRow = nRow;
         var aData = table.fnGetData(nRow);
         //alert(aData[0]);
-        $('#occasion_edit_occasion').val(aData[0]);
-        $('#occasion_edit_name').val(aData[1]);
-        $('#occasion_edit_modal').modal('show')
+        var itm = {};
+        itm.occasion =  ''+aData[0];
+        var datas ;
+        $.ajax({
+            async:false,
+            url:'../occasion/loadByoccasion',
+            type:'POST',
+            dataType:"json",
+            data:itm,
+            success:function (data) {
+                console.log(JSON.stringify(data,null,4));
+                $('#occasion_edit_occasion').val(aData[0]);
+                $('#occasion_edit_name').val(aData[1]);
+                $("#edit_img1").attr('src','../occasions/'+data.occasion+'_0.png');
+                $("#edit_img2").attr('src','../occasions/'+data.occasion+'_1.png');
+                $('#occasion_edit_modal').modal('show');
+            },
+            error:function (data) {
+                console.log(JSON.stringify(data,null,4));
+                swal({
+                    title: "数据获取失败！",
+                    text: "",
+                    type: "warning",
+                    allowOutsideClick: true,
+                    showConfirmButton: true,
+                    showCancelButton: false,
+                    confirmButtonClass: "btn-success",
+                    confirmButtonText: "OK",
+                });
+            }
+
+
+        });
+
+
+
+
 
     });
 
 
-    $("#btn_edit_save").click(function(e){
-        var nRow = EditRow;
+    $("#btn_edit_save").click(function (e) {
+        var nRow =EditRow ;
         var delok = true;
-        var params={};
-        params.occasion = $('#occasion_edit_occasion').val();
-        params.name =$('#occasion_edit_name').val();
-        if(params.occasion =='' || params.name == '' ){
+        var formData = new FormData($("#occasion_edit_form" )[0]);
+        if(formData.get("occasion_edit_occasion")=='' || formData.get("occasion_edit_name")=='' || formData.get("file1") == ''|| formData.get("file2") == ''){
             swal({
-                title: "名称不能为空！",
+                title: "ID、颜色、图片不能为空！",
                 text: "",
                 type: "warning",
                 allowOutsideClick: true,
@@ -165,23 +293,28 @@ $(document).ready(function(){
             return;
         }
         $.ajax({
-            async: false,
-            type: "POST",
-            url: "../occasion/update",//注意路径
-            data: params,
-            dataType: "json",
-            success: function (data) {
+            async:false,
+            url:'../occasion/update',
+            type:"POST",
+            dataType:"JSON",
+            data:formData,
+            contentType: false,// 当有文件要上传时，此项是必须的，否则后台无法识别文件流的起始位置(详见：#1)
+            processData: false,
+            success:function (data) {
                 if (data) {
+
                     return;
                 } else {
                     delok = false;
                 }
             },
-            error: function (data) {
+            error:function (data) {
                 delok = false;
             }
+
         });
         if (!delok) {
+
             swal({
                 title: "保存失败！",
                 text: "",
@@ -194,12 +327,7 @@ $(document).ready(function(){
             });
             return;
         }
-        table.fnUpdate($('#occasion_edit_occasion').val(), nRow, 0, false);
-        table.fnUpdate($('#occasion_edit_name').val(), nRow, 1, false);
-        table.fnDraw();
-        $('#occasion_edit_occasion').val('');
-        $('#occasion_edit_name').val('');
-        $('#occasion_edit_modal').modal('hide')
+
         swal({
             title: "保存成功！",
             text: "",
@@ -210,9 +338,42 @@ $(document).ready(function(){
             confirmButtonClass: "btn-success",
             confirmButtonText: "OK",
         });
+        var itm = {};
+        itm.occasion =  ''+$("#occasion_edit_occasion").val();
+        $.ajax({
+            async:false,
+            url:'../occasion/loadByoccasion',
+            type:'POST',
+            dataType:"json",
+            data:itm,
+            success:function (datas) {
+                console.log(JSON.stringify(datas,null,4));
+                table.fnUpdate(datas.name, nRow, 1, false);
+                table.fnUpdate(datas.photo,nRow, 2,false);
+                table.fnDraw();
+                $('#edit_file1').val('');
+                $("#edit_img1").attr('src','');
+                $('#edit_file2').val('');
+                $("#edit_img2").attr('src','');
+            },
+            error:function (data) {
+                console.log(JSON.stringify(data,null,4));
+                swal({
+                    title: "刷新失败！",
+                    text: "",
+                    type: "warning",
+                    allowOutsideClick: true,
+                    showConfirmButton: true,
+                    showCancelButton: false,
+                    confirmButtonClass: "btn-success",
+                    confirmButtonText: "OK",
+                });
+            }
 
 
+        });
     });
+
 
     /**
      * 删除
