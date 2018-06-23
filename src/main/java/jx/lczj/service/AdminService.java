@@ -180,4 +180,19 @@ public class AdminService {
         }
 
     }
+
+    /**
+     * 退出登录
+     * @param session
+     * @return
+     */
+    public boolean exit(HttpSession session) {
+
+        try {
+            session.removeAttribute("admin");
+            return true;
+        }catch (Exception e){
+            return  false;
+        }
+    }
 }

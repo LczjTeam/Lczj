@@ -1,5 +1,6 @@
 package jx.lczj.controller;
 
+import jx.lczj.anotation.Privilege;
 import jx.lczj.model.T_admin;
 import jx.lczj.service.AdminService;
 import jx.lczj.viewmodel.AdminVo;
@@ -49,6 +50,18 @@ public class AdminController {
 
 
     /**
+     * 退出登录
+     * @param session
+     * @return
+     */
+    @RequestMapping("/exit")
+    @ResponseBody
+    public boolean exit(HttpSession session){
+        return adminService.exit(session);
+    }
+
+
+    /**
      * 添加
      * @param admin
      * @param name
@@ -56,6 +69,7 @@ public class AdminController {
      * @return
      */
 
+    @Privilege(value = "用户管理")
     @RequestMapping("/add")
     @ResponseBody
     public boolean add(String admin,String name,String isvalid){
@@ -70,6 +84,7 @@ public class AdminController {
      * @param session
      * @return
      */
+    @Privilege(value = "用户管理")
     @RequestMapping("/update1")
     @ResponseBody
     public boolean update1(String admin,String name,String isvalid, HttpSession session){
@@ -85,6 +100,7 @@ public class AdminController {
      * @param session
      * @return
      */
+    @Privilege
     @RequestMapping("/update")
     @ResponseBody
     public boolean update(String admin,String name,String pwd, HttpSession session){
@@ -98,6 +114,7 @@ public class AdminController {
      * @param admin
      * @return
      */
+    @Privilege(value = "用户管理")
     @RequestMapping("/delete")
     @ResponseBody
     public boolean delete(String admin){
@@ -110,6 +127,7 @@ public class AdminController {
      * @param admin
      * @return
      */
+    @Privilege(value = "用户管理")
     @RequestMapping("/resetpwd")
     @ResponseBody
     public boolean resetPwd(String admin){
@@ -117,13 +135,18 @@ public class AdminController {
     }
 
 
-
+    /**
+     * 用户授权
+     * @param admin
+     * @param roles
+     * @return
+     */
+    @Privilege(value = "用户授权")
     @RequestMapping("/user_role_update")
     @ResponseBody
     public boolean userRoleUpdate(String admin,String roles){
         return adminService.userRoleUpdate(admin,roles);
     }
-
 
 
 

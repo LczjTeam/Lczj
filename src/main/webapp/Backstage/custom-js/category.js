@@ -7,10 +7,10 @@ $(document).ready(function(){
     table.dataTable({
         "columnDefs": [{ // set default column settings
             'orderable': false,
-            'targets': [3]
+            'targets': [2]
         }, {
             "searchable": false,
-            "targets": [3]
+            "targets": [2]
         }],
         "order": [
             [0, "asc"]
@@ -29,14 +29,12 @@ $(document).ready(function(){
                 console.log(JSON.stringify(data[i],null,4));
                 console.log(data[i].category);
                 console.log(data[i].name)
-                console.log(data[i].occasion);
 
                 var itm = data[i];
 
                 table.fnAddData([
                     itm.category,
                     itm.name,
-                    GetOccasion(itm.occasion),
                     '<a class="edit"  ><i class="fa fa-edit"></i>&nbsp;编辑</a>' +
                     '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' +
                     '<a class="delete" ><i class="fa fa-trash"></i>&nbsp;删除</a>'
@@ -44,8 +42,7 @@ $(document).ready(function(){
             }
         },
         error: function (data) {
-            //  console.log(JSON.stringify(data,null,4));
-            //alert("数据获取失败 ！");
+
             swal({
                 title: "数据获取失败！",
                 text: "",
@@ -62,22 +59,6 @@ $(document).ready(function(){
 
 
     /**
-     * occasion：室内，室外，运动
-     */
-   function GetOccasion(Occ) {
-        var occ = '';
-        if(Occ==1){
-            occ='室内';
-        }
-        else if(Occ==2){
-            occ='室外'
-        }else if(Occ==3){
-            occ='运动'
-        }
-        return occ;
-    }
-
-    /**
      * 添加
      */
     $("#btn_add_save").click(function(e){
@@ -85,7 +66,6 @@ $(document).ready(function(){
         var params={};
         params.category = $('#category_add_category').val();
         params.name =$('#category_add_name').val();
-        params.occasion = $('#category_add_occasion').val();
         if(params.category == ''|| params.name == '' ){
             swal({
                 title: "商品编号、类别名称不能为空！",
@@ -99,6 +79,10 @@ $(document).ready(function(){
             });
             return;
         }
+
+        console.log($('#category_add_category').val());
+        console.log($('#category_add_name').val());
+
         $.ajax({
             async: false,
             type: "POST",
@@ -132,7 +116,6 @@ $(document).ready(function(){
         table.fnAddData([
             $('#category_add_category').val(),
             $('#category_add_name').val(),
-            GetOccasion($('#category_add_name').val()),
             '<a class="edit"  ><i class="fa fa-edit"></i>&nbsp;编辑</a>' +
             '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' +
             '<a class="delete" ><i class="fa fa-trash"></i>&nbsp;删除</a>'
@@ -140,7 +123,6 @@ $(document).ready(function(){
         table.fnDraw();
         $('#category_add_category').val();
         $('#category_add_name').val('');
-        GetOccasion($('#category_add_name').val()),
         $('#category_add_modal').modal('hide')
         swal({
             title: "添加成功！",
@@ -155,27 +137,6 @@ $(document).ready(function(){
     });
 
     /**
-     * 将Occasion转数字
-     * @param Data
-     * @returns {string}
-     * @constructor
-     */
-    function OccasionToNum(Data){
-        var data = '';
-        if(Data=='室内'){
-            data='1';
-        }
-        else if(Data=='室外'){
-            data='2';
-        }
-        else if(Data=='运动'){
-            data='3';
-        }
-        return data;
-    }
-
-
-    /**
      * 编辑
      */
     var  EditRow = -1;
@@ -188,7 +149,6 @@ $(document).ready(function(){
 
         $('#category_edit_category').val(aData[0]);
         $('#category_edit_name').val(aData[1]);
-        $('#category_edit_occasion').val(OccasionToNum(aData[2]));
         $('#category_edit_modal').modal('show')
     });
 
@@ -197,10 +157,8 @@ $(document).ready(function(){
         var nRow = EditRow;
         var delok = true;
         var params={};
-        var occasionValue = $('#category_edit_occasion').val();
         params.category = $('#category_edit_category').val();
         params.name =$('#category_edit_name').val();
-        params.occasion = occasionValue;
 
         if(params.name == '' ){
             swal({
@@ -249,11 +207,9 @@ $(document).ready(function(){
 
         table.fnUpdate($('#category_edit_category').val(), nRow, 0, false);
         table.fnUpdate($('#category_edit_name').val(), nRow, 1, false);
-        table.fnUpdate(GetOccasion($('#category_edit_occasion').val()), nRow, 2, false);
         table.fnDraw();
         $('#category_edit_category').val('');
         $('#category_edit_name').val('');
-        GetOccasion($('#category_edit_occasion').val());
         $('#category_edit_modal').modal('hide')
         swal({
             title: "保存成功！",

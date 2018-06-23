@@ -43,7 +43,7 @@
                                 <li><a class="J_menuItem" href="userinfo.jsp">修改资料及密码</a>
                                 </li>
                                 <li class="divider"></li>
-                                <li><a href="login.html">安全退出</a>
+                                <li><a class="admin-exit">安全退出</a>
                                 </li>
                             </ul>
                         </div>
@@ -195,7 +195,7 @@
                         </li>
                     </ul>
                 </div>
-                <a href="login.html" class="roll-nav roll-right J_tabExit"><i class="fa fa fa-sign-out"></i> 退出</a>
+                <a  class="admin-exit  roll-nav roll-right J_tabExit"><i class="fa fa fa-sign-out"></i> 退出</a>
             </div>
             <div class="row J_mainContent" id="content-main">
                 <iframe class="J_iframe" name="iframe0" width="100%" height="100%" src="index_v1.html?v=4.0" frameborder="0" data-id="index_v1.html" seamless></iframe>
@@ -623,6 +623,29 @@
     <script src="js/hplus.min.js?v=4.0.0"></script>
     <script type="text/javascript" src="js/contabs.min.js"></script>
     <script src="js/plugins/pace/pace.min.js"></script>
+    <script>
+
+        $(".admin-exit").click(function () {
+            var params={};
+            $.ajax({
+                async: false,
+                type: "POST",
+                url: "../admin/exit",//注意路径
+                data: params,
+                dataType: "json",
+                success: function (data) {
+                  window.location.href="login.html";
+
+                },
+                error: function (data) {
+                    window.location.href="login.html";
+                }
+            });
+
+
+        });
+
+    </script>
 </body>
 
 </html>

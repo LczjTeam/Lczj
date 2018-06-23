@@ -16,13 +16,13 @@ import java.util.List;
 public interface CategoryDao {
 
     @Select("select * from T_category")
-    public List<T_category> loadList();
+    List<T_category> loadList();
 
-    @Insert("insert into T_category(category,name,occasion) values(#{0},#{1},#{2})")
-    public boolean add(int category, String name, String occasion);
+    @Insert("insert into T_category values(#{0},#{1})")
+    boolean add(int category, String name);
 
-    @Update("update T_category set name=#{1},occasion=#{2} where category=#{0}")
-    boolean update(int category, String name, String occasion);
+    @Update("update T_category set name=#{1} where category=#{0}")
+    boolean update(int category, String name);
 
     @Delete("delete from T_category where category=#{0}")
     void delete(String category);
