@@ -8,14 +8,19 @@
 
 
     <title>场景</title>
-    <link rel="shortcut icon" href="favicon.ico"> <link href="css/bootstrap.min.css?v=3.3.5" rel="stylesheet">
+    <link rel="shortcut icon" href="favicon.ico">
+    <link href="css/bootstrap.min.css?v=3.3.5" rel="stylesheet">
     <link href="css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
     <!-- Data Tables -->
     <link href="css/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
     <link href="css/plugins/sweetalert/sweetalert.css" rel="stylesheet">
-
+    <link href="plugins/bootstrap-switch/css/bootstrap-switch.css" rel="stylesheet">
+    <link href="plugins/bootstrap-fileinput/bootstrap-fileinput.css" rel="stylesheet">
+    <link href="plugins/css/components.css" rel="stylesheet">
+    <link href="plugins/css/plugins.css" rel="stylesheet">
     <link href="css/animate.min.css" rel="stylesheet">
     <link href="css/style.min.css?v=4.0.0" rel="stylesheet"><base target="_blank">
+
 
 </head>
 
@@ -39,6 +44,9 @@
                         <tr>
                             <th>场景</th>
                             <th>名称</th>
+                            <th>英文名称</th>
+                            <th>彩色图</th>
+                            <th>黑白图</th>
                             <th>操作</th>
                         </tr>
                         </thead>
@@ -70,14 +78,44 @@
                     <h4 class="modal-title">场景信息添加</h4>
                 </div>
                 <div class="modal-body">
-                    <div class="form-group"><label>场景</label> <input type="text" id="occasion_add_occasion" placeholder="" class="form-control"></div>
-                    <div class="form-group"><label>名称</label> <input type="text" id="occasion_add_name" placeholder="请输入场景名称" class="form-control"></div>
+                    <form id="add_occasion">
+                        <div class="form-group"><label>场景</label> <input type="text" id="occasion_add_occasion" name="occasion_add_occasion" placeholder="" class="form-control"></div>
+                        <div class="form-group"><label>英文名称</label> <input type="text" id="occasion_add_photo" name="occasion_add_photo" placeholder="请输入场景英文名称" class="form-control"></div>
+                        <div class="form-group"><label>名称</label> <input type="text" id="occasion_add_name" name="occasion_add_name" placeholder="请输入场景名称" class="form-control"></div>
+                        <div class="form-group"><label>彩色图</label>
+                            <div class="fileinput fileinput-new" data-provides="fileinput">
+                                <div class="fileinput-new thumbnail" style="width: 96px; height: 96px;">
+                                    <img src="" alt="" /> </div>
+                                <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 96px; max-height: 96px;"> </div>
+                                <div>
+                                <span class="btn default btn-file">
+                                    <span class="fileinput-new">选择彩色图</span>
+                                    <span class="fileinput-exists"> 修改 </span>
+                                    <input type="file" name="file1"> </span>
+                                    <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> 移除 </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group"><label>黑白图</label>
+                            <div class="fileinput fileinput-new" data-provides="fileinput">
+                                <div class="fileinput-new thumbnail" style="width: 96px; height: 96px;">
+                                    <img src="" alt="" /> </div>
+                                <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 96px; max-height: 96px;"> </div>
+                                <div>
+                                <span class="btn default btn-file">
+                                    <span class="fileinput-new">选择黑白图</span>
+                                    <span class="fileinput-exists"> 修改 </span>
+                                    <input type="file" name="file2"> </span>
+                                    <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> 移除 </a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
                     <a id="btn_add_save" class="btn btn-primary">添加</a>
                 </div>
-            </div>
         </div>
     </div>
 
@@ -92,8 +130,41 @@
                     <h4 class="modal-title">场景信息修改</h4>
                 </div>
                 <div class="modal-body">
+                    <form id="edit_occasion">
                     <div class="form-group"><label>场景</label> <input readonly type="text" id="occasion_edit_occasion" placeholder="" class="form-control"></div>
+                    <div class="form-group"><label>英文名称</label> <input type="text" id="occasion_edit_photo" placeholder="请输入场景英文名称" class="form-control"></div>
                     <div class="form-group"><label>名称</label> <input type="text" id="occasion_edit_name" placeholder="请输入场景名称" class="form-control"></div>
+                    <div class="form-group"><label>彩色图</label>
+                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                            <div  class="fileinput-new thumbnail" style="width: 96px; height: 96px;">
+                                <img id="edit_img1" src="" alt="" />
+                            </div>
+                            <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 96px; max-height: 96px;"> </div>
+                            <div>
+                                <span class="btn default btn-file">
+                                    <span class="fileinput-new">选择彩色图</span>
+                                    <span class="fileinput-exists"> 修改 </span>
+                                    <input type="file" id="edit_file1" name="file1"> </span>
+                                <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> 移除 </a>
+                            </div>
+                        </div>
+                    </div>
+                        <div class="form-group"><label>黑白图</label>
+                            <div class="fileinput fileinput-new" data-provides="fileinput">
+                                <div  class="fileinput-new thumbnail" style="width: 96px; height: 96px;">
+                                    <img id="edit_img2" src="" alt="" />
+                                </div>
+                                <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 96px; max-height: 96px;"> </div>
+                                <div>
+                                <span class="btn default btn-file">
+                                    <span class="fileinput-new">选择彩色图</span>
+                                    <span class="fileinput-exists"> 修改 </span>
+                                    <input type="file" id="edit_file2" name="file1"> </span>
+                                    <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> 移除 </a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
@@ -122,7 +193,8 @@
 <script src="js/plugins/dataTables/jquery.dataTables.js"></script>
 <script src="js/plugins/dataTables/dataTables.bootstrap.js"></script>
 <script src="js/plugins/sweetalert/sweetalert.min.js"></script>
-
+<script src="plugins/bootstrap-switch/js/bootstrap-switch.js"></script>
+<script src="plugins/bootstrap-fileinput/bootstrap-fileinput.js"></script>
 <script src="js/content.min.js?v=1.0.0"></script>
 <!--custom-js-->
 <script src="custom-js/occasion.js"></script>

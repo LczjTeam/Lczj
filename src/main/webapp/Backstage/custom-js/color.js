@@ -108,7 +108,7 @@ $(document).ready(function(){
             });
             return;
         }
-
+        //刷新
         var itm = {};
         itm.color =  ''+$("#color_add_color").val();
         var datas ;
