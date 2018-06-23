@@ -1,12 +1,7 @@
 package jx.lczj.controller;
 
 import jx.lczj.anotation.Privilege;
-import jx.lczj.model.T_menu;
-import jx.lczj.model.T_news;
-import jx.lczj.service.AdminService;
-import jx.lczj.service.MenuService;
 import jx.lczj.service.NewsService;
-import jx.lczj.viewmodel.MenuVo;
 import jx.lczj.viewmodel.NewsVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,8 +14,8 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
-@RequestMapping("news")
-public class NewsController {
+@RequestMapping("lczj")
+public class LczjController {
 
     @Autowired
     NewsService newsService;
@@ -31,19 +26,19 @@ public class NewsController {
      * 添加
      * @return
      */
-    @Privilege(value = "眼镜二三事")
+    @Privilege(value = "乐潮之镜")
     @RequestMapping("/add")
     @ResponseBody
     public NewsVo add(String title, String keyword, String top, String publish, MultipartFile file, String content, HttpServletRequest request, HttpSession session){
         System.out.println(" title:"+ title+" keyword:"+ keyword+" top:"+ top+" publish:"+ publish);
 
-        return newsService.add(1,title, keyword, top, publish, file, content,request,session);
+        return newsService.add(0,title, keyword, top, publish, file, content,request,session);
     }
     /**
      * 更新
      * @return
      */
-    @Privilege(value = "眼镜二三事")
+    @Privilege(value = "乐潮之镜")
     @RequestMapping("/update")
     @ResponseBody
     public NewsVo update(String code,String title, String keyword, String top, String publish, MultipartFile file, String content, HttpServletRequest request, HttpSession session){
@@ -52,14 +47,14 @@ public class NewsController {
     }
 
     /**
-     * 文章列表[眼镜二三事]
+     * 文章列表[乐潮之镜]
      * @return
      */
-    @RequestMapping("/list1")
+    @RequestMapping("/list")
     @ResponseBody
     public List<NewsVo> list1(HttpSession session){
 
-        return newsService.list1(session,1);
+        return newsService.list1(session,0);
     }
 
     /**
@@ -67,8 +62,8 @@ public class NewsController {
      * @param code
      * @return
      */
-    @Privilege(value = "眼镜二三事")
-    @RequestMapping("/delete1")
+    @Privilege(value = "乐潮之镜")
+    @RequestMapping("/delete")
     @ResponseBody
     public boolean delete1(String code,HttpServletRequest request){
         return newsService.delete(code,request);

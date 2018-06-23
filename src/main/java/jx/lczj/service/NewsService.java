@@ -152,8 +152,8 @@ public class NewsService {
                     keyword,
                     fileName,
                     item,
-                    (top.equals("是") ? "0" : "1"),
-                    (publish.equals("是") ? "0" : "1"),
+                    (top.equals("否") ? "0" : "1"),
+                    (publish.equals("否") ? "0" : "1"),
                     photoName
             );
 
@@ -174,13 +174,13 @@ public class NewsService {
      * @param session
      * @return
      */
-    public List<NewsVo> list1(HttpSession session) {
+    public List<NewsVo> list1(HttpSession session,int items) {
         try {
 
             AdminVo avo = (AdminVo) session.getAttribute("admin");
 
             List<NewsVo> lnvs = new ArrayList<NewsVo>();
-            List<T_news> nls = newsDao.listByAdmin(avo.getT_admin().getAdmin());
+            List<T_news> nls = newsDao.listByAdmin(avo.getT_admin().getAdmin(),items);
 
             for (T_news t : nls) {
                 NewsVo nvo = new NewsVo();
@@ -364,8 +364,8 @@ public class NewsService {
                     keyword,
                     fileName,
                     1,
-                    (top.equals("是") ? "0" : "1"),
-                    (publish.equals("是") ? "0" : "1"),
+                    (top.equals("否") ? "0" : "1"),
+                    (publish.equals("否") ? "0" : "1"),
                     photoName
             );
 

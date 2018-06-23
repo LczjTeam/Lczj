@@ -43,8 +43,8 @@ $(document).ready(function() {
                         '<td>'+data[i].t_admin.name+' </td>'+
                         (( data[i].t_news.photo== null || data[i].t_news.photo =='') ?  '<td>无</td>': ('<td><image style="width: 50px;height:50px;" src="../stories/' + data[i].t_news.photo +'"></image></td>'))+
                         '<td>'+data[i].t_news.keyword+' </td>'+
-                        '<td>'+(data[i].t_news.publish==0 ? '是':'否')+' </td>'+
-                        '<td>'+(data[i].t_news.top==0 ? '是':'否')+' </td>'+
+                        '<td>'+(data[i].t_news.publish==0 ? '否':'是')+' </td>'+
+                        '<td>'+(data[i].t_news.top==0 ? '否':'是')+' </td>'+
                         '<td><a class="edit"  id="'+data[i].t_news.code+'"  ><i class="fa fa-edit"></i>&nbsp;编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="delete" id="'+data[i].t_news.code+'" ><i class="fa fa-trash"></i>&nbsp;删除</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="preview"  id="'+data[i].t_news.filename+'" ><i class="fa fa-chrome"></i>&nbsp;浏览</a></td>'+
                         '</tr>';
 
@@ -138,8 +138,8 @@ $(document).ready(function() {
                     '<td>'+datas.t_admin.name+' </td>'+
                     (( datas.t_news.photo== null || datas.t_news.photo =='') ?  '<td>无</td>': ('<td><image style="width: 50px;height:50px;" src="../stories/' + datas.t_news.photo +'"></image></td>'))+
                     '<td>'+datas.t_news.keyword+' </td>'+
-                    '<td>'+(datas.t_news.publish==0 ? '是':'否')+' </td>'+
-                    '<td>'+(datas.t_news.top==0 ? '是':'否')+' </td>'+
+                    '<td>'+(datas.t_news.publish==0 ? '否':'是')+' </td>'+
+                    '<td>'+(datas.t_news.top==0 ? '否':'是')+' </td>'+
                     '<td><a class="edit"  id="'+datas.t_news.code+'"  ><i class="fa fa-edit"></i>&nbsp;编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="delete" id="'+datas.t_news.code+'" ><i class="fa fa-trash"></i>&nbsp;删除</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="preview"  id="'+datas.t_news.filename+'" ><i class="fa fa-chrome"></i>&nbsp;浏览</a></td>'+
                     '</tr>';
 
@@ -229,8 +229,8 @@ $(document).ready(function() {
                     '<td>'+datas.t_admin.name+' </td>'+
                     (( datas.t_news.photo== null || datas.t_news.photo =='') ?  '<td>无</td>': ('<td><image style="width: 50px;height:50px;" src="../stories/' + datas.t_news.photo +'"></image></td>'))+
                     '<td>'+datas.t_news.keyword+' </td>'+
-                    '<td>'+(datas.t_news.publish==0 ? '是':'否')+' </td>'+
-                    '<td>'+(datas.t_news.top==0 ? '是':'否')+' </td>'+
+                    '<td>'+(datas.t_news.publish==0 ? '否':'是')+' </td>'+
+                    '<td>'+(datas.t_news.top==0 ? '否':'是')+' </td>'+
                     '<td><a class="edit"  id="'+datas.t_news.code+'"  ><i class="fa fa-edit"></i>&nbsp;编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="delete" id="'+datas.t_news.code+'" ><i class="fa fa-trash"></i>&nbsp;删除</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="preview"  id="'+datas.t_news.filename+'" ><i class="fa fa-chrome"></i>&nbsp;浏览</a></td>'+
                     '</tr>';
 
@@ -389,8 +389,8 @@ $(document).ready(function() {
                     $('#edit_code').val(datas.t_news.code);
                     $('#edit_title').val(datas.t_news.title);
                     $('#edit_keyword').val(datas.t_news.keyword);
-                    $('#edit_top').val(datas.t_news.top=='0'? '是':'否');
-                    $('#edit_publish').val(datas.t_news.publish=='0'? '是':'否');
+                    $('#edit_top').val(datas.t_news.top=='0'? '否':'是');
+                    $('#edit_publish').val(datas.t_news.publish=='0'? '否':'是');
                     $('#edit_photo_name').val(datas.t_news.photo);
 
 

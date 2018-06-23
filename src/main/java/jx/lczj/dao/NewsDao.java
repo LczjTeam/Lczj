@@ -20,8 +20,8 @@ public interface NewsDao {
     @Select("select * from T_NEWS WHERE CODE =#{0}")
     T_news loadByCode(String code);
 
-    @Select("select * from T_NEWS WHERE AUTHOR =#{0} and ITEMS = 1 ")
-    List<T_news> listByAdmin(String admin);
+    @Select("select * from T_NEWS WHERE AUTHOR =#{0} and ITEMS = #{1} ")
+    List<T_news> listByAdmin(String admin,int items);
 
 
     @Delete("delete from T_NEWS WHERE CODE =#{0}")
