@@ -41,12 +41,7 @@ public class ColorController {
         return colorService.deleteColor(color, request);
     }
 
-    @RequestMapping("/loadByColor")
-    @ResponseBody
-    public T_color loadByColor(String color){
-        System.out.println("color:"+color);
-        return colorService.loadByColor(Integer.parseInt(color));
-    }
+
 
 
     /**
