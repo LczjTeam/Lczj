@@ -44,11 +44,6 @@ public class OccasionController {
 
     }
 
-    @RequestMapping("/list")
-    @ResponseBody
-    public List<T_occasion>loadoccasion(){
-        return occasionService.loadList();
-    }
 
     /**
      * 更新
