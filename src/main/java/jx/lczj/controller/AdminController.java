@@ -50,6 +50,18 @@ public class AdminController {
 
 
     /**
+     * 退出登录
+     * @param session
+     * @return
+     */
+    @RequestMapping("/exit")
+    @ResponseBody
+    public boolean exit(HttpSession session){
+        return adminService.exit(session);
+    }
+
+
+    /**
      * 添加
      * @param admin
      * @param name
@@ -135,7 +147,6 @@ public class AdminController {
     public boolean userRoleUpdate(String admin,String roles){
         return adminService.userRoleUpdate(admin,roles);
     }
-
 
 
 
