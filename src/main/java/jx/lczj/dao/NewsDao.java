@@ -32,4 +32,7 @@ public interface NewsDao {
 
     @Select("select * from T_NEWS WHERE  ITEMS = #{1} ")
     List<T_news> list(int items);
+
+    @Update("update T_NEWS set PHOTO = ''  where code = #{0}")
+    boolean deletePhoto(String code);
 }

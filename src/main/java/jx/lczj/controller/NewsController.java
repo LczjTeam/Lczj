@@ -48,7 +48,7 @@ public class NewsController {
     @ResponseBody
     public NewsVo update(String code,String title, String keyword, String top, String publish, MultipartFile file, String content, HttpServletRequest request, HttpSession session){
         System.out.println(" title:"+ title+" keyword:"+ keyword+" top:"+ top+" publish:"+ publish);
-        return newsService.update(code,title, keyword, top, publish, file, content,request,session);
+        return newsService.update(code,1,title, keyword, top, publish, file, content,request,session);
     }
 
 
@@ -76,6 +76,17 @@ public class NewsController {
     @ResponseBody
     public boolean delete1(String code,HttpServletRequest request){
         return newsService.delete(code,request);
+    }
+    /**
+     * 删除二三事图片
+     * @param code
+     * @return
+     */
+    @Privilege(value = "眼镜二三事")
+    @RequestMapping("/deletephoto")
+    @ResponseBody
+    public boolean deletePhoto(String code,HttpServletRequest request){
+        return newsService.deletePhoto(code,request);
     }
 
 

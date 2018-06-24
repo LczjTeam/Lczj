@@ -236,10 +236,11 @@ $(document).ready(function() {
 
                 $("#tbd").prepend(str).trigger('footable_redraw');
 
-                $('#add_keyword').val('');
-                $('#add_title').val('');
-                $('#add_photo').val('');
-                $('#add_content').code('');
+                $('#edit_keyword').val('');
+                $('#edit_code').val('');
+                $('#edit_title').val('');
+                $('#edit_photo').val('');
+                $('#edit_content').code('');
 
                 $("#div-alter").css("display",'none');
                 $("#div-list").css("display",'block');
@@ -272,6 +273,53 @@ $(document).ready(function() {
         });
 
     });
+
+
+
+    $("#btn_delete_photo").click(function(){
+
+
+        params = {};
+        params.code = $('#edit_code').val();
+        $.ajax({
+            async: false,
+            type: "POST",
+            url: "../news/deletephoto",//注意路径
+            data: params,
+            dataType: "json",
+            success: function (datas) {
+                if(datas){
+                    $('#edit_photo').val('');
+                    $('#edit_photo_name').val('');
+                    $("#photo_remove_show").css('display','none')
+                }else{
+                    swal({
+                        title: "移除失败！",
+                        text: "",
+                        type: "error",
+                        allowOutsideClick: true,
+                        showConfirmButton: true,
+                        showCancelButton: false,
+                        confirmButtonClass: "btn-danger",
+                        confirmButtonText: "OK",
+                    });
+                }
+
+            },error:function(err){
+                console.log(JSON.stringify(err, null, 4));
+                swal({
+                    title: "移除失败！",
+                    text: "",
+                    type: "error",
+                    allowOutsideClick: true,
+                    showConfirmButton: true,
+                    showCancelButton: false,
+                    confirmButtonClass: "btn-danger",
+                    confirmButtonText: "OK",
+                });
+        }});
+    });
+
 
     var EditRow = '-1';
 
@@ -358,7 +406,9 @@ $(document).ready(function() {
          */
         $(".preview").click(function (e) {
             var id = $(this).attr('id');
-            window.open('../stories/' + id, '_blank');
+            window.open ('../stories/' + id, 'newwindow', 'height=600, width=350, top=0, left=0, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no');
+
+           /* window.open('../stories/' + id, '_blank');*/
             return;
         });
 
@@ -392,6 +442,13 @@ $(document).ready(function() {
                     $('#edit_top').val(datas.t_news.top=='0'? '否':'是');
                     $('#edit_publish').val(datas.t_news.publish=='0'? '否':'是');
                     $('#edit_photo_name').val(datas.t_news.photo);
+
+                    if(datas.t_news.photo==null || datas.t_news.photo==''){
+                        $("#photo_remove_show").css('display','none')
+                    }else{
+                        $("#photo_remove_show").css('display','block')
+
+                    }
 
 
 

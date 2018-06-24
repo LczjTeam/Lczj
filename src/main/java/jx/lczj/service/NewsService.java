@@ -110,20 +110,19 @@ public class NewsService {
                     "    <link href=\"css/style.min.css?v=4.0.0\" rel=\"stylesheet\"><base target=\"_blank\">" +
                     "</head>" +
                     "<body class=\"gray-bg\">" +
-                    "    <div class=\"wrapper wrapper-content  animated fadeInRight article\">" +
+                    "    <div class=\"wrapper wrapper-content  animated fadeInRight article\" style=\"padding-top:0px;\">" +
                     "        <div class=\"row\">" +
-                    "            <div class=\"col-lg-10 col-sm-12 col-lg-offset-1\">" +
+                    "            <div class=\"col-lg-10 col-sm-12 col-lg-offset-1 \"  style=\"padding:5px 5px 5px 5px;\">" +
                     "                <div class=\"ibox\">" +
-                    "                    <div class=\"ibox-content\">" +
+                    "                    <div class=\"ibox-content\" style=\"padding:15px 15px 15px 15px;\" >" +
                     "                       " +
                     "                        <div class=\"text-center article-title\">" +
-                    "                            <h1>" + title + " </h1>" +
+                    "                            <h1 style=\"font-size:28px;\">" + title + " </h1>" +
                     "                        </div> " +
                     "            <div style=\"height:40px;width:100%;\" >" +
                     "               <div class=\"pull-right\">" +
                     "                  <button class=\"btn btn-white btn-xs\" type=\"button\">发布人：" + avo.getT_admin().getName() + "</button>" +
                     "                   <button class=\"btn btn-white btn-xs\" type=\"button\">时间：" + datetime + "</button>" +
-                    "                   <button class=\"btn btn-white btn-xs\" type=\"button\">" + (item == 0 ? "乐潮之镜" : "眼镜二三事") + "</button>" +
                     "               </div>" +
                     "            </div>" + content + "</div>" +
                     "                </div>" +
@@ -250,7 +249,7 @@ public class NewsService {
     }
 
     /**
-     *
+     *修改
      * @param code
      * @param title
      * @param keyword
@@ -262,7 +261,7 @@ public class NewsService {
      * @param session
      * @return
      */
-    public NewsVo update(String code, String title, String keyword, String top, String publish, MultipartFile file, String content, HttpServletRequest request, HttpSession session) {
+    public NewsVo update(String code,int items, String title, String keyword, String top, String publish, MultipartFile file, String content, HttpServletRequest request, HttpSession session) {
 
 
         try {
@@ -321,20 +320,19 @@ public class NewsService {
                     "    <link href=\"css/style.min.css?v=4.0.0\" rel=\"stylesheet\"><base target=\"_blank\">" +
                     "</head>" +
                     "<body class=\"gray-bg\">" +
-                    "    <div class=\"wrapper wrapper-content  animated fadeInRight article\">" +
+                    "    <div class=\"wrapper wrapper-content  animated fadeInRight article\"  style=\"padding-top:0px;\">" +
                     "        <div class=\"row\">" +
-                    "            <div class=\"col-lg-10 col-sm-12 col-lg-offset-1\">" +
+                    "            <div class=\"col-lg-10 col-sm-12 col-lg-offset-1\"  style=\"padding:5px 5px 5px 5px;\">" +
                     "                <div class=\"ibox\">" +
-                    "                    <div class=\"ibox-content\">" +
+                    "                    <div class=\"ibox-content\" style=\"padding:15px 15px 15px 15px;\" >" +
                     "                       " +
                     "                        <div class=\"text-center article-title\">" +
-                    "                            <h1>" + title + " </h1>" +
+                    "                            <h1 style=\"font-size:28px;\">" + title + " </h1>" +
                     "                        </div> " +
                     "            <div style=\"height:40px;width:100%;\" >" +
                     "               <div class=\"pull-right\">" +
                     "                  <button class=\"btn btn-white btn-xs\" type=\"button\">发布人：" + avo.getT_admin().getName() + "</button>" +
                     "                   <button class=\"btn btn-white btn-xs\" type=\"button\">时间：" + datetime + "</button>" +
-                    "                   <button class=\"btn btn-white btn-xs\" type=\"button\">" +  "眼镜二三事"+ "</button>" +
                     "               </div>" +
                     "            </div>" + content + "</div>" +
                     "                </div>" +
@@ -366,7 +364,7 @@ public class NewsService {
                     avo.getT_admin().getAdmin(),
                     keyword,
                     fileName,
-                    1,
+                    items,
                     (top.equals("否") ? "0" : "1"),
                     (publish.equals("否") ? "0" : "1"),
                     photoName
@@ -405,6 +403,26 @@ public class NewsService {
 
         } catch (Exception e) {
             throw new RuntimeException(e.getMessage());
+        }
+    }
+
+    public boolean deletePhoto(String code, HttpServletRequest request) {
+
+        try {
+            String path = request.getSession().getServletContext().getRealPath("stories");
+
+            T_news t_news = newsDao.loadByCode(code);
+
+            //删除图片
+            File ph = new File(path+"/"+t_news.getPhoto());
+            if (ph.exists()) {
+                ph.delete();
+            }
+
+            return newsDao.deletePhoto(code);
+        }catch (Exception e){
+            throw new RuntimeException(e.getMessage());
+
         }
     }
 }

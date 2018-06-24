@@ -43,7 +43,7 @@ public class LczjController {
     @ResponseBody
     public NewsVo update(String code,String title, String keyword, String top, String publish, MultipartFile file, String content, HttpServletRequest request, HttpSession session){
         System.out.println(" title:"+ title+" keyword:"+ keyword+" top:"+ top+" publish:"+ publish);
-        return newsService.update(code,title, keyword, top, publish, file, content,request,session);
+        return newsService.update(code,0,title, keyword, top, publish, file, content,request,session);
     }
 
     /**
@@ -69,9 +69,20 @@ public class LczjController {
         return newsService.delete(code,request);
     }
 
+    /**
+     * 删除图片
+     * @param code
+     * @return
+     */
+    @Privilege(value = "乐潮之镜")
+    @RequestMapping("/deletephoto")
+    @ResponseBody
+    public boolean deletePhoto(String code,HttpServletRequest request){
+        return newsService.deletePhoto(code,request);
+    }
 
     /**
-     * 删除二三事
+     * 通过编号获取文章信息
      * @param code
      * @return
      */
