@@ -131,6 +131,8 @@ $(document).ready(function(){
                 $('#color_name').val('');
                 $('#file').val('');
                 $('#color_add_modal').modal('hide')
+                $('[data-dismiss="fileinput"]').click();
+
                 swal({
                     title: "添加成功！",
                     text: "",
@@ -241,12 +243,7 @@ $(document).ready(function(){
             contentType: false,// 当有文件要上传时，此项是必须的，否则后台无法识别文件流的起始位置(详见：#1)
             processData: false,
             success:function (data) {
-                if (data) {
-
-                    return;
-                } else {
-                    delok = false;
-                }
+                    delok = data;
             },
             error:function (data) {
                 delok = false;
@@ -293,6 +290,8 @@ $(document).ready(function(){
                 table.fnDraw();
                 $('#edit_file').val('');
                 $("#edit_img").attr('src','');
+                $('[data-dismiss="fileinput"]').click();
+
             },
             error:function (data) {
                 console.log(JSON.stringify(data,null,4));

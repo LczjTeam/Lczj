@@ -158,7 +158,8 @@ $(document).ready(function(){
                     $('#model_add_name').val('');
                     $('#file').val('');
                     $('#model_src').attr('src','');
-                    $('#model_add_modal').modal('hide')
+                    $('#model_add_modal').modal('hide');
+                    $('[data-dismiss="fileinput"]').click();
 
 
                     window.open ('../' + itm.info, 'newwindow', 'height=600, width=350, top=0, left=0, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no');
@@ -209,6 +210,9 @@ $(document).ready(function(){
      */
     var  EditRow = -1;
     table.on('click', '.edit', function (e) {
+
+        $('[data-dismiss="fileinput"]').click();
+
         e.preventDefault();
         var nRow = $(this).parents('tr')[0];
         EditRow = nRow;
