@@ -30,7 +30,7 @@ public class NewsService {
 
 
     @Resource
-    private NewsDao newsDao;
+    private NewsDao newsDao ;
 
     @Resource
     private AdminDao adminDao;
@@ -277,25 +277,42 @@ public class NewsService {
             String datetime = format0.format(t_news.getIssue_date());
 
             String photoName = t_news.getPhoto()==null ? "" :  t_news.getPhoto();
+            String ctimes = System.currentTimeMillis() + "";
+
             //检测是否you图片
             if (file != null && !file.getOriginalFilename().equals("")) {
+
+                //删除原有图片
+                File oldF = new File(path, photoName);
+                if (!photoName.equals("") && oldF.exists()) {
+                    oldF.delete();
+                }
+
                 //保存图片
-                System.out.println("开始，保存");
-                photoName = t_news.getCode()+".png";
+                photoName = avo.getT_admin().getAdmin()+ctimes+".png";
                 System.out.println(photoName);
                 System.out.println(path);
                 File editFile = new File(path, photoName);
                 if (!editFile.exists()) {
                     editFile.mkdirs();
                 }
-
                 //保存
                 file.transferTo(editFile);
 
             }
 
+            //删除原有content文件
+            String[] ss = t_news.getFilename().split("\\.");
+            System.out.println(ss);
+
+
+            File oF = new File(path, ss[0]+"-content.html");
+            if (oF.exists()) {
+                oF.delete();
+            }
+
             //保存content
-            String contentFile = t_news.getCode()+ "-content.html";
+            String contentFile = avo.getT_admin().getAdmin()+ctimes+ "-content.html";
             File cf = new File(contentFile);
             if (!cf.exists()) {
                 cf.mkdirs();
@@ -303,6 +320,12 @@ public class NewsService {
             BufferedWriter brc = new BufferedWriter(new OutputStreamWriter(new FileOutputStream((path + "/" + contentFile)), "UTF-8"));
             brc.write(content);
             brc.close();
+
+            //删除原有的html
+            File fft = new File(path, t_news.getFilename());
+            if (fft.exists()) {
+                fft.delete();
+            }
 
 
             //保存为html
@@ -348,7 +371,7 @@ public class NewsService {
 
 
             System.out.println(str);
-            String fileName = t_news.getCode() + ".html";
+            String fileName = avo.getT_admin().getAdmin()+ctimes + ".html";
             File f = new File(path);
             if (!f.exists()) {
                 f.mkdirs();
