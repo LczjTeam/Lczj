@@ -264,16 +264,7 @@ $(document).ready(function(){
             return;
         }
 
-        swal({
-            title: "保存成功！",
-            text: "",
-            type: "success",
-            allowOutsideClick: true,
-            showConfirmButton: true,
-            showCancelButton: false,
-            confirmButtonClass: "btn-success",
-            confirmButtonText: "OK",
-        });
+
         var itm = {};
         itm.color =  ''+$("#color_edit_color").val();
         $.ajax({
@@ -293,7 +284,16 @@ $(document).ready(function(){
                 $('#color_edit_modal').modal('hide');
                 $('[data-dismiss="fileinput"]').click();
 
-
+                swal({
+                    title: "保存成功！",
+                    text: "",
+                    type: "success",
+                    allowOutsideClick: true,
+                    showConfirmButton: true,
+                    showCancelButton: false,
+                    confirmButtonClass: "btn-success",
+                    confirmButtonText: "OK",
+                });
             },
             error:function (data) {
                 console.log(JSON.stringify(data,null,4));
