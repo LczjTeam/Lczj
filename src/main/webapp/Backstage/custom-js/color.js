@@ -127,10 +127,9 @@ $(document).ready(function(){
                     '<a class="edit"  ><i class="fa fa-edit"></i>&nbsp;编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="delete" ><i class="fa fa-trash"></i>&nbsp;删除</a>'
                 ]);
                 table.fnDraw();
-                $('#color').val('');
-                $('#color_name').val('');
-                $('#file').val('');
-                $('#color_add_modal').modal('hide')
+                $('#color_add_color').val('');
+                $('#color_add_name').val('');
+                 $('#color_add_modal').modal('hide')
                 $('[data-dismiss="fileinput"]').click();
 
                 swal({
@@ -345,13 +344,7 @@ $(document).ready(function(){
                 data: params,
                 dataType: "json",
                 success: function (data) {
-                    if (data) {
-
-                        return;
-                    } else {
-                        delok = false;
-
-                    }
+                     delok = data;
                 },
                 error: function (data) {
                     delok = false;
