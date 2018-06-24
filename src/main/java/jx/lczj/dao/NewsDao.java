@@ -29,4 +29,7 @@ public interface NewsDao {
 
     @Update("update T_NEWS set  TITLE = #{1},ISSUE_DATE = TO_DATE(#{2},'yyyy-mm-dd hh24:mi:ss') ,AUTHOR = #{3} ,KEYWORD =  #{4},FILENAME =  #{5},ITEMS = #{6},TOP = #{7},PUBLISH = #{8} ,PHOTO = #{9}  where code = #{0}")
     boolean update(String code, String title, String ISSUE_DATE, String AUTHOR, String KEYWORD, String FILENAME, int ITEMS, String TOP, String PUBLISH, String PHOTO);
+
+    @Select("select * from T_NEWS WHERE  ITEMS = #{1} ")
+    List<T_news> list(int items);
 }

@@ -51,10 +51,14 @@ public class NewsController {
         return newsService.update(code,title, keyword, top, publish, file, content,request,session);
     }
 
+
+
+
     /**
-     * 文章列表[眼镜二三事]
+     * 文章列表[眼镜二三事]获取当前登录用户的
      * @return
      */
+    @Privilege
     @RequestMapping("/list1")
     @ResponseBody
     public List<NewsVo> list1(HttpSession session){
@@ -76,14 +80,27 @@ public class NewsController {
 
 
     /**
-     * 删除二三事
+     * 通过编号获取二三事
      * @param code
      * @return
      */
     @RequestMapping("/loadById")
     @ResponseBody
-    public NewsVo loadById(String code,HttpSession session){
-        return newsService.loadById(code,session);
+    public NewsVo loadById(String code){
+        return newsService.loadById(code);
     }
+
+
+    /**
+     * 文章列表[眼镜二三事]
+     * @return
+     */
+    @RequestMapping("/list")
+    @ResponseBody
+    public List<NewsVo> list(){
+        return newsService.list(1);
+    }
+
+
 
 }

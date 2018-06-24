@@ -77,8 +77,8 @@ public class LczjController {
      */
     @RequestMapping("/loadById")
     @ResponseBody
-    public NewsVo loadById(String code,HttpSession session){
-        return newsService.loadById(code,session);
+    public NewsVo loadById(String code){
+        return newsService.loadById(code);
     }
 
 }

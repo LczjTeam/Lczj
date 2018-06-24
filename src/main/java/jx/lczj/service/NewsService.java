@@ -1,5 +1,6 @@
 package jx.lczj.service;
 
+import jx.lczj.dao.AdminDao;
 import jx.lczj.dao.NewsDao;
 import jx.lczj.model.T_color;
 import jx.lczj.model.T_news;
@@ -30,6 +31,9 @@ public class NewsService {
 
     @Resource
     private NewsDao newsDao;
+
+    @Resource
+    private AdminDao adminDao;
 
 
     /**
@@ -235,14 +239,13 @@ public class NewsService {
     /**
      * 获取文章信息
      * @param code
-     * @param session
      * @return
      */
-    public NewsVo loadById(String code,HttpSession session){
-        AdminVo avo = (AdminVo) session.getAttribute("admin");
+    public NewsVo loadById(String code){
         NewsVo nvo = new NewsVo();
-        nvo.setT_admin(avo.getT_admin());
-        nvo.setT_news(newsDao.loadByCode(code));
+        T_news t = newsDao.loadByCode(code);
+        nvo.setT_admin(adminDao.loadById(t.getAuthor()));
+        nvo.setT_news(t);
        return  nvo;
     }
 
@@ -378,5 +381,30 @@ public class NewsService {
             throw new RuntimeException(e.getMessage());
         }
 
+    }
+
+
+    /**
+     * 通过类别获取文章
+     * @param items
+     * @return
+     */
+    public List<NewsVo> list(int items) {
+        try {
+
+
+            List<NewsVo> lnvs = new ArrayList<NewsVo>();
+            List<T_news> nls = newsDao.list(items);
+            for (T_news t : nls) {
+                NewsVo nvo = new NewsVo();
+                nvo.setT_admin(adminDao.loadById(t.getAuthor()));
+                nvo.setT_news(t);
+                lnvs.add(nvo);
+            }
+            return lnvs;
+
+        } catch (Exception e) {
+            throw new RuntimeException(e.getMessage());
+        }
     }
 }
