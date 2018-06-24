@@ -287,9 +287,12 @@ $(document).ready(function(){
                 table.fnUpdate(datas.name, nRow, 1, false);
                 table.fnUpdate('<image style="width: 30px;height:30px;" src="../colors/'+datas.rgb+'"></image>', nRow, 2, false);
                 table.fnDraw();
-                $('#edit_file').val('');
+                $('#color_edit_color').val('');
+                $('#color_edit_name').val('');
                 $("#edit_img").attr('src','');
+                $('#color_edit_modal').modal('hide');
                 $('[data-dismiss="fileinput"]').click();
+
 
             },
             error:function (data) {
