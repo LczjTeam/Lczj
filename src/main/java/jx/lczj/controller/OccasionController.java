@@ -48,13 +48,13 @@ public class OccasionController {
     /**
      * 更新
      */
-/*
+
    @RequestMapping("/update")
     @ResponseBody
     public boolean update(MultipartFile file1,MultipartFile file2, HttpServletRequest request){
         return occasionService.update(file1,file2,request);
     }
-*/
+
 
 
     /**

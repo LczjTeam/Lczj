@@ -239,20 +239,21 @@ $(document).ready(function(){
         var datas ;
         $.ajax({
             async:false,
-            url:'../occasion/loadByoccasion',
+            url:'../occasion/list',
             type:'POST',
             dataType:"json",
             data:itm,
             success:function (data) {
-                console.log(JSON.stringify(data,null,4));
+                console.log(JSON.stringify(data,null,5));
                 $('#occasion_edit_occasion').val(aData[0]);
+                $('#occasion_edit_photo').val(aData[2])
                 $('#occasion_edit_name').val(aData[1]);
-                $("#edit_img1").attr('src','../occasions/'+data.occasion+'_0.png');
-                $("#edit_img2").attr('src','../occasions/'+data.occasion+'_1.png');
+                $("#edit_img1").attr('src','../occasion/'+itm.occasion+'_0.png');
+                $("#edit_img2").attr('src','../occasion/'+itm.occasion+'_1.png');
                 $('#occasion_edit_modal').modal('show');
             },
             error:function (data) {
-                console.log(JSON.stringify(data,null,4));
+                console.log(JSON.stringify(data,null,5));
                 swal({
                     title: "数据获取失败！",
                     text: "",
@@ -278,8 +279,8 @@ $(document).ready(function(){
     $("#btn_edit_save").click(function (e) {
         var nRow =EditRow ;
         var delok = true;
-        var formData = new FormData($("#occasion_edit_form" )[0]);
-        if(formData.get("occasion_edit_occasion")=='' || formData.get("occasion_edit_name")=='' || formData.get("file1") == ''|| formData.get("file2") == ''){
+        var formData = new FormData($("#edit_occasion" )[0]);
+        if(formData.get("occasion_edit_photo")=='' || formData.get("occasion_edit_name")=='' || formData.get("file1") == ''|| formData.get("file2") == ''){
             swal({
                 title: "ID、颜色、图片不能为空！",
                 text: "",
@@ -292,6 +293,8 @@ $(document).ready(function(){
             });
             return;
         }
+       // alert(formData.get("occasion_edit_occasion")+":"+ formData.get("file1")+"456");
+       //console.log(JSON.stringify(formData,null,5)+"1234");
         $.ajax({
             async:false,
             url:'../occasion/update',
@@ -342,7 +345,7 @@ $(document).ready(function(){
         itm.occasion =  ''+$("#occasion_edit_occasion").val();
         $.ajax({
             async:false,
-            url:'../occasion/loadByoccasion',
+            url:'../occasion/list',
             type:'POST',
             dataType:"json",
             data:itm,
