@@ -37,7 +37,6 @@ $(document).ready(function(){
             });
         }
     });
-    $("#loading-age").css('display','none');
 
     /**
      * 添加品牌
@@ -73,7 +72,6 @@ $(document).ready(function(){
             });
         }
     });
-    $("#loading-age").css('display','none');
 
 
     /**
@@ -112,7 +110,6 @@ $(document).ready(function(){
             });
         }
     });
-    $("#loading-age").css('display','none');
 
 
     /**
@@ -153,7 +150,6 @@ $(document).ready(function(){
             });
         }
     });
-    $("#loading-age").css('display','none');
 
 
     /**
@@ -192,7 +188,6 @@ $(document).ready(function(){
             });
         }
     });
-    $("#loading-age").css('display','none');
 
 
 
@@ -232,7 +227,99 @@ $(document).ready(function(){
             });
         }
     });
-    $("#loading-age").css('display','none');
+
+
+    /**
+     * 添加
+     */
+    $("#btn_add_save").click(function (e) {
+        var formData = new FormData($("#goods_add")[0]);
+        formData.append('colors', $("#add_color").val());
+        formData.append('faces', $("#add_face").val());
+        formData.append('occasions', $("#add_occasion").val());
+        formData.append('agesections', $("#add_agesection").val());
+
+
+        if (formData.get("good") == '' || formData.get("good_name") == '' || formData.get("models") == ''
+            || formData.get("width") == ''  || formData.get("height") == ''  || formData.get("length") == ''
+            || formData.get("max_width") == ''  || formData.get("space") == ''  || formData.get("price") == '') {
+            swal({
+                title: "输入框不能为空！",
+                text: "",
+                type: "warning",
+                allowOutsideClick: true,
+                showConfirmButton: true,
+                showCancelButton: false,
+                confirmButtonClass: "btn-danger",
+                confirmButtonText: "OK",
+            });
+            return;
+        }
+
+        var delok = true;
+        $.ajax({
+            async: false,
+            url: '../good/add',
+            type: 'POST',
+            dataType: "json",
+            contentType: false,// 当有文件要上传时，此项是必须的，否则后台无法识别文件流的起始位置(详见：#1)
+            processData: false,// 是否序列化data属性，默认true(注意：false时type必须是post，详见：#2)
+            data: formData,
+            success: function (datas) {
+
+                console.log(JSON.stringify(datas,null,4))
+
+               /* var str = '<tr>'+
+                    '<td>'+datas.t_news.title+'</td>'+
+                    '<td>'+formatDateTime(datas.t_news.issue_date)+'</td>'+
+                    '<td>'+datas.t_news.code+'</td>'+
+                    '<td>'+datas.t_admin.name+' </td>'+
+                    (( datas.t_news.photo== null || datas.t_news.photo =='') ?  '<td>无</td>': ('<td><image style="width: 50px;height:50px;" src="../stories/' + datas.t_news.photo +'"></image></td>'))+
+                    '<td>'+datas.t_news.keyword+' </td>'+
+                    '<td>'+(datas.t_news.publish==0 ? '否':'是')+' </td>'+
+                    '<td>'+(datas.t_news.top==0 ? '否':'是')+' </td>'+
+                    '<td><a class="edit"  id="'+datas.t_news.code+'"  ><i class="fa fa-edit"></i>&nbsp;编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="delete" id="'+datas.t_news.code+'" ><i class="fa fa-trash"></i>&nbsp;删除</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="preview"  id="'+datas.t_news.filename+'" ><i class="fa fa-chrome"></i>&nbsp;浏览</a></td>'+
+                    '</tr>';
+
+                $("#tbd").prepend(str).trigger('footable_redraw');
+
+                $('#add_keyword').val('');
+                $('#add_title').val('');
+                $('#add_photo').val('');
+                $('#add_content').code('');
+
+                $("#div-add").css("display",'none');
+                $("#div-list").css("display",'block');
+                setEvents();
+                swal({
+                    title: "添加成功！",
+                    text: "",
+                    type: "success",
+                    allowOutsideClick: true,
+                    showConfirmButton: true,
+                    showCancelButton: false,
+                    confirmButtonClass: "btn-success",
+                    confirmButtonText: "OK",
+                });*/
+            },
+            error: function (data) {
+                console.log(data)
+                swal({
+                    title: "添加失败！",
+                    text: "",
+                    type: "error",
+                    allowOutsideClick: true,
+                    showConfirmButton: true,
+                    showCancelButton: false,
+                    confirmButtonClass: "btn-danger",
+                    confirmButtonText: "OK",
+                });
+                return;
+            }
+        });
+
+    });
+
 
 
 });
