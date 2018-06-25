@@ -87,20 +87,20 @@ public class OccasionService {
 /*
     */
 /**
-     * 修改颜色信息
-     *//*
+     * 修改信息
+     */
 
     @Transactional
     public boolean update(MultipartFile file1,MultipartFile file2, HttpServletRequest request) {
         try {
             System.out.println("开始");
-
-            System.out.println(file1 == null);
+            //System.out.println(request.getParameter("occasion_edit_occasion")+ request.getParameter("occasion_edit_name")+request.getParameter("occasion_edit_photo"));
+            System.out.println(file1.getName());
             System.out.println(file1.getOriginalFilename().equals(""));
-            System.out.println(file1 == null);
-            System.out.println(file1.getOriginalFilename().equals(""));
+            System.out.println(file2.getName());
+            System.out.println(file2.getOriginalFilename().equals(""));
 
-            String editrgb = "";
+
             String path = request.getSession().getServletContext().getRealPath("occasion");
             //检测是否修改了图片
             if (file1!=null && !file1.getOriginalFilename().equals("")) {
@@ -110,10 +110,11 @@ public class OccasionService {
                 File targetFile1 = new File(d_file1);
                 if (targetFile1.exists()) {
                     targetFile1.delete();
+                    System.out.println("已删除图片1。");
                 }
 
-                */
-/*String ctimes = System.currentTimeMillis() + "";*//*
+
+               /* String ctimes = System.currentTimeMillis() + "";*/
 
                 System.out.println("开始，保存");
                 String fileName1 =request.getParameter("occasion_edit_occasion") + "_0.png";
@@ -122,12 +123,15 @@ public class OccasionService {
                 File editFile1 = new File(path, fileName1);
                 if (!editFile1.exists()) {
                     editFile1.mkdirs();
+                    System.out.println("目录创建");
                 }
 
                 //保存
                 try {
                     file1.transferTo(editFile1);
+                    System.out.println("文件以保存1。");
                 } catch (Exception e) {
+                    System.out.println("文件保存1出错。");
                     e.printStackTrace();
                     return false;
                 }
@@ -140,10 +144,10 @@ public class OccasionService {
                 File targetFile2 = new File(d_file2);
                 if (targetFile2.exists()) {
                     targetFile2.delete();
+                    System.out.println("已删除图片2。");
                 }
 
-                */
-/*String ctimes = System.currentTimeMillis() + "";*//*
+                String ctimes = System.currentTimeMillis() + "";
 
                 System.out.println("开始，保存");
                 String fileName2 =request.getParameter("occasion_edit_occasion") + "_1.png";
@@ -157,7 +161,9 @@ public class OccasionService {
                 //保存
                 try {
                     file1.transferTo(editFile1);
+                    System.out.println("文件以保存2。");
                 } catch (Exception e) {
+                   /* System.out.println("文件保存2出错。");*/
                     e.printStackTrace();
                     return false;
                 }
@@ -169,7 +175,6 @@ public class OccasionService {
             throw new RuntimeException(e.getMessage());
         }
     }
-*/
 
     /**
      * 添加场景
@@ -222,6 +227,7 @@ public class OccasionService {
         }
 
     }
+
 
 
 }
