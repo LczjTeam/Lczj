@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -52,8 +53,27 @@ public class GoodService  {
      * @return
      * @return
      */
-    public List<T_goods> loadlist() {
-        return goodDao.loadlist();
+    @Transactional
+    public List<GoodsVo> loadlist() {
+        try {
+            List<T_goods> list = goodDao.loadlist();
+            List<GoodsVo> gvos = new ArrayList<GoodsVo>();
+            for (T_goods t : list) {
+                GoodsVo gvo = new GoodsVo();
+                gvo.setT_goods(t);
+                gvo.setT_brand(brandDao.loadById(t.getBrand()));
+                gvo.setT_category(categoryDao.loadById(t.getCategory()));
+                gvo.setT_colors(colorDao.loadByGood(t.getGoods()));
+                gvo.setT_agesections(ageDao.loadByGood(t.getGoods()));
+                gvo.setT_faces(faceDao.loadByGood(t.getGoods()));
+                gvo.setT_occasions(occasionDao.loadByGood(t.getGoods()));
+                gvo.setT_attachments(goodDao.loadAttachmentByGood(t.getGoods()));
+                gvos.add(gvo);
+            }
+            return gvos;
+        }catch (Exception e){
+            throw  new RuntimeException(e.getMessage());
+        }
     }
 
 

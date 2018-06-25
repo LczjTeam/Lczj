@@ -29,7 +29,7 @@ public class GoodController {
      */
     @RequestMapping("/list")
     @ResponseBody
-    public List<T_goods> list(){
+    public List<GoodsVo> list(){
         return goodService.loadlist();
     }
 

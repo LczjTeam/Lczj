@@ -3,6 +3,107 @@
  */
 $(document).ready(function(){
 
+
+    /**
+     *
+     */
+    var params={};
+    $.ajax({
+        async: false,
+        type: "POST",
+        url: "../good/list",       //注意路径
+        data: params,
+        dataType: "json",
+        success: function (data) {
+           console.log(JSON.stringify(data,null,4));
+
+            for(var i = 0 ; i < data.length ; i++) {
+                var datas = data[i];
+                console.log(JSON.stringify(datas,null,4));
+                var colorStr = '';
+                for( var j = 0 ;j < datas.t_colors.length ; j++){
+                    var itm =  datas.t_colors[j];
+                    colorStr+='&nbsp;&nbsp;&nbsp;<image  style="width: 20px;height: 20px;" src="../colors/'+ itm.rgb.trim()+'" ></image>'+itm.name
+                }
+
+                //alert(colorStr);
+
+
+                var faceStr = '';
+                for( var j = 0 ;j < datas.t_faces.length ; j++){
+                    var itm =  datas.t_faces[j];
+                    faceStr +='&nbsp;&nbsp;&nbsp;<image  style="width: 30px;height: 30px;" src="../face/'+ itm.photo+'"></image>'+itm.name
+                }
+
+
+                //alert(faceStr);
+                var occasionStr = '';
+                for( var j = 0 ;j < datas.t_occasions.length ; j++){
+                    var itm =  datas.t_occasions[j];
+                    occasionStr +='&nbsp;&nbsp;&nbsp;'+itm.name
+                }
+
+
+                //alert(occasionStr);
+                var ageStr = '';
+                for( var j = 0 ;j < datas.t_agesections.length ; j++){
+                    var itm =  datas.t_agesections[j];
+                    ageStr  +='&nbsp;&nbsp;&nbsp;'+itm.name+'('+itm.minage+'-'+itm.maxage+')'
+                }
+
+                //alert(ageStr);
+
+
+                var attachStr = '';
+                for( var j = 0 ;j < datas.t_attachments.length ; j++){
+                    var itm =  datas.t_attachments[j];
+                    attachStr +='&nbsp;&nbsp;&nbsp;<image style="width: 45px;height: 45px;" src="../goods/'+ itm.path+'"></image>'
+                }
+
+
+                //alert(attachStr);
+                var str1 = '<tr>' +
+                    '<td>' + datas.t_goods.name + '</td>' +
+                    '<td>' + datas.t_goods.models + '</td>' +
+                    '<td>' + datas.t_brand.name + '</td>' +
+                    '<td>' + datas.t_category.name + '</td>' +
+                    '<td>' + (datas.t_goods.suitable_sex == 0 ? '通用':(datas.t_goods.suitable_sex == 1 ? "男":"女"))+ '</td>' +
+                    '<td>' + datas.t_goods.goods + '</td>' +
+                    '<td>' + '&nbsp;&nbsp;镜面宽:'+ datas.t_goods.width + 'mm&nbsp;&nbsp;镜面高:'+ datas.t_goods.height+'mm&nbsp;&nbsp;鼻尖距:'+ datas.t_goods.space
+                    + 'mm&nbsp;&nbsp;镜腿长:'+ datas.t_goods.length+ 'mm&nbsp;&nbsp;镜总宽:'+ datas.t_goods.max_width+ 'mm</td>' +
+                    '<td>' + colorStr + '</td>' +
+                    '<td>' + ageStr + '</td>' +
+                    '<td>' + faceStr + '</td>' +
+                    '<td>' + occasionStr + '</td>' +
+                    '<td>' + attachStr + '</td>' +
+                    '<td><a class="edit"  id="' + datas.t_goods.goods + '"  ><i class="fa fa-edit"></i>&nbsp;编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="delete" id="' + datas.t_goods.goods + '" ><i class="fa fa-trash"></i>&nbsp;删除</a></td> ' +
+                    '</tr>';
+
+                console.log(str1)
+                $("#tbd").prepend(str1);
+            }
+
+
+
+
+        },
+        error: function (data) {
+            swal({
+                title: "数据获取失败！",
+                text: "",
+                type: "error",
+                allowOutsideClick: true,
+                showConfirmButton: true,
+                showCancelButton: false,
+                confirmButtonClass: "btn-danger",
+                confirmButtonText: "OK",
+            });
+        }
+    });
+
+    $(".footable").footable();
+
+
     /**
      * 添加类别
      */
