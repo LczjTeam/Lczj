@@ -7,7 +7,7 @@ $(document).ready(function(){
     table.dataTable({
         "columnDefs": [{ // set default column settings
             'orderable': false,
-            'targets': [2]
+            'targets': [5]
         }, {
             "searchable": false,
             "targets": [2]
@@ -140,89 +140,7 @@ $(document).ready(function(){
             confirmButtonText: "OK",
         });
 
-
-        /*var delok = true;
-        var params={};
-        params.occasion = $('#occasion_add_occasion').val();
-        params.name =$('#occasion_add_name').val();
-        params.photo = $('#occasion_add_photo').val();
-        params.file1 = $('#file').val();
-        if(params.occasion =='' || params.name == '' || params.photo == '' || params.file1==''){
-            swal({
-                title: "角色、名称、英文名、彩色图不能为空！",
-                text: "",
-                type: "warning",
-                allowOutsideClick: true,
-                showConfirmButton: true,
-                showCancelButton: false,
-                confirmButtonClass: "btn-danger",
-                confirmButtonText: "OK",
-            });
-            return;
-        }
-
-        $.ajax({
-            async: false,
-            type: "POST",
-            url: "../occasion/add",//注意路径
-            data: params,
-            dataType: "json",
-            success: function (data) {
-                if (data) {
-                    return;
-                } else {
-                    delok = false;
-                }
-            },
-            error: function (data) {
-                delok = false;
-            }
-        });
-        if (!delok) {
-            swal({
-                title: "添加失败！",
-                text: "",
-                type: "error",
-                allowOutsideClick: true,
-                showConfirmButton: true,
-                showCancelButton: false,
-                confirmButtonClass: "btn-danger",
-                confirmButtonText: "OK",
-            });
-            return;
-        }
-        table.fnAddData([
-            $('#occasion_add_occasion').val(),
-            $('#occasion_add_name').val(),
-            $('#occasion_add_photo ').val(),
-            $('#file').val(),
-            '<a class="edit"  ><i class="fa fa-edit"></i>&nbsp;编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="delete" ><i class="fa fa-trash"></i>&nbsp;删除</a>'
-        ]);
-        table.fnDraw();
-        $('#occasion_add_occasion').val('');
-        $('#occasion_add_name').val('');
-        $('#occasion_add_photo ').val();
-        $('#file').val();
-        $('#occasion_add_modal').modal('hide')
-        swal({
-            title: "添加成功！",
-            text: "",
-            type: "success",
-            allowOutsideClick: true,
-            showConfirmButton: true,
-            showCancelButton: false,
-            confirmButtonClass: "btn-success",
-            confirmButtonText: "OK",
-        });
-
-        */
-
-
-
-
-
-
-    });
+     });
 
     /**
      * 编辑
@@ -305,7 +223,6 @@ $(document).ready(function(){
             processData: false,
             success:function (data) {
                 if (data) {
-
                     return;
                 } else {
                     delok = false;
@@ -331,6 +248,15 @@ $(document).ready(function(){
             return;
         }
 
+        table.fnUpdate($('#occasion_edit_name').val(), nRow, 1, false);
+        table.fnUpdate($('#occasion_edit_photo').val(),nRow, 2,false);
+        table.fnDraw();
+        $('#edit_file1').val('');
+        $("#edit_img1").attr('src','');
+        $('#edit_file2').val('');
+        $("#edit_img2").attr('src','');
+        $('#occasion_edit_modal').modal('hide')
+
         swal({
             title: "保存成功！",
             text: "",
@@ -341,7 +267,7 @@ $(document).ready(function(){
             confirmButtonClass: "btn-success",
             confirmButtonText: "OK",
         });
-        var itm = {};
+       /* var itm = {};
         itm.occasion =  ''+$("#occasion_edit_occasion").val();
         $.ajax({
             async:false,
@@ -351,15 +277,9 @@ $(document).ready(function(){
             data:itm,
             success:function (datas) {
                 console.log(JSON.stringify(datas,null,4));
-                table.fnUpdate(datas.name, nRow, 1, false);
-                table.fnUpdate(datas.photo,nRow, 2,false);
-                table.fnDraw();
-                $('#edit_file1').val('');
-                $("#edit_img1").attr('src','');
-                $('#edit_file2').val('');
-                $("#edit_img2").attr('src','');
-            },
-            error:function (data) {
+
+            },*/
+            /*error:function (data) {
                 console.log(JSON.stringify(data,null,4));
                 swal({
                     title: "刷新失败！",
@@ -371,10 +291,10 @@ $(document).ready(function(){
                     confirmButtonClass: "btn-success",
                     confirmButtonText: "OK",
                 });
-            }
+            }*/
 
 
-        });
+
     });
 
 
