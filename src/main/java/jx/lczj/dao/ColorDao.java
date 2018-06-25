@@ -44,4 +44,7 @@ public  interface  ColorDao {
 
     @Update("update T_COLOR set NAME = #{1}, RGB = #{2} where COLOR = #{0}")
     boolean updateColor(int color, String name, String rgb);
+
+    @Select("select * from T_COLOR WHERE COLOR IN (SELECT COLOR FROM T_GOODSCOLOR WHERE GOODS = #{0})")
+    List<T_color> loadByGood(String goods);
 }

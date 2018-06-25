@@ -23,4 +23,6 @@ public interface BrandDao {
     @Insert("insert into T_BRAND(brand,name,company) values(#{0},#{1},#{2})")
     public boolean add(int brand, String name, String company);
 
+    @Select("select * from T_BRAND WHERE BRAND = #{0}")
+    T_brand loadById(int brand);
 }

@@ -21,4 +21,7 @@ public interface AgeDao {
 
     @Delete("delete from T_agesection where agesection = #{0}")
     boolean delete(int agesection);
+
+    @Select("select * from T_agesection where agesection in  (select agesection  from T_SUITABLEAGE WHERE GOODS = #{0} ) " )
+    List<T_agesection> loadByGood(String goods);
 }
