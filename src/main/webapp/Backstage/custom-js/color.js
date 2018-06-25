@@ -177,8 +177,8 @@ $(document).ready(function(){
         var aData = table.fnGetData(nRow);
         //alert(aData[0]);
         var itm = {};
-        itm.color =  ''+aData[0];
-        var datas ;
+        itm.color = '' + aData[0];
+        var datas;
         $.ajax({
             async:false,
             url:'../color/loadByColor',
