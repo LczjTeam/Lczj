@@ -27,4 +27,7 @@ public interface FaceDao {
     //删除记录
     @Delete("delete FROM T_FACE where FACE = #{0} ")
     boolean deleteFace(int face);
+
+    @Select("select *  FROM T_FACE WHERE FACE in ( select FACE FROM T_SUITABLEFACE WHERE GOODS = #{0} )")
+    List<T_face> loadByGood(String goods);
 }

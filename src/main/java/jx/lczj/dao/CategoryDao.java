@@ -26,4 +26,7 @@ public interface CategoryDao {
 
     @Delete("delete from T_category where category=#{0}")
     void delete(String category);
+
+    @Select("select * from T_category where category=#{0}")
+    T_category loadById(int category);
 }
