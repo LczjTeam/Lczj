@@ -163,7 +163,7 @@ public class OccasionService {
                     file1.transferTo(editFile1);
                     System.out.println("文件以保存2。");
                 } catch (Exception e) {
-                    System.out.println("文件保存2出错。");
+                   /* System.out.println("文件保存2出错。");*/
                     e.printStackTrace();
                     return false;
                 }

@@ -60,6 +60,7 @@ public class OccasionController {
     /**
      * 删除
      * @param occasion
+     * @param request
      * @return
      */
     @RequestMapping("/delete")
