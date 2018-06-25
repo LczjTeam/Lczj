@@ -7,13 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>乐潮之镜</title>
-    <link rel="shortcut icon" href="favicon.ico"> <link href="css/bootstrap.min.css?v=3.3.5" rel="stylesheet">
+    <link rel="shortcut icon" href="favicon.ico">
+    <link href="css/bootstrap.min.css?v=3.3.5" rel="stylesheet">
     <link href="css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
 
     <!-- Data Tables -->
     <link href="css/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
     <link href="css/plugins/sweetalert/sweetalert.css" rel="stylesheet">
-
     <link href="css/animate.min.css" rel="stylesheet">
 
     <!--富文本编辑器-->
@@ -42,12 +42,9 @@
                     <table id="lczj_table" class="table table-striped table-bordered table-hover ">
                         <thead>
                         <tr>
-                            <th style="width:16%;">文章编号</th>
-                            <th style="width:16%;">标题</th>
-                            <th style="width:16%;">作者</th>
-                            <th style="width:16%;">发布时间</th>
-                            <th style="width:16%">文章url</th>
-                            <th style="width:20%;">操作</th>
+                            <th style="width:33%;">标题</th>
+                            <th style="width:33%;">发布时间</th>
+                            <th style="width:34%;">操作</th>
                         </tr>
                         </thead>
                         <tbody></tbody>
@@ -69,26 +66,52 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label>文章标题</label>
+                        <label>标题</label>
                         <input type="text" id="lczj_add_title" placeholder="请输入文章标题" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label>内容描述</label>
-                        <input type="text" id="lczj_add_name" placeholder="简要描述" class="form-control">
+                        <label>关键字</label>
+                        <input type="text" id="lczj_add_key" placeholder="简要描述" class="form-control">
                     </div>
+                    <div class="form-group">
+                        <label>是否置顶</label>
+                        <select id="lczj_add_top" class="form-control" >
+                            <option value="是">置顶</option>
+                            <option value="否">普通</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>是否对外</label>
+                        <select id="lczj_add_public" class="form-control" >
+                            <option value="是">公开</option>
+                            <option value="否">私密</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>图片</label>
+                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                            <div>
+                                <span class="btn default btn-file">
+                                    <input type="file" name="file">
+                                </span>
+                                <a href="javascript:" class="btn red fileinput-exists" data-dismiss="fileinput"> 移除 </a>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="ibox float-e-margins">
                                 <div class="ibox-title">
-                                    <h5>文章内容编辑</h5>
-                                    <button id="edit" class="btn btn-primary btn-xs m-l-sm" onclick="edit()" type="button">编辑</button>
+                                    <h5>文章内容</h5>
                                     <div class="ibox-tools">
                                         <a class="collapse-link">
                                             <i class="fa fa-chevron-up"></i>
                                         </a>
                                     </div>
                                 </div>
-                                <div class="ibox-content" id="eg">
+                                <div class="ibox-content" id="add_eg">
 
                                     <div class="click2edit wrapper">
                                         <h3>你好，子涵 </h3>
@@ -108,6 +131,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
+                    <button id="btn_add_preview" type="submit" class="btn btn-white" onclick="preview()">预览</button>
                     <button id="btn_add_save" type="button" class="btn btn-primary">保存</button>
                 </div>
             </div>
@@ -115,8 +139,8 @@
     </div>
 
     <!--乐潮之镜文章信息修改-->
-    <div class="modal inmodal" id="lczj_edit_modal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog ">
+    <div class="modal inmodal fade" id="lczj_edit_modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content animated bounceInRight">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">关闭</span>
@@ -127,36 +151,77 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <div class="form-group">
-                            <label>文章编号</label>
-                            <input readonly type="text" id="lczj_edit_lczj" placeholder="" class="form-control">
+                            <label>标题</label>
+                            <input readonly type="text" id="lczj_edit_title" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label>文章标题</label>
-                            <input type="text" id="lczj_edit_title" placeholder="请输入文章标题" class="form-control">
+                            <label>关键字</label>
+                            <input type="text" id="lczj_edit_key" placeholder="输入关键字" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label>作者姓名</label>
-                            <input type="text" id="lczj_edit_name" placeholder="请输入作者的姓名" class="form-control">
+                            <label>是否置顶</label>
+                            <select id="lczj_edit_top" class="form-control" >
+                                <option value="是">置顶</option>
+                                <option value="否">普通</option>
+                            </select>
                         </div>
                         <div class="form-group">
-                            <label>发布时间</label>
-                            <input type="text" id="lczj_edit_time" placeholder="请输入发布时间" class="form-control">
+                            <label>是否对外</label>
+                            <select id="lczj_edit_public" class="form-control" >
+                                <option value="是">公开</option>
+                                <option value="否">私密</option>
+                            </select>
                         </div>
                         <div class="form-group">
-                            <label>url链接</label>
-                            <input type="text" id="lczj_edit_url" placeholder="请输入url链接" class="form-control">
+                            <label>图片</label>
+                            <div class="fileinput fileinput-new" data-provides="fileinput">
+                                <div>
+                                    <span class="btn default btn-file">
+                                    <input type="file" name="file"> </span>
+                                    <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> 移除 </a>
+                                </div>
+                            </div>
                         </div>
 
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="ibox float-e-margins">
+                                    <div class="ibox-title">
+                                        <h5>文章内容</h5>
+                                        <div class="ibox-tools">
+                                            <a class="collapse-link">
+                                                <i class="fa fa-chevron-up"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="ibox-content" id="edit_eg">
+
+                                        <div class="click2edit wrapper">
+                                            <h3>你好，子涵 </h3>
+                                            <p>H+是一个完全响应式，基于Bootstrap3.3.5最新版本开发的扁平化主题，她采用了主流的左右两栏式布局，使用了Html5+CSS3等现代技术，她提供了诸多的强大的可以重新组合的UI组件，并集成了最新的jQuery版本(v2.1.1)，当然，也集成了很多功能强大，用途广泛的就jQuery插件，她可以用于所有的Web应用程序，如<b>网站管理后台</b>，<b>网站会员中心</b>，<b>CMS</b>，<b>CRM</b>，<b>OA</b>等等，当然，您也可以对她进行深度定制，以做出更强系统。</p>
+                                            <p>
+                                                <b>当前版本：</b>v4.0.0
+                                            </p>
+                                            <p>
+                                                <b>定价：</b><span class="label label-warning">¥988（不开发票）</span>
+                                            </p>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
-                    <a id="btn_edit_save" class="btn btn-primary">保存</a>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
+                        <button id="btn_edit_preview" type="submit" class="btn btn-white" onclick="preview()">预览</button>
+                        <a id="btn_edit_save" class="btn btn-primary">保存</a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-</div>
+    </div>
 </div>
 
 
@@ -176,8 +241,10 @@
 <script src="js/plugins/dataTables/jquery.dataTables.js"></script>
 <script src="js/plugins/dataTables/dataTables.bootstrap.js"></script>
 <script src="js/plugins/sweetalert/sweetalert.min.js"></script>
-
 <script src="js/content.min.js?v=1.0.0"></script>
+
+<script src="plugins/bootstrap-switch/js/bootstrap-switch.js"></script>
+<script src="plugins/bootstrap-fileinput/bootstrap-fileinput.js"></script>
 <!--custom-js-->
 <script src="custom-js/lczj.js"></script>
 
