@@ -87,11 +87,8 @@ $(document).ready(function(){
             processData: false,// 是否序列化data属性，默认true(注意：false时type必须是post，详见：#2)
             data:formData,
             success:function (returndata) {
-                if (data) {
-                    return;
-                } else {
-                    delok = false;
-                }
+
+                    delok = returndata;
             },
             error: function (data) {
                 console.log(data);
@@ -137,6 +134,8 @@ $(document).ready(function(){
                 $("#add_img").attr('src','');
                 $('#file').val('');
                 $('#face_add_modal').modal('hide');
+                $('[data-dismiss="fileinput"]').click();
+
                 swal({
                     title: "添加成功！",
                     text: "",
@@ -247,12 +246,8 @@ $(document).ready(function(){
             contentType: false,// 当有文件要上传时，此项是必须的，否则后台无法识别文件流的起始位置(详见：#1)
             processData: false,
             success:function (data) {
-                if (data) {
 
-                    return;
-                } else {
-                    delok = false;
-                }
+                    delok = data;
             },
             error:function (data) {
                 delok = false;
@@ -299,6 +294,10 @@ $(document).ready(function(){
                 table.fnDraw();
                 $('#edit_file').val('');
                 $("#edit_img").attr('src','');
+                $('[data-dismiss="fileinput"]').click();
+                $('#face_edit_modal').modal('hide');
+
+
             },
             error:function (data) {
                 console.log(JSON.stringify(data,null,4));
