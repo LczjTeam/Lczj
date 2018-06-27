@@ -1,6 +1,7 @@
 package jx.lczj.controller;
 
 
+import jx.lczj.anotation.Privilege;
 import jx.lczj.model.T_agesection;
 import jx.lczj.service.AgeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +41,7 @@ public class AgeController {
      * @param maxage
      * @return
      */
+    @Privilege(value = "年龄段管理")
     @RequestMapping("/add")
     @ResponseBody
     public boolean add(int agesection,String name,int minage,int maxage){
@@ -54,6 +56,7 @@ public class AgeController {
      * @param maxage
      * @return
      */
+    @Privilege(value = "年龄段管理")
     @RequestMapping("/update")
     @ResponseBody
     public boolean update(int agesection,String name,int minage,int maxage){
@@ -65,6 +68,7 @@ public class AgeController {
      * @param agesection
      * @return
      */
+    @Privilege(value = "年龄段管理")
     @RequestMapping("/delete")
     @ResponseBody
     public boolean delete(int agesection){

@@ -1,5 +1,6 @@
 package jx.lczj.controller;
 
+import jx.lczj.anotation.Privilege;
 import jx.lczj.model.T_admin;
 import jx.lczj.model.T_occasion;
 import jx.lczj.service.OccasionService;
@@ -31,11 +32,7 @@ public class OccasionController {
     /**
      * 添加
      */
- /*   @RequestMapping("/add")
-    @ResponseBody
-    public boolean add(int occasion,String name,String photo){
-        return occasionService.add(occasion,name,photo);
-    }*/
+    @Privilege(value = "场景管理")
     @RequestMapping("/addoccasion")
     @ResponseBody
     public  boolean add(MultipartFile file1,MultipartFile file2, HttpServletRequest request){
@@ -48,8 +45,8 @@ public class OccasionController {
     /**
      * 更新
      */
-
-   @RequestMapping("/update")
+    @Privilege(value = "场景管理")
+    @RequestMapping("/update")
     @ResponseBody
     public boolean update(MultipartFile file1,MultipartFile file2, HttpServletRequest request){
         return occasionService.update(file1,file2,request);
@@ -63,20 +60,13 @@ public class OccasionController {
      * @param request
      * @return
      */
+    @Privilege(value = "场景管理")
     @RequestMapping("/delete")
     @ResponseBody
     public boolean delete(int occasion,HttpServletRequest request){
         System.out.println(occasion);
         return occasionService.delete(occasion, request);
     }
-
-/*
-    @RequestMapping("/delete")
-    @ResponseBody
-    public boolean delete(String occasion){
-        return occasionService.delete(occasion);
-    }
-*/
 
 
 
