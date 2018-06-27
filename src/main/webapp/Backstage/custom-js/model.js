@@ -118,6 +118,8 @@ $(document).ready(function(){
             return;
         }
 
+        var BrUrl = '';
+
         var delok = true;
         $.ajax({
             async: false,
@@ -162,9 +164,8 @@ $(document).ready(function(){
                     $('[data-dismiss="fileinput"]').click();
 
 
-                    window.open ('../' + itm.info, 'newwindow', 'height=600, width=350, top=0, left=0, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no');
-
-                    swal({
+                    BrUrl = '../' + itm.info;
+                   /* swal({
                         title: "添加成功！",
                         text: "",
                         type: "success",
@@ -173,7 +174,7 @@ $(document).ready(function(){
                         showCancelButton: false,
                         confirmButtonClass: "btn-success",
                         confirmButtonText: "OK",
-                    });
+                    });*/
 
                 }else{
                     delok = false;
@@ -199,6 +200,7 @@ $(document).ready(function(){
             });
             return;
         }
+        window.open (BrUrl, 'newwindow', 'height=600, width=350, top=0, left=0, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no');
 
     });
 
@@ -271,6 +273,8 @@ $(document).ready(function(){
             });
             return;
         }
+
+        var BrUrl  = '';
         $.ajax({
             async:false,
             url:'../model/update',
@@ -308,19 +312,11 @@ $(document).ready(function(){
                 $('#file').val('');
                 $('#model_src').attr('src','');
                 $('#model_edit_modal').modal('hide')
-                window.open ('../' + data.info, 'newwindow', 'height=600, width=350, top=0, left=0, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no');
 
-                swal({
-                    title: "保存成功！",
-                    text: "",
-                    type: "success",
-                    allowOutsideClick: true,
-                    showConfirmButton: true,
-                    showCancelButton: false,
-                    confirmButtonClass: "btn-success",
-                    confirmButtonText: "OK",
-                });
-            },
+                BrUrl = '../' + data.info;
+
+
+             },
             error:function (data) {
                 delok = false;
             }
@@ -340,7 +336,17 @@ $(document).ready(function(){
             });
             return;
         }
-
+        window.open (BrUrl, 'newwindow', 'height=600, width=350, top=0, left=0, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no');
+        /* swal({
+         title: "保存成功！",
+         text: "",
+         type: "success",
+         allowOutsideClick: true,
+         showConfirmButton: true,
+         showCancelButton: false,
+         confirmButtonClass: "btn-success",
+         confirmButtonText: "OK",
+         }); */
     });
 
     /**
