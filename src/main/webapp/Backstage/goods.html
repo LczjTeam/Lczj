@@ -57,20 +57,8 @@
                 <div class="ibox-title">
                     <h5>眼镜信息</h5>
                     <div class="ibox-tools">
-                        <a class="collapse-link">
-                            <i class="fa fa-chevron-up"></i>
-                        </a>
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="form_basic.html#">
-                            <i class="fa fa-wrench"></i>
-                        </a>
-                        <ul class="dropdown-menu dropdown-user">
-                            <li><a href="form_basic.html#">选项1</a>
-                            </li>
-                            <li><a href="form_basic.html#">选项2</a>
-                            </li>
-                        </ul>
-                        <a class="close-link">
-                            <i class="fa fa-times"></i>
+                        <a id="btn-add-a">
+                            <i class="fa fa-plus"></i>&nbsp;&nbsp;添加
                         </a>
                     </div>
                 </div>
@@ -84,13 +72,14 @@
                             <th>品牌</th>
                             <th>类别</th>
                             <th>适用性别</th>
-                            <th data-hide="all">编号</th>
-                            <th data-hide="all">详情</th>
-                            <th data-hide="all">拥有颜色</th>
-                            <th data-hide="all">适用年龄段</th>
-                            <th data-hide="all">适用脸型</th>
-                            <th data-hide="all">适用场景</th>
-                            <th data-hide="all">图片</th>
+                            <th>价格</th>
+                            <th data-hide="all">编&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号</th>
+                            <th data-hide="all">详&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;情</th>
+                            <th data-hide="all">拥&nbsp;&nbsp;有&nbsp;&nbsp;颜&nbsp;&nbsp;&nbsp;色</th>
+                            <th data-hide="all">适&nbsp;用&nbsp;年&nbsp;龄&nbsp;段</th>
+                            <th data-hide="all">适&nbsp;&nbsp;用&nbsp;&nbsp;脸&nbsp;&nbsp;&nbsp;型</th>
+                            <th data-hide="all">适&nbsp;&nbsp;用&nbsp;&nbsp;场&nbsp;&nbsp;&nbsp;景</th>
+                            <th data-hide="all">图&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;片</th>
                             <th>操作</th>
                         </tr>
                         </thead>
@@ -107,26 +96,15 @@
     </div>
 
 
-    <div class="row" id="page_good_add">
+    <div class="row" id="page_good_add"  style="display: none;">
         <div class="col-sm-12 col-md-12 ">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
                     <h5 id="good_title">眼镜信息添加</h5>
                     <div class="ibox-tools">
-                        <a class="collapse-link">
-                            <i class="fa fa-chevron-up"></i>
-                        </a>
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="form_basic.html#">
-                            <i class="fa fa-wrench"></i>
-                        </a>
-                        <ul class="dropdown-menu dropdown-user">
-                            <li><a href="form_basic.html#">选项1</a>
-                            </li>
-                            <li><a href="form_basic.html#">选项2</a>
-                            </li>
-                        </ul>
-                        <a class="close-link">
-                            <i class="fa fa-times"></i>
+
+                        <a  id="btn-back-a">
+                            <i class="glyphicon glyphicon-share"></i>&nbsp;&nbsp;返回
                         </a>
                     </div>
                 </div>
@@ -335,6 +313,17 @@
 
 
 </div>
+
+<div class="spiner-example" id="loading-goods">
+    <div class="sk-spinner sk-spinner-wave">
+        <div class="sk-rect1"></div>
+        <div class="sk-rect2"></div>
+        <div class="sk-rect3"></div>
+        <div class="sk-rect4"></div>
+        <div class="sk-rect5"></div>
+    </div>
+</div>
+
 <script src="js/jquery.min.js?v=2.1.4"></script>
 <script src="js/bootstrap.min.js?v=3.3.5"></script>
 <script src="js/content.min.js?v=1.0.0"></script>
@@ -345,16 +334,14 @@
 <script src="js/demo/form-validate-demo.min.js"></script>
 <script src="js/plugins/footable/footable.all.min.js"></script>
 <script src="js/plugins/sweetalert/sweetalert.min.js"></script>
-
-
-<script src="custom-js/good.js"></script>
- <script src="plugins/bootstrap-mutiselect/custom/components-bootstrap-multiselect.js"></script>
+<script src="plugins/bootstrap-mutiselect/custom/components-bootstrap-multiselect.js"></script>
 
  <script type="text/javascript">
      var BASE_URL = 'js/plugins/webuploader';
  </script>
  <script src="js/plugins/webuploader/webuploader.min.js"></script>
- <script src="js/demo/webuploader-demo.min.js"></script>
+ <!--<script src="js/demo/webuploader-demo.min.js"></script>-->
+ <script src="custom-js/good.js"></script>
 
 </body>
 

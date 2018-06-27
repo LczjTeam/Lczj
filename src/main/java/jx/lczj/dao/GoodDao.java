@@ -5,6 +5,7 @@ import jx.lczj.model.T_goods;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 
@@ -46,4 +47,24 @@ public interface GoodDao {
 
     @Select("select * from T_ATTACHMENT WHERE ATTACHMENT IN ( SELECT ATTACHMENT FROM T_GOODSATTACHMENT WHERE  GOODS = #{0} )")
     List<T_attachment> loadAttachmentByGood(String goods);
+
+    @Delete("delete from  T_GOODSCOLOR where GOODS = #{0}")
+    boolean deleteColorDiv(String goods);
+
+    @Delete("delete from  T_SUITABLEAGE where GOODS = #{0}")
+    boolean deleteAgeDiv(String goods);
+
+    @Delete("delete from  T_SUITABLEFACE where GOODS = #{0}")
+    boolean deleteFaceDiv(String goods);
+
+
+    @Delete("delete from  T_SUITABLEOCCASION where GOODS = #{0}")
+    boolean deleteOccasionDiv(String goods);
+
+    @Delete("delete from  T_GOODS where GOODS = #{0}")
+    boolean delete(String code);
+
+
+    @Update("update T_GOODS set CATEGORY = #{1} ,BRAND  = #{2} ,NAME  = #{3}  ,MODELS  = #{4}  ,WIDTH = #{5} ,HEIGHT  = #{6}  ,SPACE  = #{7}  ,LENGTH  = #{8}  ,MAX_WIDTH  = #{9}  ,SUITABLE_SEX  = #{10}  ,PRICE  = #{11} where goods = #{0}")
+    boolean update(String goods, int category, int brand, String name, String models, int width, int height, int space, int length, int max_width, int suitable_sex, int price);
 }
