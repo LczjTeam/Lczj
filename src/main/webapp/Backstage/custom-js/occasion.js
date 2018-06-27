@@ -89,11 +89,7 @@ $(document).ready(function(){
             processData: false,// 是否序列化data属性，默认true(注意：false时type必须是post，详见：#2)
             data:formData,
             success:function (returndata) {
-                if (data) {
-                    delok =true;
-                } else {
-                    delok = false;
-                }
+                delok = returndata;
             },
             error: function (data) {
                 delok = false;
@@ -129,6 +125,8 @@ $(document).ready(function(){
         $('#file1').val('');
         $('#file2').val('');
         $('#occasion_add_modal').modal('hide')
+        $('[data-dismiss="fileinput"]').click();
+
         swal({
             title: "添加成功！",
             text: "",
@@ -222,11 +220,7 @@ $(document).ready(function(){
             contentType: false,// 当有文件要上传时，此项是必须的，否则后台无法识别文件流的起始位置(详见：#1)
             processData: false,
             success:function (data) {
-                if (data) {
-                    return;
-                } else {
-                    delok = false;
-                }
+                    delok = data;
             },
             error:function (data) {
                 delok = false;
@@ -256,6 +250,7 @@ $(document).ready(function(){
         $('#edit_file2').val('');
         $("#edit_img2").attr('src','');
         $('#occasion_edit_modal').modal('hide')
+        $('[data-dismiss="fileinput"]').click();
 
         swal({
             title: "保存成功！",
@@ -267,33 +262,6 @@ $(document).ready(function(){
             confirmButtonClass: "btn-success",
             confirmButtonText: "OK",
         });
-       /* var itm = {};
-        itm.occasion =  ''+$("#occasion_edit_occasion").val();
-        $.ajax({
-            async:false,
-            url:'../occasion/list',
-            type:'POST',
-            dataType:"json",
-            data:itm,
-            success:function (datas) {
-                console.log(JSON.stringify(datas,null,4));
-
-            },*/
-            /*error:function (data) {
-                console.log(JSON.stringify(data,null,4));
-                swal({
-                    title: "刷新失败！",
-                    text: "",
-                    type: "warning",
-                    allowOutsideClick: true,
-                    showConfirmButton: true,
-                    showCancelButton: false,
-                    confirmButtonClass: "btn-success",
-                    confirmButtonText: "OK",
-                });
-            }*/
-
-
 
     });
 
