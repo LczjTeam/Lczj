@@ -86,7 +86,7 @@ public class NewsService {
 
             //保存content
             String contentFile = avo.getT_admin().getAdmin() + ctimes + "-content.html";
-            File cf = new File(contentFile);
+            File cf = new File(path,contentFile);
             if (!cf.exists()) {
                 cf.mkdirs();
             }
