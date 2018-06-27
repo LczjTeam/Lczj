@@ -31,8 +31,8 @@ public class FaceController {
      */
     @RequestMapping("/addFace")
     @ResponseBody
-    public boolean addFace(HttpServletRequest request, MultipartFile file){
-        return  faceService.addFace(request,file);
+    public boolean addFace(HttpServletRequest request, MultipartFile file, MultipartFile file1){
+        return  faceService.addFace(request,file,file1);
 
     }
     @RequestMapping("/loadByFace")
@@ -41,7 +41,7 @@ public class FaceController {
 
     @RequestMapping("/update")
     @ResponseBody
-    public boolean updateFace(MultipartFile file,HttpServletRequest request){return faceService.updateFace(file,request);}
+    public boolean updateFace(MultipartFile file ,MultipartFile file1,HttpServletRequest request){return faceService.updateFace(file,file1,request);}
 
     @RequestMapping("/delete")
     @ResponseBody
