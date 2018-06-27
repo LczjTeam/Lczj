@@ -132,10 +132,9 @@ $(document).ready(function(){
                     '</tr>';
 
                 console.log(str1)
-                $("#tbd").prepend(str1);
                 $("#tbd").prepend(str1).trigger('footable_redraw');
-            }
 
+            }
 
 
 
