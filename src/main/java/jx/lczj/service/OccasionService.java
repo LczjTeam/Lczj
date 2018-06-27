@@ -160,7 +160,7 @@ public class OccasionService {
 
                 //保存
                 try {
-                    file1.transferTo(editFile1);
+                    file2.transferTo(editFile1);
                     System.out.println("文件以保存2。");
                 } catch (Exception e) {
                    /* System.out.println("文件保存2出错。");*/
@@ -213,7 +213,7 @@ public class OccasionService {
                 return false;
             }
             try {
-                file1.transferTo(targetFile2);
+                file2.transferTo(targetFile2);
             } catch (Exception e) {
                 e.printStackTrace();
                 return false;
