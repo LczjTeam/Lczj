@@ -78,7 +78,7 @@
                     <form id="add_face">
                         <div class="form-group"><label>脸型</label> <input type="text" id="face_add_face" name="face_add_face" placeholder="" class="form-control"></div>
                         <div class="form-group"><label>名称</label> <input type="text" id="face_add_name" name="face_add_name" placeholder="请输入角色名称" class="form-control"></div>
-                        <div class="form-group"><label>图片</label>
+                        <!--<div class="form-group"><label>图片</label>
                             <div class="fileinput fileinput-new" data-provides="fileinput">
                                 <div class="fileinput-new thumbnail" style="width: 96px; height: 96px;">
                                     <img src="" id="add_img" alt="" /> </div>
@@ -92,6 +92,41 @@
                                 </div>
                             </div>
 
+                        </div>-->
+                        <div class="row">
+                            <div style="width: 50%;height: auto;float: left;">
+                                <div class="form-group "><label>彩色图</label>
+                                    <div class="fileinput fileinput-new" data-provides="fileinput">
+                                        <div class="fileinput-new thumbnail" style="width: 96px; height: 96px;">
+                                            <img src="" alt="" /> </div>
+                                        <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 96px; max-height: 96px;"> </div>
+                                        <div>
+                                        <span class="btn default btn-file">
+                                            <span class="fileinput-new">选择彩色图</span>
+                                            <span class="fileinput-exists"> 修改 </span>
+                                            <input type="file" name="file"> </span>
+                                            <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> 移除 </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="width: 50%;height: auto;float: left;">
+
+                                <div class="form-group " ><label>黑白图</label>
+                                    <div class="fileinput fileinput-new" data-provides="fileinput">
+                                        <div class="fileinput-new thumbnail" style="width: 96px; height: 96px;">
+                                            <img src="" id="add_img" alt="" /> </div>
+                                        <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 96px; max-height: 96px;"> </div>
+                                        <div>
+                                        <span class="btn default btn-file">
+                                            <span class="fileinput-new">选择黑白图</span>
+                                            <span class="fileinput-exists"> 修改 </span>
+                                            <input type="file" name="file1"> </span>
+                                            <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> 移除 </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </form>
                 </div>
@@ -117,7 +152,7 @@
                     <form id="face_edit_form">
                         <div class="form-group"><label>脸型</label> <input readonly type="text" id="face_edit_face" name="face_edit_face" placeholder="" class="form-control"></div>
                         <div class="form-group"><label>名称</label> <input type="text" id="face_edit_name" name="face_edit_name" placeholder="请输入角色名称" class="form-control"></div>
-                        <div class="form-group"><label>图片</label>
+ <!--                       <div class="form-group"><label>图片</label>
                             <div class="fileinput fileinput-new" data-provides="fileinput">
                                 <div  class="fileinput-new thumbnail" style="width: 96px; height: 96px;">
                                     <img id="edit_img" src="" alt="" />
@@ -131,7 +166,46 @@
                                     <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> 移除 </a>
                                 </div>
                             </div>
-                        </div></form>
+                        </div>-->
+
+                        <div class="row">
+                            <div style="width: 50%;height: auto;float: left;">
+                                <div class="form-group "><label>彩色图</label>
+                                    <div class="fileinput fileinput-new" data-provides="fileinput">
+                                        <div class="fileinput-new thumbnail" style="width: 96px; height: 96px;">
+                                            <img src="" id="edit_img" alt="" /> </div>
+                                        <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 96px; max-height: 96px;"> </div>
+                                        <div>
+                                        <span class="btn default btn-file">
+                                            <span class="fileinput-new">选择彩色图</span>
+                                            <span class="fileinput-exists"> 修改 </span>
+                                            <input type="file" id="edit_file" name="file"> </span>
+                                            <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> 移除 </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="width: 50%;height: auto;float: left;">
+
+                                <div class="form-group " ><label>黑白图</label>
+                                    <div class="fileinput fileinput-new" data-provides="fileinput">
+                                        <div class="fileinput-new thumbnail" style="width: 96px; height: 96px;">
+                                            <img src="" id="edit_img1" alt="" /> </div>
+                                        <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 96px; max-height: 96px;"> </div>
+                                        <div>
+                                        <span class="btn default btn-file">
+                                            <span class="fileinput-new">选择黑白图</span>
+                                            <span class="fileinput-exists"> 修改 </span>
+                                            <input type="file" id="edit_file1" name="file1"> </span>
+                                            <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> 移除 </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </form>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
                         <a id="btn_edit_save" class="btn btn-primary">保存</a>

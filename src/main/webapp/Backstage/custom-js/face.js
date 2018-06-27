@@ -33,7 +33,7 @@ $(document).ready(function(){
                 table.fnAddData([
                     itm.face,
                     itm.name,
-                    '<image style="width: 30px;height:30px;" src="../face/'+itm.photo+'"></image>',
+                    '<image style="width: 30px;height:30px;" src="../face/'+itm.photo+'"></image>&nbsp;&nbsp;<image style="width: 30px;height:30px;" src="../face/'+itm.photo.substr(0,itm.photo.lastIndexOf('.jpg'))+'_1.jpg"></image>',
                     '<a class="edit"  ><i class="fa fa-edit"></i>&nbsp;编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="delete" ><i class="fa fa-trash"></i>&nbsp;删除</a>'
                 ]);
             }
@@ -62,7 +62,7 @@ $(document).ready(function(){
     $("#btn_add_save").click(function (e) {
         var formData = new FormData($("#add_face" )[0]);
 
-        if(formData.get("face_add_face")=='' || formData.get("face_add_name")=='' || formData.get("file") == ''){
+        if(formData.get("face_add_face")=='' || formData.get("face_add_name")=='' || formData.get("file") == ''|| formData.get("file1") == ''){
             swal({
                 title: "脸型、名称、图片不能为空！",
                 text: "",
@@ -125,7 +125,7 @@ $(document).ready(function(){
                 table.fnAddData([
                     datas.face,
                     datas.name,
-                    '<image style="width: 30px;height:30px;" src="../face/'+datas.photo+'"></image>',
+                    '<image style="width: 30px;height:30px;" src="../face/'+datas.photo+'"></image>&nbsp;&nbsp;<image style="width: 30px;height:30px;" src="../face/'+datas.photo.substr(0,datas.photo.lastIndexOf('.jpg'))+'_1.jpg"></image>',
                     '<a class="edit"  ><i class="fa fa-edit"></i>&nbsp;编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="delete" ><i class="fa fa-trash"></i>&nbsp;删除</a>'
                 ]);
                 table.fnDraw();
@@ -194,6 +194,7 @@ $(document).ready(function(){
                 $('#face_edit_face').val(aData[0]);
                 $('#face_edit_name').val(aData[1]);
                 $("#edit_img").attr('src','../face/'+data.photo);
+                $("#edit_img1").attr('src','../face/'+data.photo.substr(0,data.photo.lastIndexOf('.jpg'))+'_1.jpg');
                 $('#face_edit_modal').modal('show');
             },
             error:function (data) {
@@ -224,7 +225,7 @@ $(document).ready(function(){
         var nRow =EditRow ;
         var delok = true;
         var formData = new FormData($("#face_edit_form" )[0]);
-        if(formData.get("face_edit_face")=='' || formData.get("face_edit_name")=='' || formData.get("file") == ''){
+        if(formData.get("face_edit_face")=='' || formData.get("face_edit_name")=='' || formData.get("file") == ''|| formData.get("file1") == ''){
             swal({
                 title: "脸型、名称、图片不能为空！",
                 text: "",
@@ -290,7 +291,7 @@ $(document).ready(function(){
             success:function (datas) {
                 console.log(JSON.stringify(datas,null,4));
                 table.fnUpdate(datas.name, nRow, 1, false);
-                table.fnUpdate('<image style="width: 30px;height:30px;" src="../face/'+datas.photo+'"></image>', nRow, 2, false);
+                table.fnUpdate('<image style="width: 30px;height:30px;" src="../face/'+datas.photo+'"></image>&nbsp;&nbsp;<image style="width: 30px;height:30px;" src="../face/'+datas.photo.substr(0,datas.photo.lastIndexOf('.jpg'))+'_1.jpg"></image>', nRow, 2, false);
                 table.fnDraw();
                 $('#edit_file').val('');
                 $("#edit_img").attr('src','');
