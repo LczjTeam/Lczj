@@ -96,7 +96,7 @@ $(document).ready(function(){
         }
     });
 
-
+    var BrUrl = '';
 
     /**
      * 添加
@@ -118,7 +118,6 @@ $(document).ready(function(){
             return;
         }
 
-        var BrUrl = '';
 
         var delok = true;
         $.ajax({
@@ -165,7 +164,7 @@ $(document).ready(function(){
 
 
                     BrUrl = '../' + itm.info;
-                   /* swal({
+                   swal({
                         title: "添加成功！",
                         text: "",
                         type: "success",
@@ -174,7 +173,7 @@ $(document).ready(function(){
                         showCancelButton: false,
                         confirmButtonClass: "btn-success",
                         confirmButtonText: "OK",
-                    });*/
+                    });
 
                 }else{
                     delok = false;
@@ -200,11 +199,12 @@ $(document).ready(function(){
             });
             return;
         }
-        window.open (BrUrl, 'newwindow', 'height=600, width=350, top=0, left=0, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no');
-
+        $("#btn_open").click();
     });
 
-
+    $("#btn_open").click(function (e) {
+        window.open (BrUrl, 'newwindow', 'height=600, width=350, top=0, left=0, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no');
+    });
 
 
     /**
@@ -274,7 +274,6 @@ $(document).ready(function(){
             return;
         }
 
-        var BrUrl  = '';
         $.ajax({
             async:false,
             url:'../model/update',
@@ -336,8 +335,8 @@ $(document).ready(function(){
             });
             return;
         }
-        window.open (BrUrl, 'newwindow', 'height=600, width=350, top=0, left=0, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no');
-        /* swal({
+        $("#btn_open").click();
+         swal({
          title: "保存成功！",
          text: "",
          type: "success",
@@ -346,7 +345,7 @@ $(document).ready(function(){
          showCancelButton: false,
          confirmButtonClass: "btn-success",
          confirmButtonText: "OK",
-         }); */
+         });
     });
 
     /**
