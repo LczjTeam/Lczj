@@ -77,7 +77,7 @@ $(document).ready(function(){
                     categoryStr+='&nbsp;&nbsp;&nbsp;'+itm.name;
                 }
 
-                alert(categoryStr);
+                //alert(categoryStr);
 
 
                 var colorStr = '';
@@ -445,7 +445,7 @@ $(document).ready(function(){
                         categoryStr+='&nbsp;&nbsp;&nbsp;'+itm.name;
                     }
 
-                    alert(categoryStr);
+                    //alert(categoryStr);
 
 
                     var colorStr = '';
@@ -569,7 +569,7 @@ $(document).ready(function(){
                         categoryStr+='&nbsp;&nbsp;&nbsp;'+itm.name;
                     }
 
-                    alert(categoryStr);
+                    //alert(categoryStr);
                     var colorStr = '';
                     for (var j = 0; j < datas.t_colors.length; j++) {
                         var itm = datas.t_colors[j];
