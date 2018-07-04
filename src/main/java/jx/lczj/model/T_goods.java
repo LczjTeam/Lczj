@@ -12,7 +12,6 @@ import java.io.Serializable;
 public class T_goods implements Serializable {
 
     private  String  goods;     //编号  '可以采取固定编码形式，编写统一长度';
-    private  int  category;     //类别
     private  int  brand;        //品牌
     private  String  name;      //名称
     private  String  models;     //型号
@@ -31,14 +30,6 @@ public class T_goods implements Serializable {
 
     public void setGoods(String goods) {
         this.goods = goods;
-    }
-
-    public int getCategory() {
-        return category;
-    }
-
-    public void setCategory(int category) {
-        this.category = category;
     }
 
     public int getBrand() {
@@ -129,7 +120,6 @@ public class T_goods implements Serializable {
     public String toString() {
         return "T_goods{" +
                 "goods='" + goods + '\'' +
-                ", category=" + category +
                 ", brand=" + brand +
                 ", name='" + name + '\'' +
                 ", models='" + models + '\'' +
