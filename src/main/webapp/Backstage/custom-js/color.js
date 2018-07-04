@@ -84,10 +84,8 @@ $(document).ready(function(){
             contentType: false,// 当有文件要上传时，此项是必须的，否则后台无法识别文件流的起始位置(详见：#1)
             processData: false,// 是否序列化data属性，默认true(注意：false时type必须是post，详见：#2)
             data:formData,
-            success:function (returndata) {
-                if (data) {
-                    return;
-                } else {
+            success:function (data) {
+                if (!data) {
                     delok = false;
                 }
             },
@@ -129,10 +127,11 @@ $(document).ready(function(){
                     '<a class="edit"  ><i class="fa fa-edit"></i>&nbsp;编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="delete" ><i class="fa fa-trash"></i>&nbsp;删除</a>'
                 ]);
                 table.fnDraw();
-                $('#color').val('');
-                $('#color_name').val('');
-                $('#file').val('');
-                $('#color_add_modal').modal('hide')
+                $('#color_add_color').val('');
+                $('#color_add_name').val('');
+                 $('#color_add_modal').modal('hide')
+                $('[data-dismiss="fileinput"]').click();
+
                 swal({
                     title: "添加成功！",
                     text: "",
@@ -178,8 +177,8 @@ $(document).ready(function(){
         var aData = table.fnGetData(nRow);
         //alert(aData[0]);
         var itm = {};
-        itm.color =  ''+aData[0];
-        var datas ;
+        itm.color = '' + aData[0];
+        var datas;
         $.ajax({
             async:false,
             url:'../color/loadByColor',
@@ -243,12 +242,7 @@ $(document).ready(function(){
             contentType: false,// 当有文件要上传时，此项是必须的，否则后台无法识别文件流的起始位置(详见：#1)
             processData: false,
             success:function (data) {
-                if (data) {
-
-                    return;
-                } else {
-                    delok = false;
-                }
+                    delok = data;
             },
             error:function (data) {
                 delok = false;
@@ -270,16 +264,7 @@ $(document).ready(function(){
             return;
         }
 
-        swal({
-            title: "保存成功！",
-            text: "",
-            type: "success",
-            allowOutsideClick: true,
-            showConfirmButton: true,
-            showCancelButton: false,
-            confirmButtonClass: "btn-success",
-            confirmButtonText: "OK",
-        });
+
         var itm = {};
         itm.color =  ''+$("#color_edit_color").val();
         $.ajax({
@@ -293,8 +278,22 @@ $(document).ready(function(){
                 table.fnUpdate(datas.name, nRow, 1, false);
                 table.fnUpdate('<image style="width: 30px;height:30px;" src="../colors/'+datas.rgb+'"></image>', nRow, 2, false);
                 table.fnDraw();
-                $('#edit_file').val('');
+                $('#color_edit_color').val('');
+                $('#color_edit_name').val('');
                 $("#edit_img").attr('src','');
+                $('#color_edit_modal').modal('hide');
+                $('[data-dismiss="fileinput"]').click();
+
+                swal({
+                    title: "保存成功！",
+                    text: "",
+                    type: "success",
+                    allowOutsideClick: true,
+                    showConfirmButton: true,
+                    showCancelButton: false,
+                    confirmButtonClass: "btn-success",
+                    confirmButtonText: "OK",
+                });
             },
             error:function (data) {
                 console.log(JSON.stringify(data,null,4));
@@ -348,13 +347,7 @@ $(document).ready(function(){
                 data: params,
                 dataType: "json",
                 success: function (data) {
-                    if (data) {
-
-                        return;
-                    } else {
-                        delok = false;
-
-                    }
+                     delok = data;
                 },
                 error: function (data) {
                     delok = false;

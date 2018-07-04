@@ -1,5 +1,6 @@
 package jx.lczj.controller;
 
+import jx.lczj.anotation.Privilege;
 import jx.lczj.dao.BrandDao;
 import jx.lczj.model.T_brand;
 import jx.lczj.service.AdminService;
@@ -40,6 +41,7 @@ public class BrandController {
      * @param company
      * @return
      */
+    @Privilege(value = "品牌管理")
     @RequestMapping("/add")
     @ResponseBody
     public boolean add(int brand,String name,String company){
@@ -54,6 +56,7 @@ public class BrandController {
      * @param company
      * @return
      */
+    @Privilege(value = "品牌管理")
     @RequestMapping("/update")
     @ResponseBody
     public boolean update(int brand,String name,String company){
@@ -65,6 +68,7 @@ public class BrandController {
      * @param brand
      * @return
      */
+    @Privilege(value = "品牌管理")
     @RequestMapping("/delete")
     @ResponseBody
     public boolean delete(String brand){

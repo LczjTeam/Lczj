@@ -1,5 +1,6 @@
 package jx.lczj.controller;
 
+import jx.lczj.anotation.Privilege;
 import jx.lczj.model.T_category;
 import jx.lczj.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,7 @@ public class CategoryController {
      * @param name
      * @return
      */
+    @Privilege(value = "商品类别")
     @RequestMapping("/add")
     @ResponseBody
     public boolean add(int category,String name){
@@ -49,6 +51,7 @@ public class CategoryController {
      * @param name
      * @return
      */
+    @Privilege(value = "商品类别")
     @RequestMapping("/update")
     @ResponseBody
     public boolean update(int category,String name){
@@ -60,6 +63,7 @@ public class CategoryController {
      * @param category
      * @return
      */
+    @Privilege(value = "商品类别")
     @RequestMapping("/delete")
     @ResponseBody
     public boolean delete(String category){

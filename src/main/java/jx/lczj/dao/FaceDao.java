@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface FaceDao {
 
-    @Select("select FACE ,NAME ,PHOTO FROM T_FACE")
+    @Select("select * FROM T_FACE")
     public List<T_face> loadFace();
 
     //插入脸型
@@ -18,13 +18,16 @@ public interface FaceDao {
     boolean addFace(int face,String name,String photo);
 
     //通过face查询信息
-    @Select("select FACE ,NAME ,PHOTO FROM T_FACE WHERE FACE = #{0}")
+    @Select("select * FROM T_FACE WHERE FACE = #{0}")
     T_face loadByFace(int face);
     //update
-    @Update("update T_FACE set face = #{0},name = #{1} where photo = #{2}")
+    @Update("update T_FACE set name = #{1}，photo = #{2} where face = #{0}")
     boolean updateFace(int face, String name, String photo);
 
     //删除记录
     @Delete("delete FROM T_FACE where FACE = #{0} ")
     boolean deleteFace(int face);
+
+    @Select("select *  FROM T_FACE WHERE FACE in ( select FACE FROM T_SUITABLEFACE WHERE GOODS = #{0} )")
+    List<T_face> loadByGood(String goods);
 }

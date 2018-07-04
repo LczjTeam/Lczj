@@ -1,6 +1,7 @@
 package jx.lczj.controller;
 
 
+import jx.lczj.anotation.Privilege;
 import jx.lczj.model.T_color;
 import jx.lczj.service.ColorService;
 import org.opencv.core.Core;
@@ -20,6 +21,7 @@ public class ColorController {
     @Autowired
     ColorService colorService;
 
+    @Privilege(value = "颜色管理")
     @RequestMapping("/addColor")
     @ResponseBody
     public  boolean addColor(MultipartFile file, HttpServletRequest request){
@@ -34,6 +36,7 @@ public class ColorController {
         return colorService.loadColors();
     }
 
+    @Privilege(value = "颜色管理")
     @RequestMapping("/delete")
     @ResponseBody
     public boolean deleteColor(int color,HttpServletRequest request){
@@ -52,6 +55,7 @@ public class ColorController {
     /**
      * 编辑更新
      */
+    @Privilege(value = "颜色管理")
     @RequestMapping("/update")
     @ResponseBody
     public boolean updateColor(MultipartFile file,HttpServletRequest request) {

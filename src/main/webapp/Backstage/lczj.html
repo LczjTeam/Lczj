@@ -1,231 +1,229 @@
 <!DOCTYPE html>
-<html lang="zh" >
+<html>
 
 <head>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+
     <title>乐潮之镜</title>
     <link rel="shortcut icon" href="favicon.ico">
     <link href="css/bootstrap.min.css?v=3.3.5" rel="stylesheet">
     <link href="css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
-
-    <!-- Data Tables -->
-    <link href="css/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
+    <link href="css/plugins/footable/footable.core.css" rel="stylesheet">
     <link href="css/plugins/sweetalert/sweetalert.css" rel="stylesheet">
     <link href="css/animate.min.css" rel="stylesheet">
-
-    <!--富文本编辑器-->
     <link href="css/plugins/summernote/summernote.css" rel="stylesheet">
-    <!--<link href="css/plugins/summernote/summernote-bs3.css" rel="stylesheet">-->
-
+    <link href="css/plugins/summernote/summernote-bs3.css" rel="stylesheet">
     <link href="css/style.min.css?v=4.0.0" rel="stylesheet"><base target="_blank">
 
 </head>
 
 <body class="gray-bg">
-<div class="wrapper wrapper-content animated fadeInRight">
-    <div class="row">
+<div class="wrapper wrapper-content">
+
+    <!-- 发布 -->
+    <div class="row fadeInRight" id="div-add" style="display: none" >
         <div class="col-sm-12">
+
+
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>乐潮之镜</small></h5>
+                    <h5>发布文章</h5>
                     <div class="ibox-tools">
-                        <a  data-toggle="modal" data-target="#lczj_add_modal" >
-                            <i class="fa fa-plus"></i>&nbsp;添加
+                        <a  id="btn-add-bakck">
+                            <i class="glyphicon glyphicon-share"></i>&nbsp;&nbsp;返回
                         </a>
                     </div>
                 </div>
                 <div class="ibox-content">
+                    <form class="form-horizontal m-t" id="stories_add">
 
-                    <table id="lczj_table" class="table table-striped table-bordered table-hover ">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">标题：</label>
+                            <div class="col-sm-8">
+                                <input id="add_title"  name="title" class="form-control" type="text">
+                                <!--<span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 输入眼镜名称</span>-->                                </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">关键字：</label>
+                            <div class="col-sm-8">
+                                <input id="add_keyword" name="keyword"  class="form-control" type="text">
+                                <!--<span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 输入眼镜名称</span>-->                                </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">是否置顶：</label>
+                            <div class="col-sm-3">
+                                <select id="add_top" name="top" class="form-control" type="text">
+                                    <option value="否">否</option>
+                                    <option value="是">是</option>
+                                </select>
+                                <!--<span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 输入眼镜名称</span>-->
+                            </div>
+                            <label class="col-sm-2 control-label">是否对外：</label>
+                            <div class="col-sm-3">
+                                <select id="add_publish" name="publish" class="form-control" type="text">
+                                    <option value="否">否</option>
+                                    <option value="是">是</option>
+                                </select>
+                                <!--<span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 输入眼镜名称</span>-->
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">图片：</label>
+                            <div class="col-sm-8">
+                                <input id="add_photo" name="file" class="form-control" type="file">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">文章内容</label>
+                            <div class="col-sm-8">
+                                <div id="add_content" class="summernote"></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-8 col-sm-offset-3">
+                                <a class="btn btn-primary" id="btn_add_save">提交</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 修改 -->
+    <div class="row fadeInRight" id="div-alter"   style="display: none" >
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>编辑文章</h5>
+                    <div class="ibox-tools">
+                        <a  id="btn-alter-bakck">
+                            <i class="glyphicon glyphicon-share"></i>&nbsp;&nbsp;返回
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content ">
+                    <form class="form-horizontal m-t" id="stories_edit">
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">编号：</label>
+                            <div class="col-sm-8">
+                                <input id="edit_code" readonly style="background-color: white;border: none;outline: none;" name="code" class="form-control" type="text">
+                                <!--<span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 输入眼镜名称</span>-->                                </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">标题：</label>
+                            <div class="col-sm-8">
+                                <input id="edit_title" name="title" class="form-control" type="text">
+                                <!--<span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 输入眼镜名称</span>-->                                </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">关键字：</label>
+                            <div class="col-sm-8">
+                                <input id="edit_keyword" name="keyword" class="form-control" type="text">
+                                <!--<span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 输入眼镜名称</span>-->                                </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">是否置顶：</label>
+                            <div class="col-sm-3">
+                                <select id="edit_top" name="top" class="form-control" type="text">
+                                    <option value="否">否</option>
+                                    <option value="是">是</option>
+                                </select>
+                                <!--<span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 输入眼镜名称</span>-->
+                            </div>
+                            <label class="col-sm-2 control-label">是否对外：</label>
+                            <div class="col-sm-3">
+                                <select id="edit_publish" name="publish" class="form-control" type="text">
+                                    <option value="否">否</option>
+                                    <option value="是">是</option>
+                                </select>
+                                <!--<span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 输入眼镜名称</span>-->
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">图片：</label>
+                            <div class="col-sm-8">
+                                <input id="edit_photo" name="file" class="form-control" type="file">
+                            </div>
+                            <div class="col-sm-8 col-sm-offset-3">
+                                 <div class="col-sm-8">
+                                    <input id="edit_photo_name" readonly style="background-color: white;border: none;outline: none;" class="form-control" type="text">
+                                </div>
+                                <div class="col-sm-4" style="padding-top: 3px;" id="photo_remove_show">
+                                    <a id="btn_delete_photo" style="float: right;"   class="btn btn-danger inline btn-sm" ><i class="fa fa-times-circle"></i>&nbsp;&nbsp;移除</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">文章内容</label>
+                            <div class="col-sm-8">
+                                <div class="summernote" id="edit_content"></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-8 col-sm-offset-3">
+                                <a class="btn btn-primary" id="btn_edit_save" >提交</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 列表 -->
+    <div class="row animated fadeInRight" id="div-list" >
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>乐潮之镜</h5>
+
+                    <div class="ibox-tools">
+                        <a id="btn_add">
+                            <i class="fa fa-plus"></i>&nbsp;&nbsp;发布
+                        </a>
+
+                    </div>
+                </div>
+                <div class="ibox-content">
+
+                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="8">
                         <thead>
                         <tr>
-                            <th style="width:33%;">标题</th>
-                            <th style="width:33%;">发布时间</th>
-                            <th style="width:34%;">操作</th>
+
+                            <th data-toggle="true">标题</th>
+                            <th>时间</th>
+                            <th data-hide="all">编号</th>
+                            <th data-hide="all">作者</th>
+                            <th data-hide="all">照片</th>
+                            <th data-hide="all">关键字</th>
+                            <th data-hide="all">是否置顶</th>
+                            <th data-hide="all">是否对外</th>
+                            <th>操作</th>
                         </tr>
                         </thead>
-                        <tbody></tbody>
+                        <tbody id="tbd">
+
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td colspan="5">
+                                <ul class="pagination pull-right"></ul>
+                            </td>
+                        </tr>
+                        </tfoot>
                     </table>
 
                 </div>
             </div>
         </div>
     </div>
-
-    <!--文章添加框-->
-    <div class="modal inmodal fade" id="lczj_add_modal" tabindex="-1" role="dialog"  aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                    <h4 class="modal-title">乐潮之镜</h4>
-                    <small class="font-bold">编辑公告、文章</small>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label>标题</label>
-                        <input type="text" id="lczj_add_title" placeholder="请输入文章标题" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label>关键字</label>
-                        <input type="text" id="lczj_add_key" placeholder="简要描述" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label>是否置顶</label>
-                        <select id="lczj_add_top" class="form-control" >
-                            <option value="是">置顶</option>
-                            <option value="否">普通</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>是否对外</label>
-                        <select id="lczj_add_public" class="form-control" >
-                            <option value="是">公开</option>
-                            <option value="否">私密</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label>图片</label>
-                        <div class="fileinput fileinput-new" data-provides="fileinput">
-                            <div>
-                                <span class="btn default btn-file">
-                                    <input type="file" name="file">
-                                </span>
-                                <a href="javascript:" class="btn red fileinput-exists" data-dismiss="fileinput"> 移除 </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="ibox float-e-margins">
-                                <div class="ibox-title">
-                                    <h5>文章内容</h5>
-                                    <div class="ibox-tools">
-                                        <a class="collapse-link">
-                                            <i class="fa fa-chevron-up"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="ibox-content" id="add_eg">
-
-                                    <div class="click2edit wrapper">
-                                        <h3>你好，子涵 </h3>
-                                        <p>H+是一个完全响应式，基于Bootstrap3.3.5最新版本开发的扁平化主题，她采用了主流的左右两栏式布局，使用了Html5+CSS3等现代技术，她提供了诸多的强大的可以重新组合的UI组件，并集成了最新的jQuery版本(v2.1.1)，当然，也集成了很多功能强大，用途广泛的就jQuery插件，她可以用于所有的Web应用程序，如<b>网站管理后台</b>，<b>网站会员中心</b>，<b>CMS</b>，<b>CRM</b>，<b>OA</b>等等，当然，您也可以对她进行深度定制，以做出更强系统。</p>
-                                        <p>
-                                            <b>当前版本：</b>v4.0.0
-                                        </p>
-                                        <p>
-                                            <b>定价：</b><span class="label label-warning">¥988（不开发票）</span>
-                                        </p>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
-                    <button id="btn_add_preview" type="submit" class="btn btn-white" onclick="preview()">预览</button>
-                    <button id="btn_add_save" type="button" class="btn btn-primary">保存</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!--乐潮之镜文章信息修改-->
-    <div class="modal inmodal fade" id="lczj_edit_modal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content animated bounceInRight">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">关闭</span>
-                    </button>
-                    <i class="fa fa-laptop modal-icon"></i>
-                    <h4 class="modal-title">文章信息修改</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <div class="form-group">
-                            <label>标题</label>
-                            <input readonly type="text" id="lczj_edit_title" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label>关键字</label>
-                            <input type="text" id="lczj_edit_key" placeholder="输入关键字" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label>是否置顶</label>
-                            <select id="lczj_edit_top" class="form-control" >
-                                <option value="是">置顶</option>
-                                <option value="否">普通</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>是否对外</label>
-                            <select id="lczj_edit_public" class="form-control" >
-                                <option value="是">公开</option>
-                                <option value="否">私密</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>图片</label>
-                            <div class="fileinput fileinput-new" data-provides="fileinput">
-                                <div>
-                                    <span class="btn default btn-file">
-                                    <input type="file" name="file"> </span>
-                                    <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> 移除 </a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="ibox float-e-margins">
-                                    <div class="ibox-title">
-                                        <h5>文章内容</h5>
-                                        <div class="ibox-tools">
-                                            <a class="collapse-link">
-                                                <i class="fa fa-chevron-up"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="ibox-content" id="edit_eg">
-
-                                        <div class="click2edit wrapper">
-                                            <h3>你好，子涵 </h3>
-                                            <p>H+是一个完全响应式，基于Bootstrap3.3.5最新版本开发的扁平化主题，她采用了主流的左右两栏式布局，使用了Html5+CSS3等现代技术，她提供了诸多的强大的可以重新组合的UI组件，并集成了最新的jQuery版本(v2.1.1)，当然，也集成了很多功能强大，用途广泛的就jQuery插件，她可以用于所有的Web应用程序，如<b>网站管理后台</b>，<b>网站会员中心</b>，<b>CMS</b>，<b>CRM</b>，<b>OA</b>等等，当然，您也可以对她进行深度定制，以做出更强系统。</p>
-                                            <p>
-                                                <b>当前版本：</b>v4.0.0
-                                            </p>
-                                            <p>
-                                                <b>定价：</b><span class="label label-warning">¥988（不开发票）</span>
-                                            </p>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
-                        <button id="btn_edit_preview" type="submit" class="btn btn-white" onclick="preview()">预览</button>
-                        <a id="btn_edit_save" class="btn btn-primary">保存</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
 </div>
 
-
-<div class="spiner-example" id="loading-lczj">
+<div class="spiner-example" id="loading-news">
     <div class="sk-spinner sk-spinner-wave">
         <div class="sk-rect1"></div>
         <div class="sk-rect2"></div>
@@ -235,23 +233,18 @@
     </div>
 </div>
 
+
 <script src="js/jquery.min.js?v=2.1.4"></script>
 <script src="js/bootstrap.min.js?v=3.3.5"></script>
-<script src="js/plugins/jeditable/jquery.jeditable.js"></script>
-<script src="js/plugins/dataTables/jquery.dataTables.js"></script>
-<script src="js/plugins/dataTables/dataTables.bootstrap.js"></script>
+<script src="js/plugins/footable/footable.all.min.js"></script>
 <script src="js/plugins/sweetalert/sweetalert.min.js"></script>
 <script src="js/content.min.js?v=1.0.0"></script>
-
-<script src="plugins/bootstrap-switch/js/bootstrap-switch.js"></script>
-<script src="plugins/bootstrap-fileinput/bootstrap-fileinput.js"></script>
-<!--custom-js-->
-<script src="custom-js/lczj.js"></script>
-
-<!--富文本编辑器-->
 <script src="js/plugins/summernote/summernote.min.js"></script>
 <script src="js/plugins/summernote/summernote-zh-CN.js"></script>
-<script type="text/javascript" src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>
+
+
+<script src="custom-js/lczj.js"></script>
+
 
 </body>
 

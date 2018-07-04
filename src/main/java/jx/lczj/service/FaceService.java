@@ -15,13 +15,13 @@ import java.util.List;
 @Service
 public class FaceService {
     @Resource
-    FaceDao faceDao;
+    FaceDao faceDao ;
 
     public List<T_face> loadFace() {
         return faceDao.loadFace();
     }
     @Transactional
-    public boolean addFace(HttpServletRequest request,MultipartFile file) {
+    public boolean addFace(HttpServletRequest request,MultipartFile file,MultipartFile file1) {
 
         try {
             String ctimes = System.currentTimeMillis() + "";
@@ -36,9 +36,15 @@ public class FaceService {
                 targetFile.mkdirs();
             }
 
+            File targetFile1 = new File(path,  ctimes + "_1.jpg");
+            if (!targetFile1.exists()) {
+                targetFile1.mkdirs();
+            }
             //保存
             try {
                 file.transferTo(targetFile);
+                file1.transferTo(targetFile1);
+                System.out.println("已在"+path+"路径下："+"保存文件："+fileName);
             } catch (Exception e) {
                 e.printStackTrace();
                 return false;
@@ -63,27 +69,36 @@ public class FaceService {
     }
     //update
     @Transactional
-    public boolean updateFace(MultipartFile file, HttpServletRequest request) {
+    public boolean updateFace(MultipartFile file,MultipartFile file1, HttpServletRequest request) {
         try {
-            System.out.println("开始");
-
-            System.out.println(file == null);
-            System.out.println(file.getOriginalFilename().equals(""));
-            String editrgb = "";
+            System.out.println("开始---通过face查找信息");
             String path = request.getSession().getServletContext().getRealPath("face");
-            T_face t_face = faceDao.loadByFace(Integer.parseInt(request.getParameter("face_edit_face")));
-            //检测是否修改了图片
-            if (file!=null && !file.getOriginalFilename().equals("")) {
-                //先吧颜色查询出来
 
-                String photo = t_face.getPhoto();
-                //删除对应的图片
-                String d_photo = path + "/" + photo;
-                System.out.println(d_photo);
-                File targetFile = new File(d_photo);
-                if (targetFile.exists()) {
-                    targetFile.delete();
-                }
+            //先吧颜色查询出来
+            T_face t_face = faceDao.loadByFace(Integer.parseInt(request.getParameter("face_edit_face")));
+            String photo = t_face.getPhoto();
+
+            String s_photo = path + "/"+ photo.split("\\.")[0] + "_1.jpg";
+
+            System.out.println(photo);
+            //删除对应的图片
+            String d_photo = path + "/" + photo;
+            System.out.println(d_photo);
+            File targetFile = new File(d_photo);
+            if (targetFile.exists()) {
+
+                targetFile.delete();
+                System.out.println("已删除"+path+"路径下文件:"+photo);
+
+            }
+
+            File targetFile1 = new File(s_photo);
+            if (targetFile1.exists()) {
+
+                targetFile1.delete();
+                System.out.println("已删除"+path+"路径下文件:"+photo+"_1");
+
+            }
 
                 String ctimes = System.currentTimeMillis() + "";
                 System.out.println("开始，保存");
@@ -93,29 +108,31 @@ public class FaceService {
                 File editFile = new File(path, fileName);
                 if (!editFile.exists()) {
                     editFile.mkdirs();
-                }
 
-                //保存
+                }
+                File editFile1 = new File(path, ctimes + "_1.jpg");
+
+
+            //保存
                 try {
                     file.transferTo(editFile);
+                    file1.transferTo(editFile1);
+                    System.out.println("保存新文件已成功,文件名："+fileName+"路径："+path);
                 } catch (Exception e) {
                     e.printStackTrace();
                     return false;
                 }
-                editrgb = fileName;
-
-            }else{
-                editrgb = t_face.getPhoto();
-            }
-            return faceDao.updateFace(Integer.parseInt(request.getParameter("face_edit_face")), request.getParameter("face_edit_name"), editrgb);
+                String editrgb = fileName;
+            return faceDao.updateFace(Integer.parseInt(request.getParameter("face_edit_face")), request.getParameter("face_edit_name"), editrgb.trim());
         } catch (Exception e) {
+            System.out.println("FaceService");
             throw new RuntimeException(e.getMessage());
         }
     }
 
     /**
      * 删除
-     * @param file
+     *
      * @param request
      * @return
      */
@@ -129,12 +146,19 @@ public class FaceService {
             //先吧颜色查询出来
             T_face t_face = faceDao.loadByFace(face);
             String photo = t_face.getPhoto();
+            String s_photo = path + "/"+ photo.split("\\.")[0] + "_1.jpg";
+
             //删除对应的图片
             String d_photo = path + "/" + photo;
             System.out.println(d_photo);
             File targetFile = new File(d_photo);
             if (targetFile.exists()) {
                 targetFile.delete();
+            }
+
+            File targetFile1 = new File(s_photo);
+            if (targetFile1.exists()) {
+                targetFile1.delete();
             }
             return faceDao.deleteFace(face);
         } catch (Exception e) {

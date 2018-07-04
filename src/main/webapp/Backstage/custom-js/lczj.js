@@ -1,51 +1,61 @@
 /**
- * Created by 14260 on 2018/6/17.
+ * Created by 14260 on 2018/6/23.
  */
-/**
- * Created by 14260 on 2018/6/11.
- */
-$(document).ready(function(){
 
-    var table = $("#lczj_table");
-    table.dataTable({
-        "columnDefs": [{ // set default column settings
-            'orderable': false,
-            'targets': [2]
-        }, {
-            "searchable": false,
-            "targets": [2]
-        }],
-        "order": [
-            [0, "asc"]
-        ]
+$(document).ready(function() {
+    $(".summernote").summernote({
+        lang: "zh-CN",
+        height: 300
     });
+
+
+    $("#btn_add").click(function(){
+        $("#div-add").css("display",'block');
+        $("#div-list").css("display",'none');
+    });
+
+    $("#btn-add-bakck").click(function(){
+        $("#div-add").css("display",'none');
+        $("#div-list").css("display",'block');
+    });
+
+    $("#btn-alter-bakck").click(function(){
+        $("#div-alter").css("display",'none');
+        $("#div-list").css("display",'block');
+    });
+
+
     var params={};
     $.ajax({
         async: false,
         type: "POST",
-        url: "../category/list",       //注意路径
+        url: "../lczj/list",//注意路径
         data: params,
         dataType: "json",
         success: function (data) {
-            console.log(JSON.stringify(data,null,4));
+            //  console.log(JSON.stringify(data,null,4));
             for (var i = 0; i < data.length; i++) {
                 console.log(JSON.stringify(data[i],null,4));
-                console.log(data[i].category);
-                console.log(data[i].name)
+                var str = '<tr>'+
+                        '<td>'+data[i].t_news.title+'</td>'+
+                        '<td>'+formatDateTime(data[i].t_news.issue_date)+'</td>'+
+                        '<td>'+data[i].t_news.code+'</td>'+
+                        '<td>'+data[i].t_admin.name+' </td>'+
+                        (( data[i].t_news.photo== null || data[i].t_news.photo =='') ?  '<td>无</td>': ('<td><image style="width: 50px;height:50px;" src="../stories/' + data[i].t_news.photo +'"></image></td>'))+
+                        '<td>'+data[i].t_news.keyword+' </td>'+
+                        '<td>'+(data[i].t_news.publish==0 ? '否':'是')+' </td>'+
+                        '<td>'+(data[i].t_news.top==0 ? '否':'是')+' </td>'+
+                        '<td><a class="edit"  id="'+data[i].t_news.code+'"  ><i class="fa fa-edit"></i>&nbsp;编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="delete" id="'+data[i].t_news.code+'" ><i class="fa fa-trash"></i>&nbsp;删除</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="preview"  id="'+data[i].t_news.filename+'" ><i class="fa fa-chrome"></i>&nbsp;浏览</a></td>'+
+                        '</tr>';
 
-                var itm = data[i];
+                $("#tbd").append(str);
 
-                table.fnAddData([
-                    itm.category,
-                    itm.name,
-                    '<a class="edit"  ><i class="fa fa-edit"></i>&nbsp;编辑</a>' +
-                    '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' +
-                    '<a class="delete" ><i class="fa fa-trash"></i>&nbsp;删除</a>'
-                ]);
+
             }
         },
         error: function (data) {
-
+            //  console.log(JSON.stringify(data,null,4));
+            //alert("数据获取失败 ！");
             swal({
                 title: "数据获取失败！",
                 text: "",
@@ -58,20 +68,45 @@ $(document).ready(function(){
             });
         }
     });
-    $("#loading-category").css('display','none');
+    $(".footable").footable();
+    $("#loading-news").css('display','none');
+
+
+    /**
+     * 时间格式化
+     * @param inputTime
+     * @returns {string}
+     */
+    function formatDateTime(inputTime) {
+        var date = new Date(inputTime);
+        var y = date.getFullYear();
+        var m = date.getMonth() + 1;
+        m = m < 10 ? ('0' + m) : m;
+        var d = date.getDate();
+        d = d < 10 ? ('0' + d) : d;
+        var h = date.getHours();
+        h = h < 10 ? ('0' + h) : h;
+        var minute = date.getMinutes();
+        var second = date.getSeconds();
+        minute = minute < 10 ? ('0' + minute) : minute;
+        second = second < 10 ? ('0' + second) : second;
+        return y + '-' + m + '-' + d+' '+h+':'+minute+':'+second;
+    };
+
 
 
     /**
      * 添加
      */
-    $("#btn_add_save").click(function(e){
-        var delok = true;
-        var params={};
-        params.category = $('#category_add_category').val();
-        params.name =$('#category_add_name').val();
-        if(params.category == ''|| params.name == '' ){
+    $("#btn_add_save").click(function (e) {
+        var formData = new FormData($("#stories_add")[0]);
+        formData.append('content', $("#add_content").code());
+
+        console.log($("#add_content").code());
+
+        if (formData.get("title") == '' || formData.get("keyword") == '' ||  $("#add_content").code()=='') {
             swal({
-                title: "商品编号、类别名称不能为空！",
+                title: "标题、关键字、内容不能为空！",
                 text: "",
                 type: "warning",
                 allowOutsideClick: true,
@@ -83,197 +118,55 @@ $(document).ready(function(){
             return;
         }
 
-        console.log($('#category_add_category').val());
-        console.log($('#category_add_name').val());
-
-        $.ajax({
-            async: false,
-            type: "POST",
-            url: "../category/add",//注意路径
-            data: params,
-            dataType: "json",
-            success: function (data) {
-                if (data) {
-                    return;
-                } else {
-                    delok = false;
-                }
-            },
-            error: function (data) {
-                delok = false;
-            }
-        });
-        if (!delok) {
-            swal({
-                title: "添加失败！",
-                text: "",
-                type: "error",
-                allowOutsideClick: true,
-                showConfirmButton: true,
-                showCancelButton: false,
-                confirmButtonClass: "btn-danger",
-                confirmButtonText: "OK",
-            });
-            return;
-        }
-        table.fnAddData([
-            $('#category_add_category').val(),
-            $('#category_add_name').val(),
-            '<a class="edit"  ><i class="fa fa-edit"></i>&nbsp;编辑</a>' +
-            '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' +
-            '<a class="delete" ><i class="fa fa-trash"></i>&nbsp;删除</a>'
-        ]);
-        table.fnDraw();
-        $('#category_add_category').val();
-        $('#category_add_name').val('');
-        $('#category_add_modal').modal('hide')
-        swal({
-            title: "添加成功！",
-            text: "",
-            type: "success",
-            allowOutsideClick: true,
-            showConfirmButton: true,
-            showCancelButton: false,
-            confirmButtonClass: "btn-success",
-            confirmButtonText: "OK",
-        });
-    });
-
-
-    /**
-     * 编辑
-     */
-    var  EditRow = -1;
-    table.on('click', '.edit', function (e) {
-        e.preventDefault();
-
-        var nRow = $(this).parents('tr')[0];
-        EditRow = nRow;
-        var aData = table.fnGetData(nRow);
-
-        $('#category_edit_category').val(aData[0]);
-        $('#category_edit_name').val(aData[1]);
-        $('#category_edit_modal').modal('show')
-    });
-
-
-    $("#btn_edit_save").click(function(e){
-        var nRow = EditRow;
         var delok = true;
-        var params={};
-        params.category = $('#category_edit_category').val();
-        params.name =$('#category_edit_name').val();
-
-        if(params.name == '' ){
-            swal({
-                title: "名称不能为空！",
-                text: "",
-                type: "warning",
-                allowOutsideClick: true,
-                showConfirmButton: true,
-                showCancelButton: false,
-                confirmButtonClass: "btn-danger",
-                confirmButtonText: "OK",
-            });
-            return;
-        }
-
         $.ajax({
             async: false,
-            type: "POST",
-            url: "../category/update",//注意路径
-            data: params,
+            url: '../lczj/add',
+            type: 'POST',
             dataType: "json",
-            success: function (data) {
-                if (data) {
-                    return;
-                } else {
-                    delok = false;
-                }
-            },
-            error: function (data) {
-                delok = false;
-            }
-        });
-        if (!delok) {
-            swal({
-                title: "保存失败！",
-                text: "",
-                type: "error",
-                allowOutsideClick: true,
-                showConfirmButton: true,
-                showCancelButton: false,
-                confirmButtonClass: "btn-danger",
-                confirmButtonText: "OK",
-            });
-            return;
-        }
+            contentType: false,// 当有文件要上传时，此项是必须的，否则后台无法识别文件流的起始位置(详见：#1)
+            processData: false,// 是否序列化data属性，默认true(注意：false时type必须是post，详见：#2)
+            data: formData,
+            success: function (datas) {
 
-        table.fnUpdate($('#category_edit_category').val(), nRow, 0, false);
-        table.fnUpdate($('#category_edit_name').val(), nRow, 1, false);
-        table.fnDraw();
-        $('#category_edit_category').val('');
-        $('#category_edit_name').val('');
-        $('#category_edit_modal').modal('hide')
-        swal({
-            title: "保存成功！",
-            text: "",
-            type: "success",
-            allowOutsideClick: true,
-            showConfirmButton: true,
-            showCancelButton: false,
-            confirmButtonClass: "btn-success",
-            confirmButtonText: "OK",
-        });
-    });
+                console.log(JSON.stringify(datas,null,4))
 
+                var str = '<tr>'+
+                    '<td>'+datas.t_news.title+'</td>'+
+                    '<td>'+formatDateTime(datas.t_news.issue_date)+'</td>'+
+                    '<td>'+datas.t_news.code+'</td>'+
+                    '<td>'+datas.t_admin.name+' </td>'+
+                    (( datas.t_news.photo== null || datas.t_news.photo =='') ?  '<td>无</td>': ('<td><image style="width: 50px;height:50px;" src="../stories/' + datas.t_news.photo +'"></image></td>'))+
+                    '<td>'+datas.t_news.keyword+' </td>'+
+                    '<td>'+(datas.t_news.publish==0 ? '否':'是')+' </td>'+
+                    '<td>'+(datas.t_news.top==0 ? '否':'是')+' </td>'+
+                    '<td><a class="edit"  id="'+datas.t_news.code+'"  ><i class="fa fa-edit"></i>&nbsp;编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="delete" id="'+datas.t_news.code+'" ><i class="fa fa-trash"></i>&nbsp;删除</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="preview"  id="'+datas.t_news.filename+'" ><i class="fa fa-chrome"></i>&nbsp;浏览</a></td>'+
+                    '</tr>';
 
-    /**
-     * 删除
-     */
-    table.on('click', '.delete', function (e) {
-        e.preventDefault();
-        var nRow = $(this).parents('tr')[0];
-        var aData = table.fnGetData(nRow);
+                $("#tbd").prepend(str).trigger('footable_redraw');
 
-        swal({
-            title: "确认删除这一行数据 ?",
-            text: "",
-            type: "warning",
-            allowOutsideClick: true,
-            showConfirmButton: true,
-            showCancelButton: true,
-            confirmButtonClass: "btn-info",
-            cancelButtonClass: "btn-danger",
-            confirmButtonText: "确认",
-            cancelButtonText: "取消",
-            closeOnConfirm: false,
-            closeOnCancel: true
-        }, function (isConfirm) {
-            if (!isConfirm) return;
-            var delok = true;
-            var params={};
-            params.category = aData[0];
-            $.ajax({
-                async: false,
-                type: "POST",
-                url: "../category/delete",//注意路径
-                data: params,
-                dataType: "json",
-                success: function (data) {
-                    if (data) {
-                        return;
-                    } else {
-                        delok = false;
-                    }
-                },
-                error: function (data) {
-                    delok = false;
-                }
-            });
-            if (!delok){
+                $('#add_keyword').val('');
+                $('#add_title').val('');
+                $('#add_photo').val('');
+                $('#add_content').code('');
+
+                $("#div-add").css("display",'none');
+                $("#div-list").css("display",'block');
+                setEvents();
                 swal({
-                    title: "删除失败，该类别下有商品信息，不能删除",
+                    title: "添加成功！",
+                    text: "",
+                    type: "success",
+                    allowOutsideClick: true,
+                    showConfirmButton: true,
+                    showCancelButton: false,
+                    confirmButtonClass: "btn-success",
+                    confirmButtonText: "OK",
+                });
+            },
+            error: function (data) {
+                swal({
+                    title: "添加失败！",
                     text: "",
                     type: "error",
                     allowOutsideClick: true,
@@ -284,51 +177,296 @@ $(document).ready(function(){
                 });
                 return;
             }
-            table.fnDeleteRow(nRow);
+        });
+
+    });
+
+    /**
+     * 修改
+     */
+    $("#btn_edit_save").click(function (e) {
+        var formData = new FormData($("#stories_edit")[0]);
+        formData.append('content', $("#edit_content").code());
+
+        console.log($("#edit_content").code());
+
+        if (formData.get("title") == '' || formData.get("keyword") == '' ||  $("#edit_content").code()=='') {
             swal({
-                title: "删除成功！",
+                title: "标题、关键字、内容不能为空！",
                 text: "",
-                type: "success",
+                type: "warning",
                 allowOutsideClick: true,
                 showConfirmButton: true,
                 showCancelButton: false,
-                confirmButtonClass: "btn-success",
+                confirmButtonClass: "btn-danger",
                 confirmButtonText: "OK",
             });
+            return;
+        }
+
+        var delok = true;
+        $.ajax({
+            async: false,
+            url: '../lczj/update',
+            type: 'POST',
+            dataType: "json",
+            contentType: false,// 当有文件要上传时，此项是必须的，否则后台无法识别文件流的起始位置(详见：#1)
+            processData: false,// 是否序列化data属性，默认true(注意：false时type必须是post，详见：#2)
+            data: formData,
+            success: function (datas) {
+
+                console.log(JSON.stringify(datas,null,4))
+                var  nRow = EditRow;
+                if (nRow.nextSibling != null && nRow.nextSibling.innerHTML != null && nRow.nextSibling.innerHTML.indexOf('footable-row-detail-cell') != -1) {
+                    nRow.nextSibling.remove();
+                }
+                nRow.remove();
+
+                var str = '<tr>'+
+                    '<td>'+datas.t_news.title+'</td>'+
+                    '<td>'+formatDateTime(datas.t_news.issue_date)+'</td>'+
+                    '<td>'+datas.t_news.code+'</td>'+
+                    '<td>'+datas.t_admin.name+' </td>'+
+                    (( datas.t_news.photo== null || datas.t_news.photo =='') ?  '<td>无</td>': ('<td><image style="width: 50px;height:50px;" src="../stories/' + datas.t_news.photo +'"></image></td>'))+
+                    '<td>'+datas.t_news.keyword+' </td>'+
+                    '<td>'+(datas.t_news.publish==0 ? '否':'是')+' </td>'+
+                    '<td>'+(datas.t_news.top==0 ? '否':'是')+' </td>'+
+                    '<td><a class="edit"  id="'+datas.t_news.code+'"  ><i class="fa fa-edit"></i>&nbsp;编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="delete" id="'+datas.t_news.code+'" ><i class="fa fa-trash"></i>&nbsp;删除</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="preview"  id="'+datas.t_news.filename+'" ><i class="fa fa-chrome"></i>&nbsp;浏览</a></td>'+
+                    '</tr>';
+
+                $("#tbd").prepend(str).trigger('footable_redraw');
+
+                $('#edit_keyword').val('');
+                $('#edit_code').val('');
+                $('#edit_title').val('');
+                $('#edit_photo').val('');
+                $('#edit_content').code('');
+
+                $("#div-alter").css("display",'none');
+                $("#div-list").css("display",'block');
+
+                setEvents();
+                swal({
+                    title: "修改成功！",
+                    text: "",
+                    type: "success",
+                    allowOutsideClick: true,
+                    showConfirmButton: true,
+                    showCancelButton: false,
+                    confirmButtonClass: "btn-success",
+                    confirmButtonText: "OK",
+                });
+            },
+            error: function (data) {
+                swal({
+                    title: "修改失败！",
+                    text: "",
+                    type: "error",
+                    allowOutsideClick: true,
+                    showConfirmButton: true,
+                    showCancelButton: false,
+                    confirmButtonClass: "btn-danger",
+                    confirmButtonText: "OK",
+                });
+                return;
+            }
         });
+
     });
 
-    // 富文本编辑器,显示编辑
-    $(".summernote").summernote({lang:"zh-CN"});
-    $("#add_eg").addClass("no-padding");
-    $("#edit_eg").addClass("no-padding");
-    $(".click2edit").summernote({lang:"zh-CN",focus:true})
+
+    /**
+     * 移除图片
+     */
+    $("#btn_delete_photo").click(function(){
 
 
-    var aHTML=$(".click2edit").code();
-    console.log(aHTML);
+        params = {};
+        params.code = $('#edit_code').val();
+        $.ajax({
+            async: false,
+            type: "POST",
+            url: "../news/deletephoto",//注意路径
+            data: params,
+            dataType: "json",
+            success: function (datas) {
+                if(datas){
+                    $('#edit_photo').val('');
+                    $('#edit_photo_name').val('');
+                    $("#photo_remove_show").css('display','none')
+                }else{
+                    swal({
+                        title: "移除失败！",
+                        text: "",
+                        type: "error",
+                        allowOutsideClick: true,
+                        showConfirmButton: true,
+                        showCancelButton: false,
+                        confirmButtonClass: "btn-danger",
+                        confirmButtonText: "OK",
+                    });
+                }
 
-    document.getElementById('click_preview').innerHTML=aHTML;
+            },error:function(err){
+                console.log(JSON.stringify(err, null, 4));
+                swal({
+                    title: "移除失败！",
+                    text: "",
+                    type: "error",
+                    allowOutsideClick: true,
+                    showConfirmButton: true,
+                    showCancelButton: false,
+                    confirmButtonClass: "btn-danger",
+                    confirmButtonText: "OK",
+                });
+            }});
+    });
 
+
+    var EditRow = '-1';
+
+    setEvents();
+    function setEvents(){
+
+        $(".delete").unbind("click");
+        $(".preview").unbind("click");
+        $(".edit").unbind("click");
+        /**
+         * 删除
+         */
+        $(".delete").click(function (e) {
+
+            var nRow = $(this).parents('tr')[0];
+            var id = $(this).attr('id');
+
+
+            swal({
+                title: "确认删除这一行数据 ?",
+                text: "",
+                type: "warning",
+                allowOutsideClick: true,
+                showConfirmButton: true,
+                showCancelButton: true,
+                confirmButtonClass: "btn-info",
+                cancelButtonClass: "btn-danger",
+                confirmButtonText: "确认",
+                cancelButtonText: "取消",
+                closeOnConfirm: false,
+                closeOnCancel: true
+            }, function (isConfirm) {
+                if (!isConfirm) return;
+                var delok = true;
+                var params = {};
+                params.code = id;
+                $.ajax({
+                    async: false,
+                    type: "POST",
+                    url: "../lczj/delete",//注意路径
+                    data: params,
+                    dataType: "json",
+                    success: function (data) {
+                        if (!data) {
+                            delok = false;
+                        }
+                    },
+                    error: function (data) {
+                        delok = false;
+                    }
+                });
+                if (!delok) {
+                    swal({
+                        title: "删除失败！",
+                        text: "",
+                        type: "error",
+                        allowOutsideClick: true,
+                        showConfirmButton: true,
+                        showCancelButton: false,
+                        confirmButtonClass: "btn-danger",
+                        confirmButtonText: "OK",
+                    });
+                    return;
+                }
+                if (nRow.nextSibling != null && nRow.nextSibling.innerHTML != null && nRow.nextSibling.innerHTML.indexOf('footable-row-detail-cell') != -1) {
+                    nRow.nextSibling.remove();
+                }
+                nRow.remove();
+                swal({
+                    title: "删除成功！",
+                    text: "",
+                    type: "success",
+                    allowOutsideClick: true,
+                    showConfirmButton: true,
+                    showCancelButton: false,
+                    confirmButtonClass: "btn-success",
+                    confirmButtonText: "OK",
+                });
+            });
+
+        });
+        /**
+         * 预览
+         */
+        $(".preview").click(function (e) {
+            var id = $(this).attr('id');
+            window.open ('../stories/' + id, 'newwindow', 'height=600, width=350, top=0, left=0, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no');
+            return;
+        });
+
+
+        /**
+         * 编辑
+         */
+        $(".edit").click(function (e) {
+            var nRow = $(this).parents('tr')[0];
+            EditRow = nRow;
+            var id = $(this).attr('id');
+            /*alert(id);
+            alert(nRow.innerHTML);*/
+            $("#div-alter").css("display",'block');
+            $("#div-list").css("display",'none');
+
+            params = {};
+            params.code = id ;
+            $.ajax({
+                async: false,
+                type: "POST",
+                url: "../lczj/loadById",//注意路径
+                data: params,
+                dataType: "json",
+                success: function (datas) {
+
+                    console.log(JSON.stringify(datas, null, 4));
+                    $('#edit_code').val(datas.t_news.code);
+                    $('#edit_title').val(datas.t_news.title);
+                    $('#edit_keyword').val(datas.t_news.keyword);
+                    $('#edit_top').val(datas.t_news.top=='0'? '否':'是');
+                    $('#edit_publish').val(datas.t_news.publish=='0'? '否':'是');
+                    $('#edit_photo_name').val(datas.t_news.photo);
+
+                    if(datas.t_news.photo==null || datas.t_news.photo==''){
+                        $("#photo_remove_show").css('display','none')
+                    }else{
+                        $("#photo_remove_show").css('display','block')
+
+                    }
+                    var url = '../stories/'+datas.t_news.filename.split(".")[0]+ "-content.html";
+
+                   // var url = '../stories/'+datas.t_news.code+'-content.html';
+                    $.ajax({
+                        url:url,
+                        type:"GET",
+                        dataType:"html",
+                        success:function(result){
+                            console.log(result);
+                            $('#edit_content').code(result);
+                        }
+                    });
+
+
+                },error:function(err){
+                    console.log(JSON.stringify(err, null, 4))
+                }});
+        });
+    }
 });
 
-var preview = function(){
-    window.open('lczj_preview.html');
-}
-
-
-// 富文本编辑器的编辑和保存按钮
-// $(document).ready(function(){
-//     $(".summernote").summernote({lang:"zh-CN"});
-// });
-//
-// var edit=function(){
-//     $("#eg").addClass("no-padding");
-//     $(".click2edit").summernote({lang:"zh-CN",focus:true})
-// };
-
-// var save=function(){
-//     $("#eg").removeClass("no-padding");
-//     var aHTML=$(".click2edit").code();
-//     $(".click2edit").destroy()
-// };

@@ -29,4 +29,6 @@ public interface OccasionDao {
     @Select("select * from T_occasion WHERE occasion = #{0}")
     public T_occasion loadByoccasion(int occasion);
 
+    @Select("select * from T_occasion WHERE occasion in (select occasion from T_SUITABLEOCCASION WHERE GOODS = #{0} )")
+    List<T_occasion> loadByGood(String goods);
 }
