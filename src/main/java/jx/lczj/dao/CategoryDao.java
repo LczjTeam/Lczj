@@ -29,4 +29,7 @@ public interface CategoryDao {
 
     @Select("select * from T_category where category=#{0}")
     T_category loadById(int category);
+
+    @Select("select * from T_category where category in (select category from T_goodscategory where goods = #{0})")
+    List<T_category> loadByGoods(String goods);
 }

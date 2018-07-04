@@ -71,6 +71,15 @@ $(document).ready(function(){
             for(var i = 0 ; i < data.length ; i++) {
                 var datas = data[i];
                 console.log(JSON.stringify(datas,null,4));
+                var categoryStr = '';
+                for( var j = 0 ;j < datas.t_categories.length ; j++){
+                    var itm =  datas.t_categories[j];
+                    categoryStr+='&nbsp;&nbsp;&nbsp;'+itm.name;
+                }
+
+                alert(categoryStr);
+
+
                 var colorStr = '';
                 for( var j = 0 ;j < datas.t_colors.length ; j++){
                     var itm =  datas.t_colors[j];
@@ -117,7 +126,7 @@ $(document).ready(function(){
                     '<td>' + datas.t_goods.name + '</td>' +
                     '<td>' + datas.t_goods.models + '</td>' +
                     '<td>' + datas.t_brand.name + '</td>' +
-                    '<td>' + datas.t_category.name + '</td>' +
+                    '<td>' + categoryStr+ '</td>' +
                     '<td>' + (datas.t_goods.suitable_sex == 0 ? '通用':(datas.t_goods.suitable_sex == 1 ? "男":"女"))+ '</td>' +
                     '<td>' + datas.t_goods.price + '</td>' +
                     '<td>&nbsp;&nbsp;' + datas.t_goods.goods + '</td>' +
@@ -156,7 +165,7 @@ $(document).ready(function(){
 
 
     /**
-     * 添加类别
+     * 类别
      */
     var params={};
     $.ajax({
@@ -170,7 +179,7 @@ $(document).ready(function(){
             //console.log(JSON.stringify(data,null,4));
             for (var i = 0; i < data.length; i++) {
                 var itm = data[i];
-                str+='<option value="'+itm.category+'">'+itm.name+'</option>';
+                str+='<option value="'+itm.category+'">&nbsp;&nbsp;&nbsp;&nbsp;'+itm.name+'</option>';
             }
 
             $("#add_category").html(str);
@@ -191,7 +200,7 @@ $(document).ready(function(){
     });
 
     /**
-     * 添加品牌
+     * 品牌
      */
     var params={};
     $.ajax({
@@ -227,7 +236,7 @@ $(document).ready(function(){
 
 
     /**
-     * 添加颜色
+     * 颜色
      */
     var params={};
     $.ajax({
@@ -265,7 +274,7 @@ $(document).ready(function(){
 
 
     /**
-     * 添加使用年龄段
+     * 使用年龄段
      */
     var params={};
     $.ajax({
@@ -305,7 +314,7 @@ $(document).ready(function(){
 
 
     /**
-     * 添加脸型
+     * 脸型
      */
     var params={};
     $.ajax({
@@ -344,7 +353,7 @@ $(document).ready(function(){
 
 
     /**
-     * 添加使用场景
+     * 使用场景
      */
     var params={};
     $.ajax({
@@ -390,6 +399,7 @@ $(document).ready(function(){
     $("#btn_add_save").click(function (e) {
 
         var formData = new FormData($("#goods_add")[0]);
+        formData.append('category', $("#add_category").val());
         formData.append('colors', $("#add_color").val());
         formData.append('faces', $("#add_face").val());
         formData.append('occasions', $("#add_occasion").val());
@@ -429,6 +439,15 @@ $(document).ready(function(){
                     console.log(JSON.stringify(datas, null, 4))
 
                     console.log(JSON.stringify(datas, null, 4));
+                    var categoryStr = '';
+                    for( var j = 0 ;j < datas.t_categories.length ; j++){
+                        var itm =  datas.t_categories[j];
+                        categoryStr+='&nbsp;&nbsp;&nbsp;'+itm.name;
+                    }
+
+                    alert(categoryStr);
+
+
                     var colorStr = '';
                     for (var j = 0; j < datas.t_colors.length; j++) {
                         var itm = datas.t_colors[j];
@@ -475,7 +494,7 @@ $(document).ready(function(){
                         '<td>' + datas.t_goods.name + '</td>' +
                         '<td>' + datas.t_goods.models + '</td>' +
                         '<td>' + datas.t_brand.name + '</td>' +
-                        '<td>' + datas.t_category.name + '</td>' +
+                        '<td>' + categoryStr + '</td>' +
                         '<td>' + (datas.t_goods.suitable_sex == 0 ? '通用' : (datas.t_goods.suitable_sex == 1 ? "男" : "女")) + '</td>' +
                         '<td>' + datas.t_goods.price + '</td>' +
                         '<td>&nbsp;&nbsp;' + datas.t_goods.goods + '</td>' +
@@ -544,7 +563,13 @@ $(document).ready(function(){
                     }
                     nRow.remove();
 
+                    var categoryStr = '';
+                    for( var j = 0 ;j < datas.t_categories.length ; j++){
+                        var itm =  datas.t_categories[j];
+                        categoryStr+='&nbsp;&nbsp;&nbsp;'+itm.name;
+                    }
 
+                    alert(categoryStr);
                     var colorStr = '';
                     for (var j = 0; j < datas.t_colors.length; j++) {
                         var itm = datas.t_colors[j];
@@ -589,7 +614,7 @@ $(document).ready(function(){
                         '<td>' + datas.t_goods.name + '</td>' +
                         '<td>' + datas.t_goods.models + '</td>' +
                         '<td>' + datas.t_brand.name + '</td>' +
-                        '<td>' + datas.t_category.name + '</td>' +
+                        '<td>' + categoryStr + '</td>' +
                         '<td>' + (datas.t_goods.suitable_sex == 0 ? '通用' : (datas.t_goods.suitable_sex == 1 ? "男" : "女")) + '</td>' +
                         '<td>' + datas.t_goods.price + '</td>' +
                         '<td>&nbsp;&nbsp;' + datas.t_goods.goods + '</td>' +
@@ -764,6 +789,13 @@ $(document).ready(function(){
                     $("#add_price").val(datas.t_goods.price);
                     $("#add_space").val(datas.t_goods.space);
 
+                    var categoryStr = [];
+                    for( var j = 0 ;j < datas.t_categories.length ; j++){
+                        var itm =  datas.t_categories[j];
+                        categoryStr.push(itm.category);
+                    }
+                    $("#add_category").val(categoryStr);
+                    $("#add_category").multiselect('refresh');
 
                     var colorStr = [];
                     for( var j = 0 ;j < datas.t_colors.length ; j++){
