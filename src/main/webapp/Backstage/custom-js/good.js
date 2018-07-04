@@ -780,7 +780,6 @@ $(document).ready(function(){
                     $("#add_name").val(datas.t_goods.name);
                     $("#add_brand").val(datas.t_goods.brand);
                     $("#add_suitable_sex").val(datas.t_goods.suitable_sex);
-                    $("#add_category").val(datas.t_goods.category);
                     $("#add_models").val(datas.t_goods.models);
                     $("#add_width").val(datas.t_goods.width);
                     $("#add_height").val(datas.t_goods.height);
