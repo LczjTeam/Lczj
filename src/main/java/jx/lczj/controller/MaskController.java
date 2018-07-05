@@ -1,7 +1,5 @@
 package jx.lczj.controller;
 
-import com.sun.deploy.panel.ITreeNode;
-import jdk.nashorn.internal.ir.ReturnNode;
 import jx.lczj.anotation.Privilege;
 import jx.lczj.model.T_mask;
 import jx.lczj.service.MaskService;

@@ -19,6 +19,6 @@ public interface MaskDao {
     @Delete("delete T_mask where MASK = #{0}")
     boolean delete(String mask);
 
-    @Update("update T_mask set MASK = #{0}, NAME = #{1}")
+    @Update("update T_mask set  NAME = #{1} where MASK = #{0}")
     boolean update(int mask, String name);
 }
