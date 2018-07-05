@@ -14,6 +14,7 @@ public class T_efficacy implements Serializable {
     private int efficacy;
     private String name;
 
+
     public int getEfficacy() {
         return efficacy;
     }
