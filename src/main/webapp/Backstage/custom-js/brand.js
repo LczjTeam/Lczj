@@ -7,10 +7,10 @@ $(document).ready(function(){
     table.dataTable({
         "columnDefs": [{ // set default column settings
             'orderable': false,
-            'targets': [3]
+            'targets': [4]
         }, {
             "searchable": false,
-            "targets": [3]
+            "targets": [4]
         }],
         "order": [
             [0, "asc"]
@@ -28,13 +28,15 @@ $(document).ready(function(){
             for (var i = 0; i < data.length; i++) {
                 console.log(JSON.stringify(data[i],null,4));
                 console.log(data[i].brand);
-                console.log(data[i].name)
+                console.log(data[i].name);
                 console.log(data[i].company);
+                console.log(data[i].type);
                 var itm = data[i];
                 table.fnAddData([
                     itm.brand,
                     itm.name,
                     itm.company,
+                    typeIntToStr(itm.type),
                     '<a class="edit"  ><i class="fa fa-edit"></i>&nbsp;编辑</a>' +
                     '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' +
                     '<a class="delete" ><i class="fa fa-trash"></i>&nbsp;删除</a>'
@@ -58,6 +60,30 @@ $(document).ready(function(){
     });
     $("#loading-brand").css('display','none');
 
+    //type,int类型转string类型
+    function typeIntToStr(int_type) {
+        if (int_type==0){
+            return '通用品牌'
+        }
+        else if(int_type==1){
+            return '镜框品牌'
+        }
+        else if (int_type==2){
+            return '镜片品牌'
+        }
+    }
+
+    function typeStrToInt(str_type) {
+        if (str_type=='通用品牌'){
+            return 0;
+        }
+        else if(str_type=='镜框品牌'){
+            return 1;
+        }
+        else if (str_type=='镜片品牌'){
+            return 2;
+        }
+    }
 
     /**
      * 添加
@@ -68,6 +94,7 @@ $(document).ready(function(){
         params.brand = $('#brand_add_brand').val();
         params.name =$('#brand_add_name').val();
         params.company =$('#brand_add_company').val();
+        params.type = $('#brand_add_type').val();
         if(params.brand == ''|| params.name == ''|| params.company == ''){
             swal({
                 title: "编号、名称和制造商不能为空！",
@@ -115,6 +142,8 @@ $(document).ready(function(){
             $('#brand_add_brand').val(),
             $('#brand_add_name').val(),
             $('#brand_add_company').val(),
+            typeIntToStr($('#brand_add_type').val()),
+            // $('#brand_add_company').option($('#brand_add_company').selectedIndex).text();
             '<a class="edit"  ><i class="fa fa-edit"></i>&nbsp;编辑</a>' +
             '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' +
             '<a class="delete" ><i class="fa fa-trash"></i>&nbsp;删除</a>'
@@ -123,6 +152,9 @@ $(document).ready(function(){
         $('#brand_add_brand').val('');
         $('#brand_add_name').val('');
         $('#brand_add_company').val('');
+        typeIntToStr($('#brand_add_type').val()),
+        // $('#brand_add_company').option($('#brand_add_company').selectedIndex).text();
+
         $('#brand_add_modal').modal('hide')
         swal({
             title: "添加成功！",
@@ -150,6 +182,7 @@ $(document).ready(function(){
         $('#brand_edit_brand').val(aData[0]);
         $('#brand_edit_name').val(aData[1]);
         $('#brand_edit_company').val(aData[2]);
+        $('#brand_edit_type').val(typeStrToInt(aData[3])),
         $('#brand_edit_modal').modal('show')
     });
 
@@ -161,6 +194,7 @@ $(document).ready(function(){
         params.brand = $('#brand_edit_brand').val();
         params.name =$('#brand_edit_name').val();
         params.company = $('#brand_edit_company').val();
+        params.type = $('#brand_edit_type').val();
 
 
         if(params.brand == ''||params.name == ''||params.company == '' ){
@@ -211,10 +245,12 @@ $(document).ready(function(){
         table.fnUpdate($('#brand_edit_brand').val(), nRow, 0, false);
         table.fnUpdate($('#brand_edit_name').val(), nRow, 1, false);
         table.fnUpdate($('#brand_edit_company').val(), nRow, 2, false);
+        table.fnUpdate(typeIntToStr($('#brand_edit_type').val()), nRow, 3, false);
         table.fnDraw();
         $('#brand_edit_brand').val('');
         $('#brand_edit_name').val('');
         $('#brand_edit_company').val('');
+        typeIntToStr($('#brand_edit_type').val());
         $('#brand_edit_modal').modal('hide')
         swal({
             title: "保存成功！",
