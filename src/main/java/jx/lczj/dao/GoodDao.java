@@ -38,8 +38,8 @@ public interface GoodDao {
     @Insert("insert into  T_GOODSATTACHMENT (ATTACHMENT,GOODS,SN) VALUES (#{0},#{1},#{2})")
     boolean addAttachmentDiv(String s, String goods, int i);
 
-    @Insert("insert into  T_GOODS(GOODS,CATEGORY,BRAND,NAME,MODELS,WIDTH,HEIGHT,SPACE,LENGTH,MAX_WIDTH,SUITABLE_SEX,PRICE) VALUES (#{0},#{1},#{2},#{3},#{4},#{5},#{6},#{7},#{8},#{9},#{10},#{11})")
-    boolean add(String goods, int category, int brand, String name, String models, int width, int height,int space, int length, int max_width, int suitable_sex, int price);
+    @Insert("insert into  T_GOODS(GOODS,BRAND,NAME,MODELS,WIDTH,HEIGHT,SPACE,LENGTH,MAX_WIDTH,SUITABLE_SEX,PRICE) VALUES (#{0},#{1},#{2},#{3},#{4},#{5},#{6},#{7},#{8},#{9},#{10})")
+    boolean add(String goods, int brand, String name, String models, int width, int height,int space, int length, int max_width, int suitable_sex, int price);
 
     @Select("select * from T_GOODS WHERE GOODS = #{0}")
     T_goods loadById(String goods);
@@ -65,6 +65,12 @@ public interface GoodDao {
     boolean delete(String code);
 
 
-    @Update("update T_GOODS set CATEGORY = #{1} ,BRAND  = #{2} ,NAME  = #{3}  ,MODELS  = #{4}  ,WIDTH = #{5} ,HEIGHT  = #{6}  ,SPACE  = #{7}  ,LENGTH  = #{8}  ,MAX_WIDTH  = #{9}  ,SUITABLE_SEX  = #{10}  ,PRICE  = #{11} where goods = #{0}")
-    boolean update(String goods, int category, int brand, String name, String models, int width, int height, int space, int length, int max_width, int suitable_sex, int price);
+    @Update("update T_GOODS set BRAND  = #{1} ,NAME  = #{2}  ,MODELS  = #{3}  ,WIDTH = #{4} ,HEIGHT  = #{5}  ,SPACE  = #{6}  ,LENGTH  = #{7}  ,MAX_WIDTH  = #{8}  ,SUITABLE_SEX  = #{9}  ,PRICE  = #{10} where goods = #{0}")
+    boolean update(String goods, int brand, String name, String models, int width, int height, int space, int length, int max_width, int suitable_sex, int price);
+
+    @Insert("insert into  T_GOODSCATEGORY (CATEGORY,GOODS) VALUES (#{0},#{1})")
+    boolean addCategoryDiv(int i, String goods);
+
+    @Delete("delete from  T_GOODSCATEGORY where GOODS = #{0}")
+    boolean deleteCategoryDiv(String goods);
 }

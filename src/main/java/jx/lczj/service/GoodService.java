@@ -29,7 +29,7 @@ public class GoodService  {
     BrandDao brandDao ;
 
     @Resource
-    CategoryDao categoryDao;
+    CategoryDao categoryDao ;
 
 
     @Resource
@@ -46,7 +46,7 @@ public class GoodService  {
 
 
     @Resource
-    ColorDao colorDao ;
+    ColorDao colorDao;
 
     /**
      * 商品信息
@@ -62,7 +62,7 @@ public class GoodService  {
                 GoodsVo gvo = new GoodsVo();
                 gvo.setT_goods(t);
                 gvo.setT_brand(brandDao.loadById(t.getBrand()));
-                gvo.setT_category(categoryDao.loadById(t.getCategory()));
+                gvo.setT_categories(categoryDao.loadByGoods(t.getGoods()));
                 gvo.setT_colors(colorDao.loadByGood(t.getGoods()));
                 gvo.setT_agesections(ageDao.loadByGood(t.getGoods()));
                 gvo.setT_faces(faceDao.loadByGood(t.getGoods()));
@@ -164,9 +164,6 @@ public class GoodService  {
             String goods = request.getParameter("good");
             System.out.println("goods:" + goods);
 
-            int category = Integer.parseInt(request.getParameter("category"));
-            System.out.println("category:" + category);
-
             int brand = Integer.parseInt(request.getParameter("brand"));
             System.out.println("brand:" + brand);
 
@@ -198,8 +195,8 @@ public class GoodService  {
             System.out.println("price:" + price);
 
 
+
             boolean ok1 = goodDao.add(goods,
-                    category,
                     brand,
                     name,
                     models,
@@ -211,6 +208,14 @@ public class GoodService  {
                     suitable_sex,
                     price
             );
+
+
+            String categorys = request.getParameter("category");
+            System.out.println("categorys:" + categorys);
+            String[] cts = categorys.split("\\,");
+            for (String s : cts) {
+                boolean ok = goodDao.addCategoryDiv(Integer.parseInt(s), goods);
+            }
 
 
             String colors = request.getParameter("colors");
@@ -263,7 +268,7 @@ public class GoodService  {
             T_goods t_good = goodDao.loadById(goods);
             gvo.setT_goods(t_good);
             gvo.setT_brand(brandDao.loadById(brand));
-            gvo.setT_category(categoryDao.loadById(category));
+            gvo.setT_categories(categoryDao.loadByGoods(goods));
             gvo.setT_colors(colorDao.loadByGood(goods));
             gvo.setT_agesections(ageDao.loadByGood(goods));
             gvo.setT_faces(faceDao.loadByGood(goods));
@@ -285,7 +290,8 @@ public class GoodService  {
     public boolean delete(String code, HttpServletRequest request) {
 
         try {
-
+            //删除类别分配
+            boolean categoryOk = goodDao.deleteCategoryDiv(code);
 
             //删除颜色分配
             boolean ok = goodDao.deleteColorDiv(code);
@@ -337,7 +343,7 @@ public class GoodService  {
         T_goods t = goodDao.loadById(code);
         gvo.setT_goods(t);
         gvo.setT_brand(brandDao.loadById(t.getBrand()));
-        gvo.setT_category(categoryDao.loadById(t.getCategory()));
+        gvo.setT_categories(categoryDao.loadByGoods(t.getGoods()));
         gvo.setT_colors(colorDao.loadByGood(t.getGoods()));
         gvo.setT_agesections(ageDao.loadByGood(t.getGoods()));
         gvo.setT_faces(faceDao.loadByGood(t.getGoods()));
@@ -360,9 +366,6 @@ public class GoodService  {
         try {
             String goods = request.getParameter("good");
             System.out.println("goods:" + goods);
-
-            int category = Integer.parseInt(request.getParameter("category"));
-            System.out.println("category:" + category);
 
             int brand = Integer.parseInt(request.getParameter("brand"));
             System.out.println("brand:" + brand);
@@ -396,7 +399,6 @@ public class GoodService  {
 
 
             boolean ok1 = goodDao.update(goods,
-                    category,
                     brand,
                     name,
                     models,
@@ -408,6 +410,16 @@ public class GoodService  {
                     suitable_sex,
                     price
             );
+
+            //删除类别分配
+            boolean categoryOk = goodDao.deleteCategoryDiv(goods);
+            String categories = request.getParameter("category");
+            System.out.println("categories:" + categories);
+            String[] cts = categories.split("\\,");
+            for (String s : cts) {
+                boolean ok = goodDao.addCategoryDiv(Integer.parseInt(s), goods);
+            }
+
 
             //删除颜色分配
             boolean colorOk = goodDao.deleteColorDiv(goods);
@@ -472,7 +484,7 @@ public class GoodService  {
             T_goods t_good = goodDao.loadById(goods);
             gvo.setT_goods(t_good);
             gvo.setT_brand(brandDao.loadById(brand));
-            gvo.setT_category(categoryDao.loadById(category));
+            gvo.setT_categories(categoryDao.loadByGoods(goods));
             gvo.setT_colors(colorDao.loadByGood(goods));
             gvo.setT_agesections(ageDao.loadByGood(goods));
             gvo.setT_faces(faceDao.loadByGood(goods));

@@ -30,10 +30,10 @@ public class NewsService {
 
 
     @Resource
-    private NewsDao newsDao ;
+    private NewsDao newsDao;
 
     @Resource
-    private AdminDao adminDao;
+    private AdminDao adminDao ;
 
 
     /**
@@ -86,10 +86,10 @@ public class NewsService {
 
             //保存content
             String contentFile = avo.getT_admin().getAdmin() + ctimes + "-content.html";
-            File cf = new File(path,contentFile);
+           /* File cf = new File(path,contentFile);
             if (!cf.exists()) {
                 cf.mkdirs();
-            }
+            } */
             BufferedWriter brc = new BufferedWriter(new OutputStreamWriter(new FileOutputStream((path + "/" + contentFile)), "UTF-8"));
             brc.write(content);
             brc.close();
@@ -313,10 +313,10 @@ public class NewsService {
 
             //保存content
             String contentFile = avo.getT_admin().getAdmin()+ctimes+ "-content.html";
-            File cf = new File(contentFile);
+            /*File cf = new File(contentFile);
             if (!cf.exists()) {
                 cf.mkdirs();
-            }
+            }*/
             BufferedWriter brc = new BufferedWriter(new OutputStreamWriter(new FileOutputStream((path + "/" + contentFile)), "UTF-8"));
             brc.write(content);
             brc.close();

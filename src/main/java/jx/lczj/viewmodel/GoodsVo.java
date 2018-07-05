@@ -12,7 +12,7 @@ public class GoodsVo implements Serializable{
 
     private T_goods t_goods;
     private T_brand t_brand;
-    private T_category t_category;
+    private List<T_category> t_categories;
     private List<T_color> t_colors;
     private List<T_face> t_faces;
     private List<T_occasion> t_occasions;
@@ -35,12 +35,12 @@ public class GoodsVo implements Serializable{
         this.t_brand = t_brand;
     }
 
-    public T_category getT_category() {
-        return t_category;
+    public List<T_category> getT_categories() {
+        return t_categories;
     }
 
-    public void setT_category(T_category t_category) {
-        this.t_category = t_category;
+    public void setT_categories(List<T_category> t_categories) {
+        this.t_categories = t_categories;
     }
 
     public List<T_color> getT_colors() {
@@ -88,7 +88,7 @@ public class GoodsVo implements Serializable{
         return "GoodsVo{" +
                 "t_goods=" + t_goods +
                 ", t_brand=" + t_brand +
-                ", t_category=" + t_category +
+                ", t_categories=" + t_categories +
                 ", t_colors=" + t_colors +
                 ", t_faces=" + t_faces +
                 ", t_occasions=" + t_occasions +
