@@ -177,9 +177,13 @@ $(document).ready(function(){
         success: function (data) {
             var str = '';
             //console.log(JSON.stringify(data,null,4));
-            for (var i = 0; i < data.length; i++) {
-                var itm = data[i];
-                str+='<option value="'+itm.category+'">&nbsp;&nbsp;&nbsp;&nbsp;'+itm.name+'</option>';
+            if(data.length>0) {
+                str += '<option value="' + data[0].color + '" selected="selected">'
+                    + '&nbsp;&nbsp;&nbsp;&nbsp;' + data[0].name + '</option>';
+                for (var i = 0; i < data.length; i++) {
+                    var itm = data[i];
+                    str += '<option value="' + itm.category + '">&nbsp;&nbsp;&nbsp;&nbsp;' + itm.name + '</option>';
+                }
             }
 
             $("#add_category").html(str);
@@ -248,12 +252,15 @@ $(document).ready(function(){
         success: function (data) {
             var str = '';
             //console.log(JSON.stringify(data,null,4));
-            str+='<option value="'+data[0].color+ '" selected="selected">'
-                + '&nbsp;&nbsp;&nbsp;&nbsp;' + data[0].name+'</option>';
-            for(var i = 1;i < data.length;i++){
-                var itm = data[i];
-                str+='<option value="'+itm.color+ '">' +
-                    '&nbsp;&nbsp;&nbsp;&nbsp;' + itm.name + '</option>';
+            if(data.length>0) {
+
+                str += '<option value="' + data[0].color + '" selected="selected">'
+                    + '&nbsp;&nbsp;&nbsp;&nbsp;' + data[0].name + '</option>';
+                for (var i = 1; i < data.length; i++) {
+                    var itm = data[i];
+                    str += '<option value="' + itm.color + '">' +
+                        '&nbsp;&nbsp;&nbsp;&nbsp;' + itm.name + '</option>';
+                }
             }
             $("#add_color").html(str);
             $("#edit_color").html(str);
@@ -286,14 +293,17 @@ $(document).ready(function(){
         success: function (data) {
             var str = '';
             //console.log(JSON.stringify(data,null,4));
-            str+='<option value="'+data[0].agesection+ '" selected="selected">' +
-                '&nbsp;&nbsp;&nbsp;&nbsp;'
-                +data[0].name+'('+ parseInt(data[0].minage)+ '-' + parseInt(data[0].maxage)+')</option>';
-            for(var i = 1;i < data.length;i++){
-                var itm = data[i];
-                str+='<option value="'+itm.agesection+ '">' +
+            if(data.length>0) {
+
+                str += '<option value="' + data[0].agesection + '" selected="selected">' +
                     '&nbsp;&nbsp;&nbsp;&nbsp;'
-                    +itm.name+'('+ parseInt(itm.minage)+ '-' + parseInt(itm.maxage)+')</option>';
+                    + data[0].name + '(' + parseInt(data[0].minage) + '-' + parseInt(data[0].maxage) + ')</option>';
+                for (var i = 1; i < data.length; i++) {
+                    var itm = data[i];
+                    str += '<option value="' + itm.agesection + '">' +
+                        '&nbsp;&nbsp;&nbsp;&nbsp;'
+                        + itm.name + '(' + parseInt(itm.minage) + '-' + parseInt(itm.maxage) + ')</option>';
+                }
             }
             $("#add_agesection").html(str);
             $("#edit_agesection").html(str);
@@ -326,12 +336,15 @@ $(document).ready(function(){
         success: function (data) {
             var str = '';
             console.log(JSON.stringify(data,null,4));
-            str+='<option value="'+data[0].face+ '" selected="selected">' +
-                '&nbsp;&nbsp;&nbsp;&nbsp;' +data[0].name+ '</option>';
-            for(var i = 1;i < data.length;i++){
-                var itm = data[i];
-                str+='<option value="'+itm.face+ '">' +
-                    '&nbsp;&nbsp;&nbsp;&nbsp;' +itm.name+ '</option>';
+            if(data.length>0) {
+
+                str += '<option value="' + data[0].face + '" selected="selected">' +
+                    '&nbsp;&nbsp;&nbsp;&nbsp;' + data[0].name + '</option>';
+                for (var i = 1; i < data.length; i++) {
+                    var itm = data[i];
+                    str += '<option value="' + itm.face + '">' +
+                        '&nbsp;&nbsp;&nbsp;&nbsp;' + itm.name + '</option>';
+                }
             }
             $("#add_face").html(str);
             $("#edit_face").html(str);
@@ -365,12 +378,15 @@ $(document).ready(function(){
         success: function (data) {
             var str = '';
             //console.log(JSON.stringify(data,null,4));
-            str+='<option value="'+data[0].occasion+ '" selected="selected">' +
-                '&nbsp;&nbsp;&nbsp;&nbsp;' +data[0].name+ '</option>';
-            for(var i = 1;i < data.length;i++){
-                var itm = data[i];
-                str+='<option value="'+itm.occasion+ '">' +
-                    '&nbsp;&nbsp;&nbsp;&nbsp;' +itm.name+ '</option>';
+            if(data.length>0) {
+
+                str += '<option value="' + data[0].occasion + '" selected="selected">' +
+                    '&nbsp;&nbsp;&nbsp;&nbsp;' + data[0].name + '</option>';
+                for (var i = 1; i < data.length; i++) {
+                    var itm = data[i];
+                    str += '<option value="' + itm.occasion + '">' +
+                        '&nbsp;&nbsp;&nbsp;&nbsp;' + itm.name + '</option>';
+                }
             }
             $("#add_occasion").html(str);
             $("#edit_occasion").html(str);
