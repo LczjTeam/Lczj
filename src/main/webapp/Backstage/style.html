@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>膜层</title>
+    <title>样式设计</title>
     <link rel="shortcut icon" href="favicon.ico"> <link href="css/bootstrap.min.css?v=3.3.5" rel="stylesheet">
     <link href="css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
     <!-- Data Tables -->
@@ -24,20 +24,20 @@
         <div class="col-sm-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>膜层</small></h5>
+                    <h5>样式设计</small></h5>
                     <div class="ibox-tools">
-                        <a  data-toggle="modal" data-target="#mask_add_modal" >
+                        <a  data-toggle="modal" data-target="#style_add_modal" >
                             <i class="fa fa-plus"></i>&nbsp;添加
                         </a>
                     </div>
                 </div>
                 <div class="ibox-content">
 
-                    <table id="mask_table" class="table table-striped table-bordered table-hover ">
+                    <table id="style_table" class="table table-striped table-bordered table-hover ">
                         <thead>
                         <tr>
                             <th  >编号</th>
-                            <th >膜层标识</th>
+                            <th  >名称</th>
                             <th >操作</th>
                         </tr>
                         </thead>
@@ -59,24 +59,23 @@
     </div>
 
     <!--品牌信息添加-->
-    <div class="modal inmodal" id="mask_add_modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal inmodal" id="style_add_modal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog ">
             <div class="modal-content animated bounceInRight">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">关闭</span>
                     </button>
                     <i class="fa fa-laptop modal-icon"></i>
-                    <h4 class="modal-title">膜层信息添加</h4>
+                    <h4 class="modal-title">样式设计信息添加</h4>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
                         <label>编号</label>
-                        <input type="text" id="mask_add_mask" placeholder="请输入膜层的编号" class="form-control">
+                        <input type="text" id="style_add_style" placeholder="请输入样式的编号" class="form-control">
                     </div>
-
                     <div class="form-group">
-                        <label>膜层标识</label>
-                        <input type="text" id="mask_add_name" placeholder="请输入膜层的膜层标识" class="form-control">
+                        <label>名称</label>
+                        <input type="text" id="style_add_name" placeholder="请输入样式的名称" class="form-control">
                     </div>
 
                 </div>
@@ -88,19 +87,19 @@
         </div>
     </div>
 
-    <!--膜层信息修改-->
-    <div class="modal inmodal" id="mask_edit_modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <!--品牌信息修改-->
+    <div class="modal inmodal" id="style_edit_modal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog ">
             <div class="modal-content animated bounceInRight">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">关闭</span>
                     </button>
                     <i class="fa fa-laptop modal-icon"></i>
-                    <h4 class="modal-title">膜层信息修改</h4>
+                    <h4 class="modal-title">样式设计信息修改</h4>
                 </div>
                 <div class="modal-body">
-                    <div class="form-group"><label>编号</label> <input readonly type="text" id="mask_edit_mask" placeholder="请输入膜层的编号" class="form-control"></div>
-                    <div class="form-group"><label>膜层标识</label> <input type="text" id="mask_edit_name" placeholder="请输入膜层标识" class="form-control"></div>
+                    <div class="form-group"><label>编号</label> <input readonly type="text" id="style_edit_style" placeholder="请输入品牌编号" class="form-control"></div>
+                    <div class="form-group"><label>名称</label> <input type="text" id="style_edit_name" placeholder="请输入品牌名称" class="form-control"></div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
@@ -114,7 +113,7 @@
 </div>
 
 
-<div class="spiner-example" id="loading-mask">
+<div class="spiner-example" id="loading-style">
     <div class="sk-spinner sk-spinner-wave">
         <div class="sk-rect1"></div>
         <div class="sk-rect2"></div>
@@ -133,7 +132,7 @@
 
 <script src="js/content.min.js?v=1.0.0"></script>
 <!--custom-js-->
-<script src="custom-js/mask.js"></script>
+<script src="custom-js/style.js"></script>
 
 
 

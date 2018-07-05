@@ -394,7 +394,7 @@ $(document).ready(function(){
    $("#loading-goods").css('display','none');
 
     /**
-     * 添加
+     * 添加/修改
      */
     $("#btn_add_save").click(function (e) {
 
@@ -544,7 +544,6 @@ $(document).ready(function(){
             });
         }else{
             //眼镜信息修改
-            //眼镜信息添加
             var delok = true;
             $.ajax({
                 async: false,
