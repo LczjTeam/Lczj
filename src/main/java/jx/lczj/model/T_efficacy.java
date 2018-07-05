@@ -7,12 +7,12 @@ import java.io.Serializable;
  */
 
 /**
- * 类别
+ * 功能
  */
 public class T_efficacy implements Serializable {
 
-    private int efficacy;
-    private String name;
+    private int efficacy;   //功能
+    private String name;    //名称
 
 
     public int getEfficacy() {
