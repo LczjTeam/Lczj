@@ -1,5 +1,5 @@
 /**
- * Created by 14260 on 2018/6/11.
+ * Created by 14260 on 2018/7/05.
  */
 $(document).ready(function(){
 
@@ -66,7 +66,7 @@ $(document).ready(function(){
         data: params,
         dataType: "json",
         success: function (data) {
-           console.log(JSON.stringify(data,null,4));
+            console.log(JSON.stringify(data,null,4));
 
             for(var i = 0 ; i < data.length ; i++) {
                 var datas = data[i];
@@ -177,13 +177,9 @@ $(document).ready(function(){
         success: function (data) {
             var str = '';
             //console.log(JSON.stringify(data,null,4));
-            if(data.length>0) {
-                str += '<option value="' + data[0].color + '" selected="selected">'
-                    + '&nbsp;&nbsp;&nbsp;&nbsp;' + data[0].name + '</option>';
-                for (var i = 0; i < data.length; i++) {
-                    var itm = data[i];
-                    str += '<option value="' + itm.category + '">&nbsp;&nbsp;&nbsp;&nbsp;' + itm.name + '</option>';
-                }
+            for (var i = 0; i < data.length; i++) {
+                var itm = data[i];
+                str+='<option value="'+itm.category+'">&nbsp;&nbsp;&nbsp;&nbsp;'+itm.name+'</option>';
             }
 
             $("#add_category").html(str);
@@ -252,15 +248,12 @@ $(document).ready(function(){
         success: function (data) {
             var str = '';
             //console.log(JSON.stringify(data,null,4));
-            if(data.length>0) {
-
-                str += '<option value="' + data[0].color + '" selected="selected">'
-                    + '&nbsp;&nbsp;&nbsp;&nbsp;' + data[0].name + '</option>';
-                for (var i = 1; i < data.length; i++) {
-                    var itm = data[i];
-                    str += '<option value="' + itm.color + '">' +
-                        '&nbsp;&nbsp;&nbsp;&nbsp;' + itm.name + '</option>';
-                }
+            str+='<option value="'+data[0].color+ '" selected="selected">'
+                + '&nbsp;&nbsp;&nbsp;&nbsp;' + data[0].name+'</option>';
+            for(var i = 1;i < data.length;i++){
+                var itm = data[i];
+                str+='<option value="'+itm.color+ '">' +
+                    '&nbsp;&nbsp;&nbsp;&nbsp;' + itm.name + '</option>';
             }
             $("#add_color").html(str);
             $("#edit_color").html(str);
@@ -293,17 +286,14 @@ $(document).ready(function(){
         success: function (data) {
             var str = '';
             //console.log(JSON.stringify(data,null,4));
-            if(data.length>0) {
-
-                str += '<option value="' + data[0].agesection + '" selected="selected">' +
+            str+='<option value="'+data[0].agesection+ '" selected="selected">' +
+                '&nbsp;&nbsp;&nbsp;&nbsp;'
+                +data[0].name+'('+ parseInt(data[0].minage)+ '-' + parseInt(data[0].maxage)+')</option>';
+            for(var i = 1;i < data.length;i++){
+                var itm = data[i];
+                str+='<option value="'+itm.agesection+ '">' +
                     '&nbsp;&nbsp;&nbsp;&nbsp;'
-                    + data[0].name + '(' + parseInt(data[0].minage) + '-' + parseInt(data[0].maxage) + ')</option>';
-                for (var i = 1; i < data.length; i++) {
-                    var itm = data[i];
-                    str += '<option value="' + itm.agesection + '">' +
-                        '&nbsp;&nbsp;&nbsp;&nbsp;'
-                        + itm.name + '(' + parseInt(itm.minage) + '-' + parseInt(itm.maxage) + ')</option>';
-                }
+                    +itm.name+'('+ parseInt(itm.minage)+ '-' + parseInt(itm.maxage)+')</option>';
             }
             $("#add_agesection").html(str);
             $("#edit_agesection").html(str);
@@ -336,15 +326,12 @@ $(document).ready(function(){
         success: function (data) {
             var str = '';
             console.log(JSON.stringify(data,null,4));
-            if(data.length>0) {
-
-                str += '<option value="' + data[0].face + '" selected="selected">' +
-                    '&nbsp;&nbsp;&nbsp;&nbsp;' + data[0].name + '</option>';
-                for (var i = 1; i < data.length; i++) {
-                    var itm = data[i];
-                    str += '<option value="' + itm.face + '">' +
-                        '&nbsp;&nbsp;&nbsp;&nbsp;' + itm.name + '</option>';
-                }
+            str+='<option value="'+data[0].face+ '" selected="selected">' +
+                '&nbsp;&nbsp;&nbsp;&nbsp;' +data[0].name+ '</option>';
+            for(var i = 1;i < data.length;i++){
+                var itm = data[i];
+                str+='<option value="'+itm.face+ '">' +
+                    '&nbsp;&nbsp;&nbsp;&nbsp;' +itm.name+ '</option>';
             }
             $("#add_face").html(str);
             $("#edit_face").html(str);
@@ -378,15 +365,12 @@ $(document).ready(function(){
         success: function (data) {
             var str = '';
             //console.log(JSON.stringify(data,null,4));
-            if(data.length>0) {
-
-                str += '<option value="' + data[0].occasion + '" selected="selected">' +
-                    '&nbsp;&nbsp;&nbsp;&nbsp;' + data[0].name + '</option>';
-                for (var i = 1; i < data.length; i++) {
-                    var itm = data[i];
-                    str += '<option value="' + itm.occasion + '">' +
-                        '&nbsp;&nbsp;&nbsp;&nbsp;' + itm.name + '</option>';
-                }
+            str+='<option value="'+data[0].occasion+ '" selected="selected">' +
+                '&nbsp;&nbsp;&nbsp;&nbsp;' +data[0].name+ '</option>';
+            for(var i = 1;i < data.length;i++){
+                var itm = data[i];
+                str+='<option value="'+itm.occasion+ '">' +
+                    '&nbsp;&nbsp;&nbsp;&nbsp;' +itm.name+ '</option>';
             }
             $("#add_occasion").html(str);
             $("#edit_occasion").html(str);
@@ -407,7 +391,7 @@ $(document).ready(function(){
 
 
 
-   $("#loading-goods").css('display','none');
+    $("#loading-goods").css('display','none');
 
     /**
      * 添加/修改
@@ -686,8 +670,8 @@ $(document).ready(function(){
 
 
     function setEvents() {
-         $(".delete").unbind("click");
-         $(".edit").unbind("click");
+        $(".delete").unbind("click");
+        $(".edit").unbind("click");
         /**
          * 删除
          */
@@ -874,7 +858,7 @@ $(document).ready(function(){
                             '</div>';
 
                         $("#atts_list").append(str);
-                     }
+                    }
 
 
                     $(".atts_deletes").unbind('click');
