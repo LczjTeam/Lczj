@@ -6,6 +6,7 @@ package jx.lczj.model;
  */
 public class T_mask {
 
+
     private int mask;   //名称
     private String name;    //膜层标识
 
