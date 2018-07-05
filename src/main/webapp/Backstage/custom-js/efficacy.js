@@ -1,16 +1,16 @@
 /**
- * Created by 25778 on 2018/6/18.
+ * Created by 14260 on 2018/6/11.
  */
 $(document).ready(function(){
 
-    var table = $("#brand_table");
+    var table = $("#efficacy_table");
     table.dataTable({
         "columnDefs": [{ // set default column settings
             'orderable': false,
-            'targets': [4]
+            'targets': [2]
         }, {
             "searchable": false,
-            "targets": [4]
+            "targets": [2]
         }],
         "order": [
             [0, "asc"]
@@ -20,23 +20,21 @@ $(document).ready(function(){
     $.ajax({
         async: false,
         type: "POST",
-        url: "../brand/list",       //注意路径
+        url: "../efficacy/list",       //注意路径
         data: params,
         dataType: "json",
         success: function (data) {
             console.log(JSON.stringify(data,null,4));
             for (var i = 0; i < data.length; i++) {
                 console.log(JSON.stringify(data[i],null,4));
-                console.log(data[i].brand);
-                console.log(data[i].name);
-                console.log(data[i].company);
-                console.log(data[i].type);
+                console.log(data[i].efficacy);
+                console.log(data[i].name)
+
                 var itm = data[i];
+
                 table.fnAddData([
-                    itm.brand,
+                    itm.efficacy,
                     itm.name,
-                    itm.company,
-                    typeIntToStr(itm.type),
                     '<a class="edit"  ><i class="fa fa-edit"></i>&nbsp;编辑</a>' +
                     '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' +
                     '<a class="delete" ><i class="fa fa-trash"></i>&nbsp;删除</a>'
@@ -44,8 +42,7 @@ $(document).ready(function(){
             }
         },
         error: function (data) {
-            //  console.log(JSON.stringify(data,null,4));
-            //alert("数据获取失败 ！");
+
             swal({
                 title: "数据获取失败！",
                 text: "",
@@ -58,32 +55,8 @@ $(document).ready(function(){
             });
         }
     });
-    $("#loading-brand").css('display','none');
+    $("#loading-efficacy").css('display','none');
 
-    //type,int类型转string类型
-    function typeIntToStr(int_type) {
-        if (int_type==0){
-            return '通用品牌'
-        }
-        else if(int_type==1){
-            return '镜框品牌'
-        }
-        else if (int_type==2){
-            return '镜片品牌'
-        }
-    }
-
-    function typeStrToInt(str_type) {
-        if (str_type=='通用品牌'){
-            return 0;
-        }
-        else if(str_type=='镜框品牌'){
-            return 1;
-        }
-        else if (str_type=='镜片品牌'){
-            return 2;
-        }
-    }
 
     /**
      * 添加
@@ -91,13 +64,11 @@ $(document).ready(function(){
     $("#btn_add_save").click(function(e){
         var delok = true;
         var params={};
-        params.brand = $('#brand_add_brand').val();
-        params.name =$('#brand_add_name').val();
-        params.company =$('#brand_add_company').val();
-        params.type = $('#brand_add_type').val();
-        if(params.brand == ''|| params.name == ''|| params.company == ''){
+        params.efficacy = $('#efficacy_add_efficacy').val();
+        params.name =$('#efficacy_add_name').val();
+        if(params.efficacy == ''|| params.name == '' ){
             swal({
-                title: "编号、名称和制造商不能为空！",
+                title: "功能编号、功能名称不能为空！",
                 text: "",
                 type: "warning",
                 allowOutsideClick: true,
@@ -108,10 +79,14 @@ $(document).ready(function(){
             });
             return;
         }
+
+        console.log($('#efficacy_add_efficacy').val());
+        console.log($('#efficacy_add_name').val());
+
         $.ajax({
             async: false,
             type: "POST",
-            url: "../brand/add",//注意路径
+            url: "../efficacy/add",//注意路径
             data: params,
             dataType: "json",
             success: function (data) {
@@ -139,23 +114,16 @@ $(document).ready(function(){
             return;
         }
         table.fnAddData([
-            $('#brand_add_brand').val(),
-            $('#brand_add_name').val(),
-            $('#brand_add_company').val(),
-            typeIntToStr($('#brand_add_type').val()),
-            // $('#brand_add_company').option($('#brand_add_company').selectedIndex).text();
+            $('#efficacy_add_efficacy').val(),
+            $('#efficacy_add_name').val(),
             '<a class="edit"  ><i class="fa fa-edit"></i>&nbsp;编辑</a>' +
             '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' +
             '<a class="delete" ><i class="fa fa-trash"></i>&nbsp;删除</a>'
         ]);
         table.fnDraw();
-        $('#brand_add_brand').val('');
-        $('#brand_add_name').val('');
-        $('#brand_add_company').val('');
-        typeIntToStr($('#brand_add_type').val()),
-        // $('#brand_add_company').option($('#brand_add_company').selectedIndex).text();
-
-        $('#brand_add_modal').modal('hide')
+        $('#efficacy_add_efficacy').val();
+        $('#efficacy_add_name').val('');
+        $('#efficacy_add_modal').modal('hide')
         swal({
             title: "添加成功！",
             text: "",
@@ -179,11 +147,9 @@ $(document).ready(function(){
         EditRow = nRow;
         var aData = table.fnGetData(nRow);
 
-        $('#brand_edit_brand').val(aData[0]);
-        $('#brand_edit_name').val(aData[1]);
-        $('#brand_edit_company').val(aData[2]);
-        $('#brand_edit_type').val(typeStrToInt(aData[3])),
-        $('#brand_edit_modal').modal('show')
+        $('#efficacy_edit_efficacy').val(aData[0]);
+        $('#efficacy_edit_name').val(aData[1]);
+        $('#efficacy_edit_modal').modal('show')
     });
 
 
@@ -191,15 +157,12 @@ $(document).ready(function(){
         var nRow = EditRow;
         var delok = true;
         var params={};
-        params.brand = $('#brand_edit_brand').val();
-        params.name =$('#brand_edit_name').val();
-        params.company = $('#brand_edit_company').val();
-        params.type = $('#brand_edit_type').val();
+        params.efficacy = $('#efficacy_edit_efficacy').val();
+        params.name =$('#efficacy_edit_name').val();
 
-
-        if(params.brand == ''||params.name == ''||params.company == '' ){
+        if(params.name == '' ){
             swal({
-                title: "品牌编号、名称和制造商不能为空！",
+                title: "名称不能为空！",
                 text: "",
                 type: "warning",
                 allowOutsideClick: true,
@@ -214,7 +177,7 @@ $(document).ready(function(){
         $.ajax({
             async: false,
             type: "POST",
-            url: "../brand/update",//注意路径
+            url: "../efficacy/update",//注意路径
             data: params,
             dataType: "json",
             success: function (data) {
@@ -242,16 +205,12 @@ $(document).ready(function(){
             return;
         }
 
-        table.fnUpdate($('#brand_edit_brand').val(), nRow, 0, false);
-        table.fnUpdate($('#brand_edit_name').val(), nRow, 1, false);
-        table.fnUpdate($('#brand_edit_company').val(), nRow, 2, false);
-        table.fnUpdate(typeIntToStr($('#brand_edit_type').val()), nRow, 3, false);
+        table.fnUpdate($('#efficacy_edit_efficacy').val(), nRow, 0, false);
+        table.fnUpdate($('#efficacy_edit_name').val(), nRow, 1, false);
         table.fnDraw();
-        $('#brand_edit_brand').val('');
-        $('#brand_edit_name').val('');
-        $('#brand_edit_company').val('');
-        typeIntToStr($('#brand_edit_type').val());
-        $('#brand_edit_modal').modal('hide')
+        $('#efficacy_edit_efficacy').val('');
+        $('#efficacy_edit_name').val('');
+        $('#efficacy_edit_modal').modal('hide')
         swal({
             title: "保存成功！",
             text: "",
@@ -290,11 +249,11 @@ $(document).ready(function(){
             if (!isConfirm) return;
             var delok = true;
             var params={};
-            params.brand = aData[0];
+            params.efficacy = aData[0];
             $.ajax({
                 async: false,
                 type: "POST",
-                url: "../brand/delete",//注意路径
+                url: "../efficacy/delete",//注意路径
                 data: params,
                 dataType: "json",
                 success: function (data) {

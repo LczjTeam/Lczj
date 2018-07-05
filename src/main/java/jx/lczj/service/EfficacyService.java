@@ -1,7 +1,7 @@
 package jx.lczj.service;
 
-import jx.lczj.dao.BrandDao;
-import jx.lczj.model.T_brand;
+import jx.lczj.dao.EfficacyDao;
+import jx.lczj.model.T_efficacy;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -13,42 +13,41 @@ import java.util.List;
  */
 
 @Service
-public class BrandService {
+public class EfficacyService {
 
 
     @Resource
-    BrandDao brandDao;
+    EfficacyDao efficacyDao;
 
     /**
-     * 获取品牌信息
+     * 获取功能管理信息
      * @return
      */
-    public List<T_brand> loadList() {
-        return brandDao.loadList();
+    public List<T_efficacy> loadList() {
+        return efficacyDao.loadList();
     }
 
     /**
-     * 添加品牌信息
-     * @param brand
+     * 添加功能管理信息
+     * @param efficacy
      * @param name
-     * @param company
      * @return
      */
-    public boolean add(int brand, String name, String company,int type) {
-        return brandDao.add(brand,name,company,type);
+    public boolean add(int efficacy, String name) {
+        return efficacyDao.add(efficacy,name);
     }
 
+
     /**
-     * 更新品牌信息
-     * @param brand
+     * 更新功能管理信息
+     * @param efficacy
      * @param name
-     * @param company
      * @return
      */
     @Transactional
-    public boolean update(int brand, String name, String company,int type) {
+    public boolean update(int efficacy, String name) {
         try {
-            boolean ok = brandDao.update(brand,name,company,type);
+            boolean ok = efficacyDao.update(efficacy,name);
             return true;
         }catch (Exception e){
             throw  new RuntimeException(e.getMessage());
@@ -57,14 +56,14 @@ public class BrandService {
 
 
     /**
-     * 删除品牌信息
-     * @param brand
+     * 删除功能管理信息
+     * @param efficacy
      * @return
      */
     @Transactional
-    public boolean delete(String brand) {
+    public boolean delete(int efficacy) {
         try {
-            brandDao.delete(brand);
+            efficacyDao.delete(efficacy);
             return true;
         }catch (Exception e){
             throw new RuntimeException(e.getMessage());
