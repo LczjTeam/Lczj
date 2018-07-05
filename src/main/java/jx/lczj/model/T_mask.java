@@ -25,7 +25,6 @@ public class T_mask {
     public void setName(String name) {
         this.name = name;
     }
-
     @Override
     public String toString() {
         return "T_mask{" +
