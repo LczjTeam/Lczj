@@ -1,9 +1,9 @@
 /**
- * Created by 14260 on 2018/6/11.
+ * Created by 25778 on 2018/6/18.
  */
 $(document).ready(function(){
 
-    var table = $("#role_table");
+    var table = $("#mask_table");
     table.dataTable({
         "columnDefs": [{ // set default column settings
             'orderable': false,
@@ -20,25 +20,27 @@ $(document).ready(function(){
     $.ajax({
         async: false,
         type: "POST",
-        url: "../role/list",//注意路径
+        url: "../mask/list",       //注意路径
         data: params,
         dataType: "json",
         success: function (data) {
-          //  console.log(JSON.stringify(data,null,4));
+            console.log(JSON.stringify(data,null,4));
             for (var i = 0; i < data.length; i++) {
-              //  console.log(JSON.stringify(data[i],null,4));
-               // console.log(data[i].role);
-               // console.log(data[i].name);
+                console.log(JSON.stringify(data[i],null,4));
+                console.log(data[i].mask);
+                console.log(data[i].name)
                 var itm = data[i];
                 table.fnAddData([
-                    itm.role,
+                    itm.mask,
                     itm.name,
-                    '<a class="edit"  ><i class="fa fa-edit"></i>&nbsp;编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="delete" ><i class="fa fa-trash"></i>&nbsp;删除</a>'
+                    '<a class="edit"  ><i class="fa fa-edit"></i>&nbsp;编辑</a>' +
+                    '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' +
+                    '<a class="delete" ><i class="fa fa-trash"></i>&nbsp;删除</a>'
                 ]);
             }
         },
         error: function (data) {
-          //  console.log(JSON.stringify(data,null,4));
+            //  console.log(JSON.stringify(data,null,4));
             //alert("数据获取失败 ！");
             swal({
                 title: "数据获取失败！",
@@ -52,21 +54,20 @@ $(document).ready(function(){
             });
         }
     });
+    $("#loading-mask").css('display','none');
 
 
-    $("#loading-role").css('display','none');
     /**
      * 添加
      */
     $("#btn_add_save").click(function(e){
         var delok = true;
         var params={};
-        params.role = $('#role_add_role').val();
-        params.name =$('#role_add_name').val();
-
-        if(params.role =='' || params.name == '' ){
+        params.mask = $('#mask_add_mask').val();
+        params.name =$('#mask_add_name').val();
+        if(params.mask == ''|| params.name == ''){
             swal({
-                title: "角色、名称不能为空！",
+                title: "编号、名称和制造商不能为空！",
                 text: "",
                 type: "warning",
                 allowOutsideClick: true,
@@ -77,11 +78,10 @@ $(document).ready(function(){
             });
             return;
         }
-
         $.ajax({
             async: false,
             type: "POST",
-            url: "../role/add",//注意路径
+            url: "../mask/add",//注意路径
             data: params,
             dataType: "json",
             success: function (data) {
@@ -109,14 +109,16 @@ $(document).ready(function(){
             return;
         }
         table.fnAddData([
-            $('#role_add_role').val(),
-            $('#role_add_name').val(),
-            '<a class="edit"  ><i class="fa fa-edit"></i>&nbsp;编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="delete" ><i class="fa fa-trash"></i>&nbsp;删除</a>'
+            $('#mask_add_mask').val(),
+            $('#mask_add_name').val(),
+            '<a class="edit"  ><i class="fa fa-edit"></i>&nbsp;编辑</a>' +
+            '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' +
+            '<a class="delete" ><i class="fa fa-trash"></i>&nbsp;删除</a>'
         ]);
         table.fnDraw();
-        $('#role_add_role').val('');
-        $('#role_add_name').val('');
-        $('#role_add_modal').modal('hide')
+        $('#mask_add_mask').val('');
+        $('#mask_add_name').val('');
+        $('#mask_add_modal').modal('hide')
         swal({
             title: "添加成功！",
             text: "",
@@ -135,14 +137,14 @@ $(document).ready(function(){
     var  EditRow = -1;
     table.on('click', '.edit', function (e) {
         e.preventDefault();
+
         var nRow = $(this).parents('tr')[0];
         EditRow = nRow;
         var aData = table.fnGetData(nRow);
-        //alert(aData[0]);
-        $('#role_edit_role').val(aData[0]);
-        $('#role_edit_name').val(aData[1]);
-        $('#role_edit_modal').modal('show')
 
+        $('#mask_edit_mask').val(aData[0]);
+        $('#mask_edit_name').val(aData[1]);
+        $('#mask_edit_modal').modal('show')
     });
 
 
@@ -150,11 +152,13 @@ $(document).ready(function(){
         var nRow = EditRow;
         var delok = true;
         var params={};
-        params.role = $('#role_edit_role').val();
-        params.name =$('#role_edit_name').val();
-        if(params.role =='' || params.name == '' ){
+        params.mask = $('#mask_edit_mask').val();
+        params.name =$('#mask_edit_name').val();
+
+
+        if(params.mask == ''||params.name == '' ){
             swal({
-                title: "名称不能为空！",
+                title: "品牌编号、名称和制造商不能为空！",
                 text: "",
                 type: "warning",
                 allowOutsideClick: true,
@@ -165,10 +169,11 @@ $(document).ready(function(){
             });
             return;
         }
+
         $.ajax({
             async: false,
             type: "POST",
-            url: "../role/update",//注意路径
+            url: "../mask/update",//注意路径
             data: params,
             dataType: "json",
             success: function (data) {
@@ -195,12 +200,13 @@ $(document).ready(function(){
             });
             return;
         }
-        table.fnUpdate($('#role_edit_role').val(), nRow, 0, false);
-        table.fnUpdate($('#role_edit_name').val(), nRow, 1, false);
+
+        table.fnUpdate($('#mask_edit_mask').val(), nRow, 0, false);
+        table.fnUpdate($('#mask_edit_name').val(), nRow, 1, false);
         table.fnDraw();
-        $('#role_edit_role').val('');
-        $('#role_edit_name').val('');
-        $('#role_edit_modal').modal('hide')
+        $('#mask_edit_mask').val('');
+        $('#mask_edit_name').val('');
+        $('#mask_edit_modal').modal('hide')
         swal({
             title: "保存成功！",
             text: "",
@@ -211,9 +217,8 @@ $(document).ready(function(){
             confirmButtonClass: "btn-success",
             confirmButtonText: "OK",
         });
-
-
     });
+
 
     /**
      * 删除
@@ -222,7 +227,6 @@ $(document).ready(function(){
         e.preventDefault();
         var nRow = $(this).parents('tr')[0];
         var aData = table.fnGetData(nRow);
-        //alert("delete:"+aData[0]);
 
         swal({
             title: "确认删除这一行数据 ?",
@@ -241,30 +245,27 @@ $(document).ready(function(){
             if (!isConfirm) return;
             var delok = true;
             var params={};
-            params.role = aData[0];
+            params.mask = aData[0];
             $.ajax({
                 async: false,
                 type: "POST",
-                url: "../role/delete",//注意路径
+                url: "../mask/delete",//注意路径
                 data: params,
                 dataType: "json",
                 success: function (data) {
                     if (data) {
-
                         return;
                     } else {
                         delok = false;
-
                     }
                 },
                 error: function (data) {
                     delok = false;
-
                 }
             });
             if (!delok){
                 swal({
-                    title: "删除失败！",
+                    title: "删除失败",
                     text: "",
                     type: "error",
                     allowOutsideClick: true,
@@ -288,4 +289,5 @@ $(document).ready(function(){
             });
         });
     });
+
 });
