@@ -2,6 +2,7 @@ package jx.lczj.controller;
 
 import com.sun.deploy.panel.ITreeNode;
 import jdk.nashorn.internal.ir.ReturnNode;
+import jx.lczj.anotation.Privilege;
 import jx.lczj.model.T_mask;
 import jx.lczj.service.MaskService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,18 +30,18 @@ public class MaskController {
      * @param name
      * @return
      */
-    //@Privilege(value = "膜层管理")
+    @Privilege(value = "膜层管理")
     @RequestMapping("/add")
     @ResponseBody
     public boolean add(int mask,String name){
         return maskService.add(mask,name);
     }
-
+    @Privilege(value = "膜层管理")
     @RequestMapping("/delete")
     @ResponseBody
     public boolean delete(String mask){return maskService.delete(mask);}
 
-
+    @Privilege(value = "膜层管理")
     @RequestMapping("/update")
      @ResponseBody
     public boolean update(int mask,String name){return maskService.update(mask,name);}
