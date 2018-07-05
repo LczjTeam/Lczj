@@ -14,7 +14,6 @@ public class T_efficacy implements Serializable {
     private int efficacy;   //功能
     private String name;    //名称
 
-
     public int getEfficacy() {
         return efficacy;
     }
