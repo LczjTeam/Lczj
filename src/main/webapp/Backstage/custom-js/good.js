@@ -30,7 +30,7 @@ $(document).ready(function(){
             initJs = true;
         }
 
-
+        $("#add_good").removeAttr('readonly')
         $("#add_good").val('');
         $("#add_name").val('');
         $("#add_models").val('');
@@ -210,7 +210,7 @@ $(document).ready(function(){
     $.ajax({
         async: false,
         type: "POST",
-        url: "../brand/list",       //注意路径
+        url: "../brand/list2",       //注意路径
         data: params,
         dataType: "json",
         success: function (data) {
@@ -927,6 +927,8 @@ $(document).ready(function(){
                     });
 
                     $("#good_title").text('眼镜信息修改');
+
+                    $("#add_good").attr('readonly','readonly');
 
                     $("#page_good_list").css('display','none');
                     $("#page_good_add").css('display','block');
