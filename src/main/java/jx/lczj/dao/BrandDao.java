@@ -25,4 +25,7 @@ public interface BrandDao {
 
     @Select("select * from T_BRAND WHERE BRAND = #{0}")
     T_brand loadById(int brand);
+    //获取镜片信息
+    @Select("select * from T_BRAND where TYPE = 1 or TYPE = 0 ")
+    List<T_brand> loadList1();
 }

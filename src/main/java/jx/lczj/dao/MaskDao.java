@@ -21,4 +21,7 @@ public interface MaskDao {
 
     @Update("update T_mask set  NAME = #{1} where MASK = #{0}")
     boolean update(int mask, String name);
+
+    @Select("select * from T_mask where MASK = #{0}")
+    T_mask loadById(int mask);
 }

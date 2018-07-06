@@ -71,4 +71,7 @@ public class BrandService {
         }
     }
 
+    public List<T_brand> loadList1() {
+        return brandDao.loadList1();
+    }
 }
