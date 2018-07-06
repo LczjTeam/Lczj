@@ -25,7 +25,7 @@ public class GoodController {
     GoodService goodService;
 
     /**
-     * 商品信息
+     * 获取所有商品信息
      * @return
      */
     @RequestMapping("/list")
@@ -82,7 +82,7 @@ public class GoodController {
 
 
     /**
-     * 上传文件
+     * 删除附件
      * @param request
      * @return
      */
@@ -110,7 +110,7 @@ public class GoodController {
     }
 
     /**
-     * 删除
+     * 通过编号获取镜框信息
      * @param code
      * @return
      */
