@@ -178,9 +178,9 @@ $(document).ready(function(){
             var str = '';
             //console.log(JSON.stringify(data,null,4));
             if(data.length>0) {
-                str += '<option value="' + data[0].color + '" selected="selected">'
+                str += '<option value="' + data[0].category + '" selected="selected">'
                     + '&nbsp;&nbsp;&nbsp;&nbsp;' + data[0].name + '</option>';
-                for (var i = 0; i < data.length; i++) {
+                for (var i = 1; i < data.length; i++) {
                     var itm = data[i];
                     str += '<option value="' + itm.category + '">&nbsp;&nbsp;&nbsp;&nbsp;' + itm.name + '</option>';
                 }
@@ -216,9 +216,13 @@ $(document).ready(function(){
         success: function (data) {
             var str = '';
             //console.log(JSON.stringify(data,null,4));
-            for (var i = 0; i < data.length; i++) {
-                var itm = data[i];
-                str+='<option value="'+itm.brand+'">'+itm.name+'</option>';
+            if(data.length>0) {
+                str += '<option value="' + data[0].brand + '" selected="selected">'
+                    + '&nbsp;&nbsp;&nbsp;&nbsp;' + data[0].name + '</option>';
+                for (var i = 1; i < data.length; i++) {
+                    var itm = data[i];
+                    str += '<option value="' + itm.brand + '">' + itm.name + '</option>';
+                }
             }
 
             $("#add_brand").html(str);
