@@ -71,7 +71,19 @@ public class BrandService {
         }
     }
 
+    /**
+     * 获取镜片信息
+     * @return
+     */
     public List<T_brand> loadList1() {
         return brandDao.loadList1();
+    }
+
+    /**
+     * 获取镜框信息
+     * @return
+     */
+    public List<T_brand> loadList2() {
+        return brandDao.loadList2();
     }
 }

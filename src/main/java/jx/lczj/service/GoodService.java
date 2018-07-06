@@ -247,6 +247,7 @@ public class GoodService  {
             String occasions = request.getParameter("occasions");
             System.out.println("occasions:" + occasions);
 
+
             String[] os = occasions.split("\\,");
             for (String s : os) {
                 boolean ok = goodDao.addOccasionDiv(Integer.parseInt(s), goods);

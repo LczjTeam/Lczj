@@ -25,13 +25,14 @@ public class BrandController {
    BrandService brandService;
 
     /**
-     * 加载品牌信息
+     * 加载所有品牌信息
      */
     @RequestMapping("/list")
     @ResponseBody
     public List<T_brand> list(){
         return brandService.loadList();
     }
+
     /**
      * 加载镜片品牌信息
      */
@@ -40,6 +41,16 @@ public class BrandController {
     public List<T_brand> list1(){
         return brandService.loadList1();
     }
+
+    /**
+     * 加载镜框品牌信息
+     */
+    @RequestMapping("/list2")
+    @ResponseBody
+    public List<T_brand> list2(){
+        return brandService.loadList2();
+    }
+
 
     /**
      * 添加品牌信息
