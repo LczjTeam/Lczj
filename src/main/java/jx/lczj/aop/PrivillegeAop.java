@@ -94,7 +94,7 @@ public class PrivillegeAop {
     @AfterReturning("controllerMethod()")
     public void doAfter(){
         System.out.println("结束....");
-        System.out.println("耗时"+(System.currentTimeMillis()-nowSec) + "秒");
+        System.out.println("耗时"+(System.currentTimeMillis()-nowSec) + "毫秒");
     }
 
     @AfterThrowing(pointcut="controllerMethod()")
