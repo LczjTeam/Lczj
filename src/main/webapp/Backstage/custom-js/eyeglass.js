@@ -30,6 +30,7 @@ $(document).ready(function(){
             initJs = true;
         }
 
+        $("#eyeglass").removeAttr('readonly');
 
         $("#eyeglass").val('');
         $("#add_name").val('');
@@ -664,7 +665,7 @@ $(document).ready(function(){
                     });
 
                     $("#eyeglass_title").text('镜片信息修改');
-
+                    $("#eyeglass").attr('readonly','readonly');
                     $("#page_eyeglass_list").css('display','none');
                     $("#page_eyeglass_add").css('display','block');
 
