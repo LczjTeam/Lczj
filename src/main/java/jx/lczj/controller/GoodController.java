@@ -25,7 +25,7 @@ public class GoodController {
     GoodService goodService;
 
     /**
-     * 获取所有商品信息
+     * 获取所有镜框信息
      * @return
      */
     @RequestMapping("/list")

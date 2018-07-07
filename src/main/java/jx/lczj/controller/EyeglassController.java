@@ -23,24 +23,53 @@ public class EyeglassController {
     @Autowired
     EyeglassService eyeglassService;
 
+    /**
+     * 获取所有镜片信息
+     * @return
+     */
     @RequestMapping("/list")
     @ResponseBody
     public List<EyeglassVo> list(){return eyeglassService.loadlist();};
 
+    /**
+     * 添加
+     * @param fileName
+     * @param request
+     * @param session
+     * @return
+     */
     @Privilege("镜片管理")
     @RequestMapping("/add")
     @ResponseBody
     public EyeglassVo add(String[] fileName, HttpServletRequest request, HttpSession session){return eyeglassService.add(fileName,request,session);}
 
+    /**
+     * 通过编号获取镜片信息
+     * @param code
+     * @return
+     */
     @RequestMapping("/loadById")
     @ResponseBody
     public EyeglassVo loadById(String code){return eyeglassService.loadById(code);};
 
+    /**
+     * 编辑
+     * @param fileName
+     * @param request
+     * @param session
+     * @return
+     */
     @Privilege("镜片管理")
     @RequestMapping("/update")
     @ResponseBody
     public EyeglassVo update(String[] fileName, HttpServletRequest request, HttpSession session){return eyeglassService.update(fileName,request,session);};
 
+    /**
+     * 删除
+     * @param code
+     * @param request
+     * @return
+     */
     @Privilege("镜片管理")
     @RequestMapping("/delete")
     @ResponseBody
