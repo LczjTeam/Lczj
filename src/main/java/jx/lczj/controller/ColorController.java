@@ -21,6 +21,13 @@ public class ColorController {
     @Autowired
     ColorService colorService;
 
+
+    /**
+     * 添加颜色
+     * @param file
+     * @param request
+     * @return
+     */
     @Privilege(value = "颜色管理")
     @RequestMapping("/addColor")
     @ResponseBody
@@ -30,12 +37,22 @@ public class ColorController {
 
     }
 
+    /**
+     * 获取颜色信息列表
+     * @return
+     */
     @RequestMapping("/list")
     @ResponseBody
     public List<T_color>loadColor(){
         return colorService.loadColors();
     }
 
+    /**
+     * 删除颜色信息
+     * @param color
+     * @param request
+     * @return
+     */
     @Privilege(value = "颜色管理")
     @RequestMapping("/delete")
     @ResponseBody
@@ -45,6 +62,11 @@ public class ColorController {
     }
 
 
+    /**
+     * 通过颜色编号获取
+     * @param color
+     * @return
+     */
     @RequestMapping("/loadByColor")
     @ResponseBody
     public T_color loadByColor(String color){
