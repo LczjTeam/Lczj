@@ -71,7 +71,11 @@ public class RoleController {
     }
 
 
-
+    /**
+     * 获取角色信息
+     * @param admin
+     * @return
+     */
     @RequestMapping("/loadByAdminId")
     @ResponseBody
     public List<T_role>  loadByAdminId(String admin){

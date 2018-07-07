@@ -20,6 +20,10 @@ public class FaceController {
     @Autowired
     FaceService faceService;
 
+    /**
+     * 获取所有脸型信息
+     * @return
+     */
     @RequestMapping("/list")
     @ResponseBody
     public List<T_face> loadFace(){return faceService.loadFace();}
@@ -37,15 +41,34 @@ public class FaceController {
         return  faceService.addFace(request,file,file1);
 
     }
+
+    /**
+     * 获取脸型信息
+     * @param face
+     * @return
+     */
     @RequestMapping("/loadByFace")
     @ResponseBody
     public T_face loadByFace(String face){return faceService.loadByFace(Integer.parseInt(face));}
 
+    /**
+     * 编辑
+     * @param file
+     * @param file1
+     * @param request
+     * @return
+     */
     @Privilege(value = "脸型管理")
     @RequestMapping("/update")
     @ResponseBody
     public boolean updateFace(MultipartFile file ,MultipartFile file1,HttpServletRequest request){return faceService.updateFace(file,file1,request);}
 
+    /**
+     * 更新
+     * @param face
+     * @param request
+     * @return
+     */
     @Privilege(value = "脸型管理")
     @RequestMapping("/delete")
     @ResponseBody

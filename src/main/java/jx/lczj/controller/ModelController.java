@@ -42,6 +42,10 @@ public class ModelController {
 
     }
 
+    /**
+     * 获取所有模特信息
+     * @return
+     */
     @RequestMapping("/list")
     @ResponseBody
     public List<ModelVo>loadModel(){
