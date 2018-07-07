@@ -16,6 +16,7 @@ public class MenuService {
 
     @Resource
     MenuDao menuDao;
+
     /**
      * 获取菜单信息
      * @return
@@ -38,6 +39,7 @@ public class MenuService {
        }
         return menuVo3;
     }
+
     /**
      * 通过I的获取信息
      */
@@ -45,6 +47,7 @@ public class MenuService {
     {
         return  menuDao.loadById(menu);
     }
+
     /**
      * 更新菜单信息
      * @return
@@ -61,6 +64,18 @@ public class MenuService {
         return menuDao.loadRoot();
     }
 
+    /**
+     * 添加菜单信息
+     * @param menu
+     * @param title
+     * @param parents
+     * @param url
+     * @param method
+     * @param sort_no
+     * @param visible
+     * @param css
+     * @return
+     */
     public boolean add(String menu, String title, String parents, String url, String method, int sort_no, int visible, String css) {
         return menuDao.add(menu, title, parents, url, method, sort_no, visible, css);
     }
@@ -85,11 +100,19 @@ public class MenuService {
     }
 
 
-
+    /**
+     * 通过角色获取菜单
+     * @param role
+     * @return
+     */
     public List<T_menu> loadByRole(String role) {
         return menuDao.loadByRole(role);
     }
 
+    /**
+     * 获取二级菜单
+     * @return
+     */
     public List<T_menu> loadChildren() {
         return menuDao.loadChildren();
 

@@ -67,29 +67,23 @@ public class OccasionService {
         }
     }
 
+    /**
+     * 通过id获取场景信息
+     * @param occasion
+     * @return
+     */
     public T_occasion loadByoccasion(int occasion) {
         return occasionDao.loadByoccasion(occasion);
     }
 
-/*
-    @Transactional
-    public boolean delete(String occasion) {
-        try {
 
-            occasionDao.delete(occasion);
-            return  true;
-        }catch (Exception e){
-            throw new RuntimeException(e.getMessage());
-        }
-    }
-*/
-
-/*
-    */
-/**
-     * 修改信息
+    /**
+     * 更新
+     * @param file1
+     * @param file2
+     * @param request
+     * @return
      */
-
     @Transactional
     public boolean update(MultipartFile file1,MultipartFile file2, HttpServletRequest request) {
         try {
@@ -178,7 +172,6 @@ public class OccasionService {
 
     /**
      * 添加场景
-     *
      * @param file1
      * @param request
      * @return

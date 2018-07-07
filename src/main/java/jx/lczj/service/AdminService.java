@@ -133,10 +133,23 @@ public class AdminService {
         }
     }
 
+    /**
+     * 重置密码
+     * @param admin
+     * @return
+     */
     public boolean resetPwd(String admin) {
         return adminDao.resetPwd(admin);
     }
 
+    /**
+     * 更新用户信息
+     * @param admin
+     * @param name
+     * @param pwd
+     * @param session
+     * @return
+     */
     @Transactional
     public boolean update(String admin, String name, String pwd, HttpSession session) {
 
@@ -163,6 +176,12 @@ public class AdminService {
         }
     }
 
+    /**
+     * 更新角色
+     * @param admin
+     * @param roles
+     * @return
+     */
     @Transactional
     public boolean userRoleUpdate(String admin, String roles) {
 

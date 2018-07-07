@@ -68,11 +68,21 @@ public class RoleService {
         return roleDao.insert(role,name);
     }
 
-
+    /**
+     * 通过用户id获取角色信息
+     * @param admin
+     * @return
+     */
     public List<T_role> loadByAdminId(String admin) {
         return roleDao.loadByAdminId(admin);
     }
 
+    /**
+     * 角色菜单更新
+     * @param role
+     * @param menus
+     * @return
+     */
     @Transactional
     public boolean roleMenuUpdate(String role, String menus) {
 
