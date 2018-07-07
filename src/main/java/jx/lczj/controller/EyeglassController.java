@@ -32,7 +32,6 @@ public class EyeglassController {
     @ResponseBody
     public EyeglassVo add(String[] fileName, HttpServletRequest request, HttpSession session){return eyeglassService.add(fileName,request,session);}
 
-    @Privilege("镜片管理")
     @RequestMapping("/loadById")
     @ResponseBody
     public EyeglassVo loadById(String code){return eyeglassService.loadById(code);};
