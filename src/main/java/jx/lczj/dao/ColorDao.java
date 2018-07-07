@@ -18,7 +18,7 @@ public  interface  ColorDao {
     public  boolean addColor(int color, String name, String rgb);
 
     /**
-     *
+     *获取颜色信息
      * @return
      */
     @Select("select * from T_COLOR")
@@ -41,10 +41,21 @@ public  interface  ColorDao {
    public T_color loadByColor(int color);
 
 
-
+    /**
+     * 更新颜色信息
+     * @param color
+     * @param name
+     * @param rgb
+     * @return
+     */
     @Update("update T_COLOR set NAME = #{1}, RGB = #{2} where COLOR = #{0}")
     boolean updateColor(int color, String name, String rgb);
 
+    /**
+     * 根据镜框Id获取颜色信息
+     * @param goods
+     * @return
+     */
     @Select("select * from T_COLOR WHERE COLOR IN (SELECT COLOR FROM T_GOODSCOLOR WHERE GOODS = #{0})")
     List<T_color> loadByGood(String goods);
 }
