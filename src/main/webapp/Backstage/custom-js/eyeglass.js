@@ -37,7 +37,7 @@ $(document).ready(function () {
 
         $("#add_eyeglass").removeAttr('readonly');
 
-        $("#eyeglass").val('');
+        $("#add_eyeglass").val('');
         $("#add_name").val('');
         $("#add_refraction").val("");
         $("#add_price").val("");
