@@ -1,5 +1,7 @@
 /**
  * Created by 14260 on 2018/6/11.
+ *
+ * --年龄段管理--
  */
 $(document).ready(function(){
 
