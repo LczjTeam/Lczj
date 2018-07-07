@@ -3,7 +3,6 @@ package jx.lczj.service;
 import jx.lczj.dao.*;
 import jx.lczj.model.*;
 import jx.lczj.viewmodel.GoodsVo;
-import jx.lczj.viewmodel.NewsVo;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -11,10 +10,8 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -77,6 +74,11 @@ public class GoodService  {
     }
 
 
+    /**
+     * 文件上传
+     * @param request
+     * @return
+     */
     @Transactional
     public String upload(HttpServletRequest request) {
         String ss = "";
@@ -114,8 +116,6 @@ public class GoodService  {
                     ss+=";"+code;
                 }
 
-
-
             }
 
             System.out.println("接收完毕");
@@ -127,11 +127,16 @@ public class GoodService  {
     }
 
 
+    /**
+     * 删除附件
+     * @param code
+     * @param request
+     * @return
+     */
     @Transactional
     public boolean deleteAttach(String code, HttpServletRequest request) {
 
         try{
-
 
             boolean ok = goodDao.deleteAttachDiv(code);
             boolean ok1 = goodDao.deleteAttach(code);
@@ -151,7 +156,7 @@ public class GoodService  {
 
 
     /**
-     * 添加
+     * 添加记录
      * @param fileName
      * @param request
      * @param session
@@ -297,13 +302,11 @@ public class GoodService  {
             //删除颜色分配
             boolean ok = goodDao.deleteColorDiv(code);
 
-
             //删除年龄段分配
             boolean ok1 = goodDao.deleteAgeDiv(code);
 
             //删除脸型分配
             boolean ok2 = goodDao.deleteFaceDiv(code);
-
 
             //删除场景分配
             boolean ok3 = goodDao.deleteOccasionDiv(code);

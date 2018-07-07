@@ -1,11 +1,8 @@
 package jx.lczj.service;
 
-
 import jx.lczj.dao.AgeDao;
 import jx.lczj.model.T_agesection;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import javax.annotation.Resource;
 import java.util.List;
 

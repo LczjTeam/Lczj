@@ -17,7 +17,6 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -97,6 +96,10 @@ public class ModelService {
     }
 
 
+    /**
+     * 获取模特信息
+     * @return
+     */
     @Transactional
     public List<ModelVo> loadModels() {
         try {
@@ -115,6 +118,12 @@ public class ModelService {
 
     }
 
+    /**
+     * 删除
+     * @param model
+     * @param request
+     * @return
+     */
     public boolean delete(int model, HttpServletRequest request) {
         try {
             String path = request.getSession().getServletContext().getRealPath("models");
@@ -131,6 +140,11 @@ public class ModelService {
 
     }
 
+    /**
+     * 通过id获取模特信息
+     * @param model
+     * @return
+     */
     public T_model loadByModel(int model) {
         return  modelDao.loadById(model);
     }
@@ -208,6 +222,12 @@ public class ModelService {
     }
 
 
+    /**
+     * 检测模特图片是否合格
+     * @param url
+     * @param request
+     * @return
+     */
     public String check(String  url, HttpServletRequest request) {
 
         System.loadLibrary(Core.NATIVE_LIBRARY_NAME);

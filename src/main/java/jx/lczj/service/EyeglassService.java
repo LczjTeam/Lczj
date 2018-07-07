@@ -4,9 +4,7 @@ package jx.lczj.service;
 import jx.lczj.dao.*;
 import jx.lczj.model.T_attachment;
 import jx.lczj.model.T_eyeglass;
-import jx.lczj.model.T_goods;
 import jx.lczj.viewmodel.EyeglassVo;
-import jx.lczj.viewmodel.GoodsVo;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -32,19 +30,26 @@ public class EyeglassService {
     MaskDao maskDao;
     @Resource
     StyleDao styleDao;
-    //添加
+
+    /**
+     * 添加
+     * @param fileName
+     * @param request
+     * @param session
+     * @return
+     */
     @Transactional
     public EyeglassVo add(String[] fileName, HttpServletRequest request, HttpSession session) {
 
-         String eyeglass = request.getParameter("eyeglass") ;
-         String name = request.getParameter("add_name");
-         int category =Integer.parseInt(request.getParameter("category"));
-         int efficacy = Integer.parseInt(request.getParameter("efficacy"));
-         int brand = Integer.parseInt(request.getParameter("brand"));
-         int mask = Integer.parseInt(request.getParameter("mask"));
-         int style = Integer.parseInt(request.getParameter("add_style"));
-         float refraction = Float.parseFloat(request.getParameter("refraction"));
-         int price =Integer.parseInt(request.getParameter("price"));
+        String eyeglass = request.getParameter("eyeglass") ;
+        String name = request.getParameter("add_name");
+        int category =Integer.parseInt(request.getParameter("category"));
+        int efficacy = Integer.parseInt(request.getParameter("efficacy"));
+        int brand = Integer.parseInt(request.getParameter("brand"));
+        int mask = Integer.parseInt(request.getParameter("mask"));
+        int style = Integer.parseInt(request.getParameter("add_style"));
+        float refraction = Float.parseFloat(request.getParameter("refraction"));
+        int price =Integer.parseInt(request.getParameter("price"));
         System.out.println("eyeglass:"+eyeglass+"" +
                 "\n category:"+category+
                 "\n efficacy:"+efficacy+
@@ -87,6 +92,10 @@ public class EyeglassService {
 
     }
 
+    /**
+     * 获取眼镜信息表中的所有记录
+     * @return
+     */
     public List<EyeglassVo> loadlist() {
         try {
             List<T_eyeglass> list = eyeglassDao.loadlist();
@@ -108,6 +117,11 @@ public class EyeglassService {
         }
     }
 
+    /**
+     * 通过id获取对应记录的眼镜信息
+     * @param code
+     * @return
+     */
     public EyeglassVo loadById(String code) {
         try {
             EyeglassVo evo = new EyeglassVo();
@@ -126,7 +140,7 @@ public class EyeglassService {
     }
 
     /**
-     * 更新
+     * 更新某条记录的眼镜信息
      * @param fileName
      * @param request
      * @param session
@@ -196,11 +210,11 @@ public class EyeglassService {
 
         //删除附件信息
         List<T_attachment> t_attachments = eyeglassDao.loadAttachmentByEyeglass(code);
+        boolean ok4 = eyeglassDao.deleteAttachDiv(code);
+
         for (T_attachment t: t_attachments) {
-            boolean ok4 = eyeglassDao.deleteAttachDiv(t.getAttachment());
             boolean ok5 = eyeglassDao.deleteAttach(t.getAttachment());
         }
-
         String path = request.getSession().getServletContext().getRealPath("goods");
 
         for (T_attachment t: t_attachments) {

@@ -1,7 +1,6 @@
 package jx.lczj.service;
 
 import jx.lczj.dao.FaceDao;
-import jx.lczj.model.T_color;
 import jx.lczj.model.T_face;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,9 +16,21 @@ public class FaceService {
     @Resource
     FaceDao faceDao ;
 
+    /**
+     * 获取脸型信息
+     * @return
+     */
     public List<T_face> loadFace() {
         return faceDao.loadFace();
     }
+
+    /**
+     * 添加脸型记录
+     * @param request
+     * @param file
+     * @param file1
+     * @return
+     */
     @Transactional
     public boolean addFace(HttpServletRequest request,MultipartFile file,MultipartFile file1) {
 
@@ -67,14 +78,22 @@ public class FaceService {
     public T_face loadByFace(int face) {
         return faceDao.loadByFace(face);
     }
-    //update
+
+
+    /**
+     * 更新记录
+     * @param file
+     * @param file1
+     * @param request
+     * @return
+     */
     @Transactional
     public boolean updateFace(MultipartFile file,MultipartFile file1, HttpServletRequest request) {
         try {
             System.out.println("开始---通过face查找信息");
             String path = request.getSession().getServletContext().getRealPath("face");
 
-            //先吧颜色查询出来
+            //先把颜色查询出来
             T_face t_face = faceDao.loadByFace(Integer.parseInt(request.getParameter("face_edit_face")));
             String photo = t_face.getPhoto();
 
@@ -131,8 +150,7 @@ public class FaceService {
     }
 
     /**
-     * 删除
-     *
+     * 删除记录
      * @param request
      * @return
      */
@@ -143,7 +161,7 @@ public class FaceService {
             System.out.println("开始");
             String path = request.getSession().getServletContext().getRealPath("face");
 
-            //先吧颜色查询出来
+            //先把颜色查询出来
             T_face t_face = faceDao.loadByFace(face);
             String photo = t_face.getPhoto();
             String s_photo = path + "/"+ photo.split("\\.")[0] + "_1.jpg";

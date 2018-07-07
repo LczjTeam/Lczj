@@ -22,6 +22,15 @@ import java.util.ArrayList;
 public class FileService {
 
 
+    /**
+     * 文件上传
+     * @param file
+     * @param sex
+     * @param age
+     * @param station
+     * @param request
+     * @return
+     */
     @Transactional
     public String upload(MultipartFile file, String sex, String age, String station, HttpServletRequest request) {
 
@@ -142,6 +151,13 @@ public class FileService {
     }
 
 
+    /**
+     * 眼镜试戴
+     * @param url
+     * @param glasses_url
+     * @param request
+     * @return
+     */
     public String wearGlasses(String url, String glasses_url, HttpServletRequest request) {
         System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
         String ctimes = System.currentTimeMillis()+"";
