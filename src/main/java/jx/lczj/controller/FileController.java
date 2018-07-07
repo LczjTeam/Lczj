@@ -85,8 +85,13 @@ public class FileController {
     }
 
 
-
-
+    /**
+     * 眼镜试戴
+     * @param url
+     * @param glasses
+     * @param request
+     * @return
+     */
     @RequestMapping(value = "/wearglasses")
     @ResponseBody
     public String wearGlasses(String url,String glasses,HttpServletRequest request) {
