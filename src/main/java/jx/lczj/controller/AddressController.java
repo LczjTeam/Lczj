@@ -37,7 +37,6 @@ public class AddressController {
      * @param isdefault
      * @return
      */
-    @Privilege(value = "收货地址管理")
     @RequestMapping("/add")
     @ResponseBody
     public boolean add(String address, String customer, String consignee,String phone,
@@ -50,7 +49,6 @@ public class AddressController {
      * @param address
      * @return
      */
-    @Privilege("收货地址管理")
     @RequestMapping("/delete")
     @ResponseBody
     public boolean delete(String address){
@@ -70,7 +68,6 @@ public class AddressController {
      * @param isdefault
      * @return
      */
-    @Privilege("收货地址管理")
     @RequestMapping("/update")
     @ResponseBody
     public boolean update(String address, String customer, String consignee,String phone,
