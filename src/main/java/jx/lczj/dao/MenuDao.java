@@ -19,7 +19,7 @@ public interface MenuDao {
      * @param admin
      * @return
      */
-    @Select("select * from T_MENU where PARENTS <> '0'   and MENU in (select DISTINCT menu from T_ROLE_MENU WHERE ROLE IN ( SELECT ROLE FROM T_USER_ROLE WHERE ADMIN = #{0} ))   order by MENU,SORT_NO")
+    @Select("select * from T_MENU where PARENTS <> '0'   and MENU in (select DISTINCT menu from T_ROLE_MENU WHERE ROLE IN ( SELECT ROLE FROM T_USER_ROLE WHERE ADMIN = #{0} ))   order by SORT_NO,MENU")
     public List<T_menu> loadByAdminCode(String admin);
 
     /**
