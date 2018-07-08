@@ -452,7 +452,7 @@ $(document).ready(function() {
 
 
                     var url = '../stories/'+datas.t_news.filename.split(".")[0]+ "-content.html";
-
+                    $('#edit_content').code('');
                     //var url = '../stories/'+datas.t_news.code+'-content.html';
                     $.ajax({
                         url:url,
