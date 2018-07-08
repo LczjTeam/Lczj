@@ -41,7 +41,7 @@ public class AddressController {
     @RequestMapping("/add")
     @ResponseBody
     public boolean add(String address, String customer, String consignee,String phone,
-    String street, String provincename,String cityname,String countyname,char isdefault){
+    String street, String provincename,String cityname,String countyname,String isdefault){
         return addressService.add(address,customer,consignee,phone,street,provincename,cityname,countyname,isdefault);
     }
 
@@ -74,7 +74,7 @@ public class AddressController {
     @RequestMapping("/update")
     @ResponseBody
     public boolean update(String address, String customer, String consignee,String phone,
-                          String street, String provincename,String cityname,String countyname,char isdefault){
+                          String street, String provincename,String cityname,String countyname,String isdefault){
         return addressService.update(address,customer,consignee,phone,street,provincename,cityname,countyname,isdefault);
     }
 

@@ -36,7 +36,7 @@ public interface AddressDao {
      */
     @Insert("insert into T_ADDRESS(ADDRESS,CUSTOMER,CONSIGNEE,PHONE,STREET,PROVINCENAME,CITYNAME,COUNTYNAME,ISDEFAULT) VALUES(#{0},#{1},#{2},#{3},#{4},#{5},#{6},#{7},#{8})")
     boolean add(String address, String customer, String consignee,String phone,
-                String street, String provincename,String cityname,String countyname,char isdefault);
+                String street, String provincename,String cityname,String countyname,String  isdefault);
 
     /**
      * 删除
@@ -60,7 +60,7 @@ public interface AddressDao {
      * @return
      */
     @Update("update T_ADDRESS set customer=#{1},consignee = #{2},phone=#{3},street=#{4},provincename=#{5},cityname=#{6},countyname=#{7},isdefault=#{8} where address = #{0}")
-    boolean update(String address, String customer, String consignee, String phone, String street, String provincename, String cityname, String countyname, char isdefault);
+    boolean update(String address, String customer, String consignee, String phone, String street, String provincename, String cityname, String countyname, String isdefault);
 
 
 }

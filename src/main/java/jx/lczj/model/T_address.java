@@ -9,7 +9,7 @@ public class T_address {
     private String provincename;
     private String countyname;
     private String cityname;
-    private char isdefault;
+    private String isdefault;
 
     public String getAddress() {
         return address;
@@ -75,11 +75,11 @@ public class T_address {
         this.cityname = cityname;
     }
 
-    public char getIsdefault() {
+    public String getIsdefault() {
         return isdefault;
     }
 
-    public void setIsdefault(char isdefault) {
+    public void setIsdefault(String isdefault) {
         this.isdefault = isdefault;
     }
 

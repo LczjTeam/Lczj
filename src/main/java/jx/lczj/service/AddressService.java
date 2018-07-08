@@ -33,7 +33,7 @@ public class AddressService {
      */
     public boolean add(String address, String customer, String consignee,String phone,
                        String street, String provincename,String cityname,String countyname,
-                       char isdefault){
+                       String isdefault){
         return addressDao.add(address,customer,consignee,phone,street,provincename,cityname,countyname,isdefault);
     }
 
@@ -59,7 +59,7 @@ public class AddressService {
      * @param isdefault
      * @return
      */
-    public boolean update(String address, String customer, String consignee, String phone, String street, String provincename, String cityname, String countyname, char isdefault) {
+    public boolean update(String address, String customer, String consignee, String phone, String street, String provincename, String cityname, String countyname, String isdefault) {
         return addressDao.update(address,customer,consignee,phone,street,provincename,cityname,countyname,isdefault);
     }
 
