@@ -10,11 +10,12 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class CustomerService {
    @Resource
-    CustomerDao customerDao;
+    CustomerDao customerDao ;
 
 
     /**
@@ -44,4 +45,34 @@ public class CustomerService {
         return customerDao.resetPwd(vip) ;
     }
 
+    /**
+     * 会员登录
+     * @param phone
+     * @param name
+     * @return
+     */
+    @Transactional
+    public T_customer login(String phone, String name,String sex) {
+        System.out.println(phone+"\n"+name+"\n"+sex);
+
+        try {
+            T_customer t_customer = customerDao.loadByPhone(phone);
+            if (t_customer == null) {
+
+                String vip = UUID.randomUUID().toString().replace("-","") ;
+                System.out.println(vip.length());
+                String pwd = phone;
+                String birthday = "";
+                String face = "heads/defautl_head.png";
+                boolean ok = customerDao.add(vip, name, phone, sex, pwd, birthday, face);
+                t_customer = customerDao.loadByPhone(phone);
+            }
+
+            return t_customer;
+
+        }catch (Exception e){
+            throw  new RuntimeException(e.getMessage());
+        }
+
+    }
 }

@@ -35,4 +35,10 @@ public  interface CustomerDao {
     boolean resetPwd(String vip);
 
 
+    @Select("select * from T_CUSTOMER WHERE PHONE = #{0}")
+    T_customer loadByPhone(String phone);
+
+
+    @Insert("insert into T_CUSTOMER(VIP,NAME,PHONE,SEX,PWD,BIRTHDAY,FACE) VALUES (#{0},#{1},#{2},#{3},#{4},#{5},#{6})")
+    boolean add(String vip, String name, String phone, String sex, String pwd, String birthday, String face);
 }

@@ -61,4 +61,17 @@ public class CustomerController {
         return customerService.resetPwd(vip);
     }
 
+
+    /**
+     * 登录
+     */
+    @RequestMapping("/login")
+    @ResponseBody
+    public T_customer login(String phone,String _name,String sex){
+        return customerService.login(phone,_name,sex);
+    }
+
+
+
+
 }
