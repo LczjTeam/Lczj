@@ -52,7 +52,6 @@
 
 
                     <c:forEach items="${sessionScope.admin.menuVos}" var="itm" >
-
                     <li>
                         <a href="#">
                             <i class="${itm.menu.css}"></i>
