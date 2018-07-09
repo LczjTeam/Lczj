@@ -20,7 +20,11 @@ public interface CategoryDao {
      */
     @Select("select * from T_category")
     List<T_category> loadList();
-
+    /**
+     * 获取类别前3条数据---FrontService
+     */
+    @Select("select * from T_category where rownum < 4 ")
+    List<T_category> loadList1();
     /**
      * 添加类别信息
      * @param category
