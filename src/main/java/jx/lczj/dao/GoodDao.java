@@ -199,5 +199,17 @@ public interface GoodDao {
     @Delete("delete from  T_GOODSCATEGORY where GOODS = #{0}")
     boolean deleteCategoryDiv(String goods);
 
+    /**
+     * 获取热销眼镜
+     */
+    @Select("SELECT * FROM T_GOODS WHERE rownum < 6")
+    List<T_goods> listHot();
 
+    /**
+     * 获取各种眼镜类别的眼镜
+     * @param category
+     * @return
+     */
+    @Select("select * from T_GOODS where GOODS in (select GOODS from T_GOODSCATEGORY where CATEGORY = #{0})")
+    List<T_goods> listShop(int category);
 }

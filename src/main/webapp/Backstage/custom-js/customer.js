@@ -7,10 +7,10 @@ $(document).ready(function() {
     table.dataTable({
         "columnDefs": [{ // set default column settings
             'orderable': false,
-            'targets': [6]
+            'targets': [5]
         }, {
             "searchable": false,
-            "targets": [6]
+            "targets": [5]
         }],
         "order": [
             [0, "asc"]
@@ -36,7 +36,6 @@ $(document).ready(function() {
                 //  console.log(data[i].isvalid);
                 var itm = data[i];
                 table.fnAddData([
-                    itm.vip,
                     itm.name,
                     itm.phone,
                     itm.sex == '1' ? '男' : '女',

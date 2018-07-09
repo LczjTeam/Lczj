@@ -1,4 +1,6 @@
-<%--
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="org.apache.jasper.tagplugins.jstl.core.ForEach" %>
+<%@ page import="jx.lczj.model.T_goods" %><%--
   Created by IntelliJ IDEA.
   User: 14260
   Date: 2018/7/8
@@ -115,74 +117,42 @@
                 <div class="buttomtitle">
                     <h2 style="color: #d41a11">热销榜</h2>
                 </div>
-
                 <div class="accordion">
 
-                    <div class="first current">
+            <c:if test="${t_goods!=null}">
+                    <c:forEach  items="${t_goods}" var="item" varStatus="status">
+                        <c:if test="${status.index==0}">
+                            <c:set var="a" value="first"></c:set>
+                        </c:if>
+                        <c:if test="${status.index==1}">
+                            <c:set var="a" value="second"></c:set>
+                        </c:if>
+                        <c:if test="${status.index==2}">
+                            <c:set var="a" value="third"></c:set>
+                        </c:if>
+                        <c:if test="${status.index==3}">
+                            <c:set var="a" value="four"></c:set>
+                        </c:if>
+                        <c:if test="${status.index==4}">
+                            <c:set var="a" value="file"></c:set>
+                        </c:if>
+                    <div class="${a} ">
                         <div class="content">
-                            <img style="width:100%;min-height: 300px;" src="images/old01.png" />
+                            <img style="width:100%;min-height: 300px;" src="../goods/${item.t_attachments.path}"/>
                             <div class="word" style="width:100%;height:20px;padding-left: 30px;text-align: left;" >
-                                <p>价格：<em style="color:#F00;"><strong>￥299</strong></em>&nbsp;&nbsp; <a href="#">RayBen雷朋太阳眼镜</a></p>
+                                <p>价格：<em style="color:#F00;"><strong>￥${item.price}</strong></em>&nbsp;&nbsp; <a href="#">${item.name}</a></p>
                             </div>
                         </div>
                         <div class="tab">
-                            <span><img  src="images/tea1.jpg" /></span>
-                            <strong><a href="#" target="_blank">太阳眼镜</a></strong>
+                            <span><img  src="images/tea${status.index+1}.jpg" /></span>
+
+                            <strong><a href="#" target="_blank">${item.t_categories.name}</a></strong>
+
                         </div>
                     </div>
 
-                    <div class="second">
-                        <div class="content second">
-                            <a href="#" target="_blank"><img style="width:100%;min-height: 300px;" src="images/student01.jpg" /></a>
-                            <div class="word" style="width:100%;height:20px;padding-left: 30px;text-align: left;" >
-                                <p>价格：<em style="color:#F00;"><strong>￥299</strong></em>&nbsp;&nbsp; <a href="#">金边眼镜</a></p>
-                            </div>
-                        </div>
-                        <div class="tab">
-                            <span><img src="images/tea2.jpg" /></span>
-                            <strong><a href="#" target="_blank">学生镜</a></strong>
-                        </div>
-                    </div>
-
-                    <div class="third">
-                        <div class="content third">
-                            <a href="#" target="_blank"><img style="width:100%;min-height: 300px;" src="images/student03.jpg" /></a>
-                            <div class="word" style="width:100%;height:20px;padding-left: 30px;text-align: left;" >
-                                <p>价格：<em style="color:#F00;"><strong>￥299</strong></em>&nbsp;&nbsp; <a href="#">RayBen雷朋太阳眼镜</a></p>
-                            </div>
-                        </div>
-                        <div class="tab">
-                            <span><img src="images/tea3.jpg" /></span>
-                            <strong><a href="#" target="_blank">学生镜</a></strong>
-                        </div>
-                    </div>
-
-                    <div class="four">
-                        <div class="content four">
-                            <a href="#" target="_blank"><img style="width:100%;min-height: 300px;" src="images/sunglass03.png" /></a>
-                            <div class="word" style="width:100%;height:20px;padding-left: 30px;text-align: left;" >
-                                <p>价格：<em style="color:#F00;"><strong>￥299</strong></em>&nbsp;&nbsp; <a href="#">RayBen雷朋太阳眼镜</a></p>
-                            </div>
-                        </div>
-                        <div class="tab">
-                            <span><img src="images/tea4.jpg" /></span>
-                            <strong><a href="#" target="_blank">雷迪森太阳眼镜</a></strong>
-                        </div>
-                    </div>
-
-                    <div class="file">
-                        <div class="content file">
-                            <a href="#" target="_blank"><img style="width:100%;min-height: 300px;" src="images/old04.jpg" /></a>
-                            <div class="word" style="width:100%;height:20px;padding-left: 30px;text-align: left;" >
-                                <p>价格：<em style="color:#F00;"><strong>￥299</strong></em>&nbsp;&nbsp; <a href="#">RayBen雷朋太阳眼镜</a></p>
-                            </div>
-                        </div>
-                        <div class="tab">
-                            <span><img src="images/tea5.jpg" /></span>
-                            <strong><a href="#" target="_blank">推荐眼镜</a></strong>
-                        </div>
-                    </div>
-
+                    </c:forEach>
+            </c:if>
                 </div>
             </div>
 
@@ -195,7 +165,6 @@
 
 <div class="product-easy">
     <div class="container">
-
         <script src="js/easyResponsiveTabs.js" type="text/javascript"></script>
         <script type="text/javascript">
         $(document).ready(function () {
@@ -204,148 +173,32 @@
                 width: 'auto', //auto or any width like 600px
                 fit: true   // 100% fit in a container
             });
+
         });
 
         </script>
-
         <%--三个眼镜展示--%>
+        <%--未对他们类别一一判断是否属于--%>
         <div class="sap_tabs">
             <div id="horizontalTab" style="display: block; width: 100%; margin: 0px;">
                 <ul class="resp-tabs-list">
-                    <li class="resp-tab-item" aria-controls="tab_item-0" role="tab"><span>学生镜</span></li>
-                    <li class="resp-tab-item" aria-controls="tab_item-1" role="tab"><span>太阳镜</span></li>
-                    <li class="resp-tab-item" aria-controls="tab_item-2" role="tab"><span>精美眼镜</span></li>
+                    <c:if test="${t_categories != null}">
+                    <c:forEach  items="${t_categories}" var ="item" varStatus="status">
+                    <li class="resp-tab-item" aria-controls="tab_item-${status.index}" role="tab"><span>${item.name}</span></li>
+                    </c:forEach>
+                    </c:if>
+                    <li class="resp-tab-item" aria-controls="tab_item-3" role="tab"><span>更多</span></li>
                 </ul>
+
                 <div class="resp-tabs-container">
-                    <div class="tab-1 resp-tab-content" aria-labelledby="tab_item-0">
-
-                        <div class="col-md-3 product-men">
-                            <div class="men-pro-item simpleCart_shelfItem">
-                                <div class="men-thumb-item" onclick="window.open('single.jsp')">
-                                    <img src="images/student01.jpg" alt="" class="pro-image-front">
-                                    <img src="images/student01.jpg" alt="" class="pro-image-back">
-                                    <div class="men-cart-pro">
-                                        <%--细节展示--%>
-                                        <div class="inner-men-cart-pro">
-                                            <a href="Single.jsp" class="link-product-add-cart">Quick View</a>
-                                        </div>
-                                        <%--//细节展示--%>
-
-
-
-
-                                    </div>
-                                    <span class="product-new-top">New</span>
-                                </div>
-                                <div class="item-info-product ">
-                                    <h4><a href="Single.jsp">学生眼镜</a></h4>
-                                    <div class="info-product-price">
-                                        <span class="item_price">45.99</span>
-                                        <del>$69.71</del>
-                                    </div>
-                                    <a href="#" class="item_add single-item hvr-outline-out button2">Add to cart</a>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="col-md-3 product-men">
-                            <div class="men-pro-item simpleCart_shelfItem">
-                                <div class="men-thumb-item" onclick="window.open('single.jsp')">
-                                    <img src="images/student02.jpg" alt="" class="pro-image-front">
-                                    <img src="images/student02.jpg" alt="" class="pro-image-back">
-                                    <div class="men-cart-pro">
-                                        <div class="inner-men-cart-pro">
-                                            <a href="Single.jsp" class="link-product-add-cart">Quick View</a>
-                                        </div>
-                                    </div>
-                                    <span class="product-new-top">1+1 Offer</span>
-                                </div>
-                                <div class="item-info-product ">
-                                    <h4><a href="Single.jsp">学生眼镜</a></h4>
-                                    <div class="info-product-price">
-                                        <span class="item_price">99.99</span>
-                                        <del>109.71</del>
-                                    </div>
-                                    <a href="#" class="item_add single-item hvr-outline-out button2">Add to cart</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-3 product-men">
-                            <div class="men-pro-item simpleCart_shelfItem">
-                                <div class="men-thumb-item" onclick="window.open('single.jsp')">
-                                    <img src="images/student03.jpg" alt="" class="pro-image-front">
-                                    <img src="images/student03.jpg" alt="" class="pro-image-back">
-                                    <div class="men-cart-pro">
-                                        <div class="inner-men-cart-pro">
-                                            <a href="Single.jsp" class="link-product-add-cart">Quick View</a>
-                                        </div>
-                                    </div>
-                                    <span class="product-new-top">New</span>
-                                </div>
-                                <div class="item-info-product ">
-                                    <h4><a href="Single.jsp">学生眼镜 </a></h4>
-                                    <div class="info-product-price">
-                                        <span class="item_price">119.99</span>
-                                        <del>120.71</del>
-                                    </div>
-                                    <a href="#" class="item_add single-item hvr-outline-out button2">Add to cart</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-3 product-men">
-                            <div class="men-pro-item simpleCart_shelfItem">
-                                <div class="men-thumb-item" onclick="window.open('single.jsp')">
-                                    <img src="images/student04.jpg" alt="" class="pro-image-front">
-                                    <img src="images/student04.jpg" alt="" class="pro-image-back">
-                                    <div class="men-cart-pro">
-                                        <div class="inner-men-cart-pro">
-                                            <a href="Single.jsp" class="link-product-add-cart">Quick View</a>
-                                        </div>
-                                    </div>
-                                    <span class="product-new-top">New</span>
-                                </div>
-                                <div class="item-info-product ">
-                                    <h4><a href="Single.jsp">学生眼镜</a></h4>
-                                    <div class="info-product-price">
-                                        <span class="item_price">79.99</span>
-                                        <del>120.71</del>
-                                    </div>
-                                    <a href="#" class="item_add single-item hvr-outline-out button2">Add to cart</a>
-                                </div>
-                            </div>
-                        </div>
-
+                    <c:forEach items="${t_shop}" var="shops" varStatus="status">
+                    <div class="tab-1 resp-tab-content" aria-labelledby="tab_item-${status.index}" >
+                        <c:forEach items="${shops.t_goodsHots}" var="shop">
                         <div class="col-md-3 product-men yes-marg">
                             <div class="men-pro-item simpleCart_shelfItem">
-                                <div class="men-thumb-item" onclick="window.open('single.jsp')">
-                                    <img src="images/student06.jpg" alt="" class="pro-image-front">
-                                    <img src="images/student06.jpg" alt="" class="pro-image-back">
-                                    <div class="men-cart-pro">
-                                        <div class="inner-men-cart-pro">
-                                            <a href="Single.jsp" class="link-product-add-cart">Quick View</a>
-                                        </div>
-                                    </div>
-                                    <span class="product-new-top">Combo Pack</span>
-                                </div>
-                                <div class="item-info-product ">
-                                    <h4><a href="Single.jsp">学生眼镜</a></h4>
-                                    <div class="info-product-price">
-                                        <span class="item_price">129.99</span>
-                                        <del>150.71</del>
-                                    </div>
-                                    <a href="#" class="item_add single-item hvr-outline-out button2">Add to cart</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-3 product-men yes-marg">
-                            <div class="men-pro-item simpleCart_shelfItem">
-                                <div class="men-thumb-item" onclick="window.open('single.jsp')">
-                                    <img src="images/student07.jpg" alt="" class="pro-image-front">
-                                    <img src="images/student07.jpg" alt="" class="pro-image-back">
+                                <div class="men-thumb-item" onclick="">
+                                    <img src="../goods/${shop.t_attachments.path}" alt="" class="pro-image-front">
+                                    <img src="../goods/${shop.t_attachments.path}" alt="" class="pro-image-back">
                                     <div class="men-cart-pro">
                                         <div class="inner-men-cart-pro">
                                             <a href="Single.jsp" class="link-product-add-cart">Quick View</a>
@@ -354,351 +207,18 @@
                                     <span class="product-new-top">New</span>
                                 </div>
                                 <div class="item-info-product ">
-                                    <h4><a href="Single.jsp">学生眼镜 </a></h4>
+                                    <h4><a href="Single.jsp">${shop.name}</a></h4>
                                     <div class="info-product-price">
-                                        <span class="item_price">129.99</span>
-                                        <del>150.71</del>
+                                        <span class="item_price">${shop.price}</span>
                                     </div>
                                     <a href="#" class="item_add single-item hvr-outline-out button2">Add to cart</a>
                                 </div>
                             </div>
                         </div>
-
-
-                        <div class="col-md-3 product-men yes-marg">
-                            <div class="men-pro-item simpleCart_shelfItem">
-                                <div class="men-thumb-item" onclick="window.open('single.jsp')">
-                                    <img src="images/student08.jpg" alt="" class="pro-image-front">
-                                    <img src="images/student08.jpg" alt="" class="pro-image-back">
-                                    <div class="men-cart-pro">
-                                        <div class="inner-men-cart-pro">
-                                            <a href="Single.jsp" class="link-product-add-cart">Quick View</a>
-                                        </div>
-                                    </div>
-                                    <span class="product-new-top">New</span>
-                                </div>
-                                <div class="item-info-product ">
-                                    <h4><a href="Single.jsp"> 学生眼镜</a></h4>
-                                    <div class="info-product-price">
-                                        <span class="item_price">45.99</span>
-                                        <del>69.71</del>
-                                    </div>
-                                    <a href="#" class="item_add single-item hvr-outline-out button2">Add to cart</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-3 product-men yes-marg">
-                            <div class="men-pro-item simpleCart_shelfItem">
-                                <div class="men-thumb-item" onclick="window.open('single.jsp')">
-                                    <img src="images/student05.jpg" alt="" class="pro-image-front">
-                                    <img src="images/student05.jpg" alt="" class="pro-image-back">
-                                    <div class="men-cart-pro">
-                                        <div class="inner-men-cart-pro">
-                                            <a href="Single.jsp" class="link-product-add-cart">Quick View</a>
-                                        </div>
-                                    </div>
-                                    <span class="product-new-top">New</span>
-
-                                </div>
-                                <div class="item-info-product ">
-                                    <h4><a href="Single.jsp">学生眼镜</a></h4>
-                                    <div class="info-product-price">
-                                        <span class="item_price">45.99</span>
-                                        <del>69.71</del>
-                                    </div>
-                                    <a href="#" class="item_add single-item hvr-outline-out button2">Add to cart</a>
-                                </div>
-                            </div>
-                        </div>
+                        </c:forEach>
                         <div class="clearfix"></div>
                     </div>
-
-
-                    <div class="tab-1 resp-tab-content" aria-labelledby="tab_item-1">
-                        <div class="col-md-3 product-men">
-                            <div class="men-pro-item simpleCart_shelfItem">
-                                <div class="men-thumb-item" onclick="window.open('single.jsp')">
-                                    <img src="images/sunglass01.jpg" alt="" class="pro-image-front">
-                                    <img src="images/sunglass01.jpg" alt="" class="pro-image-back">
-                                    <div class="men-cart-pro">
-                                        <div class="inner-men-cart-pro">
-                                            <a href="Single.jsp" class="link-product-add-cart">Quick View</a>
-                                        </div>
-                                    </div>
-                                    <span class="product-new-top">New</span>
-
-                                </div>
-                                <div class="item-info-product ">
-                                    <h4><a href="Single.jsp">太阳镜</a></h4>
-                                    <div class="info-product-price">
-                                        <span class="item_price">45.99</span>
-                                        <del>69.71</del>
-                                    </div>
-                                    <a href="#" class="item_add single-item hvr-outline-out button2">Add to cart</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-3 product-men">
-                            <div class="men-pro-item simpleCart_shelfItem">
-                                <div class="men-thumb-item" onclick="window.open('single.jsp')">
-                                    <img src="images/sunglass02.jpg" alt="" class="pro-image-front">
-                                    <img src="images/sunglass02.jpg" alt="" class="pro-image-back">
-                                    <div class="men-cart-pro">
-                                        <div class="inner-men-cart-pro">
-                                            <a href="Single.jsp" class="link-product-add-cart">Quick View</a>
-                                        </div>
-                                    </div>
-                                    <span class="product-new-top">New</span>
-
-                                </div>
-                                <div class="item-info-product ">
-                                    <h4><a href="Single.jsp">太阳镜</a></h4>
-                                    <div class="info-product-price">
-                                        <span class="item_price">45.99</span>
-                                        <del>69.71</del>
-                                    </div>
-                                    <a href="#" class="item_add single-item hvr-outline-out button2">Add to cart</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 product-men">
-                            <div class="men-pro-item simpleCart_shelfItem">
-                                <div class="men-thumb-item" onclick="window.open('single.jsp')">
-                                    <img src="images/sunglass03.png" alt="" class="pro-image-front">
-                                    <img src="images/sunglass03.png" alt="" class="pro-image-back">
-                                    <div class="men-cart-pro">
-                                        <div class="inner-men-cart-pro">
-                                            <a href="Single.jsp" class="link-product-add-cart">Quick View</a>
-                                        </div>
-                                    </div>
-                                    <span class="product-new-top">New</span>
-
-                                </div>
-                                <div class="item-info-product ">
-                                    <h4><a href="Single.jsp">太阳镜</a></h4>
-                                    <div class="info-product-price">
-                                        <span class="item_price">45.99</span>
-                                        <del>69.71</del>
-                                    </div>
-                                    <a href="#" class="item_add single-item hvr-outline-out button2">Add to cart</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 product-men">
-                            <div class="men-pro-item simpleCart_shelfItem">
-                                <div class="men-thumb-item" onclick="window.open('single.jsp')">
-                                    <img src="images/sunglass04.jpg" alt="" class="pro-image-front">
-                                    <img src="images/sunglass04.jpg" alt="" class="pro-image-back">
-                                    <div class="men-cart-pro">
-                                        <div class="inner-men-cart-pro">
-                                            <a href="Single.jsp" class="link-product-add-cart">Quick View</a>
-                                        </div>
-                                    </div>
-                                    <span class="product-new-top">New</span>
-
-                                </div>
-                                <div class="item-info-product ">
-                                    <h4><a href="Single.jsp">太阳镜</a></h4>
-                                    <div class="info-product-price">
-                                        <span class="item_price">45.99</span>
-                                        <del>69.71</del>
-                                    </div>
-                                    <a href="#" class="item_add single-item hvr-outline-out button2">Add to cart</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 product-men yes-marg">
-                            <div class="men-pro-item simpleCart_shelfItem">
-                                <div class="men-thumb-item" onclick="window.open('single.jsp')">
-                                    <img src="images/sunglass05.jpg" alt="" class="pro-image-front">
-                                    <img src="images/sunglass05.jpg" alt="" class="pro-image-back">
-                                    <div class="men-cart-pro">
-                                        <div class="inner-men-cart-pro">
-                                            <a href="Single.jsp" class="link-product-add-cart">Quick View</a>
-                                        </div>
-                                    </div>
-                                    <span class="product-new-top">New</span>
-
-                                </div>
-                                <div class="item-info-product ">
-                                    <h4><a href="Single.jsp">太阳镜</a></h4>
-                                    <div class="info-product-price">
-                                        <span class="item_price">45.99</span>
-                                        <del>69.71</del>
-                                    </div>
-                                    <a href="#" class="item_add single-item hvr-outline-out button2">Add to cart</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 product-men yes-marg">
-                            <div class="men-pro-item simpleCart_shelfItem">
-                                <div class="men-thumb-item" onclick="window.open('single.jsp')">
-                                    <img src="images/sunglass06.jpg" alt="" class="pro-image-front">
-                                    <img src="images/sunglass06.jpg" alt="" class="pro-image-back">
-                                    <div class="men-cart-pro">
-                                        <div class="inner-men-cart-pro">
-                                            <a href="Single.jsp" class="link-product-add-cart">Quick View</a>
-                                        </div>
-                                    </div>
-                                    <span class="product-new-top">New</span>
-
-                                </div>
-                                <div class="item-info-product ">
-                                    <h4><a href="Single.jsp">太阳镜</a></h4>
-                                    <div class="info-product-price">
-                                        <span class="item_price">45.99</span>
-                                        <del>69.71</del>
-                                    </div>
-                                    <a href="#" class="item_add single-item hvr-outline-out button2">Add to cart</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="clearfix"></div>
-                    </div>
-                    <div class="tab-1 resp-tab-content" aria-labelledby="tab_item-2">
-                        <div class="col-md-3 product-men" onclick="window.open('single.jsp')">
-                            <div class="men-pro-item simpleCart_shelfItem">
-                                <div class="men-thumb-item">
-                                    <img src="images/old01.png" alt="" class="pro-image-front">
-                                    <img src="images/old01.png" alt="" class="pro-image-back">
-                                    <div class="men-cart-pro">
-                                        <div class="inner-men-cart-pro">
-                                            <a href="Single.jsp" class="link-product-add-cart">Quick View</a>
-                                        </div>
-                                    </div>
-                                    <span class="product-new-top">New</span>
-
-                                </div>
-                                <div class="item-info-product ">
-                                    <h4><a href="Single.jsp">推荐眼镜</a></h4>
-                                    <div class="info-product-price">
-                                        <span class="item_price">45.99</span>
-                                        <del>69.71</del>
-                                    </div>
-                                    <a href="#" class="item_add single-item hvr-outline-out button2">Add to cart</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 product-men">
-                            <div class="men-pro-item simpleCart_shelfItem">
-                                <div class="men-thumb-item" onclick="window.open('single.jsp')">
-                                    <img src="images/old02.jpg" alt="" class="pro-image-front">
-                                    <img src="images/old02.jpg" alt="" class="pro-image-back">
-                                    <div class="men-cart-pro">
-                                        <div class="inner-men-cart-pro">
-                                            <a href="Single.jsp" class="link-product-add-cart">Quick View</a>
-                                        </div>
-                                    </div>
-                                    <span class="product-new-top">New</span>
-
-                                </div>
-                                <div class="item-info-product ">
-                                    <h4><a href="Single.jsp"> 推荐眼镜</a></h4>
-                                    <div class="info-product-price">
-                                        <span class="item_price">45.99</span>
-                                        <del>69.71</del>
-                                    </div>
-                                    <a href="#" class="item_add single-item hvr-outline-out button2">Add to cart</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 product-men">
-                            <div class="men-pro-item simpleCart_shelfItem">
-                                <div class="men-thumb-item" onclick="window.open('single.jsp')">
-                                    <img src="images/old03.jpg" alt="" class="pro-image-front">
-                                    <img src="images/old03.jpg" alt="" class="pro-image-back">
-                                    <div class="men-cart-pro">
-                                        <div class="inner-men-cart-pro">
-                                            <a href="Single.jsp" class="link-product-add-cart">Quick View</a>
-                                        </div>
-                                    </div>
-                                    <span class="product-new-top">New</span>
-
-                                </div>
-                                <div class="item-info-product ">
-                                    <h4><a href="Single.jsp">推荐眼镜</a></h4>
-                                    <div class="info-product-price">
-                                        <span class="item_price">45.99</span>
-                                        <del>69.71</del>
-                                    </div>
-                                    <a href="#" class="item_add single-item hvr-outline-out button2">Add to cart</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 product-men">
-                            <div class="men-pro-item simpleCart_shelfItem">
-                                <div class="men-thumb-item" onclick="window.open('single.jsp')">
-                                    <img src="images/old04.jpg" alt="" class="pro-image-front">
-                                    <img src="images/old04.jpg" alt="" class="pro-image-back">
-                                    <div class="men-cart-pro">
-                                        <div class="inner-men-cart-pro">
-                                            <a href="Single.jsp" class="link-product-add-cart">Quick View</a>
-                                        </div>
-                                    </div>
-                                    <span class="product-new-top">New</span>
-
-                                </div>
-                                <div class="item-info-product ">
-                                    <h4><a href="Single.jsp">推荐眼镜</a></h4>
-                                    <div class="info-product-price">
-                                        <span class="item_price">45.99</span>
-                                        <del>69.71</del>
-                                    </div>
-                                    <a href="#" class="item_add single-item hvr-outline-out button2">Add to cart</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 product-men yes-marg">
-                            <div class="men-pro-item simpleCart_shelfItem">
-                                <div class="men-thumb-item" onclick="window.open('single.jsp')">
-                                    <img src="images/old05.jpg" alt="" class="pro-image-front">
-                                    <img src="images/old05.jpg" alt="" class="pro-image-back">
-                                    <div class="men-cart-pro">
-                                        <div class="inner-men-cart-pro">
-                                            <a href="Single.jsp" class="link-product-add-cart">Quick View</a>
-                                        </div>
-                                    </div>
-                                    <span class="product-new-top">New</span>
-
-                                </div>
-                                <div class="item-info-product ">
-                                    <h4><a href="Single.jsp">推荐眼镜</a></h4>
-                                    <div class="info-product-price">
-                                        <span class="item_price">45.99</span>
-                                        <del>69.71</del>
-                                    </div>
-                                    <a href="#" class="item_add single-item hvr-outline-out button2">Add to cart</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 product-men yes-marg">
-                            <div class="men-pro-item simpleCart_shelfItem">
-                                <div class="men-thumb-item" onclick="window.open('single.jsp')">
-                                    <img src="images/old06.jpg" alt="" class="pro-image-front">
-                                    <img src="images/old06.jpg" alt="" class="pro-image-back">
-                                    <div class="men-cart-pro">
-                                        <div class="inner-men-cart-pro">
-                                            <a href="Single.jsp" class="link-product-add-cart">Quick View</a>
-                                        </div>
-                                    </div>
-                                    <span class="product-new-top">New</span>
-
-                                </div>
-                                <div class="item-info-product ">
-                                    <h4><a href="Single.jsp">推荐眼镜</a></h4>
-                                    <div class="info-product-price">
-                                        <span class="item_price">45.99</span>
-                                        <del>69.71</del>
-                                    </div>
-                                    <a href="#" class="item_add single-item hvr-outline-out button2">Add to cart</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
+                    </c:forEach>
                 </div>
             </div>
         </div>
