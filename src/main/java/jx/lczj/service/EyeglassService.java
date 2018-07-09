@@ -195,7 +195,6 @@ public class EyeglassService {
         evo.setT_style(styleDao.loadById(style));
 
         return evo;
-
     }
 
     /**
