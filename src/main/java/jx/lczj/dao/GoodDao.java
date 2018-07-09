@@ -212,4 +212,14 @@ public interface GoodDao {
      */
     @Select("select * from T_GOODS where GOODS in (select GOODS from T_GOODSCATEGORY where CATEGORY = #{0})")
     List<T_goods> listShop(int category);
+
+    /**
+     * 推荐镜框
+     * @param sex
+     * @param occasion
+     * @param pupil
+     * @return
+     */
+    @Select("select * from T_goods")
+    List<T_goods> recomend(String sex, String occasion, String pupil);
 }
