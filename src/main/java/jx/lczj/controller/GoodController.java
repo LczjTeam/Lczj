@@ -120,4 +120,14 @@ public class GoodController {
         return  goodService.loadById(code);
 
     }
+
+
+
+    @RequestMapping(value = "/recommend")
+    @ResponseBody
+    public List<GoodsVo>  recommend(HttpServletRequest request) {
+        return  goodService.recommend(request);
+    }
+
+
 }

@@ -1,7 +1,6 @@
 package jx.lczj.dao;
 
 import jx.lczj.model.T_customer;
-import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
@@ -20,19 +19,19 @@ public  interface CustomerDao {
 
     /**
      * 通过vip编号查找会员信息
-     * @param vip
+     * @param phone
      * @return
      */
-    @Select("select * from T_CUSTOMER WHERE VIP = #{0}")
-    public T_customer loadByVip(String vip);
+    @Select("select * from T_CUSTOMER WHERE PHONE = #{0}")
+    public T_customer loadByVip(String phone);
 
     /**
      * 重置密码
-     * @param vip
+     * @param phone
      * @return
      */
-    @Update("update T_CUSTOMER SET PWD = '123456' WHERE VIP = #{0} ")
-    boolean resetPwd(String vip);
+    @Update("update T_CUSTOMER SET PWD = '123456' WHERE phone = #{0} ")
+    boolean resetPwd(String phone);
 
 
     @Select("select * from T_CUSTOMER WHERE PHONE = #{0}")

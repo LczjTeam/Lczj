@@ -29,20 +29,20 @@ public class CustomerService {
 
     /**
      * 获取会员信息
-     * @param customer
+     * @param phone
      * @return
      */
-    public T_customer loadByVip(String customer) {
-        return customerDao.loadByVip(customer);
+    public T_customer loadByPhone(String phone) {
+        return customerDao.loadByPhone(phone);
     }
 
     /**
      * 重置密码
-     * @param vip
+     * @param phone
      * @return
      */
-    public boolean resetPwd(String vip) {
-        return customerDao.resetPwd(vip) ;
+    public boolean resetPwd(String phone) {
+        return customerDao.resetPwd(phone) ;
     }
 
     /**
