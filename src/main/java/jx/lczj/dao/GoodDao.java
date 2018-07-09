@@ -198,4 +198,6 @@ public interface GoodDao {
      */
     @Delete("delete from  T_GOODSCATEGORY where GOODS = #{0}")
     boolean deleteCategoryDiv(String goods);
+
+
 }
