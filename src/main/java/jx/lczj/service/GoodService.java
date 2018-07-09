@@ -501,4 +501,48 @@ public class GoodService  {
         }
     }
 
+    public List<GoodsVo> recommend(HttpServletRequest request) {
+
+        try {
+
+            /**
+             * 年龄段
+             */
+            String sex = request.getParameter("sex");
+
+            /*
+            场景
+             */
+            String occasion = request.getParameter("occasion");
+
+            /**
+             *瞳距
+             */
+            String pupil = request.getParameter("eyesdistance");
+
+            /**
+             * 脸型
+             */
+            String face = request.getParameter("face");
+
+            List<T_goods> list = goodDao.recomend( sex,occasion,pupil);
+            List<GoodsVo> gvos = new ArrayList<GoodsVo>();
+            for (T_goods tg : list) {
+                GoodsVo gvo = new GoodsVo();
+                gvo.setT_goods(tg);
+                gvo.setT_brand(brandDao.loadById(tg.getBrand()));
+                gvo.setT_categories(categoryDao.loadByGoods(tg.getGoods()));
+                gvo.setT_colors(colorDao.loadByGood(tg.getGoods()));
+                gvo.setT_agesections(ageDao.loadByGood(tg.getGoods()));
+                gvo.setT_faces(faceDao.loadByGood(tg.getGoods()));
+                gvo.setT_occasions(occasionDao.loadByGood(tg.getGoods()));
+                gvo.setT_attachments(goodDao.loadAttachmentByGood(tg.getGoods()));
+                gvos.add(gvo);
+            }
+            return gvos;
+        }catch (Exception e){
+            throw  new RuntimeException(e.getMessage());
+        }
+
+    }
 }
