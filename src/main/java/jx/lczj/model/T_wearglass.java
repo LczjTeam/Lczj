@@ -1,28 +1,15 @@
 package jx.lczj.model;
 
 /**
- * Created by 14260 on 2018/7/9.
+ * Created by WuLinZhi on 2018-07-09.
  */
 public class T_wearglass {
-
-    private String mywear;
-    private String eyeglass;
-    private int degress;
-    private int asdegress;
-    private int axis;
-    private String sign;
-
-    @Override
-    public String toString() {
-        return "T_wearglass{" +
-                "mywear='" + mywear + '\'' +
-                ", eyeglass='" + eyeglass + '\'' +
-                ", degress=" + degress +
-                ", asdegress=" + asdegress +
-                ", axis=" + axis +
-                ", sign='" + sign + '\'' +
-                '}';
-    }
+    private String mywear; //我的试戴
+    private String eyeglass;//镜片
+    private int degress;//度数
+    private int asdegress; //散光度数
+    private int axis;   //散光轴位
+    private String sign; //左右标志
 
     public String getMywear() {
         return mywear;
@@ -70,5 +57,17 @@ public class T_wearglass {
 
     public void setSign(String sign) {
         this.sign = sign;
+    }
+
+    @Override
+    public String toString() {
+        return "T_wearglass{" +
+                "mywear='" + mywear + '\'' +
+                ", eyeglass='" + eyeglass + '\'' +
+                ", degress=" + degress +
+                ", asdegress=" + asdegress +
+                ", axis=" + axis +
+                ", sign='" + sign + '\'' +
+                '}';
     }
 }

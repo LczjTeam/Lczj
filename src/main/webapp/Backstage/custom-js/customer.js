@@ -92,7 +92,7 @@ $(document).ready(function() {
             if (!isConfirm) return;
             var delok = true;
             var params={};
-            params.vip = aData[0]+'';
+            params.phone = aData[1]+'';
             $.ajax({
                 async: false,
                 type: "POST",
