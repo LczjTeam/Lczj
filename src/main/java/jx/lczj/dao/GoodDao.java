@@ -116,12 +116,22 @@ public interface GoodDao {
     @Select("select * from T_GOODS WHERE GOODS = #{0}")
     T_goods loadById(String goods);
 
+
+    /**
+     * 获取镜框试戴图片
+     * @param goods
+     * @return
+     */
+    @Select("select * from T_ATTACHMENT WHERE ATTACHMENT IN ( SELECT ATTACHMENT FROM T_GOODSATTACHMENT WHERE  GOODS = #{0} AND SN = 0)  ")
+    List<T_attachment> loadWearsByGood(String goods);
+
+
     /**
      * 根据镜框Id获取附件信息
      * @param goods
      * @return
      */
-    @Select("select * from T_ATTACHMENT WHERE ATTACHMENT IN ( SELECT ATTACHMENT FROM T_GOODSATTACHMENT WHERE  GOODS = #{0} )  order by SN")
+    @Select("select * from T_ATTACHMENT WHERE ATTACHMENT IN ( SELECT ATTACHMENT FROM T_GOODSATTACHMENT WHERE  GOODS = #{0} AND SN <> 0)  ")
     List<T_attachment> loadAttachmentByGood(String goods);
 
     /**
