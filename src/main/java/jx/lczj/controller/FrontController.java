@@ -53,4 +53,6 @@ public class FrontController {
 
         return "Fronts/index";
     }
+
+
 }
