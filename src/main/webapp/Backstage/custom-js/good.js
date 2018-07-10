@@ -115,6 +115,12 @@ $(document).ready(function(){
 
 
                 var attachStr = '';
+
+                for( var j = 0 ;j < datas.t_wears.length ; j++){
+                    var itm =  datas.t_wears[j];
+                    attachStr +='&nbsp;&nbsp;&nbsp;<image style="width: 45px;height: 45px;" src="../goods/'+ itm.path+'"></image>'
+                }
+
                 for( var j = 0 ;j < datas.t_attachments.length ; j++){
                     var itm =  datas.t_attachments[j];
                     attachStr +='&nbsp;&nbsp;&nbsp;<image style="width: 45px;height: 45px;" src="../goods/'+ itm.path+'"></image>'
@@ -503,6 +509,12 @@ $(document).ready(function(){
 
 
                     var attachStr = '';
+
+                    for( var j = 0 ;j < datas.t_wears.length ; j++){
+                        var itm =  datas.t_wears[j];
+                        attachStr +='&nbsp;&nbsp;&nbsp;<image style="width: 45px;height: 45px;" src="../goods/'+ itm.path+'"></image>'
+                    }
+
                     for (var j = 0; j < datas.t_attachments.length; j++) {
                         var itm = datas.t_attachments[j];
                         attachStr += '&nbsp;&nbsp;&nbsp;<image style="width: 45px;height: 45px;" src="../goods/' + itm.path + '"></image>'
@@ -624,6 +636,12 @@ $(document).ready(function(){
 
 
                     var attachStr = '';
+
+                    for( var j = 0 ;j < datas.t_wears.length ; j++){
+                        var itm =  datas.t_wears[j];
+                        attachStr +='&nbsp;&nbsp;&nbsp;<image style="width: 45px;height: 45px;" src="../goods/'+ itm.path+'"></image>'
+                    }
+
                     for (var j = 0; j < datas.t_attachments.length; j++) {
                         var itm = datas.t_attachments[j];
                         attachStr += '&nbsp;&nbsp;&nbsp;<image style="width: 45px;height: 45px;" src="../goods/' + itm.path + '"></image>'
