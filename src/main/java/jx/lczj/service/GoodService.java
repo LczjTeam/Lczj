@@ -315,7 +315,7 @@ public class GoodService  {
             boolean ok3 = goodDao.deleteOccasionDiv(code);
 
             //删除附件信息
-            List<T_attachment> t_attachments = goodDao.loadAttachmentByGood(code);
+            List<T_attachment> t_attachments = goodDao.loadAllAttachmentByGood(code);
             for (T_attachment t: t_attachments) {
                 boolean ok4 = goodDao.deleteAttachDiv(t.getAttachment());
                 boolean ok5 = goodDao.deleteAttach(t.getAttachment());
@@ -478,7 +478,7 @@ public class GoodService  {
 
 
             //删除附件信息
-            List<T_attachment> t_attachments = goodDao.loadAttachmentByGood(goods);
+            List<T_attachment> t_attachments = goodDao.loadAllAttachmentByGood(goods);
             for (T_attachment t: t_attachments) {
                 boolean ok4 = goodDao.deleteAttachDiv(t.getAttachment());
             }
