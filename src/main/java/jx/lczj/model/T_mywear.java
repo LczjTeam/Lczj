@@ -12,17 +12,17 @@ public class T_mywear {
     private String goods;//镜框
     private int pupil;//瞳孔
     private String sex;//性别
-    private String age;//性别
+    private int age;//性别
     private String selfphoto;//自拍照
     private String showphoto;//试戴照
     private int deal;//是否成交
     private int iscart;//是否添加购物车
 
-    public String getAge() {
+    public int getAge() {
         return age;
     }
 
-    public void setAge(String age) {
+    public void setAge(int age) {
         this.age = age;
     }
 
