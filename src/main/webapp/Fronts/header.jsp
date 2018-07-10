@@ -29,6 +29,10 @@
     <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,900,900italic,700italic' rel='stylesheet' type='text/css'>
     <script src="js/jquery.easing.min.js"></script>
+
+
+    <link href="css/common.css" rel="stylesheet" type="text/css" media="all">
+    <link href="css/commontDrying.css" rel="stylesheet" type="text/css" media="all">
     <script type="text/javascript">
         window.onload=function(){
             setInterval(function(){
@@ -148,7 +152,7 @@
                             <li class="active menu__item menu__item--current"><a class="menu__link" href="index.jsp">&nbsp;&nbsp;&nbsp;首&nbsp;&nbsp;&nbsp;页&nbsp;&nbsp;&nbsp; <span class="sr-only">(current)</span></a></li>
                             <li class=" menu__item"><a class="menu__link" href="electronics.html">&nbsp;&nbsp;&nbsp;新&nbsp;&nbsp;&nbsp;品&nbsp;&nbsp;&nbsp;上&nbsp;&nbsp;&nbsp;市&nbsp;&nbsp;&nbsp;</a></li>
                             <li class=" menu__item"><a class="menu__link" href="codes.html">&nbsp;&nbsp;&nbsp;知&nbsp;&nbsp;&nbsp;识&nbsp;&nbsp;&nbsp;百&nbsp;&nbsp;&nbsp;科&nbsp;&nbsp;&nbsp;</a></li>
-                            <li class=" menu__item"><a class="menu__link" href="contact.html">&nbsp;&nbsp;&nbsp;晒&nbsp;&nbsp;&nbsp;单&nbsp;&nbsp;&nbsp;评&nbsp;&nbsp;&nbsp;论</a></li>
+                            <li class=" menu__item"><a class="menu__link" href="issues.jsp">&nbsp;&nbsp;&nbsp;晒&nbsp;&nbsp;&nbsp;单&nbsp;&nbsp;&nbsp;评&nbsp;&nbsp;&nbsp;论</a></li>
                         </ul>
                     </div>
                 </div>
