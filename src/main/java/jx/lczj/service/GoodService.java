@@ -506,7 +506,7 @@ public class GoodService  {
         try {
 
             /**
-             * 年龄段
+             * 性别
              */
             String sex = request.getParameter("sex");
 
@@ -525,7 +525,12 @@ public class GoodService  {
              */
             String face = request.getParameter("face");
 
-            List<T_goods> list = goodDao.recomend( sex,occasion,pupil);
+            /**
+             * 年龄
+             */
+            String age = request.getParameter("age");
+
+            List<T_goods> list = goodDao.recomend( sex,occasion,pupil,face,age);
             List<GoodsVo> gvos = new ArrayList<GoodsVo>();
             for (T_goods tg : list) {
                 GoodsVo gvo = new GoodsVo();
