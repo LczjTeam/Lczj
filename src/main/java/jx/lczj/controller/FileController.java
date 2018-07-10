@@ -4,9 +4,11 @@ package jx.lczj.controller;
  * Created by Software1 on 2017/12/27.
  */
 
+import com.alibaba.fastjson.JSONObject;
 import jx.lczj.service.FileService;
 import jx.lczj.utils.OpenCVUtil;
 import jx.lczj.viewmodel.AdminVo;
+import jx.lczj.viewmodel.SrcDstVo;
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.core.Rect;
@@ -38,9 +40,8 @@ public class FileController {
      */
     @RequestMapping(value = "/upload")
     @ResponseBody
-    public String upload(MultipartFile file,String sex,String age,String station,HttpServletRequest request) {
-
-        return fileService.upload(file,sex,age,station,request);
+    public SrcDstVo upload(MultipartFile file, String path, HttpServletRequest request) {
+        return fileService.upload(file,path,request);
     }
 
 
@@ -94,9 +95,9 @@ public class FileController {
      */
     @RequestMapping(value = "/wearglasses")
     @ResponseBody
-    public String wearGlasses(String url,String glasses,HttpServletRequest request) {
+    public String wearGlasses(String root,String url,String glasses,HttpServletRequest request) {
 
-        return fileService.wearGlasses(url,glasses,request);
+        return fileService.wearGlasses(root,url,glasses,request);
     }
 
 

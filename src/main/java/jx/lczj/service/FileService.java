@@ -1,6 +1,9 @@
 package jx.lczj.service;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import jx.lczj.utils.OpenCVUtil;
+import jx.lczj.viewmodel.SrcDstVo;
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.core.Rect;
@@ -13,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.UUID;
 
 /**
  * Created by 14260 on 2018/6/24.
@@ -25,30 +29,28 @@ public class FileService {
     /**
      * 文件上传
      * @param file
-     * @param sex
-     * @param age
-     * @param station
      * @param request
      * @return
      */
     @Transactional
-    public String upload(MultipartFile file, String sex, String age, String station, HttpServletRequest request) {
+    public SrcDstVo upload(MultipartFile file, String glass_paths, HttpServletRequest request) {
 
         System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
         String ctimes = System.currentTimeMillis()+"";
         System.out.println("开始");
         String path = request.getSession().getServletContext().getRealPath("upload");
 
+        String path1 = request.getSession().getServletContext().getRealPath("goods");
+
         //String fileName = file.getOriginalFilename();
-        String fileName = ctimes+".jpg";
+        String uuid = UUID.randomUUID().toString().replace("-", "");
+        String fileName = ctimes+uuid+".jpg";
         System.out.println(fileName);
         System.out.println(path);
         File targetFile = new File(path, fileName);
         if(!targetFile.exists()){
             targetFile.mkdirs();
         }
-
-
 
         //保存
         try {
@@ -57,8 +59,8 @@ public class FileService {
             e.printStackTrace();
         }
 
-        String src_url = path+"\\"+fileName;
-        String dst_url = path+"/withGlasses/"+ctimes+"_withGlasses.jpg";
+        String src_url = path+"/"+fileName;
+        String dst_url = path+"/withGlasses/"+ctimes+uuid+"_withGlasses.jpg";
         String glasses_url = "";
 
         File file1 = new File(path+"/withGlasses/");
@@ -66,17 +68,8 @@ public class FileService {
             file1.mkdirs();
         }
 
-        System.out.println("age:"+age+"，sex:"+sex);
+        glasses_url = path1+"/"+glass_paths;
 
-        //眼镜推荐
-        if(age.equals("1")){
-            glasses_url = "C:/OpenCVConfig/glasses/40+/glasses_0.png";
-
-        }else if(sex.equals("1")){
-            glasses_url = "C:/OpenCVConfig/glasses/male/glasses_0.png";
-        }else{
-            glasses_url = "C:/OpenCVConfig/glasses/famale/glasses_0.png";
-        }
         System.out.println("src_url:"+src_url);
         System.out.println("dst_url:"+dst_url);
         System.out.println("glasses_url:"+glasses_url);
@@ -138,15 +131,22 @@ public class FileService {
 
             //戴眼镜
             boolean ok = OpenCVUtil.addGlasses(x, y, width, height, src_url, glasses_url, dst_url);
-            return "/upload/withGlasses/" + ctimes + "_withGlasses.jpg";
+
+
+
+
+            return  new SrcDstVo(fileName,("/upload/withGlasses/" + ctimes+uuid + "_withGlasses.jpg") );
         }else if(eyes==null){
-            return "-2";
+            return  new SrcDstVo("-2","");
+
 
         }else if(eyes.size()==1){
-            return "-1";
+            return  new SrcDstVo("-1","");
+
 
         }else{
-            return "-3";
+            return  new SrcDstVo("-3","");
+
         }
     }
 
@@ -158,14 +158,15 @@ public class FileService {
      * @param request
      * @return
      */
-    public String wearGlasses(String url, String glasses_url, HttpServletRequest request) {
+    public String wearGlasses(String root,String url, String glasses_url, HttpServletRequest request) {
         System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
         String ctimes = System.currentTimeMillis()+"";
         System.out.println("开始");
-        String path = request.getSession().getServletContext().getRealPath("models");
+        String path = request.getSession().getServletContext().getRealPath(root);
+        String uuid = UUID.randomUUID().toString().replace("-", "");
 
         String src_url = path+"\\"+url;
-        String dst_url = path+"/withGlasses/"+ctimes+"_withGlasses.jpg";
+        String dst_url = path+"/withGlasses/"+ctimes+uuid+"_withGlasses.jpg";
 
         File file1 = new File(path+"/withGlasses/");
         if(!file1.exists()){
@@ -233,7 +234,7 @@ public class FileService {
 
             //戴眼镜
             boolean ok = OpenCVUtil.addGlasses(x, y, width, height, src_url, glasses_url, dst_url);
-            return "/models/withGlasses/" + ctimes + "_withGlasses.jpg";
+            return "/models/withGlasses/" + ctimes+uuid + "_withGlasses.jpg";
 
         }else if(eyes==null){
             return "-2";

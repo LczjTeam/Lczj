@@ -8,7 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -39,14 +38,14 @@ public class CustomerController {
 
     /**
      * 通过vip编号获得会员信息
-     * @param vip
+     * @param phone
      * @return
      */
     @Privilege(value = "会员查询")
-    @RequestMapping("/loadByVip")
+    @RequestMapping("/loadByPhone")
     @ResponseBody
-    public T_customer loadByVip(String vip){
-        return customerService.loadByVip(vip);
+    public T_customer loadByVip(String phone){
+        return customerService.loadByPhone(phone);
     }
 
 
@@ -57,8 +56,8 @@ public class CustomerController {
     @Privilege(value = "会员查询")
     @RequestMapping("/resetpwd")
     @ResponseBody
-    public boolean resetPwd(String vip){
-        return customerService.resetPwd(vip);
+    public boolean resetPwd(String phone){
+        return customerService.resetPwd(phone);
     }
 
 

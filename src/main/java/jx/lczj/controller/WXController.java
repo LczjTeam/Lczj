@@ -19,8 +19,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class WXController {
 
 
-   @ResponseBody
+
     @RequestMapping("/login")
+    @ResponseBody
     public JSONObject getOpenid(@RequestParam(value="code",required=false)String code) {//接收用户传过来的code，required=false表明如果这个参数没有传过来也可以。
         return WXUtil.getOpenidAndSessionKey(code);
     }
@@ -30,6 +31,11 @@ public class WXController {
     public JSONObject decodeUserInfo(@RequestParam(required = true,value = "encryptedData")String encryptedData,
                                      @RequestParam(required = true,value = "iv")String iv,
                                      @RequestParam(required = true,value = "sessionId")String sessionId) {
+
+        System.out.println(encryptedData);
+        System.out.println(iv);
+        System.out.println(sessionId);
+
         return  (JSONObject)JSON.parse(AES.wxDecrypt(encryptedData, sessionId, iv));
     }
 }
