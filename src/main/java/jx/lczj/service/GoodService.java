@@ -34,7 +34,7 @@ public class GoodService  {
 
 
     @Resource
-    AgeDao ageDao;
+    AgeDao  ageDao;
 
 
     @Resource
@@ -65,6 +65,7 @@ public class GoodService  {
                 gvo.setT_faces(faceDao.loadByGood(t.getGoods()));
                 gvo.setT_occasions(occasionDao.loadByGood(t.getGoods()));
                 gvo.setT_attachments(goodDao.loadAttachmentByGood(t.getGoods()));
+                gvo.setT_wears(goodDao.loadWearsByGood(t.getGoods()));
                 gvos.add(gvo);
             }
             return gvos;
@@ -280,6 +281,8 @@ public class GoodService  {
             gvo.setT_faces(faceDao.loadByGood(goods));
             gvo.setT_occasions(occasionDao.loadByGood(goods));
             gvo.setT_attachments(goodDao.loadAttachmentByGood(goods));
+            gvo.setT_wears(goodDao.loadWearsByGood(goods));
+
             return gvo;
 
         }catch (Exception e){
@@ -353,6 +356,7 @@ public class GoodService  {
         gvo.setT_faces(faceDao.loadByGood(t.getGoods()));
         gvo.setT_occasions(occasionDao.loadByGood(t.getGoods()));
         gvo.setT_attachments(goodDao.loadAttachmentByGood(t.getGoods()));
+        gvo.setT_wears(goodDao.loadWearsByGood(t.getGoods()));
         return  gvo;
     }
 
@@ -494,6 +498,8 @@ public class GoodService  {
             gvo.setT_faces(faceDao.loadByGood(goods));
             gvo.setT_occasions(occasionDao.loadByGood(goods));
             gvo.setT_attachments(goodDao.loadAttachmentByGood(goods));
+            gvo.setT_wears(goodDao.loadWearsByGood(goods));
+
             return gvo;
 
         }catch (Exception e){
@@ -542,6 +548,7 @@ public class GoodService  {
                 gvo.setT_faces(faceDao.loadByGood(tg.getGoods()));
                 gvo.setT_occasions(occasionDao.loadByGood(tg.getGoods()));
                 gvo.setT_attachments(goodDao.loadAttachmentByGood(tg.getGoods()));
+                gvo.setT_wears(goodDao.loadWearsByGood(tg.getGoods()));
                 gvos.add(gvo);
             }
             return gvos;

@@ -17,7 +17,16 @@ public class GoodsVo implements Serializable{
     private List<T_face> t_faces;
     private List<T_occasion> t_occasions;
     private List<T_agesection> t_agesections;
+    private List<T_attachment> t_wears;
     private List<T_attachment> t_attachments;
+
+    public List<T_attachment> getT_wears() {
+        return t_wears;
+    }
+
+    public void setT_wears(List<T_attachment> t_wears) {
+        this.t_wears = t_wears;
+    }
 
     public T_goods getT_goods() {
         return t_goods;
@@ -93,6 +102,7 @@ public class GoodsVo implements Serializable{
                 ", t_faces=" + t_faces +
                 ", t_occasions=" + t_occasions +
                 ", t_agesections=" + t_agesections +
+                ", t_wears=" + t_wears +
                 ", t_attachments=" + t_attachments +
                 '}';
     }
