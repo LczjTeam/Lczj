@@ -11,6 +11,8 @@ public class T_order {
     private String address; //收货地址
     private Date sure_time; //下单时间
     private int state; //订单状态
+    private String express;//快递
+    private String expressid;//快递号
 
     public String getOrder() {
         return order;
@@ -50,6 +52,22 @@ public class T_order {
 
     public void setState(int state) {
         this.state = state;
+    }
+
+    public String getExpress() {
+        return express;
+    }
+
+    public void setExpress(String express) {
+        this.express = express;
+    }
+
+    public String getExpressid() {
+        return expressid;
+    }
+
+    public void setExpressid(String expressid) {
+        this.expressid = expressid;
     }
 
     @Override
