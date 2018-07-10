@@ -121,7 +121,7 @@ public interface GoodDao {
      * @param goods
      * @return
      */
-    @Select("select * from T_ATTACHMENT WHERE ATTACHMENT IN ( SELECT ATTACHMENT FROM T_GOODSATTACHMENT WHERE  GOODS = #{0} )")
+    @Select("select * from T_ATTACHMENT WHERE ATTACHMENT IN ( SELECT ATTACHMENT FROM T_GOODSATTACHMENT WHERE  GOODS = #{0} )  order by SN")
     List<T_attachment> loadAttachmentByGood(String goods);
 
     /**
