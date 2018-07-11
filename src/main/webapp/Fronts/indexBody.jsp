@@ -1,5 +1,4 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="org.apache.jasper.tagplugins.jstl.core.ForEach" %>
 <%@ page import="jx.lczj.model.T_goods" %><%--
   Created by IntelliJ IDEA.
   User: 14260
@@ -138,15 +137,15 @@
                         </c:if>
                     <div class="${a} ">
                         <div class="content">
-                            <img style="width:100%;min-height: 300px;" src="../goods/${item.t_attachments.path}"/>
+                            <img style="width:100%;min-height: 300px;" src="../goods/${item.t_attachments[0].path}"/>
                             <div class="word" style="width:100%;height:20px;padding-left: 30px;text-align: left;" >
-                                <p>价格：<em style="color:#F00;"><strong>￥${item.price}</strong></em>&nbsp;&nbsp; <a href="#">${item.name}</a></p>
+                                <p>价格：<em style="color:#F00;"><strong>￥${item.t_goods.price}</strong></em>&nbsp;&nbsp; <a href="#">${item.t_goods.name}</a></p>
                             </div>
                         </div>
                         <div class="tab">
                             <span><img  src="images/tea${status.index+1}.jpg" /></span>
 
-                            <strong><a href="#" target="_blank">${item.t_categories.name}</a></strong>
+                            <strong><a href="#" target="_blank">${item.t_goods.name}</a></strong>
 
                         </div>
                     </div>
@@ -183,22 +182,22 @@
             <div id="horizontalTab" style="display: block; width: 100%; margin: 0px;">
                 <ul class="resp-tabs-list">
                     <c:if test="${t_categories != null}">
-                    <c:forEach  items="${t_categories}" var ="item" varStatus="status">
-                    <li class="resp-tab-item" aria-controls="tab_item-${status.index}" role="tab"><span>${item.name}</span></li>
+                    <c:forEach  items="${t_categories}" var ="shop_item" varStatus="status">
+                    <li class="resp-tab-item" aria-controls="tab_item-${status.index}" role="tab"><span>${shop_item.name}</span></li>
                     </c:forEach>
                     </c:if>
                     <li class="resp-tab-item" aria-controls="tab_item-3" role="tab"><span>更多</span></li>
                 </ul>
 
                 <div class="resp-tabs-container">
-                    <c:forEach items="${t_shop}" var="shops" varStatus="status">
-                    <div class="tab-1 resp-tab-content" aria-labelledby="tab_item-${status.index}" >
-                        <c:forEach items="${shops.t_goodsHots}" var="shop">
+                    <c:forEach items="${t_shop}" var="shop">
+                    <div class="tab-1 resp-tab-content" aria-labelledby="tab_item-${status.index}">
+                        <c:forEach items="${shop}" var="sp">
                         <div class="col-md-3 product-men yes-marg">
                             <div class="men-pro-item simpleCart_shelfItem">
                                 <div class="men-thumb-item" onclick="">
-                                    <img src="../goods/${shop.t_attachments.path}" alt="" class="pro-image-front">
-                                    <img src="../goods/${shop.t_attachments.path}" alt="" class="pro-image-back">
+                                    <img src="../goods/${sp.t_attachments[0].path}" alt="" class="pro-image-front">
+                                    <img src="../goods/${sp.t_attachments[0].path}" alt="" class="pro-image-back">
                                     <div class="men-cart-pro">
                                         <div class="inner-men-cart-pro">
                                             <a href="Single.jsp" class="link-product-add-cart">Quick View</a>
@@ -207,9 +206,9 @@
                                     <span class="product-new-top">New</span>
                                 </div>
                                 <div class="item-info-product ">
-                                    <h4><a href="Single.jsp">${shop.name}</a></h4>
+                                    <h4><a href="Single.jsp">${sp.t_goods.name}</a></h4>
                                     <div class="info-product-price">
-                                        <span class="item_price">${shop.price}</span>
+                                        <span class="item_price">${sp.t_goods.price}</span>
                                     </div>
                                     <a href="#" class="item_add single-item hvr-outline-out button2">Add to cart</a>
                                 </div>
