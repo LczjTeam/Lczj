@@ -334,37 +334,37 @@ public class MywearService {
      * @param request
      * @return
      */
-    public boolean delete(HttpServletRequest request) {
+    @Transactional
+    public boolean delete( String[] mywears,HttpServletRequest request) {
+
 
         try {
 
-            String mywear = "";
-            if(request.getParameter("mywear")!=null){
-                mywear = request.getParameter("mywear");
-            }else{
-                return  false;
+            for ( String mywear :mywears ) {
+
+
+                System.out.println("mywear:" + mywear);
+
+                T_mywear t_mywear = mywearDao.loadById(mywear);
+
+
+                //删除镜片信息
+                boolean ok1 = mywearDao.deleteWearglassByMywear(t_mywear.getMywear());
+
+                //删除试戴信息
+                boolean ok2 = mywearDao.delete(t_mywear.getMywear());
+
+
+                String path = request.getSession().getServletContext().getRealPath("/");
+
+                //物理删除文件信息
+                File f1 = new File(path + t_mywear.getSelfphoto());
+                if (f1.exists()) f1.delete();
+
+                File f2 = new File(path + t_mywear.getShowphoto());
+                if (f2.exists()) f2.delete();
+
             }
-            System.out.println("mywear:" + mywear);
-
-            T_mywear t_mywear = mywearDao.loadById(mywear);
-
-
-            //删除镜片信息
-            boolean ok1 = mywearDao.deleteWearglassByMywear(t_mywear.getMywear());
-
-            //删除试戴信息
-            boolean ok2 = mywearDao.delete(t_mywear.getMywear());
-
-
-            String path = request.getSession().getServletContext().getRealPath("/");
-
-            //物理删除文件信息
-            File f1 = new File(path + t_mywear.getSelfphoto());
-            if (f1.exists()) f1.delete();
-
-            File f2 = new File(path + t_mywear.getShowphoto());
-            if (f2.exists()) f2.delete();
-
             return true;
 
         }catch (Exception e){
@@ -400,6 +400,7 @@ public class MywearService {
             gvo.setT_goods(tg);
             gvo.setT_brand(brandDao.loadById(tg.getBrand()));
             gvo.setT_categories(categoryDao.loadByGoods(t.getGoods()));
+            gvo.setT_colors(colorDao.loadByGood(t.getGoods()));
             gvo.setT_attachments(goodDao.loadAttachmentByGood(t.getGoods()));
             mvo.setGoodsVo(gvo);
 

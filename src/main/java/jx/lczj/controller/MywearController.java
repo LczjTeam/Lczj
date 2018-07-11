@@ -40,14 +40,14 @@ public class MywearController {
 
 
     /**
-     * 删除
+     * 通过试戴编号数组删除
      * @param request
      * @return
      */
     @RequestMapping("/delete")
     @ResponseBody
-    public boolean delete(HttpServletRequest request) {
-        return  mywearService.delete(request);
+    public boolean delete(String[] mywears,HttpServletRequest request) {
+        return  mywearService.delete(mywears,request);
     }
 
 
