@@ -29,7 +29,7 @@ public class MywearService {
 
 
     @Autowired
-    MywearDao  mywearDao;
+    MywearDao  mywearDao ;
 
     @Resource
     GoodDao goodDao;
@@ -37,6 +37,14 @@ public class MywearService {
     @Resource
     EyeglassDao eyeglassDao;
 
+    @Resource
+    EfficacyDao efficacyDao;
+
+    @Resource
+    MaskDao maskDao;
+
+    @Resource
+    StyleDao styleDao;
 
 
     @Resource
@@ -335,36 +343,40 @@ public class MywearService {
      * @return
      */
     @Transactional
-    public boolean delete( String[] mywears,HttpServletRequest request) {
+    public boolean delete(HttpServletRequest request) {
 
 
         try {
 
-            for ( String mywear :mywears ) {
+            String mywear = "";
+            if(request.getParameter("mywear")!=null){
+                mywear = request.getParameter("mywear");
+            }else{
+                return  false;
+            }
+            System.out.println("mywear:" + mywear);
+
+            T_mywear t_mywear = mywearDao.loadById(mywear);
 
 
-                System.out.println("mywear:" + mywear);
+            //删除镜片信息
+            boolean ok1 = mywearDao.deleteWearglassByMywear(t_mywear.getMywear());
 
-                T_mywear t_mywear = mywearDao.loadById(mywear);
-
-
-                //删除镜片信息
-                boolean ok1 = mywearDao.deleteWearglassByMywear(t_mywear.getMywear());
-
-                //删除试戴信息
-                boolean ok2 = mywearDao.delete(t_mywear.getMywear());
+            //删除试戴信息
+            boolean ok2 = mywearDao.delete(t_mywear.getMywear());
 
 
-                String path = request.getSession().getServletContext().getRealPath("/");
+            String path = request.getSession().getServletContext().getRealPath("/");
 
-                //物理删除文件信息
+            //物理删除文件信息
+            if( !t_mywear.getSelfphoto().contains("models")) {
                 File f1 = new File(path + t_mywear.getSelfphoto());
                 if (f1.exists()) f1.delete();
-
-                File f2 = new File(path + t_mywear.getShowphoto());
-                if (f2.exists()) f2.delete();
-
             }
+
+            File f2 = new File(path + t_mywear.getShowphoto());
+            if (f2.exists()) f2.delete();
+
             return true;
 
         }catch (Exception e){
@@ -415,6 +427,9 @@ public class MywearService {
             evol.setT_brand(brandDao.loadById(tel.getBrand()));
             evol.setT_attachments(eyeglassDao.loadAttachmentByEyeglass(tel.getEyeglass()));
             evol.setT_category(categoryDao.loadById(tel.getCategory()));
+            evol.setT_efficacy(efficacyDao.loadById(tel.getEfficacy()));
+            evol.setT_mask(maskDao.loadById(tel.getMask()));
+            evol.setT_style(styleDao.loadById(tel.getStyle()));
             wvol.setEyeglassVo(evol);
 
             mvo.setLeftEyeglass(wvol);
@@ -430,6 +445,9 @@ public class MywearService {
             evor.setT_brand(brandDao.loadById(ter.getBrand()));
             evor.setT_attachments(eyeglassDao.loadAttachmentByEyeglass(ter.getEyeglass()));
             evor.setT_category(categoryDao.loadById(ter.getCategory()));
+            evor.setT_efficacy(efficacyDao.loadById(ter.getEfficacy()));
+            evor.setT_mask(maskDao.loadById(ter.getMask()));
+            evor.setT_style(styleDao.loadById(ter.getStyle()));
             wvor.setEyeglassVo(evor);
             mvo.setRightEyeglass(wvor);
 
