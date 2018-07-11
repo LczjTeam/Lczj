@@ -135,6 +135,14 @@ public interface GoodDao {
     List<T_attachment> loadAttachmentByGood(String goods);
 
     /**
+     * 根据镜框Id获取附件信息
+     * @param goods
+     * @return
+     */
+    @Select("select * from T_ATTACHMENT WHERE ATTACHMENT IN ( SELECT ATTACHMENT FROM T_GOODSATTACHMENT WHERE  GOODS = #{0} )  ")
+    List<T_attachment> loadAllAttachmentByGood(String goods);
+
+    /**
      * 删除颜色分配
      * @param goods
      * @return

@@ -50,7 +50,7 @@ public interface OccasionDao {
      * @return
      */
     @Select("select * from T_occasion WHERE occasion = #{0}")
-    public T_occasion loadByoccasion(int occasion);
+    public T_occasion loadById(int occasion);
 
     /**
      * 根据镜框Id查找场景信息
