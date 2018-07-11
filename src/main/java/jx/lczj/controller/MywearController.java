@@ -46,8 +46,8 @@ public class MywearController {
      */
     @RequestMapping("/delete")
     @ResponseBody
-    public boolean delete(String[] mywears,HttpServletRequest request) {
-        return  mywearService.delete(mywears,request);
+    public boolean delete(HttpServletRequest request) {
+        return  mywearService.delete(request);
     }
 
 
