@@ -228,8 +228,8 @@ public class MywearService {
 
         Integer right_degress = null;
 
-        if(request.getParameter("right_zw")!=null){
-            right_degress = Integer.parseInt(request.getParameter("right_zw"));
+        if(request.getParameter("right_ds")!=null){
+            right_degress = Integer.parseInt(request.getParameter("right_ds"));
         }
         System.out.println("right_degress:"+right_degress);
 
