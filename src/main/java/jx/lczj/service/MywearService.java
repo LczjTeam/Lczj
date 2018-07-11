@@ -341,6 +341,8 @@ public class MywearService {
             String mywear = "";
             if(request.getParameter("mywear")!=null){
                 mywear = request.getParameter("mywear");
+            }else{
+                return  false;
             }
             System.out.println("mywear:" + mywear);
 
@@ -367,6 +369,72 @@ public class MywearService {
 
         }catch (Exception e){
             throw  new RuntimeException(e.getMessage());
+        }
+    }
+
+    /**
+     * 通过编号获取试戴详情
+     * @param request
+     * @return
+     */
+    @Transactional
+    public MywearVo loadById(HttpServletRequest request) {
+        try {
+            String mywear= "";
+            if (request.getParameter("mywear") != null) {
+                mywear = request.getParameter("mywear");
+            }else{
+                return  null;
+            }
+            T_mywear t   = mywearDao.loadById(mywear);
+
+            MywearVo mvo = new MywearVo();
+            mvo.setT_mywear(t);
+            mvo.setT_color(colorDao.loadByColor(t.getColor()));
+            mvo.setT_face(faceDao.loadByFace(t.getFace()));
+            mvo.setT_occasion(occasionDao.loadById(t.getOccasion()));
+
+            //镜框信息
+            GoodsVo gvo = new GoodsVo();
+            T_goods tg = goodDao.loadById(t.getGoods());
+            gvo.setT_goods(tg);
+            gvo.setT_brand(brandDao.loadById(tg.getBrand()));
+            gvo.setT_categories(categoryDao.loadByGoods(t.getGoods()));
+            gvo.setT_attachments(goodDao.loadAttachmentByGood(t.getGoods()));
+            mvo.setGoodsVo(gvo);
+
+            //左眼镜片
+            WearglassVo wvol = new WearglassVo();
+            T_wearglass twl = mywearDao.loadWearglassByMywear(t.getMywear(), "l");
+            wvol.setT_wearglass(twl);
+
+            EyeglassVo evol = new EyeglassVo();
+            T_eyeglass tel = eyeglassDao.loadById(twl.getEyeglass());
+            evol.setT_eyeglass(tel);
+            evol.setT_brand(brandDao.loadById(tel.getBrand()));
+            evol.setT_attachments(eyeglassDao.loadAttachmentByEyeglass(tel.getEyeglass()));
+            evol.setT_category(categoryDao.loadById(tel.getCategory()));
+            wvol.setEyeglassVo(evol);
+
+            mvo.setLeftEyeglass(wvol);
+
+            //右眼镜片
+            WearglassVo wvor = new WearglassVo();
+            T_wearglass twr = mywearDao.loadWearglassByMywear(t.getMywear(), "r");
+            wvor.setT_wearglass(twr);
+
+            EyeglassVo evor = new EyeglassVo();
+            T_eyeglass ter = eyeglassDao.loadById(twl.getEyeglass());
+            evor.setT_eyeglass(ter);
+            evor.setT_brand(brandDao.loadById(ter.getBrand()));
+            evor.setT_attachments(eyeglassDao.loadAttachmentByEyeglass(ter.getEyeglass()));
+            evor.setT_category(categoryDao.loadById(ter.getCategory()));
+            wvor.setEyeglassVo(evor);
+            mvo.setRightEyeglass(wvor);
+
+            return  mvo;
+        }catch(Exception e){
+            throw new RuntimeException(e.getMessage());
         }
     }
 }

@@ -27,12 +27,23 @@ public class MywearController {
     @Autowired
     MywearService mywearService;
 
+    /**
+     * 添加
+     * @param request
+     * @return
+     */
     @RequestMapping("/add")
     @ResponseBody
     public boolean add(HttpServletRequest request) {
         return  mywearService.add(request);
     }
 
+
+    /**
+     * 删除
+     * @param request
+     * @return
+     */
     @RequestMapping("/delete")
     @ResponseBody
     public boolean delete(HttpServletRequest request) {
@@ -40,6 +51,22 @@ public class MywearController {
     }
 
 
+    /**
+     * 通过试戴编号获取试戴详情
+     * @param request
+     * @return
+     */
+    @RequestMapping("/loadById")
+    @ResponseBody
+    public MywearVo loadById(HttpServletRequest request) {
+        return  mywearService.loadById(request);
+    }
+
+    /**
+     * 通过会员编号获取试戴信息
+     * @param request
+     * @return
+     */
     @RequestMapping("/listByCustomer")
     @ResponseBody
     public List<MywearVo> listByCustomer(HttpServletRequest request) {
