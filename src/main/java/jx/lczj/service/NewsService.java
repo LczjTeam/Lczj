@@ -478,4 +478,25 @@ public class NewsService {
             throw new RuntimeException(e.getMessage());
         }
     }
+
+    /**
+     * 获取item
+     */
+    public List<NewsVo> listitem(String item){
+        try {
+
+
+            List<NewsVo> lnvs = new ArrayList<NewsVo>();
+            List<T_news> nls = newsDao.listitem(Integer.parseInt(item));
+            for (T_news t : nls) {
+                NewsVo nvo = new NewsVo();
+                nvo.setT_admin(adminDao.loadById(t.getAuthor()));
+                nvo.setT_news(t);
+                lnvs.add(nvo);
+            }
+            return lnvs;
+
+        } catch (Exception e) {
+            throw new RuntimeException(e.getMessage());
+        }};
 }
