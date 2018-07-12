@@ -133,22 +133,6 @@
                             </ul>
                         </div>
 
-                        <!-- sort dropdown -->
-                        <div
-                                class="jplist-drop-down"
-                                data-control-type="drop-down"
-                                data-control-name="sort"
-                                data-control-action="sort"
-                                data-control-animate-to-top="true"
-                                data-datetime-format="{month}/{day}/{year}"> <!-- {year}, {month}, {day}, {hour}, {min}, {sec} -->
-
-                            <ul>
-                                <li><span data-path="default">Sort by</span></li>
-                                <li><span data-path=".date" data-order="asc" data-type="datetime">时间 ↑ </span></li>
-                                <li><span data-path=".date" data-order="desc" data-type="datetime">时间 ↓</span></li>
-                            </ul>
-                        </div>
-
                         <!-- pagination results -->
                         <div
                                 class="jplist-label"
