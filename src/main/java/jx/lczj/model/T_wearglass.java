@@ -8,7 +8,7 @@ public class T_wearglass {
     private String eyeglass;//镜片
     private int degress;//度数
     private int asdegress; //散光度数
-    private int axis;   //散光轴位
+    private float axis;   //散光轴位
     private String sign; //左右标志
 
     public String getMywear() {
@@ -43,11 +43,11 @@ public class T_wearglass {
         this.asdegress = asdegress;
     }
 
-    public int getAxis() {
+    public float getAxis() {
         return axis;
     }
 
-    public void setAxis(int axis) {
+    public void setAxis(float axis) {
         this.axis = axis;
     }
 

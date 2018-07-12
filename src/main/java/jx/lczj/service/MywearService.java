@@ -198,9 +198,9 @@ public class MywearService {
         System.out.println("left_asdegress:"+left_asdegress);
 
 
-        Integer left_axis = null;
+        Float left_axis = null;
         if(request.getParameter("left_zw")!=null){
-            left_axis = Integer.parseInt(request.getParameter("left_zw"));
+            left_axis = Float.parseFloat(request.getParameter("left_zw"));
         }
         System.out.println("left_axis:"+left_axis);
 
@@ -241,9 +241,9 @@ public class MywearService {
         System.out.println("right_asdegress:"+right_asdegress);
 
 
-        Integer right_axis = null;
+        Float right_axis = null;
         if(request.getParameter("right_zw")!=null){
-            right_axis = Integer.parseInt(request.getParameter("right_zw"));
+            right_axis = Float.parseFloat(request.getParameter("right_zw"));
         }
         System.out.println("right_axis:"+right_axis);
 
