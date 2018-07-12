@@ -98,22 +98,6 @@ public class CustomerService {
         }
     }
 
-    /**
-     * 更新密码
-     *
-     * @param phone
-     * @param pwd
-     * @return
-     */
-    @Transactional
-    public boolean update(String phone, String pwd) {
-        try {
-            boolean ok = customerDao.updatePwd(phone, pwd);
-            return true;
-        } catch (Exception e) {
-            throw new RuntimeException(e.getMessage());
-        }
-    }
 
     /**
      * 更新密码
