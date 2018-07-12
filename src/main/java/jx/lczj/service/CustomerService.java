@@ -73,6 +73,27 @@ public class CustomerService {
         }catch (Exception e){
             throw  new RuntimeException(e.getMessage());
         }
-
     }
-}
+
+    /**
+     * 编辑更新
+     * @param name
+     * @param phone
+     * @param sex
+     * @param pwd
+     * @param birthday
+     * @param face
+     * @return
+     */
+    @Transactional
+    public boolean update(String name, String phone,String sex,String pwd,String birthday,String face) {
+        try {
+            boolean ok = customerDao.update(name,phone,sex,pwd,birthday,face);
+            return true;
+        }catch (Exception e){
+            throw  new RuntimeException(e.getMessage());
+        }
+    }
+
+ }
+

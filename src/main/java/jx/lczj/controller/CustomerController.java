@@ -71,6 +71,22 @@ public class CustomerController {
     }
 
 
-
+    /**
+     * 编辑更新
+     * @param name
+     * @param phone
+     * @param sex
+     * @param pwd
+     * @param birthday
+     * @param face
+     * @return
+     */
+    @Privilege(value = "会员查询")
+    @RequestMapping("/update")
+    @ResponseBody
+    public boolean update(String name, String phone,String sex,String pwd,String birthday,String face){
+        System.out.println(name+phone+sex+pwd+birthday+face);
+        return customerService.update(name,phone,sex,pwd,birthday,face);
+    }
 
 }
