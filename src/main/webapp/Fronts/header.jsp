@@ -148,32 +148,34 @@
                     </div>
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse menu--shylock" id="bs-example-navbar-collapse-1">
-                        <ul class="nav navbar-nav menu__list ">
-                            <li class="active menu__item menu__item--current"><a class="menu__link" href="index.jsp">&nbsp;&nbsp;&nbsp;首&nbsp;&nbsp;&nbsp;页&nbsp;&nbsp;&nbsp; <span class="sr-only">(current)</span></a></li>
-                            <li class=" menu__item"><a class="menu__link" href="electronics.html">&nbsp;&nbsp;&nbsp;新&nbsp;&nbsp;&nbsp;品&nbsp;&nbsp;&nbsp;上&nbsp;&nbsp;&nbsp;市&nbsp;&nbsp;&nbsp;</a></li>
-                            <li class=" menu__item"><a class="menu__link" href="codes.html">&nbsp;&nbsp;&nbsp;知&nbsp;&nbsp;&nbsp;识&nbsp;&nbsp;&nbsp;百&nbsp;&nbsp;&nbsp;科&nbsp;&nbsp;&nbsp;</a></li>
-                            <li class=" menu__item"><a class="menu__link" href="issues.jsp">&nbsp;&nbsp;&nbsp;晒&nbsp;&nbsp;&nbsp;单&nbsp;&nbsp;&nbsp;评&nbsp;&nbsp;&nbsp;论</a></li>
+                        <ul id="tab_item" class="nav navbar-nav menu__list">
+                            <li id="tab1" class="menu__item menu__item--current" role="tab"><a class="menu__link" href="index">&nbsp;&nbsp;&nbsp;首&nbsp;&nbsp;&nbsp;页&nbsp;&nbsp;&nbsp; <span class="sr-only">(current)</span></a></li>
+                            <li id="tab2" class="menu__item " role="tab"><a class="menu__link" href="newgoods?type=-1">&nbsp;&nbsp;&nbsp;新&nbsp;&nbsp;&nbsp;品&nbsp;&nbsp;&nbsp;上&nbsp;&nbsp;&nbsp;市&nbsp;&nbsp;&nbsp;</a></li>
+                            <li id="tab3" class="menu__item " role="tab"><a class="menu__link" href="knowledge.jsp">&nbsp;&nbsp;&nbsp;知&nbsp;&nbsp;&nbsp;识&nbsp;&nbsp;&nbsp;百&nbsp;&nbsp;&nbsp;科&nbsp;&nbsp;&nbsp;</a></li>
+                            <li id="tab4" class="menu__item " role="tab"><a class="menu__link" href="issues.jsp">&nbsp;&nbsp;&nbsp;晒&nbsp;&nbsp;&nbsp;单&nbsp;&nbsp;&nbsp;评&nbsp;&nbsp;&nbsp;论</a></li>
                         </ul>
                     </div>
                 </div>
             </nav>
         </div>
-       <%-- <div class="top_nav_right">
-            <div class="cart box_1">
-                <a href="checkout.html">
-                    <h3> <div class="total">
-                        <i class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></i>
-                        <span class="simpleCart_total"></span> (<span id="simpleCart_quantity" class="simpleCart_quantity"></span> items)</div>
-
-                    </h3>
-                </a>
-                <p><a href="javascript:;" class="simpleCart_empty">Empty Cart</a></p>
-
-            </div>
-        </div>--%>
-<%--
-        <div class="clearfix"></div>
---%>
     </div>
 </div>
 </body>
+
+
+<script type="text/javascript">
+
+        $(".collapse a").each(function(){
+
+            $this = $(this);
+
+            if($this[0].href==String(window.location)){
+
+                $this.parent().addClass("menu__item--current");
+
+            }else {
+                $this.parent().removeClass("menu__item--current");
+            }
+        });
+
+</script>
