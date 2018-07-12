@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -108,9 +110,9 @@ public class CustomerController {
      */
     @RequestMapping("/updateFace")
     @ResponseBody
-    public boolean updateFace(String phone,String face){
+    public boolean updateFace(MultipartFile file, String phone, String face, HttpServletRequest request){
         System.out.println(phone+face);
-        return customerService.updateFace(phone,face);
+        return customerService.updateFace(file,phone,face,request);
     }
 }
 

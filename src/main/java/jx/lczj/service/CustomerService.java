@@ -15,7 +15,7 @@ import java.util.UUID;
 @Service
 public class CustomerService {
     @Resource
-    CustomerDao customerDao;
+    CustomerDao  customerDao;
 
 
     /**
@@ -123,9 +123,28 @@ public class CustomerService {
      * @return
      */
     @Transactional
-    public boolean updateFace(String phone, String face) {
+    public boolean updateFace(MultipartFile file, String phone, String face, HttpServletRequest request) {
         try {
+            T_customer t_customer = customerDao.loadByPhone(phone);
+
+            String times = System.currentTimeMillis()+"";
+            //更新数据库
             boolean ok = customerDao.updateFace(phone, face);
+            //保存头像
+            String path = request.getSession().getServletContext().getRealPath("customerheads");
+            System.out.println(path);
+            File targetFile = new File(path,t_customer.getVip()+times+ ".png");
+
+            if(!targetFile.exists()){
+                targetFile.mkdirs();
+            }
+            file.transferTo(targetFile);
+            //删除原来头像
+            if(t_customer.getFace()!=null &&  !t_customer.getFace().equals(""));
+            File oldFile = new File(path, t_customer.getFace());
+            if(oldFile .exists()){
+                oldFile.delete();
+            }
             return true;
         } catch (Exception e) {
             throw new RuntimeException(e.getMessage());
