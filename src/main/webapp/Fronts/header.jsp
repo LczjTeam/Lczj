@@ -76,6 +76,19 @@
                 }
                 d.innerHTML='  '+year+'年'+mon+'月'+da+'日'+'    '+'星期'+day+' '+h+':'+m+':'+s;  },1000)  }
     </script>
+    <style>
+
+        .multi-column-dropdown li:hover{
+            background-color:#000000;
+
+            border-left: 3px solid #fda30e;
+        }
+        .multi-column-dropdown li{
+            background-color: #FDFCF3;
+        }
+
+
+    </style>
 </head>
 <body>
 <!-- header -->
@@ -146,35 +159,63 @@
                     </div>
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse menu--shylock" id="bs-example-navbar-collapse-1">
-                        <ul id="tab_item" class="nav navbar-nav menu__list">
-                            <li id="tab1" class="menu__item menu__item--current" role="tab"><a class="menu__link" href="index">&nbsp;&nbsp;&nbsp;首&nbsp;&nbsp;&nbsp;页&nbsp;&nbsp;&nbsp; <span class="sr-only">(current)</span></a></li>
-                            <li id="tab2" class="menu__item " role="tab"><a class="menu__link" href="newgoods?type=-1">&nbsp;&nbsp;&nbsp;新&nbsp;&nbsp;&nbsp;品&nbsp;&nbsp;&nbsp;上&nbsp;&nbsp;&nbsp;市&nbsp;&nbsp;&nbsp;</a></li>
-                            <li id="tab3" class="menu__item " role="tab"><a class="menu__link" href="knowledge.jsp">&nbsp;&nbsp;&nbsp;知&nbsp;&nbsp;&nbsp;识&nbsp;&nbsp;&nbsp;百&nbsp;&nbsp;&nbsp;科&nbsp;&nbsp;&nbsp;</a></li>
-                            <li id="tab4" class="menu__item " role="tab"><a class="menu__link" href="issues.jsp">&nbsp;&nbsp;&nbsp;晒&nbsp;&nbsp;&nbsp;单&nbsp;&nbsp;&nbsp;评&nbsp;&nbsp;&nbsp;论</a></li>
+                        <ul class="nav navbar-nav menu__list ">
+                            <li class="menu__item menu__item--current"><a class="menu__link" href="../Fronts/index">&nbsp;&nbsp;&nbsp;首&nbsp;&nbsp;&nbsp;页&nbsp;&nbsp;&nbsp; <span class="sr-only">(current)</span></a></li>
+                            <li class=" menu__item"><a class="menu__link" href="../Fronts/newgoods?type=-1">&nbsp;&nbsp;&nbsp;新&nbsp;&nbsp;&nbsp;品&nbsp;&nbsp;&nbsp;上&nbsp;&nbsp;&nbsp;市&nbsp;&nbsp;&nbsp;</a></li>
+                            <li class="dropdown menu__item">
+                                <a href="#" class="dropdown-toggle menu__link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">&nbsp;&nbsp;&nbsp;知&nbsp;&nbsp;&nbsp;识&nbsp;&nbsp;&nbsp;百&nbsp;&nbsp;&nbsp;科&nbsp;&nbsp;&nbsp; <span class="caret"></span></a>
+                                <ul class="dropdown-menu multi-column columns-2">
+                                    <div class="row">
+                                        <div class="col-sm-12 multi-gd-img">
+                                            <ul class="multi-column-dropdown">
+                                                <li id="one" style="text-align: center;" ><a style="font-size:15px;"  href="../Fronts/knowledge?c=0" >乐潮眼镜</a></li>
+                                                <li  id="tow" style="text-align: center; "><a style="font-size: 15px; " href="../Fronts/knowledge?c=1" >眼镜二三事</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </ul>
+                            </li>
+                            <li class=" menu__item" ><a class="menu__link" href="../Fronts/issues">&nbsp;&nbsp;&nbsp;晒&nbsp;&nbsp;&nbsp;单&nbsp;&nbsp;&nbsp;评&nbsp;&nbsp;&nbsp;论</a></li>
                         </ul>
                     </div>
                 </div>
             </nav>
         </div>
+       <%-- <div class="top_nav_right">
+            <div class="cart box_1">
+                <a href="checkout.html">
+                    <h3> <div class="total">
+                        <i class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></i>
+                        <span class="simpleCart_total"></span> (<span id="simpleCart_quantity" class="simpleCart_quantity"></span> items)</div>
+
+                    </h3>
+                </a>
+                <p><a href="javascript:;" class="simpleCart_empty">Empty Cart</a></p>
+
+            </div>
+        </div>--%>
+<%--
+        <div class="clearfix"></div>
+--%>
     </div>
 </div>
 
-</body>
-
-
 <script type="text/javascript">
 
-        $(".collapse a").each(function(){
+    $(".collapse a").each(function(){
 
-            $this = $(this);
+        $this = $(this);
 
-            if($this[0].href==String(window.location)){
+        if($this[0].href==String(window.location)){
 
-                $this.parent().addClass("menu__item--current");
+            $this.parent().addClass("menu__item--current");
 
-            }else {
-                $this.parent().removeClass("menu__item--current");
-            }
-        });
+        }else {
+            $this.parent().removeClass("menu__item--current");
+        }
+    });
 
 </script>
+
+</body>
