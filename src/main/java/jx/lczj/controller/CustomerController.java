@@ -86,4 +86,31 @@ public class CustomerController {
         return customerService.update(name,phone,sex,birthday);
     }
 
+
+    /**
+     * 更新密码
+     * @param phone
+     * @param pwd
+     * @return
+     */
+    @RequestMapping("/updatePwd")
+    @ResponseBody
+    public boolean updatePwd(String phone,String pwd){
+        System.out.println(phone+pwd);
+        return customerService.updatePwd(phone,pwd);
+    }
+
+    /**
+     * 更新头像
+     * @param phone
+     * @param face
+     * @return
+     */
+    @RequestMapping("/updateFace")
+    @ResponseBody
+    public boolean updateFace(String phone,String face){
+        System.out.println(phone+face);
+        return customerService.updateFace(phone,face);
+    }
 }
+
