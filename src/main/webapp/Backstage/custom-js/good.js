@@ -115,6 +115,12 @@ $(document).ready(function(){
 
 
                 var attachStr = '';
+
+                for( var j = 0 ;j < datas.t_wears.length ; j++){
+                    var itm =  datas.t_wears[j];
+                    attachStr +='&nbsp;&nbsp;&nbsp;<image style="width: 45px;height: 45px;" src="../goods/'+ itm.path+'"></image>'
+                }
+
                 for( var j = 0 ;j < datas.t_attachments.length ; j++){
                     var itm =  datas.t_attachments[j];
                     attachStr +='&nbsp;&nbsp;&nbsp;<image style="width: 45px;height: 45px;" src="../goods/'+ itm.path+'"></image>'
@@ -503,6 +509,12 @@ $(document).ready(function(){
 
 
                     var attachStr = '';
+
+                    for( var j = 0 ;j < datas.t_wears.length ; j++){
+                        var itm =  datas.t_wears[j];
+                        attachStr +='&nbsp;&nbsp;&nbsp;<image style="width: 45px;height: 45px;" src="../goods/'+ itm.path+'"></image>'
+                    }
+
                     for (var j = 0; j < datas.t_attachments.length; j++) {
                         var itm = datas.t_attachments[j];
                         attachStr += '&nbsp;&nbsp;&nbsp;<image style="width: 45px;height: 45px;" src="../goods/' + itm.path + '"></image>'
@@ -624,6 +636,12 @@ $(document).ready(function(){
 
 
                     var attachStr = '';
+
+                    for( var j = 0 ;j < datas.t_wears.length ; j++){
+                        var itm =  datas.t_wears[j];
+                        attachStr +='&nbsp;&nbsp;&nbsp;<image style="width: 45px;height: 45px;" src="../goods/'+ itm.path+'"></image>'
+                    }
+
                     for (var j = 0; j < datas.t_attachments.length; j++) {
                         var itm = datas.t_attachments[j];
                         attachStr += '&nbsp;&nbsp;&nbsp;<image style="width: 45px;height: 45px;" src="../goods/' + itm.path + '"></image>'
@@ -864,6 +882,25 @@ $(document).ready(function(){
 
                     $("#atts_list").html('');
                     var attachStr = '';
+
+                    for( var j = 0 ;j < datas.t_wears.length ; j++){
+                        var itm =  datas.t_wears[j];
+                        var response = itm.attachment;
+                        var str  = '<div class="col-sm-12" id="'+response+'">'+
+                            '<div class="col-sm-8">'+
+                            '<input name="fileName" value="'+response+'" readonly style="background-color: white;border: none;outline: none;" class="form-control" type="hidden">'+
+                            '<input  value="'+response+'.png" readonly style="background-color: white;border: none;outline: none;" class="form-control" type="text">'+
+                            '</div>'+
+                            '<div class="col-sm-4" style="padding-top: 3px;" >'+
+                            '<a  style="float: right;"    class="atts_deletes" ><i class="fa fa-times-circle"></i></a>'+
+                            '</div>' +
+                            '</div>';
+
+                        $("#atts_list").append(str);
+                    }
+
+
+
                     for( var j = 0 ;j < datas.t_attachments.length ; j++){
                         var itm =  datas.t_attachments[j];
                         var response = itm.attachment;

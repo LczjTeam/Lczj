@@ -46,7 +46,7 @@ public class OccasionService {
             String path = request.getSession().getServletContext().getRealPath("occasion");
 
             //先吧颜色查询出来
-            T_occasion t_occasion = occasionDao.loadByoccasion(occasion);
+            T_occasion t_occasion = occasionDao.loadById(occasion);
             int file = t_occasion.getOccasion();
             //删除对应的图片
             String d_file1 = path + "/" + file+ "_0.png";
@@ -73,7 +73,7 @@ public class OccasionService {
      * @return
      */
     public T_occasion loadByoccasion(int occasion) {
-        return occasionDao.loadByoccasion(occasion);
+        return occasionDao.loadById(occasion);
     }
 
 

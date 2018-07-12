@@ -154,15 +154,18 @@ public class FileService {
     /**
      * 眼镜试戴
      * @param url
-     * @param glasses_url
+     * @param gl_src
      * @param request
      * @return
      */
-    public String wearGlasses(String root,String url, String glasses_url, HttpServletRequest request) {
+    public String wearGlasses(String root,String url, String gl_src, HttpServletRequest request) {
         System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
         String ctimes = System.currentTimeMillis()+"";
         System.out.println("开始");
         String path = request.getSession().getServletContext().getRealPath(root);
+
+        String path1 = request.getSession().getServletContext().getRealPath("goods");
+
         String uuid = UUID.randomUUID().toString().replace("-", "");
 
         String src_url = path+"\\"+url;
@@ -173,8 +176,8 @@ public class FileService {
             file1.mkdirs();
         }
 
-/*
-        glasses_url = "C:/OpenCVConfig/glasses/male/glasses_0.png";*/
+
+        String  glasses_url =  path1+"/"+gl_src;
 
 
         Mat src = Imgcodecs.imread(src_url);
@@ -234,7 +237,7 @@ public class FileService {
 
             //戴眼镜
             boolean ok = OpenCVUtil.addGlasses(x, y, width, height, src_url, glasses_url, dst_url);
-            return "/models/withGlasses/" + ctimes+uuid + "_withGlasses.jpg";
+            return "/"+root+"/withGlasses/" + ctimes+uuid + "_withGlasses.jpg";
 
         }else if(eyes==null){
             return "-2";

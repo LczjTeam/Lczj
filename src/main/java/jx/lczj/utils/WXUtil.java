@@ -32,7 +32,11 @@ import java.util.Map;
  */
 public class WXUtil {
 
-
+    /**
+     * 获取OPENDID 和SESSION_KEY
+     * @param code
+     * @return
+     */
     public  static JSONObject getOpenidAndSessionKey(String code) {//接收用户传过来的code，required=false表明如果这个参数没有传过来也可以。
         // String code=getcode;
         //接收从客户端获取的code

@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Administrator
@@ -7,86 +8,47 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<html>
+
+<style type="text/css">
+
+    .bg2:hover{
+        font-size: 18px;
+    }
+
+    .ul-default {
+        color: #333;
+        background-color: #fff;
+        border-color: rgba(255, 159, 52, 0);
+    }
+    .ul-default:hover,
+    .ul-default:focus,
+    .ul-default.focus,
+    .ul-default:active,
+    .ul-default.active,
+    .open > .dropdown-toggle.ul-default {
+        color: #333;
+        background-color: #e6e6e6;
+        border-color: #adadad;
+    }
+
+</style>
 
 <div class="men-wear">
 <div class="container">
+
     <div class="col-sm-4 products-left">
-        <div class="css-treeview">
-    <h4>眼镜类别</h4>
-    <ul class="tree-list-pad">
-        <li><input type="checkbox" checked="checked" id="item-0"><label for="item-0"><span></span>男款眼镜</label>
-            <ul>
-                <li><a href="mens.html">经典</a></li>
-                <li><li><a href="mens.html">耐用</a></li>
-                <li><li><a href="mens.html">时尚</a></li>
+        <div id="verticalTab" class="css-treeview">
+            <h4>眼镜类别</h4>
+            <ul class="tabs-list tree-list-pad">
+                <c:if test="${categories != null}">
+                    <c:forEach  items="${categories}" var ="item" varStatus="status">
+                        <li class="tab-item" aria-controls="tab_item-${status.index}" role="tab">
+                            <div class="ul-default"><a class="bg2"  href="newgoods?type=${item.category}" style="text-decoration: none"><span>${item.name}</span></a></div>
+                        </li>
+                    </c:forEach>
+                </c:if>
             </ul>
-        </li>
-        <li><input type="checkbox" id="item-1" checked="checked"><label for="item-1">女款眼镜</label>
-            <ul>
-                <li><li><a href="mens.html">百搭系列</a></li>
-                <li><a href="mens.html">经典复古</a></li>
-                <li><a href="mens.html">夏日爆款</a></li>
-                <li><a href="mens.html">时尚潮流</a></li></li>
-            </ul>
-        </li>
-        <li><input type="checkbox" checked="checked" id="item-2"><label for="item-2">太阳眼镜</label>
-            <ul>
-                <li><input type="checkbox" id="item-2-0"><label for="item-2-0">Summer Discount Sales</label>
-                    <ul>
-                        <li><a href="mens.html">Shirts</a></li>
-                        <li><a href="mens.html">Shoes</a></li>
-                        <li><a href="mens.html">Pants</a></li>
-                    </ul>
-                </li>
-                <li><input type="checkbox" id="item-2-1"><label for="item-2-1">Exciting Offers</label>
-                    <ul>
-                        <li><a href="mens.html">Shirts</a></li>
-                        <li><a href="mens.html">Shoes</a></li>
-                        <li><a href="mens.html">Pants</a></li>
-                        <li><a href="mens.html">SunGlasses</a></li>
-                    </ul>
-                </li>
-                <li><input type="checkbox" id="item-2-2"><label for="item-2-2">Flat Discounts</label>
-                    <ul>
-                        <li><a href="mens.html">Shirts</a></li>
-                        <li><a href="mens.html">Shoes</a></li>
-                        <li><a href="mens.html">Pants</a></li>
-                        <li><a href="mens.html">SunGlasses</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </li>
-        <li><input type="checkbox" checked="checked" id="item-3"><label for="item-3">光学镜片</label>
-            <ul>
-                <li><input type="checkbox" id="item-3-0"><label for="item-3-0">夏日爆款</label>
-                    <ul>
-                        <li><a href="mens.html">Shirts</a></li>
-                        <li><a href="mens.html">Shoes</a></li>
-                        <li><a href="mens.html">Pants</a></li>
-                        <li><a href="mens.html">SunGlasses</a></li>
-                    </ul>
-                </li>
-                <li><input type="checkbox" id="item-3-1"><label for="item-3-1">防紫外线+防尘</label>
-                    <ul>
-                        <li><a href="mens.html">Shirts</a></li>
-                        <li><a href="mens.html">Shoes</a></li>
-                        <li><a href="mens.html">Pants</a></li>
-                        <li><a href="mens.html">SunGlasses</a></li>
-                    </ul>
-                </li>
-                <li><input type="checkbox" id="item-3-2"><label for="item-3-2">防水雾</label>
-                    <ul>
-                        <li><a href="mens.html">Shirts</a></li>
-                        <li><a href="mens.html">Shoes</a></li>
-                        <li><a href="mens.html">Pants</a></li>
-                        <li><a href="mens.html">SunGlasses</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </li>
-    </ul>
-</div>
+        </div>
         <div class="clearfix"></div>
     </div>
     <div class="col-sm-8 products-right">
@@ -143,205 +105,38 @@
             </div>
             <div class="clearfix"></div>
         </div>
-        <div class="men-wear-bottom">
-            <div class="col-sm-4 men-wear-left">
-                <img style="width: 233px;height: 226px" class="img-responsive" src="images/men3.jpg" alt=" ">
-            </div>
-            <div class="col-sm-8 men-wear-right">
-                <h4>潮镜嘉年华（eg：特卖活动）</h4>
-                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                    accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae
-                    ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt
-                    explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut
-                    odit aut fugit. </p>
-            </div>
-            <div class="clearfix"></div>
-        </div>
     </div>
     <div class="clearfix"></div>
-    <div class="single-pro">
-        <div class="col-md-3 product-men">
-            <div class="men-pro-item simpleCart_shelfItem">
-                <div class="men-thumb-item">
-                    <img src="images/student04.jpg" alt="" class="pro-image-front">
-                    <img src="images/student04.jpg" alt="" class="pro-image-back">
-                    <div class="men-cart-pro">
-                        <div class="inner-men-cart-pro">
-                            <a href="single.html" class="link-product-add-cart">Quick View</a>
-                        </div>
-                    </div>
-                    <span class="product-new-top">New</span>
-                </div>
-                <div class="item-info-product ">
-                    <h4><a href="single.html">Blazers</a></h4>
-                    <div class="info-product-price">
-                        <span class="item_price">$45.99</span>
-                        <del>$69.71</del>
-                    </div>
-                    <a href="#" class="item_add single-item hvr-outline-out button2">Add to cart</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3 product-men">
-            <div class="men-pro-item simpleCart_shelfItem">
-                <div class="men-thumb-item">
-                    <img src="images/student05.jpg" alt="" class="pro-image-front">
-                    <img src="images/student05.jpg" alt="" class="pro-image-back">
-                    <div class="men-cart-pro">
-                        <div class="inner-men-cart-pro">
-                            <a href="single.html" class="link-product-add-cart">Quick View</a>
-                        </div>
-                    </div>
-                    <span class="product-new-top">New</span>
-                </div>
-                <div class="item-info-product ">
-                    <h4><a href="single.html">Sandals</a></h4>
-                    <div class="info-product-price">
-                        <span class="item_price">$45.99</span>
-                        <del>$69.71</del>
-                    </div>
-                    <a href="#" class="item_add single-item hvr-outline-out button2">Add to cart</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3 product-men">
-            <div class="men-pro-item simpleCart_shelfItem">
-                <div class="men-thumb-item">
-                    <img src="images/student06.jpg" alt="" class="pro-image-front">
-                    <img src="images/student06.jpg" alt="" class="pro-image-back">
-                    <div class="men-cart-pro">
-                        <div class="inner-men-cart-pro">
-                            <a href="single.html" class="link-product-add-cart">Quick View</a>
-                        </div>
-                    </div>
-                    <span class="product-new-top">New</span>
-                </div>
-                <div class="item-info-product ">
-                    <h4><a href="single.html">Watches</a></h4>
-                    <div class="info-product-price">
-                        <span class="item_price">$45.99</span>
-                        <del>$69.71</del>
-                    </div>
-                    <a href="#" class="item_add single-item hvr-outline-out button2">Add to cart</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3 product-men">
-            <div class="men-pro-item simpleCart_shelfItem">
-                <div class="men-thumb-item">
-                    <img src="images/student07.jpg" alt="" class="pro-image-front">
-                    <img src="images/student07.jpg" alt="" class="pro-image-back">
-                    <div class="men-cart-pro">
-                        <div class="inner-men-cart-pro">
-                            <a href="single.html" class="link-product-add-cart">Quick View</a>
-                        </div>
-                    </div>
-                    <span class="product-new-top">New</span>
-                </div>
-                <div class="item-info-product ">
-                    <h4><a href="single.html">Shoes</a></h4>
-                    <div class="info-product-price">
-                        <span class="item_price">$45.99</span>
-                        <del>$69.71</del>
-                    </div>
-                    <a href="#" class="item_add single-item hvr-outline-out button2">Add to cart</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3 product-men yes-marg">
-            <div class="men-pro-item simpleCart_shelfItem">
-                <div class="men-thumb-item">
-                    <img src="images/student08.jpg" alt="" class="pro-image-front">
-                    <img src="images/student08.jpg" alt="" class="pro-image-back">
-                    <div class="men-cart-pro">
-                        <div class="inner-men-cart-pro">
-                            <a href="single.html" class="link-product-add-cart">Quick View</a>
-                        </div>
-                    </div>
-                    <span class="product-new-top">New</span>
+    <div id="tabBox" class="single-pro tabs-container">
+             <div class="tab-content" aria-labelledby="tab_item-${status.index}">
+                <c:forEach items="${shops}" var="shop">
+                    <div class="col-md-3 product-men yes-marg">
+                        <div class="men-pro-item simpleCart_shelfItem">
+                            <div class="men-thumb-item">
+                                <img src="../goods/${shop.t_attachments[0].path}" alt="" class="pro-image-front">
+                                <img src="../goods/${shop.t_attachments[0].path}" alt="" class="pro-image-back">
+                                <div class="men-cart-pro">
+                                    <div class="inner-men-cart-pro">
+                                        <a href="single.html" class="link-product-add-cart">Quick View</a>
+                                    </div>
+                                </div>
+                                <span class="product-new-top">New</span>
 
-                </div>
-                <div class="item-info-product ">
-                    <h4><a href="single.html">Shirts</a></h4>
-                    <div class="info-product-price">
-                        <span class="item_price">$45.99</span>
-                        <del>$69.71</del>
-                    </div>
-                    <a href="#" class="item_add single-item hvr-outline-out button2">Add to cart</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3 product-men yes-marg">
-            <div class="men-pro-item simpleCart_shelfItem">
-                <div class="men-thumb-item">
-                    <img src="images/sunglass01.jpg" alt="" class="pro-image-front">
-                    <img src="images/sunglass01.jpg" alt="" class="pro-image-back">
-                    <div class="men-cart-pro">
-                        <div class="inner-men-cart-pro">
-                            <a href="single.html" class="link-product-add-cart">Quick View</a>
+                            </div>
+                            <div class="item-info-product ">
+                                <h4><a href="single.html">${shop.t_goods.name}</a></h4>
+                                <div class="info-product-price">
+                                    <span class="item_price">${shop.t_goods.price}</span>
+                                    <del>$69.71</del>
+                                </div>
+                                <a href="#" class="item_add single-item hvr-outline-out button2">Add to cart</a>
+                            </div>
                         </div>
                     </div>
-                    <span class="product-new-top">New</span>
-
-                </div>
-                <div class="item-info-product ">
-                    <h4><a href="single.html">Watches</a></h4>
-                    <div class="info-product-price">
-                        <span class="item_price">$119.99</span>
-                        <del>$150.71</del>
-                    </div>
-                    <a href="#" class="item_add single-item hvr-outline-out button2">Add to cart</a>
-                </div>
+                </c:forEach>
+                <div class="clearfix"></div>
             </div>
-        </div>
-        <div class="col-md-3 product-men yes-marg">
-            <div class="men-pro-item simpleCart_shelfItem">
-                <div class="men-thumb-item">
-                    <img src="images/sunglass02.jpg" alt="" class="pro-image-front">
-                    <img src="images/sunglass02.jpg" alt="" class="pro-image-back">
-                    <div class="men-cart-pro">
-                        <div class="inner-men-cart-pro">
-                            <a href="single.html" class="link-product-add-cart">Quick View</a>
-                        </div>
-                    </div>
-                    <span class="product-new-top">New</span>
-
-                </div>
-                <div class="item-info-product ">
-                    <h4><a href="single.html">T shirts</a></h4>
-                    <div class="info-product-price">
-                        <span class="item_price">$45.99</span>
-                        <del>$69.71</del>
-                    </div>
-                    <a href="#" class="item_add single-item hvr-outline-out button2">Add to cart</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3 product-men yes-marg">
-            <div class="men-pro-item simpleCart_shelfItem">
-                <div class="men-thumb-item">
-                    <img src="images/sunglass03.jpg" alt="" class="pro-image-front">
-                    <img src="images/sunglass03.jpg" alt="" class="pro-image-back">
-                    <div class="men-cart-pro">
-                        <div class="inner-men-cart-pro">
-                            <a href="single.html" class="link-product-add-cart">Quick View</a>
-                        </div>
-                    </div>
-                    <span class="product-new-top">New</span>
-
-                </div>
-                <div class="item-info-product ">
-                    <h4><a href="single.html"> Shirts</a></h4>
-                    <div class="info-product-price">
-                        <span class="item_price">$45.99</span>
-                        <del>$69.71</del>
-                    </div>
-                    <a href="#" class="item_add single-item hvr-outline-out button2">Add to cart</a>
-                </div>
-            </div>
-        </div>
-        <div class="clearfix"></div>
-    </div>
+     </div>
     <div class="pagination-grid text-right">
         <ul class="pagination paging">
             <li><a href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
@@ -355,5 +150,3 @@
     </div>
 </div>
 </div>
-
-</html>

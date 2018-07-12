@@ -12,10 +12,19 @@ public class T_mywear {
     private String goods;//镜框
     private int pupil;//瞳孔
     private String sex;//性别
+    private int age;//性别
     private String selfphoto;//自拍照
     private String showphoto;//试戴照
     private int deal;//是否成交
     private int iscart;//是否添加购物车
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
 
     public String getMywear() {
         return mywear;
@@ -113,6 +122,7 @@ public class T_mywear {
         this.iscart = iscart;
     }
 
+
     @Override
     public String toString() {
         return "T_mywear{" +
@@ -124,6 +134,7 @@ public class T_mywear {
                 ", goods='" + goods + '\'' +
                 ", pupil=" + pupil +
                 ", sex='" + sex + '\'' +
+                ", age='" + age + '\'' +
                 ", selfphoto='" + selfphoto + '\'' +
                 ", showphoto='" + showphoto + '\'' +
                 ", deal=" + deal +
