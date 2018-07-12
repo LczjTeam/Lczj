@@ -2,8 +2,10 @@ package jx.lczj.controller;
 
 
 import jx.lczj.model.T_category;
+import jx.lczj.service.NewsService;
 import jx.lczj.viewmodel.FrontShopVo;
 import jx.lczj.viewmodel.GoodsVo;
+import jx.lczj.viewmodel.NewsVo;
 import jx.lczj.viewmodel.T_goodsHot;
 import jx.lczj.service.FrontService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,9 @@ public class FrontController {
 
     @Autowired
     FrontService frontService;
+
+    @Autowired
+    NewsService newsService;
 
     @RequestMapping(value = "/index")
     public String index(Model model, HttpServletRequest request) {
@@ -81,6 +86,21 @@ public class FrontController {
 
         return "Fronts/newgoods";
     }
+    /**
+     * 知识百科
+     */
+    @RequestMapping("/knowledge")
+    public String knowledge(Model model,HttpServletRequest request){
 
+        String c=request.getParameter("c");
+        System.out.println("----------------");
+        System.out.println("c:"+c);
+        System.out.println("----------------");
+        List<NewsVo> newsVos = newsService.listitem(c);
+
+        System.out.println("知识百科："+newsVos);
+        model.addAttribute("news",newsVos);
+        return "Fronts/knowledge";
+    }
 
 }
