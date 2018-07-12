@@ -15,7 +15,7 @@ import java.util.UUID;
 @Service
 public class CustomerService {
    @Resource
-    CustomerDao customerDao ;
+    CustomerDao customerDao;
 
 
     /**
