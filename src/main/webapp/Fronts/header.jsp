@@ -160,7 +160,7 @@
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse menu--shylock" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav menu__list ">
-                            <li class="active menu__item menu__item--current"><a class="menu__link" href="../Fronts/index">&nbsp;&nbsp;&nbsp;首&nbsp;&nbsp;&nbsp;页&nbsp;&nbsp;&nbsp; <span class="sr-only">(current)</span></a></li>
+                            <li class="menu__item menu__item--current"><a class="menu__link" href="../Fronts/index">&nbsp;&nbsp;&nbsp;首&nbsp;&nbsp;&nbsp;页&nbsp;&nbsp;&nbsp; <span class="sr-only">(current)</span></a></li>
                             <li class=" menu__item"><a class="menu__link" href="../Fronts/newgoods?type=-1">&nbsp;&nbsp;&nbsp;新&nbsp;&nbsp;&nbsp;品&nbsp;&nbsp;&nbsp;上&nbsp;&nbsp;&nbsp;市&nbsp;&nbsp;&nbsp;</a></li>
                             <li class="dropdown menu__item">
                                 <a href="#" class="dropdown-toggle menu__link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">&nbsp;&nbsp;&nbsp;知&nbsp;&nbsp;&nbsp;识&nbsp;&nbsp;&nbsp;百&nbsp;&nbsp;&nbsp;科&nbsp;&nbsp;&nbsp; <span class="caret"></span></a>
@@ -200,4 +200,21 @@
 --%>
     </div>
 </div>
+<script type="text/javascript">
+
+    $(".collapse a").each(function(){
+
+        $this = $(this);
+
+        if($this[0].href==String(window.location)){
+
+            $this.parent().addClass("menu__item--current");
+
+        }else {
+            $this.parent().removeClass("menu__item--current");
+        }
+    });
+
+</script>
+
 </body>
