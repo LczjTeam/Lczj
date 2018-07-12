@@ -16,7 +16,7 @@ import java.util.UUID;
 @Service
 public class CustomerService {
     @Resource
-    CustomerDao  customerDao ;
+    CustomerDao  customerDao;
 
 
     /**
@@ -63,15 +63,16 @@ public class CustomerService {
         try {
             T_customer t_customer = customerDao.loadByPhone(phone);
             if (t_customer == null) {
-                String path = request.getSession().getServletContext().getRealPath("customerheads");
+                //String path = request.getSession().getServletContext().getRealPath("customerheads");
                 String vip = UUID.randomUUID().toString().replace("-", "");
                 System.out.println(vip.length());
                 String pwd = phone;
                 String birthday = "";
-                String face = vip+System.currentTimeMillis()+".png";
+                String face = "default_head.png";
+                //String face = vip+System.currentTimeMillis()+".png";
                 boolean ok = customerDao.add(vip, name, phone, sex, pwd, birthday, face);
                 t_customer = customerDao.loadByPhone(phone);
-                HttpRequest.downLoadFromUrl(headurl,face,path);
+                //HttpRequest.downLoadFromUrl(headurl,face,path);
 
             }
 
@@ -125,7 +126,7 @@ public class CustomerService {
      * @return
      */
     @Transactional
-    public T_customer updateFace(MultipartFile file, String phone, HttpServletRequest request) {
+    public String updateFace(MultipartFile file, String phone, HttpServletRequest request) {
         try {
             T_customer t_customer = customerDao.loadByPhone(phone);
 
@@ -147,7 +148,7 @@ public class CustomerService {
             if(oldFile .exists()){
                 oldFile.delete();
             }
-            return customerDao.loadByPhone(phone);
+            return t_customer.getVip()+times+ ".png";
         } catch (Exception e) {
             throw new RuntimeException(e.getMessage());
         }

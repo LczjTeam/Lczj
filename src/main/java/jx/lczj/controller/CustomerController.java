@@ -109,7 +109,7 @@ public class CustomerController {
      */
     @RequestMapping("/updateFace")
     @ResponseBody
-    public T_customer updateFace(MultipartFile file, String phone, HttpServletRequest request){
+    public String updateFace(MultipartFile file, String phone, HttpServletRequest request){
         System.out.println(phone);
         return customerService.updateFace(file,phone,request);
     }
