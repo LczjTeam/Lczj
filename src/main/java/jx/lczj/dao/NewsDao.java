@@ -87,4 +87,7 @@ public interface NewsDao {
      */
     @Update("update T_NEWS set PHOTO = ''  where code = #{0}")
     boolean deletePhoto(String code);
+
+    @Select("select * from  ( select t.*,rownum rn from T_NEWS t  where  ITEMS = #{2} ) where rn > #{0} and rn <= #{1}")
+    List<T_news> listByStart(int start, int end,int items);
 }
