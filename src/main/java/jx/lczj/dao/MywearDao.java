@@ -5,6 +5,7 @@ import jx.lczj.model.T_wearglass;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 
@@ -90,4 +91,25 @@ public interface  MywearDao {
      */
     @Delete("DELETE FROM T_MYWEAR  WHERE MYWEAR  = #{0}")
     boolean delete(String mywear);
+
+    /**
+     * 修改颜色
+     * @param mywear
+     * @param color
+     * @return
+     */
+    @Update("UPDATE T_MYWEAR SET COLOR = #{1} WHERE MYWEAR = #{0}")
+    boolean updateColor(String mywear,int color);
+
+    /**
+     * 修改镜片参数
+     * @param mywear
+     * @param degress
+     * @param asdegress
+     * @param axis
+     * @param sign
+     * @return
+     */
+    @Update("UPDATE T_WEARGLASS SET DEGRESS = #{1},ASDEGRESS = #{2},AXIS = #{3} WHERE MYWEAR = #{0} AND SIGN = #{4}")
+    boolean updateEyeglass(String mywear, int degress, int asdegress, float axis, String sign);
 }
