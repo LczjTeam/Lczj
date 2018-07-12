@@ -14,12 +14,13 @@ import java.util.UUID;
 
 @Service
 public class CustomerService {
-   @Resource
-    CustomerDao customerDao ;
+    @Resource
+    CustomerDao customerDao;
 
 
     /**
      * 获取会员列表
+     *
      * @return
      */
     public List<T_customer> loadCustomer() {
@@ -29,6 +30,7 @@ public class CustomerService {
 
     /**
      * 获取会员信息
+     *
      * @param phone
      * @return
      */
@@ -38,28 +40,30 @@ public class CustomerService {
 
     /**
      * 重置密码
+     *
      * @param phone
      * @return
      */
     public boolean resetPwd(String phone) {
-        return customerDao.resetPwd(phone) ;
+        return customerDao.resetPwd(phone);
     }
 
     /**
      * 会员登录
+     *
      * @param phone
      * @param name
      * @return
      */
     @Transactional
-    public T_customer login(String phone, String name,String sex) {
-        System.out.println(phone+"\n"+name+"\n"+sex);
+    public T_customer login(String phone, String name, String sex) {
+        System.out.println(phone + "\n" + name + "\n" + sex);
 
         try {
             T_customer t_customer = customerDao.loadByPhone(phone);
             if (t_customer == null) {
 
-                String vip = UUID.randomUUID().toString().replace("-","") ;
+                String vip = UUID.randomUUID().toString().replace("-", "");
                 System.out.println(vip.length());
                 String pwd = phone;
                 String birthday = "";
@@ -70,13 +74,14 @@ public class CustomerService {
 
             return t_customer;
 
-        }catch (Exception e){
-            throw  new RuntimeException(e.getMessage());
+        } catch (Exception e) {
+            throw new RuntimeException(e.getMessage());
         }
     }
 
     /**
      * 编辑更新
+     *
      * @param name
      * @param phone
      * @param sex
@@ -84,14 +89,62 @@ public class CustomerService {
      * @return
      */
     @Transactional
-    public boolean update(String name, String phone,String sex,String birthday) {
+    public boolean update(String name, String phone, String sex, String birthday) {
         try {
-            boolean ok = customerDao.update(name,phone,sex,birthday);
+            boolean ok = customerDao.update(name, phone, sex, birthday);
             return true;
-        }catch (Exception e){
-            throw  new RuntimeException(e.getMessage());
+        } catch (Exception e) {
+            throw new RuntimeException(e.getMessage());
         }
     }
 
- }
+    /**
+     * 更新密码
+     *
+     * @param phone
+     * @param pwd
+     * @return
+     */
+    @Transactional
+    public boolean update(String phone, String pwd) {
+        try {
+            boolean ok = customerDao.updatePwd(phone, pwd);
+            return true;
+        } catch (Exception e) {
+            throw new RuntimeException(e.getMessage());
+        }
+    }
 
+    /**
+     * 更新密码
+     *
+     * @param phone
+     * @param pwd
+     * @return
+     */
+    @Transactional
+    public boolean updatePwd(String phone, String pwd) {
+        try {
+            boolean ok = customerDao.updatePwd(phone, pwd);
+            return true;
+        } catch (Exception e) {
+            throw new RuntimeException(e.getMessage());
+        }
+    }
+
+    /**
+     * 更新头像
+     * @param phone
+     * @param face
+     * @return
+     */
+    @Transactional
+    public boolean updateFace(String phone, String face) {
+        try {
+            boolean ok = customerDao.updateFace(phone, face);
+            return true;
+        } catch (Exception e) {
+            throw new RuntimeException(e.getMessage());
+        }
+    }
+}
