@@ -76,17 +76,14 @@ public class CustomerController {
      * @param name
      * @param phone
      * @param sex
-     * @param pwd
      * @param birthday
-     * @param face
      * @return
      */
-    @Privilege(value = "会员查询")
     @RequestMapping("/update")
     @ResponseBody
-    public boolean update(String name, String phone,String sex,String pwd,String birthday,String face){
-        System.out.println(name+phone+sex+pwd+birthday+face);
-        return customerService.update(name,phone,sex,pwd,birthday,face);
+    public boolean update(String name, String phone,String sex,String birthday){
+        System.out.println(name+phone+sex+birthday);
+        return customerService.update(name,phone,sex,birthday);
     }
 
 }

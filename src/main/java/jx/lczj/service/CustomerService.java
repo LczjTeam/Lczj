@@ -80,15 +80,13 @@ public class CustomerService {
      * @param name
      * @param phone
      * @param sex
-     * @param pwd
      * @param birthday
-     * @param face
      * @return
      */
     @Transactional
-    public boolean update(String name, String phone,String sex,String pwd,String birthday,String face) {
+    public boolean update(String name, String phone,String sex,String birthday) {
         try {
-            boolean ok = customerDao.update(name,phone,sex,pwd,birthday,face);
+            boolean ok = customerDao.update(name,phone,sex,birthday);
             return true;
         }catch (Exception e){
             throw  new RuntimeException(e.getMessage());

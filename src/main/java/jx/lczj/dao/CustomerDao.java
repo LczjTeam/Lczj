@@ -46,11 +46,9 @@ public  interface CustomerDao {
      * @param name
      * @param phone
      * @param sex
-     * @param pwd
      * @param birthday
-     * @param face
      * @return
      */
-    @Update("update T_CUSTOMER set NAME= #{0} , SEX = #{2} , PWD = #{3} , BIRTHDAY = #{4} , FACE = #{5} where PHONE = #{1}")
-    boolean update(String name, String phone,String sex,String pwd,String birthday,String face);
+    @Update("update T_CUSTOMER set NAME= #{0} , SEX = #{2} ,   BIRTHDAY = #{3} where PHONE = #{1}")
+    boolean update(String name, String phone,String sex,String birthday);
 }
