@@ -112,6 +112,14 @@ public class NewsController {
         return newsService.list(1);
     }
 
-
+    /**
+     * 文章列表[眼镜二三事]
+     * @return
+     */
+    @RequestMapping("/listByStart")
+    @ResponseBody
+    public List<NewsVo> listByStart(int start,int length){
+        return newsService.listByStart(start,length,1);
+    }
 
 }

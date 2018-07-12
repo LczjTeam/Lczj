@@ -228,8 +228,8 @@ public class MywearService {
 
         Integer right_degress = null;
 
-        if(request.getParameter("right_zw")!=null){
-            right_degress = Integer.parseInt(request.getParameter("right_zw"));
+        if(request.getParameter("right_ds")!=null){
+            right_degress = Integer.parseInt(request.getParameter("right_ds"));
         }
         System.out.println("right_degress:"+right_degress);
 
@@ -453,6 +453,80 @@ public class MywearService {
 
             return  mvo;
         }catch(Exception e){
+            throw new RuntimeException(e.getMessage());
+        }
+    }
+
+    /**
+     * 更新
+     * @param request
+     * @return
+     */
+    @Transactional
+    public boolean update(HttpServletRequest request) {
+
+        try {
+
+            //更新颜色
+            String mywear = request.getParameter("mywear");
+            System.out.println("mywaer:" + mywear);
+
+            int color = Integer.parseInt(request.getParameter("color"));
+            System.out.println("color:" + color);
+
+            boolean ok = mywearDao.updateColor(mywear,
+                    color
+            );
+
+            //更新左眼参数
+            int left_degress = Integer.parseInt(request.getParameter("left_degress"));
+            System.out.println("left_degress:" + left_degress);
+
+            int left_asdegress = Integer.parseInt(request.getParameter("left_asdegress"));
+            System.out.println("left_asdegress:" + left_asdegress);
+
+            float left_axis = Float.parseFloat(request.getParameter("left_axis"));
+            System.out.println("left_axis:" + left_axis);
+
+            String left_sign = "l";
+
+            boolean ok1 = mywearDao.updateEyeglass(
+                    mywear,
+                    left_degress,
+                    left_asdegress,
+                    left_axis,
+                    left_sign
+
+            );
+
+            System.out.println("left_sign:l");
+
+            //更新右眼参数
+            int right_degress = Integer.parseInt(request.getParameter("right_degress"));
+            System.out.println("right_degress:" + right_degress);
+
+            int right_asdegress = Integer.parseInt(request.getParameter("right_asdegress"));
+            System.out.println("right_asdegress:" + right_asdegress);
+
+            float right_axis = Float.parseFloat(request.getParameter("right_axis"));
+            System.out.println("right_axis:" + right_axis);
+
+
+            String right_sign = "r";
+
+
+            boolean ok2 = mywearDao.updateEyeglass(
+                    mywear,
+                    right_degress,
+                    right_asdegress,
+                    right_axis,
+                    right_sign
+            );
+
+
+            return true;
+
+        }catch (Exception e){
             throw new RuntimeException(e.getMessage());
         }
     }

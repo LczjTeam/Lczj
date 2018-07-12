@@ -1,15 +1,11 @@
 package jx.lczj.controller;
 
-import jx.lczj.model.T_mywear;
-import jx.lczj.service.AddressService;
 import jx.lczj.service.MywearService;
-import jx.lczj.viewmodel.ModelVo;
 import jx.lczj.viewmodel.MywearVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -74,5 +70,14 @@ public class MywearController {
     }
 
 
-
+    /**
+     * 更新修改
+     * @param request
+     * @return
+     */
+    @RequestMapping("/update")
+    @ResponseBody
+    public boolean update(HttpServletRequest request) {
+        return  mywearService.update(request);
+    }
 }
