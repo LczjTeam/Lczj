@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -66,8 +68,8 @@ public class CustomerController {
      */
     @RequestMapping("/login")
     @ResponseBody
-    public T_customer login(String phone,String _name,String sex){
-        return customerService.login(phone,_name,sex);
+    public T_customer login(String phone,String _name,String sex,String headurl,HttpServletRequest request){
+        return customerService.login(phone,_name,sex,headurl,request);
     }
 
 
@@ -103,14 +105,13 @@ public class CustomerController {
     /**
      * 更新头像
      * @param phone
-     * @param face
      * @return
      */
     @RequestMapping("/updateFace")
     @ResponseBody
-    public boolean updateFace(String phone,String face){
-        System.out.println(phone+face);
-        return customerService.updateFace(phone,face);
+    public T_customer updateFace(MultipartFile file, String phone, HttpServletRequest request){
+        System.out.println(phone);
+        return customerService.updateFace(file,phone,request);
     }
 }
 
