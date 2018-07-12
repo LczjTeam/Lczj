@@ -68,8 +68,8 @@ public class CustomerController {
      */
     @RequestMapping("/login")
     @ResponseBody
-    public T_customer login(String phone,String _name,String sex){
-        return customerService.login(phone,_name,sex);
+    public T_customer login(String phone,String _name,String sex,String headurl,HttpServletRequest request){
+        return customerService.login(phone,_name,sex,headurl,request);
     }
 
 
@@ -105,14 +105,13 @@ public class CustomerController {
     /**
      * 更新头像
      * @param phone
-     * @param face
      * @return
      */
     @RequestMapping("/updateFace")
     @ResponseBody
-    public boolean updateFace(MultipartFile file, String phone, String face, HttpServletRequest request){
-        System.out.println(phone+face);
-        return customerService.updateFace(file,phone,face,request);
+    public T_customer updateFace(MultipartFile file, String phone, HttpServletRequest request){
+        System.out.println(phone);
+        return customerService.updateFace(file,phone,request);
     }
 }
 

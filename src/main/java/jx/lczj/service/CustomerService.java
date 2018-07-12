@@ -2,6 +2,7 @@ package jx.lczj.service;
 
 import jx.lczj.dao.CustomerDao;
 import jx.lczj.model.T_customer;
+import jx.lczj.utils.HttpRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -15,7 +16,7 @@ import java.util.UUID;
 @Service
 public class CustomerService {
     @Resource
-    CustomerDao  customerDao;
+    CustomerDao  customerDao ;
 
 
     /**
@@ -56,20 +57,22 @@ public class CustomerService {
      * @return
      */
     @Transactional
-    public T_customer login(String phone, String name, String sex) {
+    public T_customer login(String phone, String name, String sex,String headurl,HttpServletRequest request) {
         System.out.println(phone + "\n" + name + "\n" + sex);
 
         try {
             T_customer t_customer = customerDao.loadByPhone(phone);
             if (t_customer == null) {
-
+                String path = request.getSession().getServletContext().getRealPath("customerheads");
                 String vip = UUID.randomUUID().toString().replace("-", "");
                 System.out.println(vip.length());
                 String pwd = phone;
                 String birthday = "";
-                String face = "heads/defautl_head.png";
+                String face = vip+System.currentTimeMillis()+".png";
                 boolean ok = customerDao.add(vip, name, phone, sex, pwd, birthday, face);
                 t_customer = customerDao.loadByPhone(phone);
+                HttpRequest.downLoadFromUrl(headurl,face,path);
+
             }
 
             return t_customer;
@@ -119,17 +122,16 @@ public class CustomerService {
     /**
      * 更新头像
      * @param phone
-     * @param face
      * @return
      */
     @Transactional
-    public boolean updateFace(MultipartFile file, String phone, String face, HttpServletRequest request) {
+    public T_customer updateFace(MultipartFile file, String phone, HttpServletRequest request) {
         try {
             T_customer t_customer = customerDao.loadByPhone(phone);
 
             String times = System.currentTimeMillis()+"";
             //更新数据库
-            boolean ok = customerDao.updateFace(phone, face);
+            boolean ok = customerDao.updateFace(phone, t_customer.getVip()+times+ ".png");
             //保存头像
             String path = request.getSession().getServletContext().getRealPath("customerheads");
             System.out.println(path);
@@ -145,7 +147,7 @@ public class CustomerService {
             if(oldFile .exists()){
                 oldFile.delete();
             }
-            return true;
+            return customerDao.loadByPhone(phone);
         } catch (Exception e) {
             throw new RuntimeException(e.getMessage());
         }
