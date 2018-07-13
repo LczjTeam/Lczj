@@ -208,7 +208,7 @@ public class EyeglassService {
 
         try{
 
-            boolean ok = eyeglassDao.deleteAttachDiv(code);
+            boolean ok = eyeglassDao.deleteAttachDivByAttachment(code);
             boolean ok1 = eyeglassDao.deleteAttach(code);
 
             String path = request.getSession().getServletContext().getRealPath("goods");

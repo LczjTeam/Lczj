@@ -68,6 +68,15 @@ public interface EyeglassDao {
     @Delete("delete from T_EYEGLASSATTACHMENT where EYEGLASS = #{0}")
     boolean deleteAttachDiv(String EYEGLASS);
 
+
+    /**
+     * 根据附件Id删除附件
+     * @param ATTACHMENT
+     * @return
+     */
+    @Delete("delete from T_EYEGLASSATTACHMENT where ATTACHMENT = #{0}")
+    boolean deleteAttachDivByAttachment(String ATTACHMENT);
+
     /**
      * 更新镜片信息
      * @param eyeglass
