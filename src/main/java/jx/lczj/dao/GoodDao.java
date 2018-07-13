@@ -116,13 +116,31 @@ public interface GoodDao {
     @Select("select * from T_GOODS WHERE GOODS = #{0}")
     T_goods loadById(String goods);
 
+
+    /**
+     * 获取镜框试戴图片
+     * @param goods
+     * @return
+     */
+    @Select("select * from T_ATTACHMENT WHERE ATTACHMENT IN ( SELECT ATTACHMENT FROM T_GOODSATTACHMENT WHERE  GOODS = #{0} AND SN = 0)  ")
+    List<T_attachment> loadWearsByGood(String goods);
+
+
     /**
      * 根据镜框Id获取附件信息
      * @param goods
      * @return
      */
-    @Select("select * from T_ATTACHMENT WHERE ATTACHMENT IN ( SELECT ATTACHMENT FROM T_GOODSATTACHMENT WHERE  GOODS = #{0} )")
+    @Select("select * from T_ATTACHMENT WHERE ATTACHMENT IN ( SELECT ATTACHMENT FROM T_GOODSATTACHMENT WHERE  GOODS = #{0} AND SN <> 0)  ")
     List<T_attachment> loadAttachmentByGood(String goods);
+
+    /**
+     * 根据镜框Id获取附件信息
+     * @param goods
+     * @return
+     */
+    @Select("select * from T_ATTACHMENT WHERE ATTACHMENT IN ( SELECT ATTACHMENT FROM T_GOODSATTACHMENT WHERE  GOODS = #{0} )  ")
+    List<T_attachment> loadAllAttachmentByGood(String goods);
 
     /**
      * 删除颜色分配
@@ -198,4 +216,39 @@ public interface GoodDao {
      */
     @Delete("delete from  T_GOODSCATEGORY where GOODS = #{0}")
     boolean deleteCategoryDiv(String goods);
+
+    /**
+     * 获取热销眼镜
+     */
+    @Select("SELECT * FROM T_GOODS WHERE rownum < 6")
+    List<T_goods> listHot();
+
+    /**
+     * 获取各种眼镜类别的眼镜
+     * @param category
+     * @return
+     */
+    @Select("select * from T_GOODS where GOODS in (select GOODS from T_GOODSCATEGORY where CATEGORY = #{0})")
+    List<T_goods> listShop(int category);
+
+    /**
+     * 推荐镜框
+     * @param sex
+     * @param occasion
+     * @param pupil
+     * @return
+     */
+    @Select("select * from T_GOODS WHERE GOODS in(select T_SUITABLEAGE.GOODS FROM T_AGESECTION,T_SUITABLEAGE,T_SUITABLEOCCASION,T_SUITABLEFACE\n" +
+            " WHERE  (#{2} between (width+space-3) and (width+space+3)) and ({4} between MINAGE and MAXAGE) and T_SUITABLEOCCASION.OCCASION = #{2} and T_SUITABLEFACE.FACE = #{3} and (SUITABLE_SEX = #{0} or SUITABLE_SEX = 0) and T_AGESECTION.AGESECTION = T_SUITABLEAGE.AGESECTION\n" +
+            " and T_SUITABLEAGE.GOODS = T_SUITABLEOCCASION.GOODS and T_SUITABLEAGE.GOODS = T_SUITABLEFACE.GOODS)")
+    List<T_goods> recomend(String sex,String occasion,String pupil,String face,String age);
+
+    /**
+     * 通过类别获取眼镜
+     * @param category
+     * @return
+     */
+    @Select("select * from T_GOODS where goods in (select goods from T_GOODSCATEGORY where CATEGORY = #{0})")
+    List<T_goods> loadGoodsByCategory(int category);
+
 }

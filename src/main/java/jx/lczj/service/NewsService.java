@@ -429,6 +429,12 @@ public class NewsService {
         }
     }
 
+    /**
+     * 删除图片
+     * @param code
+     * @param request
+     * @return
+     */
     public boolean deletePhoto(String code, HttpServletRequest request) {
 
         try {
@@ -448,4 +454,49 @@ public class NewsService {
 
         }
     }
+
+    /**
+     * 获取列表
+     * @param start
+     * @param length
+     * @return
+     */
+    public List<NewsVo> listByStart(int start, int length,int items) {
+
+        try {
+            List<NewsVo> lnvs = new ArrayList<NewsVo>();
+            List<T_news> nls = newsDao.listByStart(start,start+length,items);
+            for (T_news ts : nls) {
+                NewsVo nvo = new NewsVo();
+                nvo.setT_admin(adminDao.loadById(ts.getAuthor()));
+                nvo.setT_news(ts);
+                lnvs.add(nvo);
+            }
+            return lnvs;
+
+        } catch (Exception e) {
+            throw new RuntimeException(e.getMessage());
+        }
+    }
+
+    /**
+     * 获取item
+     */
+    public List<NewsVo> listitem(String item){
+        try {
+
+
+            List<NewsVo> lnvs = new ArrayList<NewsVo>();
+            List<T_news> nls = newsDao.listitem(Integer.parseInt(item));
+            for (T_news t : nls) {
+                NewsVo nvo = new NewsVo();
+                nvo.setT_admin(adminDao.loadById(t.getAuthor()));
+                nvo.setT_news(t);
+                lnvs.add(nvo);
+            }
+            return lnvs;
+
+        } catch (Exception e) {
+            throw new RuntimeException(e.getMessage());
+        }};
 }

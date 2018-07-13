@@ -87,4 +87,14 @@ public interface NewsDao {
      */
     @Update("update T_NEWS set PHOTO = ''  where code = #{0}")
     boolean deletePhoto(String code);
+
+    @Select("select * from  ( select t.*,rownum rn from T_NEWS t  where  ITEMS = #{2} ) where rn > #{0} and rn <= #{1}")
+    List<T_news> listByStart(int start, int end,int items);
+
+    /**
+     * 获取item 的文章
+     * @return
+     */
+    @Select("SELECT * FROM  T_NEWS WHERE ITEMS = #{0} ORDER BY TOP , ITEMS ,ISSUE_DATE DESC")
+    List<T_news> listitem(int item);
 }

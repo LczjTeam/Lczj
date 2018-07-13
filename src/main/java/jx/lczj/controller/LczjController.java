@@ -92,4 +92,13 @@ public class LczjController {
         return newsService.loadById(code);
     }
 
+    /**
+     * 文章列表[乐潮之镜]
+     * @return
+     */
+    @RequestMapping("/listByStart")
+    @ResponseBody
+    public List<NewsVo> listByStart(int start,int length) {
+        return newsService.listByStart(start, length, 0);
+    }
 }

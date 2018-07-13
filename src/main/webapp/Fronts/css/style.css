@@ -1587,7 +1587,7 @@ font-size:14px;
 color:#8E8E8E;	
 }
 ul.multi-column-dropdown li a:hover{
-	color:#FDA30E;
+	color:#fafafa
 }
 .col-sm-3.multi-gd-img {
     padding: 0;
@@ -1640,7 +1640,7 @@ ul.multi-column-dropdown li a:hover{
 }
 /*-- coupons --*/
 .coupons{
-background:url(../images/coupons.jpg) no-repeat center;
+background:url(../images/ss.jpg) no-repeat center;
 background-size:cover;
 -webkit-background-size: cover;
 -o-background-size: cover;
