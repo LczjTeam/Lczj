@@ -95,8 +95,8 @@ public class AddressService {
      * 加载
      * @return
      */
-    public List<T_address> loadlist() {
-        return addressDao.loadlist();
+    public List<T_address> listByCustomer(String customer) {
+        return addressDao.loadlist(customer);
     }
 
     /**

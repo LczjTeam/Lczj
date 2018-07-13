@@ -49,15 +49,6 @@ public class AddressController {
 
     /**
      * 更新
-     * @param address
-     * @param customer
-     * @param consignee
-     * @param phone
-     * @param street
-     * @param provincename
-     * @param cityname
-     * @param countyname
-     * @param isdefault
      * @return
      */
     @RequestMapping("/update")
@@ -72,7 +63,7 @@ public class AddressController {
      */
     @RequestMapping("/list")
     @ResponseBody
-    public List<T_address> list(){return addressService.loadlist();}
+    public List<T_address> listByCustomer(String customer){return addressService.listByCustomer(customer);}
 
     /**
      * 默认修改

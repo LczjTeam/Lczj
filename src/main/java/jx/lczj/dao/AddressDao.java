@@ -18,8 +18,8 @@ public interface AddressDao {
      * 加载
      * @return
      */
-    @Select("select * from T_ADDRESS")
-    public List<T_address> loadlist();
+    @Select("select * from T_ADDRESS WHERE CUSTOMER = #{0}")
+    public List<T_address> loadlist(String customer);
 
     /**
      * 添加镜片信息
