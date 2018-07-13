@@ -64,6 +64,19 @@ public class EyeglassController {
     @ResponseBody
     public EyeglassVo update(String[] fileName, HttpServletRequest request, HttpSession session){return eyeglassService.update(fileName,request,session);};
 
+
+    /**
+     * 删除附件
+     * @param code
+     * @param request
+     * @return
+     */
+    @Privilege("镜片管理")
+    @RequestMapping("/deleteAttach")
+    @ResponseBody
+    public boolean deleteAttach(String code,HttpServletRequest request){return eyeglassService.deleteAttach(code,request);};
+
+
     /**
      * 删除
      * @param code

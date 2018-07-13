@@ -651,7 +651,7 @@ $(document).ready(function () {
                         $.ajax({
                             async: false,
                             type: "POST",
-                            url: "../good/deleteAttach",//注意路径
+                            url: "../eyeglass/deleteAttach",//注意路径
                             data: params,
                             dataType: "json",
                             success: function (datas) {

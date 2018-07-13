@@ -198,6 +198,33 @@ public class EyeglassService {
     }
 
     /**
+     * 删除附件
+     * @param code
+     * @param request
+     * @return
+     */
+    @Transactional
+    public boolean deleteAttach(String code, HttpServletRequest request) {
+
+        try{
+
+            boolean ok = eyeglassDao.deleteAttachDiv(code);
+            boolean ok1 = eyeglassDao.deleteAttach(code);
+
+            String path = request.getSession().getServletContext().getRealPath("goods");
+            File file = new File(path+"/"+code+".png");
+            System.out.println(path+"/"+code+".png");
+            if (file.exists())//目录不存在则创建
+                file.delete();
+
+            return true;
+        }catch (Exception e){
+            throw  new RuntimeException(e.getMessage());
+        }
+
+    }
+
+    /**
      * 通过镜片id删除
      * @param code
      * @param request

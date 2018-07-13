@@ -945,7 +945,7 @@ $(document).ready(function(){
                     $("#atts_list").html('');
 
                     $("#add_shidai").val("")
-                    $("#edit_photo_name").val(datas.t_wears[0].attachment)
+                    if(datas.t_wears.length > 0) $("#edit_photo_name").val(datas.t_wears[0].attachment)
 
                     var attachStr = '';
 
