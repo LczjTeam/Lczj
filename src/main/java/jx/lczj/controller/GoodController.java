@@ -80,6 +80,19 @@ public class GoodController {
     }
 
 
+    /**
+     * 上传文件
+     * @param request
+     * @return
+     */
+    @Privilege("眼镜管理")
+    @RequestMapping(value = "/checkPhoto")
+    @ResponseBody
+    public String  checkPhoto(MultipartFile file,HttpServletRequest request) {
+        return  goodService.checkPhoto(file,request);
+    }
+
+
 
     /**
      * 删除附件

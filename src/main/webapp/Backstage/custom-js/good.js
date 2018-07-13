@@ -30,6 +30,8 @@ $(document).ready(function(){
             initJs = true;
         }
 
+        $("#add_shidai").val("")
+        $("#edit_photo_name").val("")
         $("#add_good").removeAttr('readonly')
         $("#add_good").val('');
         $("#add_name").val('');
@@ -434,9 +436,10 @@ $(document).ready(function(){
 
         if (formData.get("good") == '' || formData.get("good_name") == '' || formData.get("models") == ''
             || formData.get("width") == ''  || formData.get("height") == ''  || formData.get("length") == ''
-            || formData.get("max_width") == ''  || formData.get("space") == ''  || formData.get("price") == '') {
+            || formData.get("max_width") == '' || formData.get("wearfile") == ''
+            || formData.get("space") == ''  || formData.get("price") == '') {
             swal({
-                title: "输入框不能为空！",
+                title: "请填写完整的信息！",
                 text: "",
                 type: "warning",
                 allowOutsideClick: true,
@@ -703,6 +706,65 @@ $(document).ready(function(){
 
     });
 
+
+
+    $("#btn_check_photo").click(function(e){
+
+        var formData = new FormData($("#goods_add")[0]);
+
+        $.ajax({
+            async: false,
+            url: '../good/checkPhoto',
+            type: 'POST',
+            dataType: "json",
+            contentType: false,// 当有文件要上传时，此项是必须的，否则后台无法识别文件流的起始位置(详见：#1)
+            processData: false,// 是否序列化data属性，默认true(注意：false时type必须是post，详见：#2)
+            data: formData,
+            success: function (datas) {
+                console.log(JSON.stringify(datas,null,4))
+
+                var  ss =  datas.responseText.split('|');
+                if(ss.length>1) {
+                    window.open("../" + ss[1], 'newwindow', 'height=600, width=350, top=0, left=0, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no');
+                    $("#edit_photo_name").val(ss[0])
+                }else{
+                    swal({
+                        title: datas.responseText,
+                        text: "",
+                        type: "error",
+                        allowOutsideClick: true,
+                        showConfirmButton: true,
+                        showCancelButton: false,
+                        confirmButtonClass: "btn-danger",
+                        confirmButtonText: "OK",
+                    });
+                    return;
+                }
+            },error:function(datas){
+                console.log("a:"+JSON.stringify(datas,null,4))
+                var  ss =  datas.responseText.split('|');
+                if(ss.length>1) {
+
+                    window.open("../" + ss[1], 'newwindow', 'height=600, width=350, top=0, left=0, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no');
+                    $("#edit_photo_name").val(ss[0])
+                }else{
+                    swal({
+                        title: datas.responseText,
+                        text: "",
+                        type: "error",
+                        allowOutsideClick: true,
+                        showConfirmButton: true,
+                        showCancelButton: false,
+                        confirmButtonClass: "btn-danger",
+                        confirmButtonText: "OK",
+                    });
+                    return;
+                }
+            }
+        });
+
+    });
+
     var EditRow = '-1';
     setEvents();
 
@@ -881,24 +943,11 @@ $(document).ready(function(){
 
 
                     $("#atts_list").html('');
+
+                    $("#add_shidai").val("")
+                    $("#edit_photo_name").val(datas.t_wears[0].attachment)
+
                     var attachStr = '';
-
-                    for( var j = 0 ;j < datas.t_wears.length ; j++){
-                        var itm =  datas.t_wears[j];
-                        var response = itm.attachment;
-                        var str  = '<div class="col-sm-12" id="'+response+'">'+
-                            '<div class="col-sm-8">'+
-                            '<input name="fileName" value="'+response+'" readonly style="background-color: white;border: none;outline: none;" class="form-control" type="hidden">'+
-                            '<input  value="'+response+'.png" readonly style="background-color: white;border: none;outline: none;" class="form-control" type="text">'+
-                            '</div>'+
-                            '<div class="col-sm-4" style="padding-top: 3px;" >'+
-                            '<a  style="float: right;"    class="atts_deletes" ><i class="fa fa-times-circle"></i></a>'+
-                            '</div>' +
-                            '</div>';
-
-                        $("#atts_list").append(str);
-                    }
-
 
 
                     for( var j = 0 ;j < datas.t_attachments.length ; j++){

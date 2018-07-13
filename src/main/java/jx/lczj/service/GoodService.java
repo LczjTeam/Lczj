@@ -2,7 +2,13 @@ package jx.lczj.service;
 
 import jx.lczj.dao.*;
 import jx.lczj.model.*;
+import jx.lczj.utils.OpenCVUtil;
 import jx.lczj.viewmodel.GoodsVo;
+import org.opencv.core.Core;
+import org.opencv.core.Mat;
+import org.opencv.core.Rect;
+import org.opencv.imgcodecs.Imgcodecs;
+import org.opencv.imgproc.Imgproc;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -23,7 +29,7 @@ public class GoodService  {
     GoodDao goodDao ;
 
     @Resource
-    BrandDao brandDao ;
+    BrandDao  brandDao ;
 
     @Resource
     CategoryDao categoryDao ;
@@ -200,6 +206,9 @@ public class GoodService  {
             int price = Integer.parseInt(request.getParameter("price"));
             System.out.println("price:" + price);
 
+            String wearfile = request.getParameter("wearfile");
+            System.out.println("wearfile:" + wearfile);
+
 
 
             boolean ok1 = goodDao.add(goods,
@@ -262,16 +271,13 @@ public class GoodService  {
             System.out.println("fileName:" + fileName.length);
 
             for (int i = 0; i < fileName.length; i++) {
-                boolean ok = goodDao.addAttachmentDiv(fileName[i], goods, i);
-
-
+                boolean ok = goodDao.addAttachmentDiv(fileName[i], goods, i+1);
             }
 
 
-
+            boolean ok =  goodDao.addAttachmentDiv(wearfile,goods,0);
 
             GoodsVo gvo = new GoodsVo();
-
             T_goods t_good = goodDao.loadById(goods);
             gvo.setT_goods(t_good);
             gvo.setT_brand(brandDao.loadById(brand));
@@ -405,6 +411,9 @@ public class GoodService  {
             int price = Integer.parseInt(request.getParameter("price"));
             System.out.println("price:" + price);
 
+            String wearfile = request.getParameter("wearfile");
+            System.out.println("wearfile:" + wearfile);
+
 
             boolean ok1 = goodDao.update(goods,
                     brand,
@@ -482,9 +491,12 @@ public class GoodService  {
             for (T_attachment t: t_attachments) {
                 boolean ok4 = goodDao.deleteAttachDiv(t.getAttachment());
             }
+
+            boolean ok = goodDao.addAttachmentDiv(wearfile, goods, 0);
+
             //附件添加
             for (int i = 0; i < fileName.length; i++) {
-                boolean ok = goodDao.addAttachmentDiv(fileName[i], goods, i);
+                boolean ok2 = goodDao.addAttachmentDiv(fileName[i], goods, i+1);
             }
 
             GoodsVo gvo = new GoodsVo();
@@ -557,4 +569,46 @@ public class GoodService  {
         }
 
     }
+
+    @Transactional
+    public String checkPhoto(MultipartFile file, HttpServletRequest request) {
+
+        String ss = "";
+        try {
+            System.out.println("收到图片!");
+            int counter = 0;
+            String path = request.getSession().getServletContext().getRealPath("goods");
+            File dir = new File(path);
+            System.out.println(path);
+            if (!dir.exists())//目录不存在则创建
+                dir.mkdirs();
+
+            String ctimes = System.currentTimeMillis() + "";
+            counter++;
+            String fileName = file.getOriginalFilename().split("\\.")[0];
+            String code = fileName + ctimes;
+            fileName = fileName + ctimes + ".png";
+            System.out.println(fileName);
+            File tagetFile = new File(path + "/" + fileName);//创建文件对象
+            boolean ok = goodDao.addAttach(code, fileName, fileName, "p");
+
+            if (!tagetFile.exists()) {//文件名不存在 则新建文件，并将文件复制到新建文件中
+                tagetFile.createNewFile();
+            }
+            file.transferTo(tagetFile);
+            String vl = OpenCVUtil.check("default_model.png",path + "/" + fileName,request);
+            if(vl.equals("-4")){
+                return "-4:检测出错";
+            }
+            return code+"|"+vl;
+        }catch (Exception e){
+            throw new RuntimeException(e.getMessage());
+        }
+
+    }
+
+
+
+
+
 }
