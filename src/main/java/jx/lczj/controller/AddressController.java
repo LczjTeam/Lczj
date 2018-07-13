@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.mail.Address;
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -26,22 +27,13 @@ public class AddressController {
 
     /**
      * 添加信息
-     * @param address
-     * @param customer
-     * @param consignee
-     * @param phone
-     * @param street
-     * @param provincename
-     * @param cityname
-     * @param countyname
-     * @param isdefault
      * @return
      */
     @RequestMapping("/add")
     @ResponseBody
-    public boolean add(String address, String customer, String consignee,String phone,
-    String street, String provincename,String cityname,String countyname,String isdefault){
-        return addressService.add(address,customer,consignee,phone,street,provincename,cityname,countyname,isdefault);
+    public boolean add(HttpServletRequest request){
+        //System.out.println(provincename);
+        return addressService.add(request);
     }
 
     /**
@@ -70,9 +62,8 @@ public class AddressController {
      */
     @RequestMapping("/update")
     @ResponseBody
-    public boolean update(String address, String customer, String consignee,String phone,
-                          String street, String provincename,String cityname,String countyname,String isdefault){
-        return addressService.update(address,customer,consignee,phone,street,provincename,cityname,countyname,isdefault);
+    public boolean update(HttpServletRequest request){
+        return addressService.update(request);
     }
 
     /**
@@ -82,4 +73,22 @@ public class AddressController {
     @RequestMapping("/list")
     @ResponseBody
     public List<T_address> list(){return addressService.loadlist();}
+
+    /**
+     * 默认修改
+     */
+    @RequestMapping("/updateDefault")
+    @ResponseBody
+    public boolean updateDefault(String address,String customer){
+        return addressService.updateDefault(address,customer);
+    }
+
+    /**
+     * 根据id加载信息
+     */
+    @RequestMapping("/loadByAddress")
+    @ResponseBody
+    public T_address loadByAddress(String address){
+        return addressService.loadByAddress(address);
+    }
 }

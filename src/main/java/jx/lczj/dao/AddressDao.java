@@ -62,5 +62,25 @@ public interface AddressDao {
     @Update("update T_ADDRESS set customer=#{1},consignee = #{2},phone=#{3},street=#{4},provincename=#{5},cityname=#{6},countyname=#{7},isdefault=#{8} where address = #{0}")
     boolean update(String address, String customer, String consignee, String phone, String street, String provincename, String cityname, String countyname, String isdefault);
 
+    /**
+     * 默认修改所有默认值为0
+     * @return
+     */
+    @Update("update T_ADDRESS set isdefault='0' where CUSTOMER = #{1}")
+    boolean updateDefault0(String customer);
 
+    /**
+     *
+     */
+    @Update("update T_ADDRESS set isdefault='1' where ADDRESS = #{0}")
+    boolean updateDefault1(String address);
+
+
+    /**
+     * 根据ID加载信息
+     * @param address
+     * @return
+     */
+    @Select("select * from T_ADDRESS WHERE ADDRESS = #{0}")
+    T_address loadByAddress(String address);
 }
