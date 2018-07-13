@@ -77,7 +77,7 @@ public class FrontController {
         /**
          * 获取各种眼镜类型的眼镜
          */
-        String category =  type.equals("-1")? (""+categories.get(0).getCategory()):type;
+        String category =  type.equals("1")? (""+categories.get(0).getCategory()):type;
         List<GoodsVo> goods = frontService.loadGoodsByCategory(category);
 //        System.out.println("-----------------开始----------------");
 //        System.out.println("获取各种眼镜类型的眼镜loadShop2:"+goods);
