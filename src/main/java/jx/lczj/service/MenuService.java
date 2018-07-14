@@ -15,7 +15,7 @@ import java.util.List;
 public class MenuService {
 
     @Resource
-    MenuDao menuDao;
+    MenuDao  menuDao;
 
     /**
      * 获取菜单信息
@@ -76,8 +76,13 @@ public class MenuService {
      * @param css
      * @return
      */
+    @Transactional
     public boolean add(String menu, String title, String parents, String url, String method, int sort_no, int visible, String css) {
-        return menuDao.add(menu, title, parents, url, method, sort_no, visible, css);
+        try {
+            return menuDao.add(menu, title, parents, url, method, sort_no, visible, css);
+        }catch (Exception e){
+            throw new RuntimeException(e.getMessage());
+        }
     }
 
 

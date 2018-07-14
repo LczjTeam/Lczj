@@ -199,6 +199,23 @@ public class OpenCVUtil {
 
 
     /**
+     * 检测图片尺寸
+     * @param src_url
+     * @param targetWidth
+     * @param targetHeight
+     * @return
+     */
+    public static boolean checkImageSize(String  src_url,int targetWidth,int targetHeight) {
+
+        System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
+        Mat src = Imgcodecs.imread(src_url);
+        int width = src.width();
+        int height = src.height();
+        System.out.println("当前图片尺寸为：宽-"+width+",高-"+height);
+        return width == targetWidth && height == targetHeight;
+    }
+
+    /**
      * 检测模特图片是否合格
      * @param url
      * @param request
