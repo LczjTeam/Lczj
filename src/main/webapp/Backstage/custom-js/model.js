@@ -30,7 +30,7 @@ $(document).ready(function(){
                 table.fnAddData([
                     itm.t_model.model,
                     itm.t_model.name,
-                    '<image style="width: 30px;height:30px;" src="../models/'+itm.t_model.photo+'"></image>',
+                    '<image style="width: 30px;height:50px;" src="../models/'+itm.t_model.photo+'"></image>',
                     itm.t_model.age,
                     itm.t_model.sex==0?'女':'男',
                     '<image style="width: 30px;height:30px;" src="../face/'+itm.t_face.photo+'"></image>',
@@ -148,7 +148,7 @@ $(document).ready(function(){
                     table.fnAddData([
                         itm.t_model.model,
                         itm.t_model.name,
-                        '<image style="width: 30px;height:30px;" src="../models/'+itm.t_model.photo+'"></image>',
+                        '<image style="width: 30px;height:50px;" src="../models/'+itm.t_model.photo+'"></image>',
                         itm.t_model.age,
                         itm.t_model.sex==0?'女':'男',
                         '<image style="width: 30px;height:30px;" src="../face/'+itm.t_face.photo+'"></image>',
@@ -300,7 +300,7 @@ $(document).ready(function(){
                 }
 
                 table.fnUpdate(data.t_model.name, nRow, 1, false);
-                table.fnUpdate('<image style="width: 30px;height:30px;" src="../models/'+data.t_model.photo+'"></image>', nRow, 2, false);
+                table.fnUpdate('<image style="width: 30px;height:50px;" src="../models/'+data.t_model.photo+'"></image>', nRow, 2, false);
                 table.fnUpdate(data.t_model.age, nRow,3, false);
                 table.fnUpdate(data.t_model.name, nRow, 4, false);
                 table.fnUpdate('<image style="width: 30px;height:30px;" src="../face/'+data.t_face.photo+'"></image>', nRow, 5, false);
