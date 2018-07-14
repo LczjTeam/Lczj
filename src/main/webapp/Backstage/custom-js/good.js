@@ -85,7 +85,7 @@ $(document).ready(function(){
                 var colorStr = '';
                 for( var j = 0 ;j < datas.t_colors.length ; j++){
                     var itm =  datas.t_colors[j];
-                    colorStr+='&nbsp;&nbsp;&nbsp;<image  style="width: 20px;height: 10px;" src="../colors/'+ itm.rgb.trim()+'" ></image>'+itm.name
+                    colorStr+='&nbsp;&nbsp;&nbsp;<image  style="width: 20px;height: 20px;" src="../colors/'+ itm.rgb.trim()+'" ></image>'+itm.name
                 }
 
                 //alert(colorStr);
@@ -120,7 +120,7 @@ $(document).ready(function(){
 
                 for( var j = 0 ;j < datas.t_wears.length ; j++){
                     var itm =  datas.t_wears[j];
-                    attachStr +='&nbsp;&nbsp;&nbsp;<image style="width: 45px;height: 45px;" src="../goods/'+ itm.path+'"></image>'
+                    attachStr +='&nbsp;&nbsp;&nbsp;<image style="width: 45px;height: 15.5px;" src="../goods/'+ itm.path+'"></image>'
                 }
 
                 for( var j = 0 ;j < datas.t_attachments.length ; j++){
@@ -515,7 +515,7 @@ $(document).ready(function(){
 
                     for( var j = 0 ;j < datas.t_wears.length ; j++){
                         var itm =  datas.t_wears[j];
-                        attachStr +='&nbsp;&nbsp;&nbsp;<image style="width: 45px;height: 45px;" src="../goods/'+ itm.path+'"></image>'
+                        attachStr +='&nbsp;&nbsp;&nbsp;<image style="width: 45px;height: 15.5px;" src="../goods/'+ itm.path+'"></image>'
                     }
 
                     for (var j = 0; j < datas.t_attachments.length; j++) {
@@ -642,7 +642,7 @@ $(document).ready(function(){
 
                     for( var j = 0 ;j < datas.t_wears.length ; j++){
                         var itm =  datas.t_wears[j];
-                        attachStr +='&nbsp;&nbsp;&nbsp;<image style="width: 45px;height: 45px;" src="../goods/'+ itm.path+'"></image>'
+                        attachStr +='&nbsp;&nbsp;&nbsp;<image style="width: 45px;height: 15.5px;" src="../goods/'+ itm.path+'"></image>'
                     }
 
                     for (var j = 0; j < datas.t_attachments.length; j++) {
