@@ -95,7 +95,8 @@
                                     </script>
                                     <a href="../stories/${item1.t_news.filename}"  target="_blank" style="text-decoration: none" ><p class="title">${item1.t_news.title}</p></a>
                                     <p class="desc">${item1.t_news.keyword} </p>
-                                    <p class="like">${item1.t_admin.name}</p>
+                                    <br>
+                                    <span>发布人：</span><span class="like"style="font-size: 13px;">${item1.t_admin.name}</span>
                                 </div>
                             </div>
 

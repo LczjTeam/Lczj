@@ -186,7 +186,7 @@
                     <li class="resp-tab-item" aria-controls="tab_item-${status.index}" role="tab"><span>${shop_item.name}</span></li>
                     </c:forEach>
                     </c:if>
-                    <li class="resp-tab-item" aria-controls="tab_item-3" role="tab"><span>更多</span></li>
+                   <a href="../Fronts/newgoods?type=1"> <li class="resp-tab-item" aria-controls="tab_item-3" role="tab"><span>更多</span></li></a>
                 </ul>
 
                 <div class="resp-tabs-container">
