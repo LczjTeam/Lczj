@@ -39,15 +39,24 @@
                 var date=new Date();
                 var year=date.getFullYear(); //获取当前年份
                 var mon=date.getMonth()+1; //获取当前月份
+                if (mon<10){
+                    mon = '0'+mon;
+                }
                 var da=date.getDate(); //获取当前日
+                if(da<10){
+                    da='0'+da;
+                }
                 var day=date.getDay(); //获取当前星期几
                 var h=date.getHours(); //获取小时
+                if(h<10){
+                    h='0'+h;
+                }
                 var m=date.getMinutes(); //获取分钟
-                if(m<9){
+                if(m<10){
                     m='0'+m;
                 }
                 var s=date.getSeconds(); //获取秒
-                if (s<9){
+                if (s<10){
                     s='0'+s;
                 }
                 var d=document.getElementById('Date');
