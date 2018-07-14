@@ -5,8 +5,8 @@ $(document).ready(function() {
 
     $("#btn_login").click(function(){
         $("#loding-login").css('display','block');
-        var int = setInterval(function(e){
-
+        var t = 0;
+        setTimeout(function(e){
             var params={};
             params.admin =$("#admin").val();
             params.pwd =$("#pwd").val();
@@ -48,7 +48,7 @@ $(document).ready(function() {
                             confirmButtonText: "OK",
                         });
                         $("#loding-login").css('display','none');
-                        clearInterval(int);
+                        //clearInterval(int);
                     }else if (data.menuVos==null){
                         swal({
                             title: "密码错误！",
@@ -61,7 +61,7 @@ $(document).ready(function() {
                             confirmButtonText: "OK",
                         });
                         $("#loding-login").css('display','none');
-                        clearInterval(int);
+                        //clearInterval(int);
                     }else{
                         window.location.href="index.jsp";
                     }
@@ -79,13 +79,12 @@ $(document).ready(function() {
                         confirmButtonText: "OK",
                     });
                     $("#loding-login").css('display','none');
-                    clearInterval(int);
+                    //clearInterval(int);
                 }
             });
 
 
-
-        },1000);
+         },t);
 
     });
 

@@ -85,7 +85,7 @@ $(document).ready(function(){
                 var colorStr = '';
                 for( var j = 0 ;j < datas.t_colors.length ; j++){
                     var itm =  datas.t_colors[j];
-                    colorStr+='&nbsp;&nbsp;&nbsp;<image  style="width: 20px;height: 20px;" src="../colors/'+ itm.rgb.trim()+'" ></image>'+itm.name
+                    colorStr+='&nbsp;&nbsp;&nbsp;<image  style="width: 20px;height: 10px;" src="../colors/'+ itm.rgb.trim()+'" ></image>'+itm.name
                 }
 
                 //alert(colorStr);
