@@ -95,6 +95,6 @@ public interface NewsDao {
      * 获取item 的文章
      * @return
      */
-    @Select("SELECT * FROM  T_NEWS WHERE ITEMS = #{0} ORDER BY TOP , ITEMS ,ISSUE_DATE DESC")
+    @Select("SELECT * FROM  T_NEWS WHERE ITEMS = #{0} ORDER BY TOP DESC  ,ISSUE_DATE DESC")
     List<T_news> listitem(int item);
 }
