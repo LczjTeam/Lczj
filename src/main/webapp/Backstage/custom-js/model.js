@@ -164,7 +164,9 @@ $(document).ready(function(){
 
 
                     BrUrl = '../' + itm.info;
-                   swal({
+                    $("#btn_open").click();
+
+                    swal({
                         title: "添加成功！",
                         text: "",
                         type: "success",
@@ -199,7 +201,6 @@ $(document).ready(function(){
             });
             return;
         }
-        $("#btn_open").click();
     });
 
     $("#btn_open").click(function (e) {
@@ -283,7 +284,8 @@ $(document).ready(function(){
             contentType: false,// 当有文件要上传时，此项是必须的，否则后台无法识别文件流的起始位置(详见：#1)
             processData: false,
             success:function (data) {
-                //alert(data.info)
+                ////alert(data.info)
+                ///alert(data.info!=null && data.info.indexOf("withGlasses")==-1)
 
                 if(data.info!=null && data.info.indexOf("withGlasses")==-1){
                     swal({
@@ -313,7 +315,17 @@ $(document).ready(function(){
                 $('#model_edit_modal').modal('hide')
 
                 BrUrl = '../' + data.info;
-
+                $("#btn_open").click();
+                swal({
+                    title: "保存成功！",
+                    text: "",
+                    type: "success",
+                    allowOutsideClick: true,
+                    showConfirmButton: true,
+                    showCancelButton: false,
+                    confirmButtonClass: "btn-success",
+                    confirmButtonText: "OK",
+                });
 
              },
             error:function (data) {
@@ -335,17 +347,7 @@ $(document).ready(function(){
             });
             return;
         }
-        $("#btn_open").click();
-         swal({
-         title: "保存成功！",
-         text: "",
-         type: "success",
-         allowOutsideClick: true,
-         showConfirmButton: true,
-         showCancelButton: false,
-         confirmButtonClass: "btn-success",
-         confirmButtonText: "OK",
-         });
+
     });
 
     /**
