@@ -177,6 +177,13 @@ public class MywearService {
 
         //添加左右镜片参数信息
 
+        String left_type = null;
+        if(request.getParameter("left_type")!=null){
+            left_type = request.getParameter("left_type");
+        }
+        System.out.println("left_type:"+left_type);
+
+
         String left_eyeglass = null;
         if(request.getParameter("left")!=null){
             left_eyeglass = request.getParameter("left");
@@ -214,9 +221,17 @@ public class MywearService {
                 left_degress,
                 left_asdegress,
                 left_axis,
-                left_sign
+                left_sign,
+                left_type.equals("远视") ? 1:0
 
         );
+
+
+        String right_type = null;
+        if(request.getParameter("right_type ")!=null){
+            right_type  = request.getParameter("right_type ");
+        }
+        System.out.println("right_type :"+right_type );
 
 
         String right_eyeglass = null;
@@ -257,7 +272,8 @@ public class MywearService {
                 right_degress,
                 right_asdegress,
                 right_axis,
-                right_sign
+                right_sign,
+                right_type.equals("远视") ? 1:0
         );
 
 

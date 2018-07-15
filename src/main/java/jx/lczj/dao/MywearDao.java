@@ -47,8 +47,8 @@ public interface  MywearDao {
      * @param sign
      * @return
      */
-    @Insert("insert into T_WEARGLASS (MYWEAR,EYEGLASS,DEGRESS,ASDEGRESS,AXIS,SIGN) VALUES( #{0},#{1},#{2},#{3},#{4},#{5})")
-    boolean addEyeglass(String mywear, String eyeglass, Integer degress, Integer asdegress, float axis, String sign);
+    @Insert("insert into T_WEARGLASS (MYWEAR,EYEGLASS,DEGRESS,ASDEGRESS,AXIS,SIGN,WEARGLASS) VALUES( #{0},#{1},#{2},#{3},#{4},#{5},#{6})")
+    boolean addEyeglass(String mywear, String eyeglass, Integer degress, Integer asdegress, float axis, String sign,int wearglass);
 
     /**
      * 获取左、右眼信息
