@@ -29,7 +29,7 @@ public class MywearService {
 
 
     @Autowired
-    MywearDao  mywearDao ;
+    MywearDao mywearDao ;
 
     @Resource
     GoodDao goodDao;

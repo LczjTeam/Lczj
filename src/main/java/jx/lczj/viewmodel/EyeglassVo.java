@@ -1,6 +1,5 @@
 package jx.lczj.viewmodel;
 
-import jx.lczj.dao.MaskDao;
 import jx.lczj.model.*;
 
 import java.util.List;

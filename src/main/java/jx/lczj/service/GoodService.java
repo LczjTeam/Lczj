@@ -1,14 +1,10 @@
 package jx.lczj.service;
 
 import jx.lczj.dao.*;
-import jx.lczj.model.*;
+import jx.lczj.model.T_attachment;
+import jx.lczj.model.T_goods;
 import jx.lczj.utils.OpenCVUtil;
 import jx.lczj.viewmodel.GoodsVo;
-import org.opencv.core.Core;
-import org.opencv.core.Mat;
-import org.opencv.core.Rect;
-import org.opencv.imgcodecs.Imgcodecs;
-import org.opencv.imgproc.Imgproc;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -29,7 +25,7 @@ public class GoodService  {
     GoodDao goodDao ;
 
     @Resource
-    BrandDao  brandDao ;
+    BrandDao brandDao ;
 
     @Resource
     CategoryDao categoryDao ;
@@ -40,7 +36,7 @@ public class GoodService  {
 
 
     @Resource
-    AgeDao  ageDao;
+    AgeDao ageDao;
 
 
     @Resource
@@ -171,7 +167,7 @@ public class GoodService  {
      * @return
      */
     @Transactional
-    public GoodsVo add(String[] fileName, HttpServletRequest request, HttpSession session,MultipartFile detailfile) {
+    public GoodsVo add(String[] fileName, HttpServletRequest request, HttpSession session, MultipartFile detailfile) {
 
         try {
             String goods = request.getParameter("good");
@@ -415,7 +411,7 @@ public class GoodService  {
      * @return
      */
     @Transactional
-    public GoodsVo update(String[] fileName, HttpServletRequest request, HttpSession session,MultipartFile detailfile) {
+    public GoodsVo update(String[] fileName, HttpServletRequest request, HttpSession session, MultipartFile detailfile) {
 
         try {
             String goods = request.getParameter("good");
