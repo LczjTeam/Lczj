@@ -318,7 +318,7 @@ public class MywearService {
                 wvor.setT_wearglass(twr);
 
                 EyeglassVo evor = new EyeglassVo();
-                T_eyeglass ter = eyeglassDao.loadById(twl.getEyeglass());
+                T_eyeglass ter = eyeglassDao.loadById(twr.getEyeglass());
                 evor.setT_eyeglass(ter);
                 evor.setT_brand(brandDao.loadById(ter.getBrand()));
                 wvor.setEyeglassVo(evor);

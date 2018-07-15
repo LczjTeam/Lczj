@@ -12,7 +12,7 @@ public class T_mywear {
     private String goods;//镜框
     private int pupil;//瞳孔
     private String sex;//性别
-    private int age;//性别
+    private int age;//年龄
     private String selfphoto;//自拍照
     private String showphoto;//试戴照
     private int deal;//是否成交
