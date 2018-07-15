@@ -6,6 +6,7 @@ import jx.lczj.model.T_attachment;
 import jx.lczj.model.T_color;
 import jx.lczj.model.T_eyeglass;
 import jx.lczj.viewmodel.EyeglassVo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -16,21 +17,20 @@ import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-
 @Service
 public class EyeglassService {
 
-    @Resource
+    @Autowired
     EyeglassDao eyeglassDao;
-    @Resource
+    @Autowired
     BrandDao brandDao;
-    @Resource
+    @Autowired
     CategoryDao categoryDao;
-    @Resource
+    @Autowired
     EfficacyDao efficacyDao;
-    @Resource
+    @Autowired
     MaskDao maskDao;
-    @Resource
+    @Autowired
     StyleDao styleDao;
 
     /**
