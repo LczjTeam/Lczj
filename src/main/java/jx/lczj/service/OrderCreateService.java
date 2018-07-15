@@ -60,6 +60,11 @@ public class OrderCreateService {
     @Resource
     AddressDao addressDao;
 
+    /**
+     * 创建订单
+     * @param request
+     * @return
+     */
     @Transactional
     public OrderCreateVo add(HttpServletRequest request) {
 

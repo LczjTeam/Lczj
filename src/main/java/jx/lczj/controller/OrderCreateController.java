@@ -20,6 +20,11 @@ public class OrderCreateController {
     @Resource
     OrderCreateService orderCreateService;
 
+    /**
+     * 创建订单
+     * @param request
+     * @return
+     */
     @RequestMapping("/create")
     @ResponseBody
     public OrderCreateVo add(HttpServletRequest request){
