@@ -12,14 +12,14 @@ public class OrderCreateVo {
 
     private T_order t_order;
     private T_address t_address;
-    private List<OrderdetailsVo> orderdetailsVos;
+    private List<MywearVo> mywearVos;
 
     @Override
     public String toString() {
         return "OrderCreateVo{" +
-                "orderdetailsVos=" + orderdetailsVos +
+                "t_order=" + t_order +
                 ", t_address=" + t_address +
-                ", t_order=" + t_order +
+                ", mywearVos=" + mywearVos +
                 '}';
     }
 
@@ -39,11 +39,11 @@ public class OrderCreateVo {
         this.t_address = t_address;
     }
 
-    public List<OrderdetailsVo> getOrderdetailsVos() {
-        return orderdetailsVos;
+    public List<MywearVo> getMywearVos() {
+        return mywearVos;
     }
 
-    public void setOrderdetailsVos(List<OrderdetailsVo> orderdetailsVos) {
-        this.orderdetailsVos = orderdetailsVos;
+    public void setMywearVos(List<MywearVo> mywearVos) {
+        this.mywearVos = mywearVos;
     }
 }

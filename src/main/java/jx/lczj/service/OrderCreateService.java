@@ -95,7 +95,7 @@ public class OrderCreateService {
 
             boolean ok = orderCreateDao.addOrder(order, customer, address, new Date(), 0);
 
-            boolean ok1 = orderCreateDao.addOrderDetail(order, mywear);
+            boolean ok1 = mywearDao.updateOrder(order, mywear);
 
             //更新左眼参数
             int left_degress = Integer.parseInt(request.getParameter("left_ds"));
@@ -151,11 +151,10 @@ public class OrderCreateService {
                 orderCreateVo.setT_address(t_addresses.get(0));
             }
 
-            List<OrderdetailsVo>  orderdetailsVos = new ArrayList<OrderdetailsVo>();
-            List<T_orderdetail> t_orderdetails = orderCreateDao.loadDetialByOrder(order);
-            for (T_orderdetail to: t_orderdetails ) {
-                OrderdetailsVo ods = new OrderdetailsVo();
-                ods.setT_orderdetail(to);
+            List<MywearVo>  orderdetailsVos = new ArrayList<MywearVo>();
+            List<T_mywear> t_mywears = orderCreateDao.loadDetialByOrder(order);
+            for (T_mywear to: t_mywears) {
+
                 MywearVo mvo = new MywearVo();
 
                 T_mywear t =  mywearDao.loadById(to.getMywear());
@@ -206,13 +205,9 @@ public class OrderCreateService {
                 evor.setT_style(styleDao.loadById(ter.getStyle()));
                 wvor.setEyeglassVo(evor);
                 mvo.setRightEyeglass(wvor);
-
-                ods.setMywearVo(mvo);
-
-                orderdetailsVos.add(ods);
+                orderdetailsVos.add(mvo);
             }
-
-            orderCreateVo.setOrderdetailsVos(orderdetailsVos);
+            orderCreateVo.setMywearVos(orderdetailsVos);
 
             return orderCreateVo;
         }catch (Exception e){
