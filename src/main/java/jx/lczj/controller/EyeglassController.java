@@ -1,12 +1,10 @@
 package jx.lczj.controller;
 
 import jx.lczj.anotation.Privilege;
-import jx.lczj.model.T_eyeglass;
 import jx.lczj.service.EyeglassService;
 import jx.lczj.viewmodel.EyeglassVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -41,7 +39,7 @@ public class EyeglassController {
     @Privilege("镜片管理")
     @RequestMapping("/add")
     @ResponseBody
-    public EyeglassVo add(String[] fileName, HttpServletRequest request, HttpSession session,MultipartFile detailfile){return eyeglassService.add(fileName,request,session,detailfile);}
+    public EyeglassVo add(String[] fileName, HttpServletRequest request, HttpSession session, MultipartFile detailfile){return eyeglassService.add(fileName,request,session,detailfile);}
 
     /**
      * 通过编号获取镜片信息
@@ -62,7 +60,7 @@ public class EyeglassController {
     @Privilege("镜片管理")
     @RequestMapping("/update")
     @ResponseBody
-    public EyeglassVo update(String[] fileName, HttpServletRequest request, HttpSession session,MultipartFile detailfile ){return eyeglassService.update(fileName,request,session,detailfile);};
+    public EyeglassVo update(String[] fileName, HttpServletRequest request, HttpSession session, MultipartFile detailfile ){return eyeglassService.update(fileName,request,session,detailfile);};
 
 
     /**

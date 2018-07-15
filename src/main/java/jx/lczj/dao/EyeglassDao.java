@@ -2,7 +2,6 @@ package jx.lczj.dao;
 
 import jx.lczj.model.T_attachment;
 import jx.lczj.model.T_eyeglass;
-import jx.lczj.viewmodel.EyeglassVo;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
@@ -24,7 +23,7 @@ public interface EyeglassDao {
      * @return
      */
     @Insert("insert into T_EYEGLASS(EYEGLASS,EFFICACY,BRAND,MASK,STYLE,REFRACTION,PRICE,NAME,DETAILPHOTO) values(#{0},#{1},#{2},#{3},#{4},#{5},#{6},#{7},#{8})")
-    boolean add(String eyeglass,int efficacy,int brand,int mask,int style,float refraction,int price,String name,String detailphoto);
+    boolean add(String eyeglass, int efficacy, int brand, int mask, int style, float refraction, int price, String name, String detailphoto);
 
     /**
      * 添加镜片附件信息
@@ -34,7 +33,7 @@ public interface EyeglassDao {
      * @return
      */
     @Insert("insert into T_EYEGLASSATTACHMENT(EYEGLASS,ATTACHMENT,SN) values(#{0},#{1},#{2})")
-    boolean addAttachmentDiv(String eyeglass,String s,  int i);
+    boolean addAttachmentDiv(String eyeglass, String s, int i);
 
     /**
      * 根据Id获取镜片信息
@@ -89,7 +88,7 @@ public interface EyeglassDao {
      * @return
      */
     @Update("update  T_EYEGLASS set EFFICACY = #{1},BRAND = #{2},MASK = #{3},STYLE = #{4} ,REFRACTION= #{5} ,PRICE = #{6} ,NAME = #{7},DETAILPHOTO = #{8} where EYEGLASS = #{0}")
-    boolean update(String eyeglass, int efficacy, int brand, int mask, int style, float refraction, int price, String name,String detailphoto);
+    boolean update(String eyeglass, int efficacy, int brand, int mask, int style, float refraction, int price, String name, String detailphoto);
 
     /**
      * 根据Id删除镜片信息

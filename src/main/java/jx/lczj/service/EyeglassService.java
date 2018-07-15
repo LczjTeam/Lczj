@@ -3,7 +3,6 @@ package jx.lczj.service;
 
 import jx.lczj.dao.*;
 import jx.lczj.model.T_attachment;
-import jx.lczj.model.T_color;
 import jx.lczj.model.T_eyeglass;
 import jx.lczj.viewmodel.EyeglassVo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,12 +10,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+
 @Service
 public class EyeglassService {
 
@@ -169,7 +168,7 @@ public class EyeglassService {
      * @return
      */
     @Transactional
-    public EyeglassVo update(String[] fileName, HttpServletRequest request, HttpSession session,MultipartFile detailfile) {
+    public EyeglassVo update(String[] fileName, HttpServletRequest request, HttpSession session, MultipartFile detailfile) {
         String eyeglass = request.getParameter("eyeglass");
         String name = request.getParameter("add_name");
         int efficacy = Integer.parseInt(request.getParameter("efficacy"));

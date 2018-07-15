@@ -51,7 +51,7 @@ public interface GoodDao {
      * @return
      */
     @Insert("insert into  T_GOODSCOLOR (COLOR,GOODS) VALUES (#{0},#{1})")
-    boolean addColorDiv(int  color, String goods);
+    boolean addColorDiv(int color, String goods);
 
     /**
      * 添加年龄段分配
@@ -106,7 +106,7 @@ public interface GoodDao {
      * @return
      */
     @Insert("insert into  T_GOODS(GOODS,BRAND,NAME,MODELS,WIDTH,HEIGHT,SPACE,LENGTH,MAX_WIDTH,SUITABLE_SEX,PRICE,DETAILPHOTO) VALUES (#{0},#{1},#{2},#{3},#{4},#{5},#{6},#{7},#{8},#{9},#{10},#{11})")
-    boolean add(String goods, int brand, String name, String models, int width, int height,int space, int length, int max_width, int suitable_sex, int price,String detailphoto);
+    boolean add(String goods, int brand, String name, String models, int width, int height, int space, int length, int max_width, int suitable_sex, int price, String detailphoto);
 
     /**
      * 根据镜框Id获取镜框信息
@@ -198,7 +198,7 @@ public interface GoodDao {
      * @return
      */
     @Update("update T_GOODS set BRAND  = #{1} ,NAME  = #{2}  ,MODELS  = #{3}  ,WIDTH = #{4} ,HEIGHT  = #{5}  ,SPACE  = #{6}  ,LENGTH  = #{7}  ,MAX_WIDTH  = #{8}  ,SUITABLE_SEX  = #{9}  ,PRICE  = #{10}, DETAILPHOTO = #{11} where goods = #{0}")
-    boolean update(String goods, int brand, String name, String models, int width, int height, int space, int length, int max_width, int suitable_sex, int price,String editDetailphoto);
+    boolean update(String goods, int brand, String name, String models, int width, int height, int space, int length, int max_width, int suitable_sex, int price, String editDetailphoto);
 
     /**
      * 添加类别分配
@@ -241,7 +241,7 @@ public interface GoodDao {
     @Select("select * from T_GOODS WHERE GOODS in(select T_SUITABLEAGE.GOODS FROM T_AGESECTION,T_SUITABLEAGE,T_SUITABLEOCCASION,T_SUITABLEFACE\n" +
             " WHERE  (#{2} between (width+space-3) and (width+space+3)) and ({4} between MINAGE and MAXAGE) and T_SUITABLEOCCASION.OCCASION = #{2} and T_SUITABLEFACE.FACE = #{3} and (SUITABLE_SEX = #{0} or SUITABLE_SEX = 0) and T_AGESECTION.AGESECTION = T_SUITABLEAGE.AGESECTION\n" +
             " and T_SUITABLEAGE.GOODS = T_SUITABLEOCCASION.GOODS and T_SUITABLEAGE.GOODS = T_SUITABLEFACE.GOODS)")
-    List<T_goods> recomend(String sex,String occasion,String pupil,String face,String age);
+    List<T_goods> recomend(String sex, String occasion, String pupil, String face, String age);
 
     /**
      * 通过类别获取眼镜

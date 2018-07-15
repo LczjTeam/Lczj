@@ -1,10 +1,8 @@
 package jx.lczj.controller;
 
 import jx.lczj.anotation.Privilege;
-import jx.lczj.model.T_goods;
 import jx.lczj.service.GoodService;
 import jx.lczj.viewmodel.GoodsVo;
-import jx.lczj.viewmodel.NewsVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -12,9 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.File;
 import java.util.List;
 
 @RestController
@@ -44,7 +40,7 @@ public class GoodController {
     @Privilege("眼镜管理")
     @RequestMapping("/add")
     @ResponseBody
-    public GoodsVo add(String[] fileName, HttpServletRequest request, HttpSession session,MultipartFile detailfile){
+    public GoodsVo add(String[] fileName, HttpServletRequest request, HttpSession session, MultipartFile detailfile){
 
 
         return goodService.add(fileName,request,session,detailfile);
@@ -59,7 +55,7 @@ public class GoodController {
     @Privilege("眼镜管理")
     @RequestMapping("/update")
     @ResponseBody
-    public GoodsVo update(String[] fileName, HttpServletRequest request, HttpSession session,MultipartFile detailfile){
+    public GoodsVo update(String[] fileName, HttpServletRequest request, HttpSession session, MultipartFile detailfile){
 
 
         return goodService.update(fileName,request,session,detailfile);
@@ -129,7 +125,7 @@ public class GoodController {
      */
     @RequestMapping(value = "/loadById")
     @ResponseBody
-    public GoodsVo  loadById(String code) {
+    public GoodsVo loadById(String code) {
         return  goodService.loadById(code);
 
     }
