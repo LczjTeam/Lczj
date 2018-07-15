@@ -71,7 +71,7 @@
 		<!-- 自动扫描需要定义类别名的包，将包内的JAVA类的类名作为类别名 -->
 		<property name="typeAliasesPackage" value="jx.lczj.model"></property>
 		<!-- 配置Mapper -->
-		<!--<property name="mapperLocations" value="classpath:lq/ssm/mapper/*.xml"></property>-->
+		<property name="mapperLocations" value="classpath:jx/lczj/mapper/*.xml"></property>
 	</bean>
 
 	<!-- 自动扫描所有的Mapper接口与文件 -->
