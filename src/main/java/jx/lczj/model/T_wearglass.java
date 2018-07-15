@@ -10,6 +10,21 @@ public class T_wearglass {
     private int asdegress; //散光度数
     private float axis;   //散光轴位
     private String sign; //左右标志
+    private int wearglass ; //近视远视 '0-近视,1-远视'
+
+
+    @Override
+    public String toString() {
+        return "T_wearglass{" +
+                "mywear='" + mywear + '\'' +
+                ", eyeglass='" + eyeglass + '\'' +
+                ", degress=" + degress +
+                ", asdegress=" + asdegress +
+                ", axis=" + axis +
+                ", sign='" + sign + '\'' +
+                ", wearglass=" + wearglass +
+                '}';
+    }
 
     public String getMywear() {
         return mywear;
@@ -59,15 +74,11 @@ public class T_wearglass {
         this.sign = sign;
     }
 
-    @Override
-    public String toString() {
-        return "T_wearglass{" +
-                "mywear='" + mywear + '\'' +
-                ", eyeglass='" + eyeglass + '\'' +
-                ", degress=" + degress +
-                ", asdegress=" + asdegress +
-                ", axis=" + axis +
-                ", sign='" + sign + '\'' +
-                '}';
+    public int getWearglass() {
+        return wearglass;
+    }
+
+    public void setWearglass(int wearglass) {
+        this.wearglass = wearglass;
     }
 }
