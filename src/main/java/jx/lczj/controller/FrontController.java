@@ -3,10 +3,8 @@ package jx.lczj.controller;
 
 import jx.lczj.model.T_category;
 import jx.lczj.service.NewsService;
-import jx.lczj.viewmodel.FrontShopVo;
 import jx.lczj.viewmodel.GoodsVo;
 import jx.lczj.viewmodel.NewsVo;
-import jx.lczj.viewmodel.T_goodsHot;
 import jx.lczj.service.FrontService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
