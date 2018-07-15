@@ -72,6 +72,7 @@ public class GoodService  {
                 gvo.setT_occasions(occasionDao.loadByGood(t.getGoods()));
                 gvo.setT_attachments(goodDao.loadAttachmentByGood(t.getGoods()));
                 gvo.setT_wears(goodDao.loadWearsByGood(t.getGoods()));
+
                 gvos.add(gvo);
             }
             return gvos;
@@ -170,7 +171,7 @@ public class GoodService  {
      * @return
      */
     @Transactional
-    public GoodsVo add(String[] fileName, HttpServletRequest request, HttpSession session) {
+    public GoodsVo add(String[] fileName, HttpServletRequest request, HttpSession session,MultipartFile detailfile) {
 
         try {
             String goods = request.getParameter("good");
@@ -209,21 +210,44 @@ public class GoodService  {
             String wearfile = request.getParameter("wearfile");
             System.out.println("wearfile:" + wearfile);
 
+            try {
+                String ctimes = System.currentTimeMillis() + "";
+                System.out.println("开始");
+                String path = request.getSession().getServletContext().getRealPath("goods");
 
+                String detailfileName = ctimes + ".jpg";
+                System.out.println(detailfileName);
+                System.out.println(path);
+                File targetFile = new File(path, detailfileName);
+                if (!targetFile.exists()) {
+                    targetFile.mkdirs();
+                }
 
-            boolean ok1 = goodDao.add(goods,
-                    brand,
-                    name,
-                    models,
-                    width,
-                    height,
-                    space,
-                    length,
-                    max_width,
-                    suitable_sex,
-                    price
-            );
+                //保存
+                try {
+                    detailfile.transferTo(targetFile);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                String detailphoto = detailfileName;
 
+                boolean ok1 = goodDao.add(
+                        goods,
+                        brand,
+                        name,
+                        models,
+                        width,
+                        height,
+                        space,
+                        length,
+                        max_width,
+                        suitable_sex,
+                        price,
+                        detailphoto
+                );
+            }catch (Exception e){
+                throw new RuntimeException(e.getMessage());
+            }
 
             String categorys = request.getParameter("category");
             System.out.println("categorys:" + categorys);
@@ -329,6 +353,22 @@ public class GoodService  {
 
             String path = request.getSession().getServletContext().getRealPath("goods");
 
+            //删除detailPhoto
+            try {
+
+                T_goods t_goods = goodDao.loadById(code);
+                String detailphoto = t_goods.getDetailphoto();
+                //删除对应的图片
+                String d_detailphoto = path + "/" + detailphoto;
+                System.out.println(d_detailphoto);
+                File targetFile = new File(d_detailphoto);
+                if (targetFile.exists()) {
+                    targetFile.delete();
+                }
+            }catch (Exception e){
+                throw  new RuntimeException(e.getMessage());
+            }
+
             for (T_attachment t: t_attachments) {
                 File ff = new File(path+"/"+t.getPath());
                 if(ff.exists()){
@@ -375,7 +415,7 @@ public class GoodService  {
      * @return
      */
     @Transactional
-    public GoodsVo update(String[] fileName, HttpServletRequest request, HttpSession session) {
+    public GoodsVo update(String[] fileName, HttpServletRequest request, HttpSession session,MultipartFile detailfile) {
 
         try {
             String goods = request.getParameter("good");
@@ -414,8 +454,51 @@ public class GoodService  {
             String wearfile = request.getParameter("wearfile");
             System.out.println("wearfile:" + wearfile);
 
+            String editDetailphoto = "";
+            try {
 
-            boolean ok1 = goodDao.update(goods,
+                System.out.println("开始");
+                String path = request.getSession().getServletContext().getRealPath("goods");
+                T_goods t_goods = goodDao.loadById(goods);
+                //检测是否修改了图片
+                if (detailfile!=null && !detailfile.getOriginalFilename().equals("")) {
+                    //先把眼镜查询出来
+
+                    String detailphoto = t_goods.getDetailphoto();
+                    //删除对应的图片
+                    String d_detailphoto = path + "/" + detailphoto;
+                    System.out.println(d_detailphoto);
+                    File targetFile = new File(d_detailphoto);
+                    if (targetFile.exists()) {
+                        targetFile.delete();
+                    }
+
+                    String ctimes = System.currentTimeMillis() + "";
+                    System.out.println("开始，保存");
+                    String newDetailphoto = ctimes + ".jpg";
+                    System.out.println(newDetailphoto);
+                    System.out.println(path);
+                    File editFile = new File(path, newDetailphoto);
+                    if (!editFile.exists()) {
+                        editFile.mkdirs();
+                    }
+
+                    //保存
+                    try {
+                        detailfile.transferTo(editFile);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    editDetailphoto = newDetailphoto;
+
+                }else{
+                    editDetailphoto = t_goods.getDetailphoto();
+                }
+            } catch (Exception e) {
+                throw new RuntimeException(e.getMessage());
+            }
+            boolean ok1 = goodDao.update(
+                    goods,
                     brand,
                     name,
                     models,
@@ -425,7 +508,8 @@ public class GoodService  {
                     length,
                     max_width,
                     suitable_sex,
-                    price
+                    price,
+                    editDetailphoto
             );
 
             //删除类别分配
