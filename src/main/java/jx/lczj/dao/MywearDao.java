@@ -110,8 +110,8 @@ public interface  MywearDao {
      * @param sign
      * @return
      */
-    @Update("UPDATE T_WEARGLASS SET DEGRESS = #{1},ASDEGRESS = #{2},AXIS = #{3} WHERE MYWEAR = #{0} AND SIGN = #{4}")
-    boolean updateEyeglass(String mywear, int degress, int asdegress, float axis, String sign);
+    @Update("UPDATE T_WEARGLASS SET DEGRESS = #{1},ASDEGRESS = #{2},AXIS = #{3} ,WEARGLASS = #{4}  WHERE MYWEAR = #{0} AND SIGN = #{4}")
+    boolean updateEyeglass(String mywear, int degress, int asdegress, float axis, String sign ,int wearglass);
 
 
     @Update("UPDATE T_MYWEAR SET \"order\" = #{0} WHERE MYWEAR = #{1} ")

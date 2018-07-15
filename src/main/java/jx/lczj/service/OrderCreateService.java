@@ -98,6 +98,13 @@ public class OrderCreateService {
             boolean ok1 = mywearDao.updateOrder(order, mywear);
 
             //更新左眼参数
+            String left_type = null;
+            if(request.getParameter("left_type")!=null){
+                left_type = request.getParameter("left_type");
+            }
+            System.out.println("left_type:"+left_type);
+
+
             int left_degress = Integer.parseInt(request.getParameter("left_ds"));
             System.out.println("left_degress:" + left_degress);
 
@@ -114,13 +121,22 @@ public class OrderCreateService {
                     left_degress,
                     left_asdegress,
                     left_axis,
-                    left_sign
+                    left_sign,
+                    left_type.equals("远视") ? 1:0
 
             );
 
             System.out.println("left_sign:l");
 
+
+
             //更新右眼参数
+            String right_type = null;
+            if(request.getParameter("right_type ")!=null){
+                right_type  = request.getParameter("right_type ");
+            }
+            System.out.println("right_type :"+right_type );
+
             int right_degress = Integer.parseInt(request.getParameter("right_ds"));
             System.out.println("right_degress:" + right_degress);
 
@@ -139,7 +155,8 @@ public class OrderCreateService {
                     right_degress,
                     right_asdegress,
                     right_axis,
-                    right_sign
+                    right_sign,
+                    right_type.equals("远视") ? 1:0
             );
 
 
@@ -208,7 +225,6 @@ public class OrderCreateService {
                 orderdetailsVos.add(mvo);
             }
             orderCreateVo.setMywearVos(orderdetailsVos);
-
             return orderCreateVo;
         }catch (Exception e){
             throw  new RuntimeException(e.getMessage());
