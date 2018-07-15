@@ -184,6 +184,7 @@ public class ModelService {
                 file.transferTo(file1);
 
                 String vl = check(fileName,request);
+                System.out.println(vl);
                 if(vl.equals("-1")){
                     mv.setInfo("-1:未识别到脸");
                     file1.delete();

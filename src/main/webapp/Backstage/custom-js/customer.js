@@ -40,7 +40,7 @@ $(document).ready(function() {
                     itm.phone,
                     itm.sex == '1' ? '男' : '女',
                     itm.birthday,
-                    '<image style="width: 20px;height:20px;" src="../customer/' + itm.face + '"></image>',
+                    '<image style="width: 20px;height:20px;" src="../customerheads/' + itm.face + '"></image>',
                     '<a class="pwd" ><i class="fa fa-edit"></i>&nbsp;密码重置</a>'
                 ]);
             }

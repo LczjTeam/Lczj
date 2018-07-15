@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="jx.lczj.dao.EyeglassDao">
+   <!-- <resultMap type="com.lq.Worker" id="bookslist">
+        <result property="worker_code" column="worker_code" javaType="java.lang.String"/>
+        <result property="worker_name" column="worker_name" javaType="java.lang.String"/>
+        <result property="book_author" column="book_author" javaType="java.lang.String"/>
+        <result property="book_publish" column="book_publish" javaType="java.lang.String"/>
+        <result property="book_num" column="book_num" javaType="java.lang.Integer"/>
+        <result property="book_borrow_num" column="book_borrow_num" javaType="java.lang.Integer"/>
+        <result property="booktype_no" column="booktype_no" javaType="java.lang.Integer"/>
+        <result property="book_per_price" column="book_per_price" javaType="java.lang.Double"/>
+    </resultMap>
+-->
+
+
+
+
+
+</mapper>

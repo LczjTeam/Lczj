@@ -138,7 +138,7 @@
         </div>
         <div class="col-md-3 header-right footer-bottom">
             <ul>
-                <li><a href="#" class="use1" data-toggle="modal" data-target="#myModal4"><span>Login</span></a>
+                <li><a class="use1" href="../Backstage/index.jsp" ><span>登录</span></a>
 
                 </li>
                 <li><a class="fb" href="#"></a></li>
