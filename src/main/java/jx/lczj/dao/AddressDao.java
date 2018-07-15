@@ -18,7 +18,7 @@ public interface AddressDao {
      * 加载
      * @return
      */
-    @Select("select * from T_ADDRESS WHERE CUSTOMER = #{0}")
+    @Select("select * from T_ADDRESS WHERE CUSTOMER = #{0} ORDER BY ISDEFAULT DESC")
     public List<T_address> loadlist(String customer);
 
     /**
