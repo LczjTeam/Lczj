@@ -8,7 +8,6 @@ import java.util.List;
 public class EyeglassVo {
 
     private T_eyeglass t_eyeglass;
-    private T_category t_category;
     private T_efficacy t_efficacy;
     private T_brand t_brand;
     private T_mask t_mask;
@@ -21,14 +20,6 @@ public class EyeglassVo {
 
     public void setT_eyeglass(T_eyeglass t_eyeglass) {
         this.t_eyeglass = t_eyeglass;
-    }
-
-    public T_category getT_category() {
-        return t_category;
-    }
-
-    public void setT_category(T_category t_category) {
-        this.t_category = t_category;
     }
 
     public T_efficacy getT_efficacy() {
@@ -75,7 +66,6 @@ public class EyeglassVo {
     public String toString() {
         return "EyeglassVo{" +
                 "t_eyeglass=" + t_eyeglass +
-                ", t_category=" + t_category +
                 ", t_efficacy=" + t_efficacy +
                 ", t_brand=" + t_brand +
                 ", t_mask=" + t_mask +
