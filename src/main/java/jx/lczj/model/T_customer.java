@@ -17,6 +17,7 @@ public class T_customer implements Serializable{
     private String pwd ;   //   密码 默认 '123456'
     private String birthday;   //   出生年月
     private String face;//  头像
+    private int prize;
 
     public String getVip() {
         return vip;
@@ -74,6 +75,14 @@ public class T_customer implements Serializable{
         this.face = face;
     }
 
+    public int getPrize() {
+        return prize;
+    }
+
+    public void setPrize(int prize) {
+        this.prize = prize;
+    }
+
     @Override
     public String toString() {
         return "T_customer{" +
@@ -84,6 +93,7 @@ public class T_customer implements Serializable{
                 ", pwd='" + pwd + '\'' +
                 ", birthday='" + birthday + '\'' +
                 ", face='" + face + '\'' +
+                ", prize=" + prize +
                 '}';
     }
 }

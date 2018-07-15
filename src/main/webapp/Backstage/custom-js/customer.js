@@ -7,10 +7,10 @@ $(document).ready(function() {
     table.dataTable({
         "columnDefs": [{ // set default column settings
             'orderable': false,
-            'targets': [5]
+            'targets': [6]
         }, {
             "searchable": false,
-            "targets": [5]
+            "targets": [6]
         }],
         "order": [
             [0, "asc"]
@@ -40,6 +40,7 @@ $(document).ready(function() {
                     itm.phone,
                     itm.sex == '1' ? '男' : '女',
                     itm.birthday,
+                    itm.prize,
                     '<image style="width: 20px;height:20px;" src="../customerheads/' + itm.face + '"></image>',
                     '<a class="pwd" ><i class="fa fa-edit"></i>&nbsp;密码重置</a>'
                 ]);
