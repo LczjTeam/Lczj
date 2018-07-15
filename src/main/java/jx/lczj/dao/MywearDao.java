@@ -64,7 +64,7 @@ public interface  MywearDao {
      * @param customer
      * @return
      */
-    @Select("select * from T_MYWEAR  WHERE CUSTOMER = #{0}")
+    @Select("select * from T_MYWEAR  WHERE CUSTOMER = #{0}  AND  \"order\"  is null ")
     List<T_mywear> listByCustomer(String customer);
 
     /**
