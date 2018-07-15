@@ -173,7 +173,7 @@ public class NewsService {
 
 
     /**
-     * 通过银行编号 获取眼镜二三事
+     * 通过用户编号 获取眼镜二三事
      * @param session
      * @return
      */
