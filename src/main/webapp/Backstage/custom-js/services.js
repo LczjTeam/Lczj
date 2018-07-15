@@ -1,45 +1,43 @@
 /**
- * Created by 25778 on 2018/6/18.
+ * Created by 25778 on 2018/7/15.
  */
 $(document).ready(function(){
 
-    var table = $("#brand_table");
+    var table = $("#services_table");
     table.dataTable({
         "columnDefs": [{ // set default column settings
             'orderable': false,
-            'targets': [5]
+            'targets': [2]
         }, {
             "searchable": false,
-            "targets": [5]
+            "targets": [2]
         }],
         "order": [
             [0, "asc"]
         ]
     });
     var params={};
+
     $.ajax({
         async: false,
         type: "POST",
-        url: "../brand/list",       //注意路径
+        url: "../services/list",       //注意路径
         data: params,
         dataType: "json",
         success: function (data) {
             console.log(JSON.stringify(data,null,4));
             for (var i = 0; i < data.length; i++) {
+
                 console.log(JSON.stringify(data[i],null,4));
-                console.log(data[i].brand);
-                console.log(data[i].name);
+                console.log(data[i].weixin);
                 console.log(data[i].company);
-                console.log(data[i].type);
-                console.log(data[i].recommend);
+
                 var itm = data[i];
                 table.fnAddData([
-                    itm.brand,
-                    itm.name,
+                    itm.weixin,
                     itm.company,
-                    typeIntToStr(itm.type),
-                    itm.recommend == 1 ? '是':'否',
-                    '<a class="edit"  ><i class="fa fa-edit"></i>&nbsp;编辑</a>' +
+
+                    '<a class="edit"><i class="fa fa-edit"></i>&nbsp;编辑</a>' +
                     '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' +
                     '<a class="delete" ><i class="fa fa-trash"></i>&nbsp;删除</a>'
                 ]);
@@ -60,34 +58,7 @@ $(document).ready(function(){
             });
         }
     });
-    $("#loading-brand").css('display','none');
-
-    //type,int类型转string类型
-    function typeIntToStr(int_type) {
-        if (int_type==0){
-            return '通用品牌'
-        }
-        else if(int_type==1){
-            return '镜框品牌'
-        }
-        else if (int_type==2){
-            return '镜片品牌'
-        }
-    }
-
-    //type,String类型转int类型
-    function typeStrToInt(str_type) {
-        if (str_type=='通用品牌'){
-            return 0;
-        }
-        else if(str_type=='镜框品牌'){
-            return 1;
-        }
-        else if (str_type=='镜片品牌'){
-            return 2;
-        }
-    }
-
+    $("#loading-services").css('display','none');
 
     /**
      * 添加
@@ -95,14 +66,16 @@ $(document).ready(function(){
     $("#btn_add_save").click(function(e){
         var delok = true;
         var params={};
-        params.brand = $('#brand_add_brand').val();
-        params.name =$('#brand_add_name').val();
-        params.company =$('#brand_add_company').val();
-        params.type = $('#brand_add_type').val();
-        params.recommend = $('#brand_add_recommend').val();
-        if(params.brand == ''|| params.name == ''|| params.company == ''){
+
+        params.weixin = $('#services_add_weixin').val();
+        params.company =$('#services_add_company').val();
+
+        console.log($('#services_add_weixin').val());
+        console.log($('#services_add_company').val());
+
+        if(params.weixin == ''|| params.company == ''){
             swal({
-                title: "编号、名称和制造商不能为空！",
+                title: "客服中心不能有空值！",
                 text: "",
                 type: "warning",
                 allowOutsideClick: true,
@@ -116,7 +89,7 @@ $(document).ready(function(){
         $.ajax({
             async: false,
             type: "POST",
-            url: "../brand/add",//注意路径
+            url: "../services/add",//注意路径
             data: params,
             dataType: "json",
             success: function (data) {
@@ -143,28 +116,20 @@ $(document).ready(function(){
             });
             return;
         }
-        var recommend = $('#brand_add_recommend').val()
+
         table.fnAddData([
-            $('#brand_add_brand').val(),
-            $('#brand_add_name').val(),
-            $('#brand_add_company').val(),
-            typeIntToStr($('#brand_add_type').val()),
-            recommend == 1 ? '是':'否',
-            // $('#brand_add_company').option($('#brand_add_company').selectedIndex).text();
+            $('#services_add_weixin').val(),
+            $('#services_add_company').val(),
             '<a class="edit"  ><i class="fa fa-edit"></i>&nbsp;编辑</a>' +
             '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' +
             '<a class="delete" ><i class="fa fa-trash"></i>&nbsp;删除</a>'
         ]);
 
         table.fnDraw();
-        $('#brand_add_brand').val('');
-        $('#brand_add_name').val('');
-        $('#brand_add_company').val('');
-        typeIntToStr($('#brand_add_type').val()),
-        recommend == 1 ? '是':'否',
-        // $('#brand_add_company').option($('#brand_add_company').selectedIndex).text();
+        $('#services_add_weixin').val(),
+        $('#services_add_company').val(),
 
-            $('#brand_add_modal').modal('hide')
+        $('#services_add_modal').modal('hide')
         swal({
             title: "添加成功！",
             text: "",
@@ -188,12 +153,10 @@ $(document).ready(function(){
         EditRow = nRow;
         var aData = table.fnGetData(nRow);
 
-        $('#brand_edit_brand').val(aData[0]);
-        $('#brand_edit_name').val(aData[1]);
-        $('#brand_edit_company').val(aData[2]);
-        $('#brand_edit_type').val(typeStrToInt(aData[3]));
-        $('#brand_edit_recommend').val(aData[4] == '是' ? 1:0);
-        $('#brand_edit_modal').modal('show')
+        $('#services_edit_weixin').val(aData[0]),
+        $('#services_edit_company').val(aData[1]),
+
+        $('#services_edit_modal').modal('show')
     });
 
 
@@ -201,17 +164,15 @@ $(document).ready(function(){
         var nRow = EditRow;
         var delok = true;
         var params={};
-        params.brand = $('#brand_edit_brand').val();
-        params.name =$('#brand_edit_name').val();
-        params.company = $('#brand_edit_company').val();
-        params.type = $('#brand_edit_type').val();
-        params.recommend = $('#brand_edit_recommend').val();
+
+        params.weixin = $('#services_edit_weixin').val();
+        params.company =$('#services_edit_company').val();
 
         console.log(JSON.stringify(params,null,4));
 
-        if(params.brand == ''||params.name == ''||params.company == '' ){
+        if(params.weixin == ''|| params.company == ''){
             swal({
-                title: "品牌编号、名称和制造商不能为空！",
+                title: "客服中心不能有空值！",
                 text: "",
                 type: "warning",
                 allowOutsideClick: true,
@@ -226,7 +187,7 @@ $(document).ready(function(){
         $.ajax({
             async: false,
             type: "POST",
-            url: "../brand/update",//注意路径
+            url: "../services/update",//注意路径
             data: params,
             dataType: "json",
             success: function (data) {
@@ -254,22 +215,15 @@ $(document).ready(function(){
             return;
         }
 
-        var edit_recom = $('#brand_edit_recommend').val();
+        table.fnUpdate($('#services_edit_weixin').val(), nRow, 0, false);
+        table.fnUpdate($('#services_edit_company').val(), nRow, 1, false);
 
-        table.fnUpdate($('#brand_edit_brand').val(), nRow, 0, false);
-        table.fnUpdate($('#brand_edit_name').val(), nRow, 1, false);
-        table.fnUpdate($('#brand_edit_company').val(), nRow, 2, false);
-        table.fnUpdate(typeIntToStr($('#brand_edit_type').val()), nRow, 3, false);
-        table.fnUpdate(edit_recom == 1 ? '是':'否',nRow,4,false);
         table.fnDraw();
 
-        $('#brand_edit_brand').val('');
-        $('#brand_edit_name').val('');
-        $('#brand_edit_company').val('');
-        typeIntToStr($('#brand_edit_type').val());
-        edit_recom == 1 ? '是':'否';
+        $('#services_edit_weixin').val(),
+        $('#services_edit_company').val(),
 
-        $('#brand_edit_modal').modal('hide')
+        $('#services_edit_modal').modal('hide')
         swal({
             title: "保存成功！",
             text: "",
@@ -308,11 +262,11 @@ $(document).ready(function(){
             if (!isConfirm) return;
             var delok = true;
             var params={};
-            params.brand = aData[0];
+            params.weixin = aData[0];
             $.ajax({
                 async: false,
                 type: "POST",
-                url: "../brand/delete",//注意路径
+                url: "../services/delete",//注意路径
                 data: params,
                 dataType: "json",
                 success: function (data) {
@@ -354,3 +308,4 @@ $(document).ready(function(){
     });
 
 });
+

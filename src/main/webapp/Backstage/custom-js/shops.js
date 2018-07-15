@@ -1,44 +1,49 @@
 /**
- * Created by 25778 on 2018/6/18.
+ * Created by 25778 on 2018/7/15.
  */
 $(document).ready(function(){
 
-    var table = $("#brand_table");
+    var table = $("#shops_table");
     table.dataTable({
         "columnDefs": [{ // set default column settings
             'orderable': false,
-            'targets': [5]
+            'targets': [7]
         }, {
             "searchable": false,
-            "targets": [5]
+            "targets": [7]
         }],
         "order": [
             [0, "asc"]
         ]
     });
     var params={};
+
     $.ajax({
         async: false,
         type: "POST",
-        url: "../brand/list",       //注意路径
+        url: "../shops/list",       //注意路径
         data: params,
         dataType: "json",
         success: function (data) {
             console.log(JSON.stringify(data,null,4));
             for (var i = 0; i < data.length; i++) {
-                console.log(JSON.stringify(data[i],null,4));
-                console.log(data[i].brand);
-                console.log(data[i].name);
-                console.log(data[i].company);
-                console.log(data[i].type);
-                console.log(data[i].recommend);
+                // console.log(JSON.stringify(data[i],null,4));
+                // console.log(data[i].shop);
+                // console.log(data[i].name);
+                // console.log(data[i].address);
+                // console.log(data[i].phone);
+                // console.log(data[i].pos_x);
+                // console.log(data[i].pos_y);
+                // console.log(data[i].orders);
                 var itm = data[i];
                 table.fnAddData([
-                    itm.brand,
+                    itm.shop,
                     itm.name,
-                    itm.company,
-                    typeIntToStr(itm.type),
-                    itm.recommend == 1 ? '是':'否',
+                    itm.address,
+                    itm.phone,
+                    itm.pos_x,
+                    itm.pos_y,
+                    itm.orders,
                     '<a class="edit"  ><i class="fa fa-edit"></i>&nbsp;编辑</a>' +
                     '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' +
                     '<a class="delete" ><i class="fa fa-trash"></i>&nbsp;删除</a>'
@@ -60,34 +65,7 @@ $(document).ready(function(){
             });
         }
     });
-    $("#loading-brand").css('display','none');
-
-    //type,int类型转string类型
-    function typeIntToStr(int_type) {
-        if (int_type==0){
-            return '通用品牌'
-        }
-        else if(int_type==1){
-            return '镜框品牌'
-        }
-        else if (int_type==2){
-            return '镜片品牌'
-        }
-    }
-
-    //type,String类型转int类型
-    function typeStrToInt(str_type) {
-        if (str_type=='通用品牌'){
-            return 0;
-        }
-        else if(str_type=='镜框品牌'){
-            return 1;
-        }
-        else if (str_type=='镜片品牌'){
-            return 2;
-        }
-    }
-
+    $("#loading-shops").css('display','none');
 
     /**
      * 添加
@@ -95,14 +73,27 @@ $(document).ready(function(){
     $("#btn_add_save").click(function(e){
         var delok = true;
         var params={};
-        params.brand = $('#brand_add_brand').val();
-        params.name =$('#brand_add_name').val();
-        params.company =$('#brand_add_company').val();
-        params.type = $('#brand_add_type').val();
-        params.recommend = $('#brand_add_recommend').val();
-        if(params.brand == ''|| params.name == ''|| params.company == ''){
+
+        params.shop = $('#shops_add_shops').val();
+        params.name =$('#shops_add_name').val();
+        params.address =$('#shops_add_address').val();
+        params.phone = $('#shops_add_phone').val();
+        params.pos_x = $('#shops_add_pos_x').val();
+        params.pos_y = $('#shops_add_pos_y').val();
+        params.orders = $('#shops_add_orders').val();
+
+        console.log($('#shops_add_shops').val());
+        console.log($('#shops_add_name').val());
+        console.log($('#shops_add_address').val());
+        console.log($('#shops_add_phone').val());
+        console.log($('#shops_add_pos_x').val());
+        console.log($('#shops_add_pos_y').val());
+        console.log($('#shops_add_orders').val());
+
+
+        if(params.shop == ''|| params.name == ''|| params.address == '' || params.phone=='' || params.pos_x==''||params.pos_y==''||params.orders==''){
             swal({
-                title: "编号、名称和制造商不能为空！",
+                title: "门店信息不能有空值！",
                 text: "",
                 type: "warning",
                 allowOutsideClick: true,
@@ -116,7 +107,7 @@ $(document).ready(function(){
         $.ajax({
             async: false,
             type: "POST",
-            url: "../brand/add",//注意路径
+            url: "../shops/add",//注意路径
             data: params,
             dataType: "json",
             success: function (data) {
@@ -143,28 +134,32 @@ $(document).ready(function(){
             });
             return;
         }
-        var recommend = $('#brand_add_recommend').val()
+
         table.fnAddData([
-            $('#brand_add_brand').val(),
-            $('#brand_add_name').val(),
-            $('#brand_add_company').val(),
-            typeIntToStr($('#brand_add_type').val()),
-            recommend == 1 ? '是':'否',
-            // $('#brand_add_company').option($('#brand_add_company').selectedIndex).text();
+            $('#shops_add_shops').val(),
+            $('#shops_add_name').val(),
+            $('#shops_add_address').val(),
+            $('#shops_add_phone').val(),
+            $('#shops_add_pos_x').val(),
+            $('#shops_add_pos_y').val(),
+            $('#shops_add_orders').val(),
+
             '<a class="edit"  ><i class="fa fa-edit"></i>&nbsp;编辑</a>' +
             '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' +
             '<a class="delete" ><i class="fa fa-trash"></i>&nbsp;删除</a>'
         ]);
 
         table.fnDraw();
-        $('#brand_add_brand').val('');
-        $('#brand_add_name').val('');
-        $('#brand_add_company').val('');
-        typeIntToStr($('#brand_add_type').val()),
-        recommend == 1 ? '是':'否',
-        // $('#brand_add_company').option($('#brand_add_company').selectedIndex).text();
+        $('#shops_add_shops').val(),
+        $('#shops_add_name').val(),
+        $('#shops_add_address').val(),
+        $('#shops_add_phone').val(),
+        $('#shops_add_pos_x').val(),
+        $('#shops_add_pos_y').val(),
+        $('#shops_add_orders').val(),
+        // $('#shops_add_company').option($('#shops_add_company').selectedIndex).text();
 
-            $('#brand_add_modal').modal('hide')
+        $('#shops_add_modal').modal('hide')
         swal({
             title: "添加成功！",
             text: "",
@@ -188,12 +183,15 @@ $(document).ready(function(){
         EditRow = nRow;
         var aData = table.fnGetData(nRow);
 
-        $('#brand_edit_brand').val(aData[0]);
-        $('#brand_edit_name').val(aData[1]);
-        $('#brand_edit_company').val(aData[2]);
-        $('#brand_edit_type').val(typeStrToInt(aData[3]));
-        $('#brand_edit_recommend').val(aData[4] == '是' ? 1:0);
-        $('#brand_edit_modal').modal('show')
+        $('#shops_edit_shops').val(aData[0]);
+        $('#shops_edit_name').val(aData[1]);
+        $('#shops_edit_address').val(aData[2]);
+        $('#shops_edit_phone').val(aData[3]);
+        $('#shops_edit_pos_x').val(aData[4]);
+        $('#shops_edit_pos_y').val(aData[5]);
+        $('#shops_edit_orders').val(aData[6]);
+
+        $('#shops_edit_modal').modal('show')
     });
 
 
@@ -201,17 +199,20 @@ $(document).ready(function(){
         var nRow = EditRow;
         var delok = true;
         var params={};
-        params.brand = $('#brand_edit_brand').val();
-        params.name =$('#brand_edit_name').val();
-        params.company = $('#brand_edit_company').val();
-        params.type = $('#brand_edit_type').val();
-        params.recommend = $('#brand_edit_recommend').val();
+
+        params.shop = $('#shops_edit_shops').val();
+        params.name =$('#shops_edit_name').val();
+        params.address =$('#shops_edit_address').val();
+        params.phone = $('#shops_edit_phone').val();
+        params.pos_x = $('#shops_edit_pos_x').val();
+        params.pos_y = $('#shops_edit_pos_y').val();
+        params.orders = $('#shops_edit_orders').val();
 
         console.log(JSON.stringify(params,null,4));
 
-        if(params.brand == ''||params.name == ''||params.company == '' ){
+        if(params.name == ''|| params.address == '' || params.phone=='' || params.pos_x==''||params.pos_y==''||params.orders==''){
             swal({
-                title: "品牌编号、名称和制造商不能为空！",
+                title: "门店信息不能有空值！",
                 text: "",
                 type: "warning",
                 allowOutsideClick: true,
@@ -226,7 +227,7 @@ $(document).ready(function(){
         $.ajax({
             async: false,
             type: "POST",
-            url: "../brand/update",//注意路径
+            url: "../shops/update",//注意路径
             data: params,
             dataType: "json",
             success: function (data) {
@@ -254,22 +255,25 @@ $(document).ready(function(){
             return;
         }
 
-        var edit_recom = $('#brand_edit_recommend').val();
+        table.fnUpdate($('#shops_edit_shops').val(), nRow, 0, false);
+        table.fnUpdate($('#shops_edit_name').val(), nRow, 1, false);
+        table.fnUpdate($('#shops_edit_address').val(), nRow, 2, false);
+        table.fnUpdate($('#shops_edit_phone').val(), nRow, 3, false);
+        table.fnUpdate($('#shops_edit_pos_x').val(), nRow, 4, false);
+        table.fnUpdate($('#shops_edit_pos_y').val(), nRow, 5, false);
+        table.fnUpdate($('#shops_edit_orders').val(), nRow, 6, false);
 
-        table.fnUpdate($('#brand_edit_brand').val(), nRow, 0, false);
-        table.fnUpdate($('#brand_edit_name').val(), nRow, 1, false);
-        table.fnUpdate($('#brand_edit_company').val(), nRow, 2, false);
-        table.fnUpdate(typeIntToStr($('#brand_edit_type').val()), nRow, 3, false);
-        table.fnUpdate(edit_recom == 1 ? '是':'否',nRow,4,false);
         table.fnDraw();
 
-        $('#brand_edit_brand').val('');
-        $('#brand_edit_name').val('');
-        $('#brand_edit_company').val('');
-        typeIntToStr($('#brand_edit_type').val());
-        edit_recom == 1 ? '是':'否';
+        $('#shops_edit_shops').val(),
+        $('#shops_edit_name').val(),
+        $('#shops_edit_address').val(),
+        $('#shops_edit_phone').val(),
+        $('#shops_edit_pos_x').val(),
+        $('#shops_edit_pos_y').val(),
+        $('#shops_edit_orders').val(),
 
-        $('#brand_edit_modal').modal('hide')
+        $('#shops_edit_modal').modal('hide')
         swal({
             title: "保存成功！",
             text: "",
@@ -308,11 +312,11 @@ $(document).ready(function(){
             if (!isConfirm) return;
             var delok = true;
             var params={};
-            params.brand = aData[0];
+            params.shop = aData[0];
             $.ajax({
                 async: false,
                 type: "POST",
-                url: "../brand/delete",//注意路径
+                url: "../shops/delete",//注意路径
                 data: params,
                 dataType: "json",
                 success: function (data) {
@@ -354,3 +358,4 @@ $(document).ready(function(){
     });
 
 });
+

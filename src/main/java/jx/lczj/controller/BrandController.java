@@ -62,8 +62,8 @@ public class BrandController {
     @Privilege(value = "品牌管理")
     @RequestMapping("/add")
     @ResponseBody
-    public boolean add(int brand,String name,String company,int type){
-        return brandService.add(brand,name,company,type);
+    public boolean add(int brand,String name,String company,int type,int recommend){
+        return brandService.add(brand,name,company,type,recommend);
     }
 
 
@@ -77,8 +77,8 @@ public class BrandController {
     @Privilege(value = "品牌管理")
     @RequestMapping("/update")
     @ResponseBody
-    public boolean update(int brand,String name,String company,int type){
-        return brandService.update(brand,name,company,type);
+    public boolean update(int brand,String name,String company,int type,int recommend){
+        return brandService.update(brand,name,company,type,recommend);
     }
 
     /**

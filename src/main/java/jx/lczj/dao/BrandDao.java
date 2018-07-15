@@ -26,8 +26,8 @@ public interface BrandDao {
      * @param type
      * @return
      */
-    @Update("update T_BRAND set name= #{1} , company = #{2} , type = #{3} where brand = #{0}")
-    boolean update(int brand, String name, String company,int type);
+    @Update("update T_BRAND set name= #{1} , company = #{2} , type = #{3} , recommend = #{4} where brand = #{0}")
+    boolean update(int brand, String name, String company,int type,int recommend);
 
     /**
      * 根据id删除品牌信息
@@ -45,8 +45,8 @@ public interface BrandDao {
      * @param type
      * @return
      */
-    @Insert("insert into T_BRAND(brand,name,company,type) values(#{0},#{1},#{2},#{3})")
-    public boolean add(int brand, String name, String company,int type);
+    @Insert("insert into T_BRAND(brand,name,company,type,recommend) values(#{0},#{1},#{2},#{3},#{4})")
+    public boolean add(int brand, String name, String company,int type,int recommend);
 
     /**
      * 根据Id查找品牌

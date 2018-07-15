@@ -34,8 +34,8 @@ public class BrandService {
      * @param company
      * @return
      */
-    public boolean add(int brand, String name, String company,int type) {
-        return brandDao.add(brand,name,company,type);
+    public boolean add(int brand, String name, String company,int type,int recommend) {
+        return brandDao.add(brand,name,company,type,recommend);
     }
 
     /**
@@ -46,9 +46,9 @@ public class BrandService {
      * @return
      */
     @Transactional
-    public boolean update(int brand, String name, String company,int type) {
+    public boolean update(int brand, String name, String company,int type,int recommend) {
         try {
-            boolean ok = brandDao.update(brand,name,company,type);
+            boolean ok = brandDao.update(brand,name,company,type,recommend);
             return true;
         }catch (Exception e){
             throw  new RuntimeException(e.getMessage());

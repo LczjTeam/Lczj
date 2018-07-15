@@ -14,14 +14,7 @@ public class T_brand implements Serializable{
     private String name;    //名称
     private String company; //制造商
     private int type;       //眼镜类别
-
-    public int getType() {
-        return type;
-    }
-
-    public void setType(int type) {
-        this.type = type;
-    }
+    private int recommend;  //是否推荐
 
     public int getBrand() {
         return brand;
@@ -47,13 +40,30 @@ public class T_brand implements Serializable{
         this.company = company;
     }
 
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
+
+    public int getRecommend() {
+        return recommend;
+    }
+
+    public void setRecommend(int recommend) {
+        this.recommend = recommend;
+    }
+
     @Override
     public String toString() {
         return "T_brand{" +
                 "brand=" + brand +
                 ", name='" + name + '\'' +
                 ", company='" + company + '\'' +
-                ", _class=" + type +
+                ", type=" + type +
+                ", recommend=" + recommend +
                 '}';
     }
 }
