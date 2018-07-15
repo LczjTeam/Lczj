@@ -42,6 +42,7 @@ $(document).ready(function(){
         $("#add_max_width").val('');
         $("#add_price").val('');
         $("#add_space").val('');
+        $("#edit_img").attr("src","");
         $("#atts_list").html('');
 
         $("#good_title").text('眼镜信息添加');
@@ -145,6 +146,7 @@ $(document).ready(function(){
                     '<td>' + faceStr + '</td>' +
                     '<td>' + occasionStr + '</td>' +
                     '<td>' + attachStr + '</td>' +
+                    '<td>' + '<img src="' + "../goods/" + datas.t_goods.detailphoto + '" style="width: 45px;height: 45px;" alt="图片未上传"></td>' +
                     '<td><a class="edit"  id="' + datas.t_goods.goods + '"  ><i class="fa fa-edit"></i>&nbsp;编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="delete" id="' + datas.t_goods.goods + '" ><i class="fa fa-trash"></i>&nbsp;删除</a></td> ' +
                     '</tr>';
 
@@ -437,7 +439,7 @@ $(document).ready(function(){
         if (formData.get("good") == '' || formData.get("good_name") == '' || formData.get("models") == ''
             || formData.get("width") == ''  || formData.get("height") == ''  || formData.get("length") == ''
             || formData.get("max_width") == '' || formData.get("wearfile") == ''
-            || formData.get("space") == ''  || formData.get("price") == '') {
+            || formData.get("space") == ''  || formData.get("price") == '' || formData.get("detailfile")==null) {
             swal({
                 title: "请填写完整的信息！",
                 text: "",
@@ -540,6 +542,7 @@ $(document).ready(function(){
                         '<td>' + faceStr + '</td>' +
                         '<td>' + occasionStr + '</td>' +
                         '<td>' + attachStr + '</td>' +
+                        '<td>' + '<img src="' + "../goods/" + datas.t_goods.detailphoto + '" style="width: 45px;height: 45px;"></td>' +
                         '<td><a class="edit"  id="' + datas.t_goods.goods + '"  ><i class="fa fa-edit"></i>&nbsp;编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="delete" id="' + datas.t_goods.goods + '" ><i class="fa fa-trash"></i>&nbsp;删除</a></td> ' +
                         '</tr>';
 
@@ -549,6 +552,7 @@ $(document).ready(function(){
 
                     $("#page_good_list").css('display', 'block');
                     $("#page_good_add").css('display', 'none');
+                    $('[data-dismiss="fileinput"]').click();
                     swal({
                         title: "添加成功！",
                         text: "",
@@ -559,6 +563,7 @@ $(document).ready(function(){
                         confirmButtonClass: "btn-success",
                         confirmButtonText: "OK",
                     });
+                    $("#edit_img").attr("src","");
                     return;
 
                 },
@@ -665,6 +670,7 @@ $(document).ready(function(){
                         '<td>' + faceStr + '</td>' +
                         '<td>' + occasionStr + '</td>' +
                         '<td>' + attachStr + '</td>' +
+                        '<td>' + '<img src="' + "../goods/" + datas.t_goods.detailphoto + '" style="width: 45px;height: 45px;"></td>' +
                         '<td><a class="edit"  id="' + datas.t_goods.goods + '"  ><i class="fa fa-edit"></i>&nbsp;编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="delete" id="' + datas.t_goods.goods + '" ><i class="fa fa-trash"></i>&nbsp;删除</a></td> ' +
                         '</tr>';
 
@@ -674,6 +680,7 @@ $(document).ready(function(){
 
                     $("#page_good_list").css('display', 'block');
                     $("#page_good_add").css('display', 'none');
+                    $('[data-dismiss="fileinput"]').click();
                     swal({
                         title: "修改成功！",
                         text: "",
@@ -684,6 +691,7 @@ $(document).ready(function(){
                         confirmButtonClass: "btn-success",
                         confirmButtonText: "OK",
                     });
+
                     return;
 
                 },
@@ -886,7 +894,7 @@ $(document).ready(function(){
                     $("#add_max_width").val(datas.t_goods.max_width);
                     $("#add_price").val(datas.t_goods.price);
                     $("#add_space").val(datas.t_goods.space);
-
+                    $("#edit_img").attr('src', '../goods/' + datas.t_goods.detailphoto);
                     var categoryStr = [];
                     for( var j = 0 ;j < datas.t_categories.length ; j++){
                         var itm =  datas.t_categories[j];

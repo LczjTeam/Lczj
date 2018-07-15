@@ -6,12 +6,19 @@ public class T_eyeglass {
     private String name;
     private float refraction;
     private int price;
-    private int category;
     private int efficacy;
     private int brand;
     private int mask;
     private int style;
+    private String detailphoto;
 
+    public String getDetailphoto() {
+        return detailphoto;
+    }
+
+    public void setDetailphoto(String detailphoto) {
+        this.detailphoto = detailphoto;
+    }
 
     public String getEyeglass() {
         return eyeglass;
@@ -45,13 +52,6 @@ public class T_eyeglass {
         this.name = name;
     }
 
-    public int getCategory() {
-        return category;
-    }
-
-    public void setCategory(int category) {
-        this.category = category;
-    }
 
     public int getEfficacy() {
         return efficacy;
@@ -88,15 +88,15 @@ public class T_eyeglass {
     @Override
     public String toString() {
         return "T_eyeglass{" +
-                "eyeglass=" + eyeglass +
+                "eyeglass='" + eyeglass + '\'' +
                 ", name='" + name + '\'' +
                 ", refraction=" + refraction +
                 ", price=" + price +
-                ", category=" + category +
                 ", efficacy=" + efficacy +
                 ", brand=" + brand +
                 ", mask=" + mask +
                 ", style=" + style +
+                ", detailphoto='" + detailphoto + '\'' +
                 '}';
     }
 }

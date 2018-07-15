@@ -14,7 +14,6 @@ public interface EyeglassDao {
     /**
      * 添加镜片信息
      * @param eyeglass
-     * @param category
      * @param efficacy
      * @param brand
      * @param mask
@@ -24,8 +23,8 @@ public interface EyeglassDao {
      * @param name
      * @return
      */
-    @Insert("insert into T_EYEGLASS(EYEGLASS,CATEGORY,EFFICACY,BRAND,MASK,STYLE,REFRACTION,PRICE,NAME) values(#{0},#{1},#{2},#{3},#{4},#{5},#{6},#{7},#{8})")
-    boolean add(String eyeglass,int category,int efficacy,int brand,int mask,int style,float refraction,int price,String name);
+    @Insert("insert into T_EYEGLASS(EYEGLASS,EFFICACY,BRAND,MASK,STYLE,REFRACTION,PRICE,NAME,DETAILPHOTO) values(#{0},#{1},#{2},#{3},#{4},#{5},#{6},#{7},#{8})")
+    boolean add(String eyeglass,int efficacy,int brand,int mask,int style,float refraction,int price,String name,String detailphoto);
 
     /**
      * 添加镜片附件信息
@@ -80,7 +79,6 @@ public interface EyeglassDao {
     /**
      * 更新镜片信息
      * @param eyeglass
-     * @param category
      * @param efficacy
      * @param brand
      * @param mask
@@ -90,8 +88,8 @@ public interface EyeglassDao {
      * @param name
      * @return
      */
-    @Update("update  T_EYEGLASS set CATEGORY = #{1},EFFICACY = #{2},BRAND = #{3},MASK = #{4},STYLE = #{5} ,REFRACTION= #{6} ,PRICE = #{7} ,NAME = #{8} where EYEGLASS = #{0}")
-    boolean update(String eyeglass, int category, int efficacy, int brand, int mask, int style, float refraction, int price, String name);
+    @Update("update  T_EYEGLASS set EFFICACY = #{1},BRAND = #{2},MASK = #{3},STYLE = #{4} ,REFRACTION= #{5} ,PRICE = #{6} ,NAME = #{7},DETAILPHOTO = #{8} where EYEGLASS = #{0}")
+    boolean update(String eyeglass, int efficacy, int brand, int mask, int style, float refraction, int price, String name,String detailphoto);
 
     /**
      * 根据Id删除镜片信息

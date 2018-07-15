@@ -22,7 +22,15 @@ public class T_goods implements Serializable {
     private  int  max_width;    //总宽度
     private  int  suitable_sex;    //适性别 0-通用，1-男，2-女
     private  int  price;    //价格
+    private String detailphoto; //眼镜详情
 
+    public String getDetailphoto() {
+        return detailphoto;
+    }
+
+    public void setDetailphoto(String detailphoto) {
+        this.detailphoto = detailphoto;
+    }
 
     public String getGoods() {
         return goods;
@@ -115,7 +123,6 @@ public class T_goods implements Serializable {
         this.price = price;
     }
 
-
     @Override
     public String toString() {
         return "T_goods{" +
@@ -130,6 +137,7 @@ public class T_goods implements Serializable {
                 ", max_width=" + max_width +
                 ", suitable_sex=" + suitable_sex +
                 ", price=" + price +
+                ", detailphoto='" + detailphoto + '\'' +
                 '}';
     }
 }

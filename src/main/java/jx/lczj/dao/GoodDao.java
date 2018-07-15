@@ -105,8 +105,8 @@ public interface GoodDao {
      * @param price
      * @return
      */
-    @Insert("insert into  T_GOODS(GOODS,BRAND,NAME,MODELS,WIDTH,HEIGHT,SPACE,LENGTH,MAX_WIDTH,SUITABLE_SEX,PRICE) VALUES (#{0},#{1},#{2},#{3},#{4},#{5},#{6},#{7},#{8},#{9},#{10})")
-    boolean add(String goods, int brand, String name, String models, int width, int height,int space, int length, int max_width, int suitable_sex, int price);
+    @Insert("insert into  T_GOODS(GOODS,BRAND,NAME,MODELS,WIDTH,HEIGHT,SPACE,LENGTH,MAX_WIDTH,SUITABLE_SEX,PRICE,DETAILPHOTO) VALUES (#{0},#{1},#{2},#{3},#{4},#{5},#{6},#{7},#{8},#{9},#{10},#{11})")
+    boolean add(String goods, int brand, String name, String models, int width, int height,int space, int length, int max_width, int suitable_sex, int price,String detailphoto);
 
     /**
      * 根据镜框Id获取镜框信息
@@ -197,8 +197,8 @@ public interface GoodDao {
      * @param price
      * @return
      */
-    @Update("update T_GOODS set BRAND  = #{1} ,NAME  = #{2}  ,MODELS  = #{3}  ,WIDTH = #{4} ,HEIGHT  = #{5}  ,SPACE  = #{6}  ,LENGTH  = #{7}  ,MAX_WIDTH  = #{8}  ,SUITABLE_SEX  = #{9}  ,PRICE  = #{10} where goods = #{0}")
-    boolean update(String goods, int brand, String name, String models, int width, int height, int space, int length, int max_width, int suitable_sex, int price);
+    @Update("update T_GOODS set BRAND  = #{1} ,NAME  = #{2}  ,MODELS  = #{3}  ,WIDTH = #{4} ,HEIGHT  = #{5}  ,SPACE  = #{6}  ,LENGTH  = #{7}  ,MAX_WIDTH  = #{8}  ,SUITABLE_SEX  = #{9}  ,PRICE  = #{10}, DETAILPHOTO = #{11} where goods = #{0}")
+    boolean update(String goods, int brand, String name, String models, int width, int height, int space, int length, int max_width, int suitable_sex, int price,String editDetailphoto);
 
     /**
      * 添加类别分配

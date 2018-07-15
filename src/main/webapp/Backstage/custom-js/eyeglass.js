@@ -41,6 +41,7 @@ $(document).ready(function () {
         $("#add_name").val('');
         $("#add_refraction").val("");
         $("#add_price").val("");
+        $("#edit_img").attr("src","");
         //动态修改标签，将添加和编辑是同一个界面，只是根据title来区分，哪个是编辑、添加
         $("#eyeglass_title").text('镜片信息添加');
 
@@ -89,10 +90,10 @@ $(document).ready(function () {
                     '<td>' + datas.t_eyeglass.refraction + '</td>' +
                     '<td>' + datas.t_eyeglass.price + '</td>' +
                     '<td>' + datas.t_eyeglass.eyeglass + '</td>' +
-                    '<td>' + datas.t_category.name + '</td>' +
                     '<td>' + datas.t_efficacy.name + '</td>' +
                     '<td>' + datas.t_style.name + '</td>' +
                     '<td>' + attachStr + '</td>' +
+                    '<td>' + '<img src="' + "../goods/" + datas.t_eyeglass.detailphoto + '" style="width: 45px;height: 45px;cursor:pointer;" alt="图片未存在" onclick="javascript:window.open(this.src) "></td>' +
                     //id，动态添加数据可以相同
                     '<td><a class="edit"  id="' + datas.t_eyeglass.eyeglass + '"  ><i class="fa fa-edit"></i>&nbsp;编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="delete" id="' + datas.t_eyeglass.eyeglass + '" ><i class="fa fa-trash"></i>&nbsp;删除</a></td> ' +
                     '</tr>';
@@ -124,37 +125,37 @@ $(document).ready(function () {
      * 镜片材质
      * 提前将数据读取，放到下拉单中
      */
-    var params = {};
-    $.ajax({
-        async: false,
-        type: "POST",
-        url: "../category/list",       //注意路径
-        data: params,
-        dataType: "json",
-        success: function (data) {
-            var str = '';
-            //console.log(JSON.stringify(data,null,4));
-            for (var i = 0; i < data.length; i++) {
-                var itm = data[i];
-                str += '<option value="' + itm.category + '">' + itm.name + '</option>';
-            }
-            //添加到材质下拉单中
-            $("#add_category").html(str);
+    /*    var params = {};
+        $.ajax({
+            async: false,
+            type: "POST",
+            url: "../category/list",       //注意路径
+            data: params,
+            dataType: "json",
+            success: function (data) {
+                var str = '';
+                //console.log(JSON.stringify(data,null,4));
+                for (var i = 0; i < data.length; i++) {
+                    var itm = data[i];
+                    str += '<option value="' + itm.category + '">' + itm.name + '</option>';
+                }
+                //添加到材质下拉单中
+                $("#add_category").html(str);
 
-        },
-        error: function (data) {
-            swal({
-                title: "数据获取失败！",
-                text: "",
-                type: "error",
-                allowOutsideClick: true,
-                showConfirmButton: true,
-                showCancelButton: false,
-                confirmButtonClass: "btn-danger",
-                confirmButtonText: "OK",
-            });
-        }
-    });
+            },
+            error: function (data) {
+                swal({
+                    title: "数据获取失败！",
+                    text: "",
+                    type: "error",
+                    allowOutsideClick: true,
+                    showConfirmButton: true,
+                    showCancelButton: false,
+                    confirmButtonClass: "btn-danger",
+                    confirmButtonText: "OK",
+                });
+            }
+        });*/
 
     /**
      * 镜片功能
@@ -174,7 +175,7 @@ $(document).ready(function () {
                 var itm = data[i];
                 str += '<option value="' + itm.efficacy + '">' + itm.name + '</option>';
             }
-            //添加到材质下拉单中
+            //添加到功能下拉单中
             $("#add_efficacy").html(str);
 
         },
@@ -209,7 +210,7 @@ $(document).ready(function () {
                 var itm = data[i];
                 str += '<option value="' + itm.brand + '">' + itm.name + '</option>';
             }
-            //添加到材质下拉单中
+            //添加到品牌下拉单中
             $("#add_brand").html(str);
 
         },
@@ -245,7 +246,7 @@ $(document).ready(function () {
                 var itm = data[i];
                 str += '<option value="' + itm.mask + '">' + itm.name + '</option>';
             }
-            //添加到材质下拉单中
+            //添加到膜层下拉单中
             $("#add_mask").html(str);
 
         },
@@ -281,7 +282,7 @@ $(document).ready(function () {
                 var itm = data[i];
                 str += '<option value="' + itm.style + '">' + itm.name + '</option>';
             }
-            //添加到材质下拉单中
+            //添加到样式下拉单中
             $("#add_style").html(str);
 
         },
@@ -312,14 +313,15 @@ $(document).ready(function () {
         //判断数据是否为空
         if (formData1.get("eyeglass") == null ||
             formData1.get("price") == null ||
-            formData1.get("category") == null ||
             formData1.get("efficacy") == null ||
             formData1.get("brand") == null ||
             formData1.get("mask") == null ||
             formData1.get("add_style") == null ||
             formData1.get("refraction") == null ||
             formData1.get("add_name") == null ||
-            formData1.get("fileName") == null
+            formData1.get("fileName") == null ||
+            formData1.get("detailfile") == null
+
         ) {
             swal({
                 title: "输入框不能为空！",
@@ -368,23 +370,26 @@ $(document).ready(function () {
                         '<td>' + datas.t_eyeglass.refraction + '</td>' +
                         '<td>' + datas.t_eyeglass.price + '</td>' +
                         '<td>' + datas.t_eyeglass.eyeglass + '</td>' +
-                        '<td>' + datas.t_category.name + '</td>' +
                         '<td>' + datas.t_efficacy.name + '</td>' +
                         '<td>' + datas.t_style.name + '</td>' +
                         '<td>' + attachStr + '</td>' +
+                        '<td>' + '<img src="' + "../goods/" + datas.t_eyeglass.detailphoto + '" style="width: 50px;height: 50px;cursor:pointer;" onclick="javascript:window.open(this.src)" ></td>' +
                         '<td><a class="edit"  id="' + datas.t_eyeglass.eyeglass + '"  ><i class="fa fa-edit"></i>&nbsp;编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="delete" id="' + datas.t_eyeglass.eyeglass + '" ><i class="fa fa-trash"></i>&nbsp;删除</a></td> ' +
                         '</tr>';
                     //解除edit 、 delete 原有的点击事件
-                    setEvents();
 
                     console.log(str1);
                     $("#tbd").prepend(str1).trigger('footable_redraw');
+
+                    setEvents();
+
                     $("#eyeglass").val('');
                     $("#add_name").val('');
                     $("#add_refraction").val("");
                     $("#add_price").val("");
                     $("#page_eyeglass_list").css('display', 'block');
                     $("#page_eyeglass_add").css('display', 'none');
+                    $('[data-dismiss="fileinput"]').click();
                     swal({
                         title: "添加成功！",
                         text: "",
@@ -449,10 +454,10 @@ $(document).ready(function () {
                         '<td>' + datas.t_eyeglass.refraction + '</td>' +
                         '<td>' + datas.t_eyeglass.price + '</td>' +
                         '<td>' + datas.t_eyeglass.eyeglass + '</td>' +
-                        '<td>' + datas.t_category.name + '</td>' +
                         '<td>' + datas.t_efficacy.name + '</td>' +
                         '<td>' + datas.t_style.name + '</td>' +
                         '<td>' + attachStr + '</td>' +
+                        '<td>' + '<img src="' + "../goods/" + datas.t_eyeglass.detailphoto + '" style="width: 45px;height: 45px;cursor:pointer;" alt="图片未存在" onclick="javascript:window.open(this.src)" ></td>' +
                         '<td><a class="edit"  id="' + datas.t_eyeglass.eyeglass + '"  ><i class="fa fa-edit"></i>&nbsp;编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="delete" id="' + datas.t_eyeglass.eyeglass + '" ><i class="fa fa-trash"></i>&nbsp;删除</a></td> ' +
                         '</tr>';
 
@@ -464,6 +469,7 @@ $(document).ready(function () {
                     //修改完后，将添加界面去掉，显示list
                     $("#page_eyeglass_list").css('display', 'block');
                     $("#page_eyeglass_add").css('display', 'none');
+                    $('[data-dismiss="fileinput"]').click();
                     swal({
                         title: "修改成功！",
                         text: "",
@@ -607,17 +613,15 @@ $(document).ready(function () {
                 success: function (datas) {
 
                     console.log(JSON.stringify(datas, null, 4));
-
+                    $("#add_name").val(datas.t_eyeglass.name);
                     $("#add_eyeglass").val(datas.t_eyeglass.eyeglass);
-                    $("#add_name").val(datas.t_category.name);
                     $("#add_brand").val(datas.t_brand.brand);
-                    $("#add_category").val(datas.t_category.category);
                     $("#add_efficacy").val(datas.t_efficacy.efficacy);
                     $("#add_mask").val(datas.t_mask.mask);
                     $("#add_style").val(datas.t_style.style);
                     $("#add_refraction").val(datas.t_eyeglass.refraction);
                     $("#add_price").val(datas.t_eyeglass.price);
-
+                    $("#edit_img").attr('src', '../goods/' + datas.t_eyeglass.detailphoto);
                     //alert(ageStr);
 
                     $("#atts_list").html('');

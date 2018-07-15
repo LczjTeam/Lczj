@@ -308,7 +308,6 @@ public class MywearService {
                 T_eyeglass tel = eyeglassDao.loadById(twl.getEyeglass());
                 evol.setT_eyeglass(tel);
                 evol.setT_brand(brandDao.loadById(tel.getBrand()));
-                evol.setT_category(categoryDao.loadById(tel.getCategory()));
                 wvol.setEyeglassVo(evol);
 
                 mvo.setLeftEyeglass(wvol);
@@ -322,7 +321,6 @@ public class MywearService {
                 T_eyeglass ter = eyeglassDao.loadById(twl.getEyeglass());
                 evor.setT_eyeglass(ter);
                 evor.setT_brand(brandDao.loadById(ter.getBrand()));
-                evor.setT_category(categoryDao.loadById(ter.getCategory()));
                 wvor.setEyeglassVo(evor);
 
                 mvo.setRightEyeglass(wvor);
@@ -426,7 +424,6 @@ public class MywearService {
             evol.setT_eyeglass(tel);
             evol.setT_brand(brandDao.loadById(tel.getBrand()));
             evol.setT_attachments(eyeglassDao.loadAttachmentByEyeglass(tel.getEyeglass()));
-            evol.setT_category(categoryDao.loadById(tel.getCategory()));
             evol.setT_efficacy(efficacyDao.loadById(tel.getEfficacy()));
             evol.setT_mask(maskDao.loadById(tel.getMask()));
             evol.setT_style(styleDao.loadById(tel.getStyle()));
@@ -444,7 +441,6 @@ public class MywearService {
             evor.setT_eyeglass(ter);
             evor.setT_brand(brandDao.loadById(ter.getBrand()));
             evor.setT_attachments(eyeglassDao.loadAttachmentByEyeglass(ter.getEyeglass()));
-            evor.setT_category(categoryDao.loadById(ter.getCategory()));
             evor.setT_efficacy(efficacyDao.loadById(ter.getEfficacy()));
             evor.setT_mask(maskDao.loadById(ter.getMask()));
             evor.setT_style(styleDao.loadById(ter.getStyle()));

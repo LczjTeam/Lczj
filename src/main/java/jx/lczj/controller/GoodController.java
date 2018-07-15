@@ -44,10 +44,10 @@ public class GoodController {
     @Privilege("眼镜管理")
     @RequestMapping("/add")
     @ResponseBody
-    public GoodsVo add(String[] fileName, HttpServletRequest request, HttpSession session){
+    public GoodsVo add(String[] fileName, HttpServletRequest request, HttpSession session,MultipartFile detailfile){
 
 
-        return goodService.add(fileName,request,session);
+        return goodService.add(fileName,request,session,detailfile);
     }
     /**
      * 编辑
@@ -59,10 +59,10 @@ public class GoodController {
     @Privilege("眼镜管理")
     @RequestMapping("/update")
     @ResponseBody
-    public GoodsVo update(String[] fileName, HttpServletRequest request, HttpSession session){
+    public GoodsVo update(String[] fileName, HttpServletRequest request, HttpSession session,MultipartFile detailfile){
 
 
-        return goodService.update(fileName,request,session);
+        return goodService.update(fileName,request,session,detailfile);
     }
 
     /**

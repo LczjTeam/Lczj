@@ -3,10 +3,12 @@ package jx.lczj.service;
 
 import jx.lczj.dao.*;
 import jx.lczj.model.T_attachment;
+import jx.lczj.model.T_color;
 import jx.lczj.model.T_eyeglass;
 import jx.lczj.viewmodel.EyeglassVo;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -39,11 +41,10 @@ public class EyeglassService {
      * @return
      */
     @Transactional
-    public EyeglassVo add(String[] fileName, HttpServletRequest request, HttpSession session) {
+    public EyeglassVo add(String[] fileName, HttpServletRequest request, HttpSession session, MultipartFile detailfile) {
 
         String eyeglass = request.getParameter("eyeglass") ;
         String name = request.getParameter("add_name");
-        int category =Integer.parseInt(request.getParameter("category"));
         int efficacy = Integer.parseInt(request.getParameter("efficacy"));
         int brand = Integer.parseInt(request.getParameter("brand"));
         int mask = Integer.parseInt(request.getParameter("mask"));
@@ -51,26 +52,51 @@ public class EyeglassService {
         float refraction = Float.parseFloat(request.getParameter("refraction"));
         int price =Integer.parseInt(request.getParameter("price"));
         System.out.println("eyeglass:"+eyeglass+"" +
-                "\n category:"+category+
                 "\n efficacy:"+efficacy+
                 "\n brand:"+brand+
                 "\n mask:"+mask+
                 "\n style:"+style+
                 "\n refraction:"+refraction+
                 "\n price:"+price+
-                "\n name:"+name);
+                "\n name:"+name
+        );
 
-        boolean ok = eyeglassDao.add(
+        try {
+            String ctimes = System.currentTimeMillis() + "";
+            System.out.println("开始");
+            String path = request.getSession().getServletContext().getRealPath("goods");
+
+            String detailfileName = ctimes + ".jpg";
+            System.out.println(detailfileName);
+            System.out.println(path);
+            File targetFile = new File(path, detailfileName);
+            if (!targetFile.exists()) {
+                targetFile.mkdirs();
+            }
+
+            //保存
+            try {
+                detailfile.transferTo(targetFile);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            String detailphoto = detailfileName;
+
+
+            boolean ok = eyeglassDao.add(
                 eyeglass,
-                category,
                 efficacy,
                 brand,
                 mask,
                 style,
                 refraction,
                 price,
-                name
+                name,
+                detailphoto
         );
+        } catch (Exception e) {
+            throw new RuntimeException(e.getMessage());
+        }
 
         System.out.println("fileName:" + fileName.length);
 
@@ -82,11 +108,9 @@ public class EyeglassService {
         evo.setT_eyeglass(eyeglassDao.loadById(eyeglass));
         evo.setT_attachments(eyeglassDao.loadAttachmentByEyeglass(eyeglass));
         evo.setT_brand(brandDao.loadById(brand));
-        evo.setT_category(categoryDao.loadById(category));
         evo.setT_efficacy(efficacyDao.loadById(efficacy));
         evo.setT_mask(maskDao.loadById(mask));
         evo.setT_style(styleDao.loadById(style));
-
         return evo;
 
 
@@ -105,7 +129,6 @@ public class EyeglassService {
                 evo.setT_eyeglass(t);
                 evo.setT_attachments(eyeglassDao.loadAttachmentByEyeglass(t.getEyeglass()));
                 evo.setT_brand(brandDao.loadById(t.getBrand()));
-                evo.setT_category(categoryDao.loadById(t.getCategory()));
                 evo.setT_efficacy(efficacyDao.loadById(t.getEfficacy()));
                 evo.setT_mask(maskDao.loadById(t.getMask()));
                 evo.setT_style(styleDao.loadById(t.getStyle()));
@@ -129,7 +152,6 @@ public class EyeglassService {
             evo.setT_eyeglass(t);
             evo.setT_attachments(eyeglassDao.loadAttachmentByEyeglass(t.getEyeglass()));
             evo.setT_brand(brandDao.loadById(t.getBrand()));
-            evo.setT_category(categoryDao.loadById(t.getCategory()));
             evo.setT_efficacy(efficacyDao.loadById(t.getEfficacy()));
             evo.setT_mask(maskDao.loadById(t.getMask()));
             evo.setT_style(styleDao.loadById(t.getStyle()));
@@ -147,10 +169,9 @@ public class EyeglassService {
      * @return
      */
     @Transactional
-    public EyeglassVo update(String[] fileName, HttpServletRequest request, HttpSession session) {
+    public EyeglassVo update(String[] fileName, HttpServletRequest request, HttpSession session,MultipartFile detailfile) {
         String eyeglass = request.getParameter("eyeglass");
         String name = request.getParameter("add_name");
-        int category =Integer.parseInt(request.getParameter("category"));
         int efficacy = Integer.parseInt(request.getParameter("efficacy"));
         int brand = Integer.parseInt(request.getParameter("brand"));
         int mask = Integer.parseInt(request.getParameter("mask"));
@@ -158,7 +179,6 @@ public class EyeglassService {
         float refraction = Float.parseFloat(request.getParameter("refraction"));
         int price =Integer.parseInt(request.getParameter("price"));
         System.out.println("eyeglass:"+eyeglass+"" +
-                "\n category:"+category+
                 "\n efficacy:"+efficacy+
                 "\n brand:"+brand+
                 "\n mask:"+mask+
@@ -166,17 +186,60 @@ public class EyeglassService {
                 "\n refraction:"+refraction+
                 "\n price:"+price+
                 "\n name:"+name);
+        String editDetailphoto = "";
+        try {
+
+            System.out.println("开始");
+            String path = request.getSession().getServletContext().getRealPath("goods");
+            T_eyeglass t_eyeglass = eyeglassDao.loadById(eyeglass);
+            //检测是否修改了图片
+            if (detailfile!=null && !detailfile.getOriginalFilename().equals("")) {
+                //先把眼镜查询出来
+
+                String detailphoto = t_eyeglass.getDetailphoto();
+                //删除对应的图片
+                String d_detailphoto = path + "/" + detailphoto;
+                System.out.println(d_detailphoto);
+                File targetFile = new File(d_detailphoto);
+                if (targetFile.exists()) {
+                    targetFile.delete();
+                }
+
+                String ctimes = System.currentTimeMillis() + "";
+                System.out.println("开始，保存");
+                String newDetailphoto = ctimes + ".jpg";
+                System.out.println(newDetailphoto);
+                System.out.println(path);
+                File editFile = new File(path, newDetailphoto);
+                if (!editFile.exists()) {
+                    editFile.mkdirs();
+                }
+
+                //保存
+                try {
+                    detailfile.transferTo(editFile);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                editDetailphoto = newDetailphoto;
+
+            }else{
+                editDetailphoto = t_eyeglass.getDetailphoto();
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e.getMessage());
+        }
 
         boolean ok = eyeglassDao.update(
                 eyeglass,
-                category,
                 efficacy,
                 brand,
                 mask,
                 style,
                 refraction,
                 price,
-                name
+                name,
+                editDetailphoto
         );
 
         System.out.println("fileName:" + fileName.length);
@@ -189,7 +252,6 @@ public class EyeglassService {
         evo.setT_eyeglass(eyeglassDao.loadById(eyeglass));
         evo.setT_attachments(eyeglassDao.loadAttachmentByEyeglass(eyeglass));
         evo.setT_brand(brandDao.loadById(brand));
-        evo.setT_category(categoryDao.loadById(category));
         evo.setT_efficacy(efficacyDao.loadById(efficacy));
         evo.setT_mask(maskDao.loadById(mask));
         evo.setT_style(styleDao.loadById(style));
@@ -242,13 +304,29 @@ public class EyeglassService {
             boolean ok5 = eyeglassDao.deleteAttach(t.getAttachment());
         }
         String path = request.getSession().getServletContext().getRealPath("goods");
+        //删除detailPhoto
+            try {
 
+                T_eyeglass t_eyeglass = eyeglassDao.loadById(code);
+                String detailphoto = t_eyeglass.getDetailphoto();
+                //删除对应的图片
+                String d_detailphoto = path + "/" + detailphoto;
+                System.out.println(d_detailphoto);
+                File targetFile = new File(d_detailphoto);
+                if (targetFile.exists()) {
+                    targetFile.delete();
+                }
+            }catch (Exception e){
+                throw  new RuntimeException(e.getMessage());
+            }
+            //删除附件
         for (T_attachment t: t_attachments) {
             File ff = new File(path+"/"+t.getPath());
             if(ff.exists()){
                 ff.delete();
             }
         }
+
 
         boolean ok6 = eyeglassDao.delete(code);
 
