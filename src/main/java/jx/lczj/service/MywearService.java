@@ -228,8 +228,8 @@ public class MywearService {
 
 
         String right_type = null;
-        if(request.getParameter("right_type ")!=null){
-            right_type  = request.getParameter("right_type ");
+        if(request.getParameter("right_type")!=null){
+            right_type  = request.getParameter("right_type");
         }
         System.out.println("right_type :"+right_type );
 
