@@ -63,7 +63,7 @@ public class MywearService {
 
 
     @Resource
-    ColorDao colorDao;
+    ColorDao colorDao ;
 
 
     /**
@@ -475,7 +475,7 @@ public class MywearService {
      * @return
      */
     @Transactional
-    public boolean update(HttpServletRequest request) {
+    public MywearVo update(HttpServletRequest request) {
 
         try {
 
@@ -483,60 +483,127 @@ public class MywearService {
             String mywear = request.getParameter("mywear");
             System.out.println("mywaer:" + mywear);
 
-            int color = Integer.parseInt(request.getParameter("color"));
-            System.out.println("color:" + color);
-
-            boolean ok = mywearDao.updateColor(mywear,
-                    color
-            );
+//            int color = Integer.parseInt(request.getParameter("color"));
+//            System.out.println("color:" + color);
+//
+//            boolean ok = mywearDao.updateColor(mywear,
+//                    color
+//            );
 
             //更新左眼参数
-            int left_degress = Integer.parseInt(request.getParameter("left_degress"));
+            String left_type = null;
+            if(request.getParameter("left_type")!=null){
+                left_type = request.getParameter("left_type");
+            }
+            System.out.println("left_type:"+left_type);
+
+
+            int left_degress = Integer.parseInt(request.getParameter("left_ds"));
             System.out.println("left_degress:" + left_degress);
 
-            int left_asdegress = Integer.parseInt(request.getParameter("left_asdegress"));
+            int left_asdegress = Integer.parseInt(request.getParameter("left_sg"));
             System.out.println("left_asdegress:" + left_asdegress);
 
-            float left_axis = Float.parseFloat(request.getParameter("left_axis"));
+            float left_axis = Float.parseFloat(request.getParameter("left_zw"));
             System.out.println("left_axis:" + left_axis);
 
             String left_sign = "l";
 
-            boolean ok1 = mywearDao.updateEyeglass(
+            boolean ok2 = mywearDao.updateEyeglass(
                     mywear,
                     left_degress,
                     left_asdegress,
                     left_axis,
-                    left_sign
+                    left_sign,
+                    left_type.equals("远视") ? 1:0
 
             );
 
             System.out.println("left_sign:l");
 
+
+
             //更新右眼参数
-            int right_degress = Integer.parseInt(request.getParameter("right_degress"));
+            String right_type = null;
+            if(request.getParameter("right_type")!=null){
+                right_type  = request.getParameter("right_type");
+            }
+            System.out.println("right_type :"+right_type );
+
+            int right_degress = Integer.parseInt(request.getParameter("right_ds"));
             System.out.println("right_degress:" + right_degress);
 
-            int right_asdegress = Integer.parseInt(request.getParameter("right_asdegress"));
+            int right_asdegress = Integer.parseInt(request.getParameter("right_sg"));
             System.out.println("right_asdegress:" + right_asdegress);
 
-            float right_axis = Float.parseFloat(request.getParameter("right_axis"));
+            float right_axis = Float.parseFloat(request.getParameter("right_zw"));
             System.out.println("right_axis:" + right_axis);
 
 
             String right_sign = "r";
 
 
-            boolean ok2 = mywearDao.updateEyeglass(
+            boolean ok3 = mywearDao.updateEyeglass(
                     mywear,
                     right_degress,
                     right_asdegress,
                     right_axis,
-                    right_sign
+                    right_sign,
+                    right_type.equals("远视") ? 1:0
             );
 
+            T_mywear t   = mywearDao.loadById(mywear);
 
-            return true;
+            MywearVo mvo = new MywearVo();
+            mvo.setT_mywear(t);
+            mvo.setT_color(colorDao.loadByColor(t.getColor()));
+            mvo.setT_face(faceDao.loadByFace(t.getFace()));
+            mvo.setT_occasion(occasionDao.loadById(t.getOccasion()));
+
+            //镜框信息
+            GoodsVo gvo = new GoodsVo();
+            T_goods tg = goodDao.loadById(t.getGoods());
+            gvo.setT_goods(tg);
+            gvo.setT_brand(brandDao.loadById(tg.getBrand()));
+            gvo.setT_categories(categoryDao.loadByGoods(t.getGoods()));
+            gvo.setT_colors(colorDao.loadByGood(t.getGoods()));
+            gvo.setT_attachments(goodDao.loadAttachmentByGood(t.getGoods()));
+            mvo.setGoodsVo(gvo);
+
+            //左眼镜片
+            WearglassVo wvol = new WearglassVo();
+            T_wearglass twl = mywearDao.loadWearglassByMywear(t.getMywear(), "l");
+            wvol.setT_wearglass(twl);
+
+            EyeglassVo evol = new EyeglassVo();
+            T_eyeglass tel = eyeglassDao.loadById(twl.getEyeglass());
+            evol.setT_eyeglass(tel);
+            evol.setT_brand(brandDao.loadById(tel.getBrand()));
+            evol.setT_attachments(eyeglassDao.loadAttachmentByEyeglass(tel.getEyeglass()));
+            evol.setT_efficacy(efficacyDao.loadById(tel.getEfficacy()));
+            evol.setT_mask(maskDao.loadById(tel.getMask()));
+            evol.setT_style(styleDao.loadById(tel.getStyle()));
+            wvol.setEyeglassVo(evol);
+
+            mvo.setLeftEyeglass(wvol);
+
+            //右眼镜片
+            WearglassVo wvor = new WearglassVo();
+            T_wearglass twr = mywearDao.loadWearglassByMywear(t.getMywear(), "r");
+            wvor.setT_wearglass(twr);
+
+            EyeglassVo evor = new EyeglassVo();
+            T_eyeglass ter = eyeglassDao.loadById(twl.getEyeglass());
+            evor.setT_eyeglass(ter);
+            evor.setT_brand(brandDao.loadById(ter.getBrand()));
+            evor.setT_attachments(eyeglassDao.loadAttachmentByEyeglass(ter.getEyeglass()));
+            evor.setT_efficacy(efficacyDao.loadById(ter.getEfficacy()));
+            evor.setT_mask(maskDao.loadById(ter.getMask()));
+            evor.setT_style(styleDao.loadById(ter.getStyle()));
+            wvor.setEyeglassVo(evor);
+            mvo.setRightEyeglass(wvor);
+
+            return  mvo;
 
         }catch (Exception e){
             throw new RuntimeException(e.getMessage());

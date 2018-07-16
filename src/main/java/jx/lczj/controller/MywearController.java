@@ -77,7 +77,7 @@ public class MywearController {
      */
     @RequestMapping("/update")
     @ResponseBody
-    public boolean update(HttpServletRequest request) {
+    public MywearVo update(HttpServletRequest request) {
         return  mywearService.update(request);
     }
 }

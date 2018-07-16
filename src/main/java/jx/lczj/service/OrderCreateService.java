@@ -94,72 +94,7 @@ public class OrderCreateService {
             System.out.println("order:" + order);
 
             boolean ok = orderCreateDao.addOrder(order, customer, address, new Date(), 0);
-
             boolean ok1 = mywearDao.updateOrder(order, mywear);
-
-            //更新左眼参数
-            String left_type = null;
-            if(request.getParameter("left_type")!=null){
-                left_type = request.getParameter("left_type");
-            }
-            System.out.println("left_type:"+left_type);
-
-
-            int left_degress = Integer.parseInt(request.getParameter("left_ds"));
-            System.out.println("left_degress:" + left_degress);
-
-            int left_asdegress = Integer.parseInt(request.getParameter("left_sg"));
-            System.out.println("left_asdegress:" + left_asdegress);
-
-            float left_axis = Float.parseFloat(request.getParameter("left_zw"));
-            System.out.println("left_axis:" + left_axis);
-
-            String left_sign = "l";
-
-            boolean ok2 = mywearDao.updateEyeglass(
-                    mywear,
-                    left_degress,
-                    left_asdegress,
-                    left_axis,
-                    left_sign,
-                    left_type.equals("远视") ? 1:0
-
-            );
-
-            System.out.println("left_sign:l");
-
-
-
-            //更新右眼参数
-            String right_type = null;
-            if(request.getParameter("right_type ")!=null){
-                right_type  = request.getParameter("right_type ");
-            }
-            System.out.println("right_type :"+right_type );
-
-            int right_degress = Integer.parseInt(request.getParameter("right_ds"));
-            System.out.println("right_degress:" + right_degress);
-
-            int right_asdegress = Integer.parseInt(request.getParameter("right_sg"));
-            System.out.println("right_asdegress:" + right_asdegress);
-
-            float right_axis = Float.parseFloat(request.getParameter("right_zw"));
-            System.out.println("right_axis:" + right_axis);
-
-
-            String right_sign = "r";
-
-
-            boolean ok3 = mywearDao.updateEyeglass(
-                    mywear,
-                    right_degress,
-                    right_asdegress,
-                    right_axis,
-                    right_sign,
-                    right_type.equals("远视") ? 1:0
-            );
-
-
 
             //获取返订单信息数据
             OrderCreateVo orderCreateVo = new OrderCreateVo();

@@ -3,6 +3,7 @@ package jx.lczj.service;
 import jx.lczj.dao.AddressDao;
 import jx.lczj.model.T_address;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import javax.mail.Address;
@@ -119,5 +120,14 @@ public class AddressService {
     public T_address loadByAddress(String address) {
         System.out.println("address:"+address);
         return addressDao.loadByAddress(address);
+    }
+
+    @Transactional
+    public List<T_address> loadDefault(String customer) {
+        try {
+             return  addressDao.loadDefault(customer);
+        }catch (Exception e){
+            throw new RuntimeException(e.getMessage());
+        }
     }
 }
