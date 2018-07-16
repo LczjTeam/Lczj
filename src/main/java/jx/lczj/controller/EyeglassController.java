@@ -86,4 +86,18 @@ public class EyeglassController {
     @ResponseBody
     public boolean delete(String code,HttpServletRequest request){return eyeglassService.delete(code,request);};
 
+    /**
+     * 根据品牌、功能、价格对镜片进行筛选
+     * @param brand
+     * @param efficacy
+     * @param low
+     * @param high
+     * @return
+     */
+    @RequestMapping("/eyeglasslist")
+    @ResponseBody
+    public List<EyeglassVo> eyeglasslist(int[] brand,int efficacy,int low,int high){
+        System.out.println(brand.length+efficacy+low+high);
+        return eyeglassService.eyeglasslist(brand,efficacy,low,high);};
+
 }

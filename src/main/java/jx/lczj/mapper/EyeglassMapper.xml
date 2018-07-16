@@ -1,19 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        <!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="jx.lczj.dao.EyeglassDao">
-   <!-- <resultMap type="com.lq.Worker" id="bookslist">
-        <result property="worker_code" column="worker_code" javaType="java.lang.String"/>
-        <result property="worker_name" column="worker_name" javaType="java.lang.String"/>
-        <result property="book_author" column="book_author" javaType="java.lang.String"/>
-        <result property="book_publish" column="book_publish" javaType="java.lang.String"/>
-        <result property="book_num" column="book_num" javaType="java.lang.Integer"/>
-        <result property="book_borrow_num" column="book_borrow_num" javaType="java.lang.Integer"/>
-        <result property="booktype_no" column="booktype_no" javaType="java.lang.Integer"/>
-        <result property="book_per_price" column="book_per_price" javaType="java.lang.Double"/>
-    </resultMap>
+<!-- <resultMap type="com.lq.Worker" id="bookslist">
+     <result property="worker_code" column="worker_code" javaType="java.lang.String"/>
+     <result property="worker_name" column="worker_name" javaType="java.lang.String"/>
+     <result property="book_author" column="book_author" javaType="java.lang.String"/>
+     <result property="book_publish" column="book_publish" javaType="java.lang.String"/>
+     <result property="book_num" column="book_num" javaType="java.lang.Integer"/>
+     <result property="book_borrow_num" column="book_borrow_num" javaType="java.lang.Integer"/>
+     <result property="booktype_no" column="booktype_no" javaType="java.lang.Integer"/>
+     <result property="book_per_price" column="book_per_price" javaType="java.lang.Double"/>
+ </resultMap>
 -->
+<!--
+<resultMap type="jx.lczj.model.T_eyeglass" id="eyeglassList">
+   <id property="eyeglass" column="eyeglass" javaType="string"  jdbcType="VARCHAR" />
+   <result property="name" column="name" javaType="int" jdbcType="INTEGER" />
+   <result property="refraction" column="refraction" javaType="int" jdbcType="INTEGER" />
+   <result property="efficacy" column="efficacy" javaType="int" jdbcType="INTEGER" />
+   <result property="brand" column="brand" javaType="int" jdbcType="INTEGER" />
+   <result property="mask" column="mask" javaType="int" jdbcType="INTEGER" />
+   <result property="style" column="style" javaType="int" jdbcType="INTEGER" />
+   <result property="detailphoto" column="detailphoto" javaType="String"  jdbcType="VARCHAR" />
+</resultMap>-->
 
+<!-- 根据品牌、功能、价格对镜片进行筛选-->
+<select id="eyeglasslist" resultType="jx.lczj.model.T_eyeglass">
+   select * from t_eyeglass
+   <where>
+      <if test="brands !=null">
+         and brand in
+         <foreach collection="brands" item="bd" open="(" separator="," close=")">
+            #{bd}
+         </foreach>
+      </if>
+      <if test="efficacies !=null">
+         and efficacy = #{efficacies}
+      </if>
+      <choose>
+         <when test="low!=null and high!=-1">
+            and (price >= #{low} and  #{high} > price)
+         </when>
+         <otherwise>
+            and price > #{low}
+         </otherwise>
+      </choose>
 
+   </where>
+</select>
 
 
 
