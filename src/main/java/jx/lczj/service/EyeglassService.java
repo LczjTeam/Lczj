@@ -5,6 +5,7 @@ import jx.lczj.dao.*;
 import jx.lczj.model.T_attachment;
 import jx.lczj.model.T_eyeglass;
 import jx.lczj.viewmodel.EyeglassVo;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -330,6 +331,34 @@ public class EyeglassService {
         boolean ok6 = eyeglassDao.delete(code);
 
         return  true;
+        }catch (Exception e){
+            throw  new RuntimeException(e.getMessage());
+        }
+    }
+
+    /**
+     * 根据品牌、功能、价格对镜片进行筛选
+     * @param brand
+     * @param efficacy
+     * @param low
+     * @param high
+     * @return
+     */
+    public List<EyeglassVo> eyeglasslist(int[] brand,int efficacy,int low,int high) {
+        try {
+            List<T_eyeglass> list = eyeglassDao.eyeglasslist(brand,efficacy,low,high);
+            List<EyeglassVo> evos = new ArrayList<EyeglassVo>();
+            for (T_eyeglass t : list) {
+                EyeglassVo evo = new EyeglassVo();
+                evo.setT_eyeglass(t);
+                evo.setT_attachments(eyeglassDao.loadAttachmentByEyeglass(t.getEyeglass()));
+                evo.setT_brand(brandDao.loadById(t.getBrand()));
+                evo.setT_efficacy(efficacyDao.loadById(t.getEfficacy()));
+                evo.setT_mask(maskDao.loadById(t.getMask()));
+                evo.setT_style(styleDao.loadById(t.getStyle()));
+                evos.add(evo);
+            }
+            return evos;
         }catch (Exception e){
             throw  new RuntimeException(e.getMessage());
         }
