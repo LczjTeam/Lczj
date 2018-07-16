@@ -47,8 +47,8 @@ public interface  MywearDao {
      * @param sign
      * @return
      */
-    @Insert("insert into T_WEARGLASS (MYWEAR,EYEGLASS,DEGRESS,ASDEGRESS,AXIS,SIGN) VALUES( #{0},#{1},#{2},#{3},#{4},#{5})")
-    boolean addEyeglass(String mywear, String eyeglass, Integer degress, Integer asdegress, float axis, String sign);
+    @Insert("insert into T_WEARGLASS (MYWEAR,EYEGLASS,DEGRESS,ASDEGRESS,AXIS,SIGN,WEARGLASS) VALUES( #{0},#{1},#{2},#{3},#{4},#{5},#{6})")
+    boolean addEyeglass(String mywear, String eyeglass, Integer degress, Integer asdegress, float axis, String sign,int wearglass);
 
     /**
      * 获取左、右眼信息
@@ -64,7 +64,7 @@ public interface  MywearDao {
      * @param customer
      * @return
      */
-    @Select("select * from T_MYWEAR  WHERE CUSTOMER = #{0}")
+    @Select("select * from T_MYWEAR  WHERE CUSTOMER = #{0}  AND  \"order\"  is null ")
     List<T_mywear> listByCustomer(String customer);
 
     /**
@@ -110,6 +110,16 @@ public interface  MywearDao {
      * @param sign
      * @return
      */
-    @Update("UPDATE T_WEARGLASS SET DEGRESS = #{1},ASDEGRESS = #{2},AXIS = #{3} WHERE MYWEAR = #{0} AND SIGN = #{4}")
-    boolean updateEyeglass(String mywear, int degress, int asdegress, float axis, String sign);
+    @Update("UPDATE T_WEARGLASS SET DEGRESS = #{1},ASDEGRESS = #{2},AXIS = #{3} ,WEARGLASS = #{5}  WHERE MYWEAR = #{0} AND SIGN = #{4}")
+    boolean updateEyeglass(String mywear, int degress, int asdegress, float axis, String sign ,int wearglass);
+
+
+    /**
+     * 更新试戴的订单编号
+     * @param order
+     * @param mywear
+     * @return
+     */
+    @Update("UPDATE T_MYWEAR SET \"order\" = #{0} WHERE MYWEAR = #{1} ")
+    boolean updateOrder(String order, String mywear);
 }

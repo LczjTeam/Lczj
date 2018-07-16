@@ -94,55 +94,7 @@ public class OrderCreateService {
             System.out.println("order:" + order);
 
             boolean ok = orderCreateDao.addOrder(order, customer, address, new Date(), 0);
-
-            boolean ok1 = orderCreateDao.addOrderDetail(order, mywear);
-
-            //更新左眼参数
-            int left_degress = Integer.parseInt(request.getParameter("left_ds"));
-            System.out.println("left_degress:" + left_degress);
-
-            int left_asdegress = Integer.parseInt(request.getParameter("left_sg"));
-            System.out.println("left_asdegress:" + left_asdegress);
-
-            float left_axis = Float.parseFloat(request.getParameter("left_zw"));
-            System.out.println("left_axis:" + left_axis);
-
-            String left_sign = "l";
-
-            boolean ok2 = mywearDao.updateEyeglass(
-                    mywear,
-                    left_degress,
-                    left_asdegress,
-                    left_axis,
-                    left_sign
-
-            );
-
-            System.out.println("left_sign:l");
-
-            //更新右眼参数
-            int right_degress = Integer.parseInt(request.getParameter("right_ds"));
-            System.out.println("right_degress:" + right_degress);
-
-            int right_asdegress = Integer.parseInt(request.getParameter("right_sg"));
-            System.out.println("right_asdegress:" + right_asdegress);
-
-            float right_axis = Float.parseFloat(request.getParameter("right_zw"));
-            System.out.println("right_axis:" + right_axis);
-
-
-            String right_sign = "r";
-
-
-            boolean ok3 = mywearDao.updateEyeglass(
-                    mywear,
-                    right_degress,
-                    right_asdegress,
-                    right_axis,
-                    right_sign
-            );
-
-
+            boolean ok1 = mywearDao.updateOrder(order, mywear);
 
             //获取返订单信息数据
             OrderCreateVo orderCreateVo = new OrderCreateVo();
@@ -151,11 +103,10 @@ public class OrderCreateService {
                 orderCreateVo.setT_address(t_addresses.get(0));
             }
 
-            List<OrderdetailsVo>  orderdetailsVos = new ArrayList<OrderdetailsVo>();
-            List<T_orderdetail> t_orderdetails = orderCreateDao.loadDetialByOrder(order);
-            for (T_orderdetail to: t_orderdetails ) {
-                OrderdetailsVo ods = new OrderdetailsVo();
-                ods.setT_orderdetail(to);
+            List<MywearVo>  orderdetailsVos = new ArrayList<MywearVo>();
+            List<T_mywear> t_mywears = orderCreateDao.loadDetialByOrder(order);
+            for (T_mywear to: t_mywears) {
+
                 MywearVo mvo = new MywearVo();
 
                 T_mywear t =  mywearDao.loadById(to.getMywear());
@@ -206,14 +157,9 @@ public class OrderCreateService {
                 evor.setT_style(styleDao.loadById(ter.getStyle()));
                 wvor.setEyeglassVo(evor);
                 mvo.setRightEyeglass(wvor);
-
-                ods.setMywearVo(mvo);
-
-                orderdetailsVos.add(ods);
+                orderdetailsVos.add(mvo);
             }
-
-            orderCreateVo.setOrderdetailsVos(orderdetailsVos);
-
+            orderCreateVo.setMywearVos(orderdetailsVos);
             return orderCreateVo;
         }catch (Exception e){
             throw  new RuntimeException(e.getMessage());

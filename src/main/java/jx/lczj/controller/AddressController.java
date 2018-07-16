@@ -36,6 +36,19 @@ public class AddressController {
         return addressService.add(request);
     }
 
+
+    /**
+     * 获取默认收货地址
+     * @param customer
+     * @return
+     */
+    @RequestMapping("/loadDefault")
+    @ResponseBody
+    public List<T_address> loadDefault(String customer){
+        return addressService.loadDefault(customer);
+    }
+
+
     /**
      * 删除信息
      * @param address

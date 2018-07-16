@@ -77,7 +77,7 @@ public interface NewsDao {
      * @param items
      * @return
      */
-    @Select("select * from T_NEWS WHERE  ITEMS = #{1} ")
+    @Select("select * from T_NEWS WHERE  ITEMS = #{1} ORDER BY  TOP DESC, ISSUE_DATE DESC")
     List<T_news> list(int items);
 
     /**

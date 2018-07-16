@@ -1,5 +1,6 @@
 package jx.lczj.dao;
 
+import jx.lczj.model.T_mywear;
 import jx.lczj.model.T_order;
 import jx.lczj.model.T_orderdetail;
 import org.apache.ibatis.annotations.Insert;
@@ -25,7 +26,7 @@ public interface OrderCreateDao {
      * @param state
      * @return
      */
-    @Insert("INSERT INTO T_ORDERDETAIL (\"order\" ,MYWEAR ,ADDRESS , SURE_TIME , STATE ) VALUES ( #{0} , #{1} , #{2} , #{3} , #{4} ) ")
+    @Insert("INSERT INTO T_ORDER (\"order\" ,CUSTOMER ,ADDRESS , SURE_TIME ,  STATE ) VALUES ( #{0} , #{1} , #{2} , #{3} , #{4} ) ")
     boolean addOrder(String order, String customer, String address, Date date, int state);
 
     /**
@@ -50,6 +51,6 @@ public interface OrderCreateDao {
      * @param order
      * @return
      */
-    @Select("select * from T_ORDERDETAIL WHERE \"order\" = #{0} ")
-    List<T_orderdetail> loadDetialByOrder(String order);
+    @Select("select * from T_MYWEAR WHERE \"order\" = #{0} ")
+    List<T_mywear> loadDetialByOrder(String order);
 }

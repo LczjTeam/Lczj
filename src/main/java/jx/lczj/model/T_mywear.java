@@ -7,6 +7,7 @@ public class T_mywear {
     private String mywear; //主属性非空
     private int occasion;  //场景
     private String customer; //顾客
+    private String order; //所属订单
     private int color; //颜色
     private int face;//脸型
     private String goods;//镜框
@@ -17,6 +18,14 @@ public class T_mywear {
     private String showphoto;//试戴照
     private int deal;//是否成交
     private int iscart;//是否添加购物车
+
+    public String getOrder() {
+        return order;
+    }
+
+    public void setOrder(String order) {
+        this.order = order;
+    }
 
     public int getAge() {
         return age;
@@ -126,19 +135,20 @@ public class T_mywear {
     @Override
     public String toString() {
         return "T_mywear{" +
-                "mywear='" + mywear + '\'' +
-                ", occasion=" + occasion +
-                ", customer='" + customer + '\'' +
-                ", color=" + color +
-                ", face=" + face +
-                ", goods='" + goods + '\'' +
-                ", pupil=" + pupil +
-                ", sex='" + sex + '\'' +
-                ", age='" + age + '\'' +
-                ", selfphoto='" + selfphoto + '\'' +
-                ", showphoto='" + showphoto + '\'' +
+                "iscart=" + iscart +
                 ", deal=" + deal +
-                ", iscart=" + iscart +
+                ", showphoto='" + showphoto + '\'' +
+                ", selfphoto='" + selfphoto + '\'' +
+                ", age=" + age +
+                ", sex='" + sex + '\'' +
+                ", pupil=" + pupil +
+                ", goods='" + goods + '\'' +
+                ", face=" + face +
+                ", color=" + color +
+                ", order='" + order + '\'' +
+                ", customer='" + customer + '\'' +
+                ", occasion=" + occasion +
+                ", mywear='" + mywear + '\'' +
                 '}';
     }
 }

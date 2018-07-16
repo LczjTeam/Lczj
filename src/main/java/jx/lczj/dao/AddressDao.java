@@ -83,4 +83,8 @@ public interface AddressDao {
      */
     @Select("select * from T_ADDRESS WHERE ADDRESS = #{0}")
     T_address loadByAddress(String address);
+
+
+    @Select("select * from T_ADDRESS WHERE CUSTOMER = #{0} AND isdefault='1' ")
+    List<T_address> loadDefault(String customer);
 }
