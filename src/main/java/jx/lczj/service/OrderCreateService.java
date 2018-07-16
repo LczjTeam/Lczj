@@ -96,6 +96,14 @@ public class OrderCreateService {
             boolean ok = orderCreateDao.addOrder(order, customer, address, new Date(), 0);
             boolean ok1 = mywearDao.updateOrder(order, mywear);
 
+
+
+
+
+
+
+
+
             //获取返订单信息数据
             OrderCreateVo orderCreateVo = new OrderCreateVo();
             orderCreateVo.setT_order(orderCreateDao.loadById(order));
