@@ -18,6 +18,7 @@ public class T_order {
     private String comments;//评语
     private String express;//快递名
     private String expressid;//运单号
+    private int totalfee;//总价
 
     @Override
     public String toString() {
@@ -34,7 +35,16 @@ public class T_order {
                 ", comments='" + comments + '\'' +
                 ", express='" + express + '\'' +
                 ", expressid='" + expressid + '\'' +
+                ", totalfee=" + totalfee +
                 '}';
+    }
+
+    public int getTotalfee() {
+        return totalfee;
+    }
+
+    public void setTotalfee(int totalfee) {
+        this.totalfee = totalfee;
     }
 
     public String getOrder() {
