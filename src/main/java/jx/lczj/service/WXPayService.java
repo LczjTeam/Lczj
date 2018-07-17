@@ -44,17 +44,20 @@ public class WxPayService {
 
         try {
 
-
             //商户号
             String mchId = "1509121291";
+
             //支付密钥
             String key = "&key=JMODELLECHAOZHIJINGqiuxiaoyu1234";
+
             //交易类型
             String tradeType = "JSAPI";
+
             //随机字符串
             String nonceStr = WXPayUtil.getNonceStr();
 
             System.out.println(nonceStr);
+
             //微信支付完成后给该链接发送消息，判断订单是否完成
             String notifyUrl = "http://jx-lczj.nat300.top/Lczj/wx/payCallback";
 
@@ -62,19 +65,36 @@ public class WxPayService {
             if (request.getParameter("openid") == null) {
                 return new Result(500, "支付失败，openid is null");
             }
+
             String openId = request.getParameter("openid").toString();
             System.out.println(openId);
             //小程序id
             String appid = "wx2e2a553c12f23b71";
 
+
             //商品订单号(保持唯一性)
             String outTradeNo = mchId + WXPayUtil.getNonceStr().substring(5, 15);
+            if (request.getParameter("order") != null) {
+                outTradeNo = request.getParameter("order");
+            }
+
+
+            //voucher优惠券
+            if(request.getParameter("voucher")==null){
+                return new Result(500,"支付失败，voucher is null");
+            }
+            String voucher = request.getParameter("voucher");
+
+
             //支付金额
             if(request.getParameter("totalfee")==null){
                 return new Result(500,"支付失败，totalfee is null");
             }
+
             String fee = "0.01";
             String totalFee = WXPayUtil.getMoney(fee);
+
+
             //发起支付设备ip
             String spbillCreateIp = WXPayUtil.getIpAddress(request);
             //商品描述
@@ -111,8 +131,12 @@ public class WxPayService {
             String order = outTradeNo;
             System.out.println("order:" + order);
 
-            boolean ok = orderCreateDao.addOrder(order, customer, address, new Date(), 0);
-            boolean ok1 = mywearDao.updateOrder(order, mywear);
+            if(orderCreateDao.loadById(order) != null) {
+                boolean ok = orderCreateDao.update(order, address);
+            }else {
+                boolean ok = orderCreateDao.addOrder(order, customer, address, new Date(), 0);
+                boolean ok1 = mywearDao.updateOrder(order, mywear);
+            }
 
 
             //我们后面需要键值对的形式，所以先装入map
@@ -169,11 +193,11 @@ public class WxPayService {
             //开始第二次签名
             String mapStr1 = "appId=" + appid + "&nonceStr=" + nonceStr1 + "&package=prepay_id=" + prepay_id + "&signType=MD5&timeStamp=" + timeStamp;
             String paySign = WXPayUtil.sign(mapStr1, key, "utf-8").toUpperCase();
-            //前端所需各项参数拼接
+            //前端所需各项参数拼接 包括订单编号
             String finaPackage = "\"appId\":\"" + appid + "\",\"timeStamp\":\"" + timeStamp
                     + "\",\"nonceStr\":\"" + nonceStr1 + "\",\"package\":\""
                     + packages + "\",\"signType\":\"MD5" + "\",\"paySign\":\""
-                    + paySign + "\"";
+                    + paySign + "\",\"order\":\"" + order + "\"";
 
             return new Result(200, finaPackage);
         }catch (Exception e){
@@ -216,28 +240,27 @@ public class WxPayService {
             System.out.println("回调1："+return_code.equals("SUCCESS"));
             if(return_code.equals("SUCCESS")){
                 //进行签名验证，看是否是从微信发送过来的，防止资金被盗
-                System.out.println("回调2："+WXPayUtil.verifyWeixinNotify(map, key));
+                //System.out.println("回调2："+WXPayUtil.verifyWeixinNotify(map, key));
 
-                if(WXPayUtil.verifyWeixinNotify(map, key)){
+                /*if(WXPayUtil.verifyWeixinNotify(map, key)){*/
 
-                    int n =  orderCreateDao.updateState(order , 1);
-                    System.out.println(n);
-                    if(n!=1){
-                        resXml = "<xml>" + "<return_code><![CDATA[FAIL]]></return_code>"
-                                + "<return_msg><![CDATA[sign check error]]></return_msg>" + "</xml> ";
-                        return resXml;
-                    }
-
-                    //签名验证成功后按照微信要求返回的xml
-                    resXml = "<xml>" + "<return_code><![CDATA[SUCCESS]]></return_code>"
-                            + "<return_msg><![CDATA[OK]]></return_msg>" + "</xml> ";
+                int n =  orderCreateDao.updateState(order , 1);
+                System.out.println(n);
+                if(n!=1){
+                    resXml = "<xml>" + "<return_code><![CDATA[FAIL]]></return_code>"
+                            + "<return_msg><![CDATA[sign check error]]></return_msg>" + "</xml> ";
                     return resXml;
                 }
-            }else{
+                //签名验证成功后按照微信要求返回的xml
+                resXml = "<xml>" + "<return_code><![CDATA[SUCCESS]]></return_code>"
+                        + "<return_msg><![CDATA[OK]]></return_msg>" + "</xml> ";
+                return resXml;
+            }
+           /* }else{
                 resXml = "<xml>" + "<return_code><![CDATA[FAIL]]></return_code>"
                         + "<return_msg><![CDATA[sign check error]]></return_msg>" + "</xml> ";
                 return resXml;
-            }
+            }*/
         } catch (IOException e) {
             e.printStackTrace();
         } catch (DocumentException e) {
