@@ -243,6 +243,7 @@ public interface GoodDao {
             " and T_SUITABLEAGE.GOODS = T_SUITABLEOCCASION.GOODS and T_SUITABLEAGE.GOODS = T_SUITABLEFACE.GOODS)")
     List<T_goods> recomend(String sex, String occasion, String pupil, String face, String age);
 
+
     /**
      * 通过类别获取眼镜
      * @param category
@@ -250,5 +251,15 @@ public interface GoodDao {
      */
     @Select("select * from T_GOODS where goods in (select goods from T_GOODSCATEGORY where CATEGORY = #{0})")
     List<T_goods> loadGoodsByCategory(int category);
+
+
+    /**
+     * 通过类别获取眼镜   数据分页
+     * @param category
+     * @return
+     */
+    @Select("select * from (select T_GOODS.*,rownum rn from T_GOODS where goods in (select goods from T_GOODSCATEGORY where CATEGORY = #{2})) where rn > #{0} and rn <= #{1}")
+    List<T_goods> loadGoodsByCategory_pager(int start,int end,int category);
+
 
 }

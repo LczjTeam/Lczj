@@ -96,8 +96,15 @@ public class EyeglassController {
      */
     @RequestMapping("/eyeglasslist")
     @ResponseBody
-    public List<EyeglassVo> eyeglasslist(int[] brand,int efficacy,int low,int high){
+    public List<EyeglassVo> eyeglasslist(String[] brand,String efficacy,String low,String high){
+        int[] brands = new int[brand.length];
+        for(int i=0;i<brands.length;i++){
+            brands[i] = Integer.parseInt(brand[i]);
+        }
+        int efficacys = Integer.parseInt(efficacy);
+        int lows = Integer.parseInt(low);
+        int highs = Integer.parseInt(high);
         System.out.println(brand.length+efficacy+low+high);
-        return eyeglassService.eyeglasslist(brand,efficacy,low,high);};
+        return eyeglassService.eyeglasslist(brands,efficacys,lows,highs);};
 
 }

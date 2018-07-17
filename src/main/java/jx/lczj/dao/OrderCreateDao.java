@@ -5,6 +5,7 @@ import jx.lczj.model.T_order;
 import jx.lczj.model.T_orderdetail;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -53,4 +54,8 @@ public interface OrderCreateDao {
      */
     @Select("select * from T_MYWEAR WHERE \"order\" = #{0} ")
     List<T_mywear> loadDetialByOrder(String order);
+
+
+    @Update("update T_ORDER set STATE = #{1}  WHERE \"order\" = #{0} ")
+    int updateState(String order, int state);
 }
