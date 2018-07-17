@@ -56,6 +56,24 @@ public interface OrderCreateDao {
     List<T_mywear> loadDetialByOrder(String order);
 
 
+    /**
+     * 获取所有订单详情
+     * @return
+     */
+    @Select("select * from T_ORDER WHERE CUSTOMER = #{0}")
+    List<T_order> list(String customer);
+
+
+    /**
+     * 获取所有订单详情
+     * @return
+     */
+    @Select("select * from T_ORDER WHERE CUSTOMER = #{0}  AND STATE = #{1}")
+    List<T_order> listByState(String customer,int state);
+
     @Update("update T_ORDER set STATE = #{1}  WHERE \"order\" = #{0} ")
     int updateState(String order, int state);
+
+    @Update("update T_ORDER set ADDRESS = #{1}  WHERE \"order\" = #{0} ")
+    boolean update(String order, String address);
 }

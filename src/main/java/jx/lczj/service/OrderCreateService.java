@@ -60,117 +60,162 @@ public class OrderCreateService {
     @Resource
     AddressDao addressDao;
 
-    /**
-     * 创建订单
-     * @param request
-     * @return
-     */
+
+    public OrderCreateVo loadById(HttpServletRequest request) {
+
+        String order = request.getParameter("order");
+        System.out.println("order:" + order);
+
+        //获取返订单信息数据
+        OrderCreateVo orderCreateVo = new OrderCreateVo();
+        T_order t_order = orderCreateDao.loadById(order);
+        orderCreateVo.setT_order(t_order);
+
+        orderCreateVo.setT_address(addressDao.loadByAddress(t_order.getAddress()));
+
+        List<MywearVo>  orderdetailsVos = new ArrayList<MywearVo>();
+        List<T_mywear> t_mywears = orderCreateDao.loadDetialByOrder(order);
+        for (T_mywear to: t_mywears) {
+
+            MywearVo mvo = new MywearVo();
+
+            T_mywear t =  mywearDao.loadById(to.getMywear());
+            mvo.setT_mywear(t);
+            mvo.setT_color(colorDao.loadByColor(t.getColor()));
+            mvo.setT_face(faceDao.loadByFace(t.getFace()));
+            mvo.setT_occasion(occasionDao.loadById(t.getOccasion()));
+
+            //镜框信息
+            GoodsVo gvo = new GoodsVo();
+            T_goods tg = goodDao.loadById(t.getGoods());
+            gvo.setT_goods(tg);
+            gvo.setT_brand(brandDao.loadById(tg.getBrand()));
+            gvo.setT_categories(categoryDao.loadByGoods(t.getGoods()));
+            gvo.setT_colors(colorDao.loadByGood(t.getGoods()));
+            gvo.setT_attachments(goodDao.loadAttachmentByGood(t.getGoods()));
+            mvo.setGoodsVo(gvo);
+
+            //左眼镜片
+            WearglassVo wvol = new WearglassVo();
+            T_wearglass twl = mywearDao.loadWearglassByMywear(t.getMywear(), "l");
+            wvol.setT_wearglass(twl);
+
+            EyeglassVo evol = new EyeglassVo();
+            T_eyeglass tel = eyeglassDao.loadById(twl.getEyeglass());
+            evol.setT_eyeglass(tel);
+            evol.setT_brand(brandDao.loadById(tel.getBrand()));
+            evol.setT_attachments(eyeglassDao.loadAttachmentByEyeglass(tel.getEyeglass()));
+            evol.setT_efficacy(efficacyDao.loadById(tel.getEfficacy()));
+            evol.setT_mask(maskDao.loadById(tel.getMask()));
+            evol.setT_style(styleDao.loadById(tel.getStyle()));
+            wvol.setEyeglassVo(evol);
+
+            mvo.setLeftEyeglass(wvol);
+
+            //右眼镜片
+            WearglassVo wvor = new WearglassVo();
+            T_wearglass twr = mywearDao.loadWearglassByMywear(t.getMywear(), "r");
+            wvor.setT_wearglass(twr);
+
+            EyeglassVo evor = new EyeglassVo();
+            T_eyeglass ter = eyeglassDao.loadById(twl.getEyeglass());
+            evor.setT_eyeglass(ter);
+            evor.setT_brand(brandDao.loadById(ter.getBrand()));
+            evor.setT_attachments(eyeglassDao.loadAttachmentByEyeglass(ter.getEyeglass()));
+            evor.setT_efficacy(efficacyDao.loadById(ter.getEfficacy()));
+            evor.setT_mask(maskDao.loadById(ter.getMask()));
+            evor.setT_style(styleDao.loadById(ter.getStyle()));
+            wvor.setEyeglassVo(evor);
+            mvo.setRightEyeglass(wvor);
+            orderdetailsVos.add(mvo);
+        }
+        orderCreateVo.setMywearVos(orderdetailsVos);
+        return orderCreateVo;
+
+    }
+
     @Transactional
-    public OrderCreateVo add(HttpServletRequest request) {
+    public List<OrderCreateVo> loadList(HttpServletRequest request) {
 
         try {
-            String mywear = request.getParameter("mywear");
-            System.out.println("mywear:" + mywear);
-
+            String state = request.getParameter("state");
             String customer = request.getParameter("customer");
-            System.out.println("customer:" + customer);
-
-
-            List<T_address>  t_addresses = addressDao.loadlist(customer);
-
-
-
-            String address = null;
-            if(t_addresses==null || t_addresses.size() == 0 ){
-                address = null;
-            }else{
-                address = t_addresses.get(0).getAddress();
-
-            }
-            System.out.println("address:" + address);
-
-
-            String order = UUID.randomUUID().toString().replace("-", "").substring(0, 9) + System.currentTimeMillis();
-            System.out.println("order:" + order);
-
-            boolean ok = orderCreateDao.addOrder(order, customer, address, new Date(), 0);
-            boolean ok1 = mywearDao.updateOrder(order, mywear);
-
-
-
-
-
-
-
-
-
-            //获取返订单信息数据
-            OrderCreateVo orderCreateVo = new OrderCreateVo();
-            orderCreateVo.setT_order(orderCreateDao.loadById(order));
-            if(t_addresses!=null && t_addresses.size() != 0 ){
-                orderCreateVo.setT_address(t_addresses.get(0));
+            List<OrderCreateVo> ods = new ArrayList<OrderCreateVo>();
+            List<T_order> t_orders = null;
+            if (state == null) {
+                t_orders = orderCreateDao.list(customer);
+            }else {
+                t_orders = orderCreateDao.listByState(customer, Integer.parseInt(state));
             }
 
-            List<MywearVo>  orderdetailsVos = new ArrayList<MywearVo>();
-            List<T_mywear> t_mywears = orderCreateDao.loadDetialByOrder(order);
-            for (T_mywear to: t_mywears) {
+            for (T_order t_order : t_orders) {
+                //获取返订单信息数据
+                OrderCreateVo orderCreateVo = new OrderCreateVo();
+                orderCreateVo.setT_order(t_order);
 
-                MywearVo mvo = new MywearVo();
+                orderCreateVo.setT_address(addressDao.loadByAddress(t_order.getAddress()));
 
-                T_mywear t =  mywearDao.loadById(to.getMywear());
-                mvo.setT_mywear(t);
-                mvo.setT_color(colorDao.loadByColor(t.getColor()));
-                mvo.setT_face(faceDao.loadByFace(t.getFace()));
-                mvo.setT_occasion(occasionDao.loadById(t.getOccasion()));
+                List<MywearVo> orderdetailsVos = new ArrayList<MywearVo>();
+                List<T_mywear> t_mywears = orderCreateDao.loadDetialByOrder(t_order.getOrder());
+                for (T_mywear to : t_mywears) {
+                    MywearVo mvo = new MywearVo();
+                    T_mywear t = mywearDao.loadById(to.getMywear());
+                    mvo.setT_mywear(t);
+                    mvo.setT_color(colorDao.loadByColor(t.getColor()));
+                    mvo.setT_face(faceDao.loadByFace(t.getFace()));
+                    mvo.setT_occasion(occasionDao.loadById(t.getOccasion()));
 
-                //镜框信息
-                GoodsVo gvo = new GoodsVo();
-                T_goods tg = goodDao.loadById(t.getGoods());
-                gvo.setT_goods(tg);
-                gvo.setT_brand(brandDao.loadById(tg.getBrand()));
-                gvo.setT_categories(categoryDao.loadByGoods(t.getGoods()));
-                gvo.setT_colors(colorDao.loadByGood(t.getGoods()));
-                gvo.setT_attachments(goodDao.loadAttachmentByGood(t.getGoods()));
-                mvo.setGoodsVo(gvo);
+                    //镜框信息
+                    GoodsVo gvo = new GoodsVo();
+                    T_goods tg = goodDao.loadById(t.getGoods());
+                    gvo.setT_goods(tg);
+                    gvo.setT_brand(brandDao.loadById(tg.getBrand()));
+                    gvo.setT_categories(categoryDao.loadByGoods(t.getGoods()));
+                    gvo.setT_colors(colorDao.loadByGood(t.getGoods()));
+                    gvo.setT_attachments(goodDao.loadAttachmentByGood(t.getGoods()));
+                    mvo.setGoodsVo(gvo);
 
-                //左眼镜片
-                WearglassVo wvol = new WearglassVo();
-                T_wearglass twl = mywearDao.loadWearglassByMywear(t.getMywear(), "l");
-                wvol.setT_wearglass(twl);
+                    //左眼镜片
+                    WearglassVo wvol = new WearglassVo();
+                    T_wearglass twl = mywearDao.loadWearglassByMywear(t.getMywear(), "l");
+                    wvol.setT_wearglass(twl);
 
-                EyeglassVo evol = new EyeglassVo();
-                T_eyeglass tel = eyeglassDao.loadById(twl.getEyeglass());
-                evol.setT_eyeglass(tel);
-                evol.setT_brand(brandDao.loadById(tel.getBrand()));
-                evol.setT_attachments(eyeglassDao.loadAttachmentByEyeglass(tel.getEyeglass()));
-                evol.setT_efficacy(efficacyDao.loadById(tel.getEfficacy()));
-                evol.setT_mask(maskDao.loadById(tel.getMask()));
-                evol.setT_style(styleDao.loadById(tel.getStyle()));
-                wvol.setEyeglassVo(evol);
+                    EyeglassVo evol = new EyeglassVo();
+                    T_eyeglass tel = eyeglassDao.loadById(twl.getEyeglass());
+                    evol.setT_eyeglass(tel);
+                    evol.setT_brand(brandDao.loadById(tel.getBrand()));
+                    evol.setT_attachments(eyeglassDao.loadAttachmentByEyeglass(tel.getEyeglass()));
+                    evol.setT_efficacy(efficacyDao.loadById(tel.getEfficacy()));
+                    evol.setT_mask(maskDao.loadById(tel.getMask()));
+                    evol.setT_style(styleDao.loadById(tel.getStyle()));
+                    wvol.setEyeglassVo(evol);
 
-                mvo.setLeftEyeglass(wvol);
+                    mvo.setLeftEyeglass(wvol);
 
-                //右眼镜片
-                WearglassVo wvor = new WearglassVo();
-                T_wearglass twr = mywearDao.loadWearglassByMywear(t.getMywear(), "r");
-                wvor.setT_wearglass(twr);
+                    //右眼镜片
+                    WearglassVo wvor = new WearglassVo();
+                    T_wearglass twr = mywearDao.loadWearglassByMywear(t.getMywear(), "r");
+                    wvor.setT_wearglass(twr);
 
-                EyeglassVo evor = new EyeglassVo();
-                T_eyeglass ter = eyeglassDao.loadById(twl.getEyeglass());
-                evor.setT_eyeglass(ter);
-                evor.setT_brand(brandDao.loadById(ter.getBrand()));
-                evor.setT_attachments(eyeglassDao.loadAttachmentByEyeglass(ter.getEyeglass()));
-                evor.setT_efficacy(efficacyDao.loadById(ter.getEfficacy()));
-                evor.setT_mask(maskDao.loadById(ter.getMask()));
-                evor.setT_style(styleDao.loadById(ter.getStyle()));
-                wvor.setEyeglassVo(evor);
-                mvo.setRightEyeglass(wvor);
-                orderdetailsVos.add(mvo);
+                    EyeglassVo evor = new EyeglassVo();
+                    T_eyeglass ter = eyeglassDao.loadById(twl.getEyeglass());
+                    evor.setT_eyeglass(ter);
+                    evor.setT_brand(brandDao.loadById(ter.getBrand()));
+                    evor.setT_attachments(eyeglassDao.loadAttachmentByEyeglass(ter.getEyeglass()));
+                    evor.setT_efficacy(efficacyDao.loadById(ter.getEfficacy()));
+                    evor.setT_mask(maskDao.loadById(ter.getMask()));
+                    evor.setT_style(styleDao.loadById(ter.getStyle()));
+                    wvor.setEyeglassVo(evor);
+                    mvo.setRightEyeglass(wvor);
+                    orderdetailsVos.add(mvo);
+                }
+                orderCreateVo.setMywearVos(orderdetailsVos);
+                ods.add(orderCreateVo);
             }
-            orderCreateVo.setMywearVos(orderdetailsVos);
-            return orderCreateVo;
+
+            return ods;
         }catch (Exception e){
-            throw  new RuntimeException(e.getMessage());
+            throw new RuntimeException(e.getMessage());
         }
     }
 }
