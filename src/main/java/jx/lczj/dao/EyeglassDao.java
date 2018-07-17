@@ -2,10 +2,7 @@ package jx.lczj.dao;
 
 import jx.lczj.model.T_attachment;
 import jx.lczj.model.T_eyeglass;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -106,4 +103,17 @@ public interface EyeglassDao {
     @Delete("delete from T_ATTACHMENT  WHERE ATTACHMENT = #{0}")
     boolean deleteAttach(String code);
 
+    /**
+     * 根据品牌、功能、价格对镜片进行筛选
+     * @param brand
+     * @param efficacy
+     * @param low
+     * @param high
+     * @return
+     */
+    List<T_eyeglass> eyeglasslist(
+            @Param("brands") int[] brand
+            ,@Param("efficacies") int efficacy
+            , @Param("low") int low
+            , @Param("high") int high);
 }
