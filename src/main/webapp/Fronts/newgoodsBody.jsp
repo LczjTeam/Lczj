@@ -30,6 +30,9 @@
         background-color: #e6e6e6;
         border-color: #adadad;
     }
+    .active{
+        color: orange;
+    }
 
 </style>
 
@@ -137,16 +140,49 @@
                 <div class="clearfix"></div>
             </div>
      </div>
+
+    <%--<c:set var="pagerNum" value="${pagerNum}"/>--%>
+    <%--<p>总页数:${pagerNum}</p>--%>
+    <%--<p>当前页:${page}</p>--%>
+    <%--<p>当前leib:${type}</p>--%>
+    <c:set var="end_url" value="../Fronts/newgoods?type=${type}&page=${page+1 < pagerNum ? page+1 :pagerNum}"/>
+    <%--<p>当前页:${end_url}</p>--%>
+    <c:set var="end" value="${ page eq pagerNum ? 'javascript:;' : end_url }"/>
+    <%--<p>当前页:${end}</p>--%>
+
+    <c:set var="start_url"  value="../Fronts/newgoods?type=${type}&page=${page-1>1 ? page-1 : 1}" />
+    <c:set var="start" value="${page eq 1 ? 'javascript:;' : start_url }"/>
+
+
     <div class="pagination-grid text-right">
+
         <ul class="pagination paging">
-            <li><a href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
-            <li class="active"><a href="#">1<span class="sr-only">(current)</span></a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
-            <li><a href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
+            <li id="start_page" class="${page eq 1 ? 'disabled' : ''}">
+                <a href="${start}"><span aria-hidden="true">«</span></a>
+            </li>
+
+            <c:forEach begin="1" end="${pagerNum}" varStatus="loop">
+            <li class="${loop.index eq page?'active':''}">
+                <a href="<c:url value="/Fronts/newgoods?type=${type}&page=${loop.index}"/>">${loop.index}</a>
+            </li>
+            </c:forEach>
+
+            <li id="end_page"  class="${page eq pagerNum ? 'disabled' : ''}">
+                <a href="${end}"><span aria-hidden="true">»</span></a>
+            </li>
         </ul>
+
     </div>
 </div>
 </div>
+
+<%--<script>--%>
+
+    <%--$(function(){--%>
+        <%--$('#start_page a').removeAttr('href');//去掉a标签中的href属性--%>
+        <%--$('.disableCss').removeAttr('onclick');//去掉a标签中的onclick事件--%>
+    <%--});--%>
+
+<%--</script>--%>
+
+
