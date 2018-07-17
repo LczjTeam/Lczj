@@ -46,4 +46,16 @@ public class OrderCreateController {
         return orderCreateService.loadList(request);
     }
 
+
+    /**
+     * 删除
+     * @param request
+     * @return
+     */
+    @RequestMapping("/delete")
+    @ResponseBody
+    public boolean delete(HttpServletRequest request){
+        return orderCreateService.delete(request);
+    }
+
 }

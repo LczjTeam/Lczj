@@ -69,6 +69,15 @@ public class WXController {
     }
 
 
+    @RequestMapping(value = "/pay")
+    @ResponseBody
+    public Result pay(HttpServletRequest request) {
+
+        return wxPayService.pay(request);
+
+    }
+
+
     @RequestMapping(value = "/payCallback")
     @ResponseBody
     public String payCallback(HttpServletRequest request) {

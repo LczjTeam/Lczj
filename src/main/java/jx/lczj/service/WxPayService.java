@@ -1,9 +1,11 @@
 package jx.lczj.service;
 
 import jx.lczj.dao.AddressDao;
+import jx.lczj.dao.CustomerDao;
 import jx.lczj.dao.MywearDao;
 import jx.lczj.dao.OrderCreateDao;
 import jx.lczj.model.T_address;
+import jx.lczj.model.T_order;
 import jx.lczj.utils.WXPayUtil;
 import jx.lczj.viewmodel.Result;
 import org.dom4j.DocumentException;
@@ -27,6 +29,9 @@ public class WxPayService {
 
     @Autowired
     OrderCreateDao orderCreateDao;
+
+    @Autowired
+    CustomerDao customerDao ;
 
     @Autowired
     MywearDao   mywearDao ;
@@ -132,9 +137,9 @@ public class WxPayService {
             System.out.println("order:" + order);
 
             if(orderCreateDao.loadById(order) != null) {
-                boolean ok = orderCreateDao.update(order, address);
+                boolean ok = orderCreateDao.update(order, address,Integer.parseInt(voucher));
             }else {
-                boolean ok = orderCreateDao.addOrder(order, customer, address, new Date(), 0);
+                boolean ok = orderCreateDao.addOrder(order, customer, address, new Date(), 0,Integer.parseInt(voucher),Integer.parseInt(request.getParameter("totalfee")));
                 boolean ok1 = mywearDao.updateOrder(order, mywear);
             }
 
@@ -244,6 +249,10 @@ public class WxPayService {
 
                 /*if(WXPayUtil.verifyWeixinNotify(map, key)){*/
 
+                T_order t_order = orderCreateDao.loadById(order);
+
+                boolean ok = customerDao.updateVoucher(t_order.getCustomer(),t_order.getVoucher());
+
                 int n =  orderCreateDao.updateState(order , 1);
                 System.out.println(n);
                 if(n!=1){
@@ -269,6 +278,132 @@ public class WxPayService {
         resXml = "<xml>" + "<return_code><![CDATA[FAIL]]></return_code>"
                 + "<return_msg><![CDATA[xml error]]></return_msg>" + "</xml> ";
         return resXml;
+
+    }
+
+    public Result pay(HttpServletRequest request) {
+
+        try {
+
+            //商户号
+            String mchId = "1509121291";
+
+            //支付密钥
+            String key = "&key=JMODELLECHAOZHIJINGqiuxiaoyu1234";
+
+            //交易类型
+            String tradeType = "JSAPI";
+
+            //随机字符串
+            String nonceStr = WXPayUtil.getNonceStr();
+
+            System.out.println(nonceStr);
+
+            //微信支付完成后给该链接发送消息，判断订单是否完成
+            String notifyUrl = "http://jx-lczj.nat300.top/Lczj/wx/payCallback";
+
+            //微信用户唯一id
+            if (request.getParameter("openid") == null) {
+                return new Result(500, "支付失败，openid is null");
+            }
+
+            String openId = request.getParameter("openid").toString();
+            System.out.println(openId);
+            //小程序id
+            String appid = "wx2e2a553c12f23b71";
+
+
+            //商品订单号(保持唯一性)
+            if (request.getParameter("order") == null) {
+                return new Result(500,"支付失败，order is null");
+            }
+            String outTradeNo = request.getParameter("order");
+
+
+
+            //支付金额
+            if(request.getParameter("totalfee")==null){
+                return new Result(500,"支付失败，totalfee is null");
+            }
+
+            String fee = "0.01";
+            String totalFee = WXPayUtil.getMoney(fee);
+
+
+            //发起支付设备ip
+            String spbillCreateIp = WXPayUtil.getIpAddress(request);
+            //商品描述
+            if(request.getParameter("body")==null){
+                return new Result(500,"支付失败，body is null");
+            }
+            String body = request.getParameter("body");
+
+
+            //我们后面需要键值对的形式，所以先装入map
+            Map<String, String> sParaTemp = new HashMap<String, String>();
+            sParaTemp.put("appid", appid);
+            sParaTemp.put("body", body);
+            sParaTemp.put("mch_id", mchId);
+            sParaTemp.put("nonce_str", nonceStr);
+            sParaTemp.put("notify_url", notifyUrl);
+            sParaTemp.put("openid", openId);
+            sParaTemp.put("out_trade_no", outTradeNo);
+            sParaTemp.put("spbill_create_ip", spbillCreateIp);
+            sParaTemp.put("total_fee", totalFee);
+            sParaTemp.put("trade_type", tradeType);
+
+            //去掉空值 跟 签名参数(空值不参与签名，所以需要去掉)
+            Map<String, String> map = WXPayUtil.paraFilter(sParaTemp);
+
+            //按照 参数=参数值&参数2=参数值2 这样的形式拼接（拼接需要按照ASCII码升序排列）
+
+            String mapStr = WXPayUtil.createLinkString(map);
+            //MD5运算生成签名
+            String sign = WXPayUtil.sign(mapStr, key, "utf-8").toUpperCase();
+            sParaTemp.put("sign", sign);
+            /**
+             组装成xml参数,此处偷懒使用手动组装，严格代码可封装一个方法，XML标排序需要注意，ASCII码升序排列
+             */
+            String xml = "<xml>"
+                    + "<appid>" + appid + "</appid>"
+                    + "<body>" + body + "</body>"
+                    + "<mch_id>" + mchId + "</mch_id>"
+                    + "<nonce_str>" + nonceStr + "</nonce_str>"
+                    + "<notify_url>" + notifyUrl + "</notify_url>"
+                    + "<openid>" + openId + "</openid>"
+                    + "<out_trade_no>" + outTradeNo + "</out_trade_no>"
+                    + "<spbill_create_ip>" + spbillCreateIp + "</spbill_create_ip>"
+                    + "<total_fee>" + totalFee + "</total_fee>"
+                    + "<trade_type>" + tradeType + "</trade_type>"
+                    + "<sign>" + sign + "</sign>"
+                    + "</xml>";
+            //统一下单url，生成预付id
+            System.out.println(xml);
+
+            String url = "https://api.mch.weixin.qq.com/pay/unifiedorder";
+            String result = WXPayUtil.httpRequest(url, "POST", xml);
+
+            System.out.println(result);
+
+            String timeStamp = String.valueOf(System.currentTimeMillis() / 1000);
+            //得到预支付id
+            String prepay_id = WXPayUtil.getPayNo(result);
+            String packages = "prepay_id=" + prepay_id;
+            String nonceStr1 = WXPayUtil.getNonceStr();
+            //开始第二次签名
+            String mapStr1 = "appId=" + appid + "&nonceStr=" + nonceStr1 + "&package=prepay_id=" + prepay_id + "&signType=MD5&timeStamp=" + timeStamp;
+            String paySign = WXPayUtil.sign(mapStr1, key, "utf-8").toUpperCase();
+            //前端所需各项参数拼接 包括订单编号
+            String finaPackage = "\"appId\":\"" + appid + "\",\"timeStamp\":\"" + timeStamp
+                    + "\",\"nonceStr\":\"" + nonceStr1 + "\",\"package\":\""
+                    + packages + "\",\"signType\":\"MD5" + "\",\"paySign\":\""
+                    + paySign + "\",\"order\":\"" + outTradeNo + "\"";
+
+            return new Result(200, finaPackage);
+        }catch (Exception e){
+            throw  new RuntimeException(e.getMessage());
+        }
+
 
     }
 }

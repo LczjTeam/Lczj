@@ -3,6 +3,7 @@ package jx.lczj.dao;
 import jx.lczj.model.T_mywear;
 import jx.lczj.model.T_order;
 import jx.lczj.model.T_orderdetail;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
@@ -27,8 +28,8 @@ public interface OrderCreateDao {
      * @param state
      * @return
      */
-    @Insert("INSERT INTO T_ORDER (\"order\" ,CUSTOMER ,ADDRESS , SURE_TIME ,  STATE ) VALUES ( #{0} , #{1} , #{2} , #{3} , #{4} ) ")
-    boolean addOrder(String order, String customer, String address, Date date, int state);
+    @Insert("INSERT INTO T_ORDER (\"order\" ,CUSTOMER ,ADDRESS , SURE_TIME ,  STATE ,VOUCHER,TOTALFEE) VALUES ( #{0} , #{1} , #{2} , #{3} , #{4} , #{5} , #{6} ) ")
+    boolean addOrder(String order, String customer, String address, Date date, int state, int voucher, int totalfee);
 
     /**
      * 创建详情信息
@@ -74,6 +75,9 @@ public interface OrderCreateDao {
     @Update("update T_ORDER set STATE = #{1}  WHERE \"order\" = #{0} ")
     int updateState(String order, int state);
 
-    @Update("update T_ORDER set ADDRESS = #{1}  WHERE \"order\" = #{0} ")
-    boolean update(String order, String address);
+    @Update("update T_ORDER set ADDRESS = #{1} ,VOUCHER = #{2}  WHERE \"order\" = #{0} ")
+    boolean update(String order, String address,int voucher);
+
+    @Delete("DELETE FROM  T_ORDER WHERE \"order\" = #{0} ")
+    boolean delete(String order);
 }

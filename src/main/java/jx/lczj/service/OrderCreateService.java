@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -56,7 +57,7 @@ public class OrderCreateService {
     FaceDao faceDao;
 
     @Resource
-    OccasionDao occasionDao;
+    OccasionDao  occasionDao;
     @Resource
     AddressDao addressDao;
 
@@ -217,5 +218,42 @@ public class OrderCreateService {
         }catch (Exception e){
             throw new RuntimeException(e.getMessage());
         }
+    }
+
+    @Transactional
+    public boolean delete(HttpServletRequest request) {
+
+        try {
+
+            String order = request.getParameter("order");
+            System.out.println("order:" + order);
+
+            List<T_mywear> t_mywears = orderCreateDao.loadDetialByOrder(order);
+
+            for (T_mywear t : t_mywears) {
+
+                boolean ok1 = mywearDao.deleteWearglassByMywear(t.getMywear());
+                boolean ok2 = mywearDao.delete(t.getMywear());
+
+                String path = request.getSession().getServletContext().getRealPath("/");
+
+                //物理删除文件信息
+                if (!t.getSelfphoto().contains("models")) {
+                    File f1 = new File(path + t.getSelfphoto());
+                    if (f1.exists()) f1.delete();
+                }
+
+                File f2 = new File(path + t.getShowphoto());
+                if (f2.exists()) f2.delete();
+
+            }
+
+            boolean ok = orderCreateDao.delete(order);
+
+            return  true;
+        }catch (Exception e){
+            throw  new RuntimeException(e.getMessage());
+        }
+
     }
 }
