@@ -238,10 +238,10 @@ public interface GoodDao {
      * @param pupil
      * @return
      */
-    @Select("select * from T_GOODS WHERE GOODS in(select T_SUITABLEAGE.GOODS FROM T_AGESECTION,T_SUITABLEAGE,T_SUITABLEOCCASION,T_SUITABLEFACE\n" +
-            " WHERE  (#{2} between (width+space-3) and (width+space+3)) and ({4} between MINAGE and MAXAGE) and T_SUITABLEOCCASION.OCCASION = #{2} and T_SUITABLEFACE.FACE = #{3} and (SUITABLE_SEX = #{0} or SUITABLE_SEX = 0) and T_AGESECTION.AGESECTION = T_SUITABLEAGE.AGESECTION\n" +
+    @Select("select * from T_GOODS WHERE GOODS in  ( select T_SUITABLEAGE.GOODS FROM T_AGESECTION,T_SUITABLEAGE,T_SUITABLEOCCASION,T_SUITABLEFACE  " +
+            " WHERE  ( #{2} between ( width + space - 3 ) and ( width + space + 3 )) and ({4} between MINAGE and MAXAGE) and T_SUITABLEOCCASION.OCCASION = #{2} and T_SUITABLEFACE.FACE = #{3} and (SUITABLE_SEX = #{0} or SUITABLE_SEX = 0) and T_AGESECTION.AGESECTION = T_SUITABLEAGE.AGESECTION  " +
             " and T_SUITABLEAGE.GOODS = T_SUITABLEOCCASION.GOODS and T_SUITABLEAGE.GOODS = T_SUITABLEFACE.GOODS)")
-    List<T_goods> recomend(String sex, String occasion, String pupil, String face, String age);
+    List<T_goods> recomend(int sex, int occasion, int pupil, int face, int age);
 
 
     /**
@@ -262,4 +262,6 @@ public interface GoodDao {
     List<T_goods> loadGoodsByCategory_pager(int start,int end,int category);
 
 
+    @Select("select * from (select T_GOODS.*,rownum rn from T_GOODS where goods in (select goods from T_GOODSCATEGORY)) where rn > 0 and rn <= 8")
+    List<T_goods> loadTop8();
 }

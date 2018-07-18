@@ -25,7 +25,7 @@ public class GoodService  {
     GoodDao goodDao ;
 
     @Resource
-    BrandDao brandDao ;
+    BrandDao  brandDao ;
 
     @Resource
     CategoryDao categoryDao ;
@@ -607,28 +607,34 @@ public class GoodService  {
              * 性别
              */
             String sex = request.getParameter("sex");
-
+            System.out.println(sex);
             /*
             场景
              */
             String occasion = request.getParameter("occasion");
-
+            System.out.println(occasion);
             /**
              *瞳距
              */
             String pupil = request.getParameter("eyesdistance");
-
+            System.out.println(pupil);
             /**
              * 脸型
              */
             String face = request.getParameter("face");
-
+            System.out.println(face);
             /**
              * 年龄
              */
             String age = request.getParameter("age");
+            System.out.println(age);
 
-            List<T_goods> list = goodDao.recomend( sex,occasion,pupil,face,age);
+            List<T_goods> list = goodDao.recomend( Integer.parseInt(sex),Integer.parseInt(occasion),Integer.parseInt(pupil),Integer.parseInt(face),Integer.parseInt(age));
+
+            if(list.size() == 0){
+                list = goodDao.loadTop8();
+            }
+
             List<GoodsVo> gvos = new ArrayList<GoodsVo>();
             for (T_goods tg : list) {
                 GoodsVo gvo = new GoodsVo();
