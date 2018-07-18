@@ -238,9 +238,8 @@ public interface GoodDao {
      * @param pupil
      * @return
      */
-    @Select("select * from T_GOODS WHERE GOODS in  ( select T_SUITABLEAGE.GOODS FROM T_AGESECTION,T_SUITABLEAGE,T_SUITABLEOCCASION,T_SUITABLEFACE  " +
-            " WHERE  ( #{2} between ( width + space - 3 ) and ( width + space + 3 )) and ({4} between MINAGE and MAXAGE) and T_SUITABLEOCCASION.OCCASION = #{2} and T_SUITABLEFACE.FACE = #{3} and (SUITABLE_SEX = #{0} or SUITABLE_SEX = 0) and T_AGESECTION.AGESECTION = T_SUITABLEAGE.AGESECTION  " +
-            " and T_SUITABLEAGE.GOODS = T_SUITABLEOCCASION.GOODS and T_SUITABLEAGE.GOODS = T_SUITABLEFACE.GOODS)")
+    @Select("select * from T_GOODS WHERE GOODS in  ( select T_SUITABLEAGE.GOODS FROM T_GOODS,T_AGESECTION,T_SUITABLEAGE,T_SUITABLEOCCASION,T_SUITABLEFACE WHERE  ( #{2} between ( width + space - 3 ) and ( width + space + 3 )) and (#{4} between MINAGE and MAXAGE) and T_SUITABLEOCCASION.OCCASION = #{2} and T_SUITABLEFACE.FACE = #{3} and (SUITABLE_SEX = #{0} or SUITABLE_SEX = 0) and T_AGESECTION.AGESECTION = T_SUITABLEAGE.AGESECTION  and T_GOODS.GOODS= T_SUITABLEAGE.GOODS\n" +
+            " and T_GOODS.GOODS = T_SUITABLEOCCASION.GOODS and T_GOODS.GOODS = T_SUITABLEFACE.GOODS)")
     List<T_goods> recomend(int sex, int occasion, int pupil, int face, int age);
 
 
