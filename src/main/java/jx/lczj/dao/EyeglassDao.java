@@ -116,4 +116,8 @@ public interface EyeglassDao {
             ,@Param("efficacies") int efficacy
             , @Param("low") int low
             , @Param("high") int high);
+
+    List<T_eyeglass> eyeglasscommend(
+            @Param("degresss") int degress
+            , @Param("asdegresss") int asdegress);
 }

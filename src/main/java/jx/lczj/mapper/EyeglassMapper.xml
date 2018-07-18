@@ -49,6 +49,28 @@
    </where>
 </select>
 
-
+   <select id="eyeglasscommend" resultType="jx.lczj.model.T_eyeglass">
+      select * from t_eyeglass te,t_wearglass tw ,t_brand tb
+      <where>
+         tb.recommend = 1
+         <if test="degresss !=null and asdegresss != null">
+            <choose>
+               <when test="400 > degresss and degresss >= 0 and 225 > asdegresss">
+                  and refraction = 1.57
+               </when>
+               <when test="600 > degresss and degresss >= 400 and 225 > asdegresss">
+                  and refraction = 1.61
+               </when>
+               <when test="1000 >= degresss and degresss >= 600 and 225 > asdegresss">
+                  and refraction = 1.67
+               </when>
+               <otherwise>
+                  and refraction = 2
+               </otherwise>
+            </choose>
+         </if>
+        and tb.brand = te.brand and te.eyeglass = tw.eyeglass
+      </where>
+   </select>
 
 </mapper>

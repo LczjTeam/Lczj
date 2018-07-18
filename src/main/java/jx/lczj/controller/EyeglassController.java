@@ -107,4 +107,10 @@ public class EyeglassController {
         System.out.println(brand.length+efficacy+low+high);
         return eyeglassService.eyeglasslist(brands,efficacys,lows,highs);};
 
+    @RequestMapping("/eyeglasscommend")
+    @ResponseBody
+    public List<EyeglassVo> eyeglasscommend(String degress,String asdegress){
+        int degresss = Integer.parseInt(degress);
+        int asdegresss = Integer.parseInt(asdegress);
+        return eyeglassService.eyeglasscommend(degresss,asdegresss);};
 }

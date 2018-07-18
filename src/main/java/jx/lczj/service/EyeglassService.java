@@ -363,4 +363,24 @@ public class EyeglassService {
             throw  new RuntimeException(e.getMessage());
         }
     }
+
+    public List<EyeglassVo> eyeglasscommend(int degress,int asdegress) {
+        try {
+            List<T_eyeglass> list = eyeglassDao.eyeglasscommend(degress,asdegress);
+            List<EyeglassVo> evos = new ArrayList<EyeglassVo>();
+            for (T_eyeglass t : list) {
+                EyeglassVo evo = new EyeglassVo();
+                evo.setT_eyeglass(t);
+                evo.setT_attachments(eyeglassDao.loadAttachmentByEyeglass(t.getEyeglass()));
+                evo.setT_brand(brandDao.loadById(t.getBrand()));
+                evo.setT_efficacy(efficacyDao.loadById(t.getEfficacy()));
+                evo.setT_mask(maskDao.loadById(t.getMask()));
+                evo.setT_style(styleDao.loadById(t.getStyle()));
+                evos.add(evo);
+            }
+            return evos;
+        }catch (Exception e){
+            throw  new RuntimeException(e.getMessage());
+        }
+    }
 }
