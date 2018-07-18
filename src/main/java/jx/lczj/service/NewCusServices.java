@@ -1,5 +1,6 @@
 package jx.lczj.service;
 
+import jx.lczj.dao.CustomerDao;
 import jx.lczj.dao.NewCustomerDao;
 import jx.lczj.model.T_customer;
 import jx.lczj.model.T_newcustomer;
@@ -13,21 +14,20 @@ import java.util.UUID;
 public class NewCusServices {
 
     @Autowired
-    NewCustomerDao newCustomerDao;
+    NewCustomerDao  newCustomerDao;
+
+    @Autowired
+    CustomerDao customerDao;
 
 
-//    private String newcustomer;     //新用户
-//    private String phone;           //电话
-//    private String ins_time;        //推荐时间
-//    private int status;             //状态
-//    private int prize;              //价格
 
     public boolean add(String phone) {
 
         try {
             boolean ok=false;
             T_newcustomer t_newcustomer = newCustomerDao.loadByPhone(phone);
-            if (t_newcustomer == null) {
+            T_customer customer = customerDao.loadByPhone(phone);
+            if (customer ==null && t_newcustomer == null) {
 
                 String newcustomer = UUID.randomUUID().toString().replace("-", "");
                 ok = newCustomerDao.add(newcustomer,phone,new Date(),0,10);

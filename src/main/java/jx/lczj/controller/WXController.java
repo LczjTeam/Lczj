@@ -41,12 +41,24 @@ public class WXController {
     WxPayService wxPayService;
 
 
+    /**
+     * 登录获取session_key和opendid
+     * @param code
+     * @return
+     */
     @RequestMapping("/login")
     @ResponseBody
     public JSONObject getOpenid(@RequestParam(value="code",required=false)String code) {//接收用户传过来的code，required=false表明如果这个参数没有传过来也可以。
         return WXUtil.getOpenidAndSessionKey(code);
     }
 
+    /**
+     * 解密手机号
+     * @param encryptedData
+     * @param iv
+     * @param sessionId
+     * @return
+     */
     @RequestMapping(value = "/decodePhoneNumber")
     @ResponseBody
     public JSONObject decodeUserInfo(@RequestParam(required = true,value = "encryptedData")String encryptedData,
@@ -60,6 +72,11 @@ public class WXController {
         return  (JSONObject)JSON.parse(AES.wxDecrypt(encryptedData, sessionId, iv));
     }
 
+    /**
+     * 统一下单
+     * @param request
+     * @return
+     */
     @RequestMapping(value = "/createUnifiedOrder")
     @ResponseBody
     public Result createUnifiedOrder(HttpServletRequest request) {
@@ -69,6 +86,25 @@ public class WXController {
     }
 
 
+    /**
+     * 支付
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "/pay")
+    @ResponseBody
+    public Result pay(HttpServletRequest request) {
+
+        return wxPayService.pay(request);
+
+    }
+
+
+    /**
+     * 回调函数
+     * @param request
+     * @return
+     */
     @RequestMapping(value = "/payCallback")
     @ResponseBody
     public String payCallback(HttpServletRequest request) {

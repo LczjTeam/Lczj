@@ -30,7 +30,7 @@ public class MywearController {
      */
     @RequestMapping("/add")
     @ResponseBody
-    public boolean add(HttpServletRequest request) {
+    public MywearVo add(HttpServletRequest request) {
         return  mywearService.add(request);
     }
 

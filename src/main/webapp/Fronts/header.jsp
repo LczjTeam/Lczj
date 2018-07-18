@@ -175,7 +175,7 @@
                                 <span class="glyphicon glyphicon-home" aria-hidden="true" style="font-size: 42px;color: #f8faf9;margin: 18px"></span>
                             </li>--%>
                             <li class="menu__item menu__item--current"><a class="menu__link" href="../Fronts/index"><span class="glyphicon glyphicon-home" ></span>&nbsp;&nbsp;&nbsp;首&nbsp;&nbsp;&nbsp;页&nbsp;&nbsp;&nbsp; <span class="sr-only">(current)</span></a></li>
-                            <li class="menu__item"><a class="menu__link" href="../Fronts/newgoods?type=1">&nbsp;&nbsp;&nbsp;新&nbsp;&nbsp;&nbsp;品&nbsp;&nbsp;&nbsp;上&nbsp;&nbsp;&nbsp;市&nbsp;&nbsp;&nbsp;</a></li>
+                            <li class="menu__item"><a class="menu__link" href="../Fronts/newgoods?type=1&page=1">&nbsp;&nbsp;&nbsp;新&nbsp;&nbsp;&nbsp;品&nbsp;&nbsp;&nbsp;上&nbsp;&nbsp;&nbsp;市&nbsp;&nbsp;&nbsp;</a></li>
                             <li id="drop_a" class="dropdown menu__item">
                                 <a href="#" class="dropdown-toggle menu__link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">&nbsp;&nbsp;&nbsp;知&nbsp;&nbsp;&nbsp;识&nbsp;&nbsp;&nbsp;百&nbsp;&nbsp;&nbsp;科&nbsp;&nbsp;&nbsp; <span class="caret"></span></a>
                                 <ul class="dropdown-menu multi-column columns-2">
