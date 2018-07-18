@@ -16,7 +16,11 @@ public interface ShopsDao {
      */
     @Select("select * from T_shops")
     List<T_shops> list();
-
+    /**
+     * 获取前三家
+     */
+    @Select("SELECT  *  FROM T_SHOPS WHERE  ROWNUM < 4")
+    List<T_shops> list1();
     /**
      * 插入新的门店
      * @param shop

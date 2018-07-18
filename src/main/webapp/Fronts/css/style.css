@@ -1447,9 +1447,10 @@ a.single-item{
     padding: 15px 15px 30px;
 }
 .login-right, .login-bottom {
-    float: left;
-    width: 46%;
-    margin: 0 2%;
+    width: 56%;
+    margin: 0 10%;
+
+    margin-top: 10px;
 }
 .login-right input[type="text"] ,.login-right input[type="password"] ,.login-bottom input[type="text"] ,.login-bottom input[type="password"]{
     width: 100%;
