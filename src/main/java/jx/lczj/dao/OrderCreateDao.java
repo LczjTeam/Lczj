@@ -72,12 +72,30 @@ public interface OrderCreateDao {
     @Select("select * from T_ORDER WHERE CUSTOMER = #{0}  AND STATE = #{1}")
     List<T_order> listByState(String customer,int state);
 
+    /**
+     * 更新订单状态
+     * @param order
+     * @param state
+     * @return
+     */
     @Update("update T_ORDER set STATE = #{1}  WHERE \"order\" = #{0} ")
     int updateState(String order, int state);
 
+    /**
+     * 更新优惠券地址
+     * @param order
+     * @param address
+     * @param voucher
+     * @return
+     */
     @Update("update T_ORDER set ADDRESS = #{1} ,VOUCHER = #{2}  WHERE \"order\" = #{0} ")
     boolean update(String order, String address,int voucher);
 
+    /**
+     * 删除
+     * @param order
+     * @return
+     */
     @Delete("DELETE FROM  T_ORDER WHERE \"order\" = #{0} ")
     boolean delete(String order);
 }

@@ -62,6 +62,11 @@ public class OrderCreateService {
     AddressDao addressDao;
 
 
+    /**
+     * 通过编号获取订单详情
+     * @param request
+     * @return
+     */
     public OrderCreateVo loadById(HttpServletRequest request) {
 
         String order = request.getParameter("order");
@@ -135,6 +140,11 @@ public class OrderCreateService {
 
     }
 
+    /**
+     * 通过会员编号以及状态获取订单信息
+     * @param request
+     * @return
+     */
     @Transactional
     public List<OrderCreateVo> loadList(HttpServletRequest request) {
 
@@ -220,6 +230,11 @@ public class OrderCreateService {
         }
     }
 
+    /**
+     * 删除订单信息
+     * @param request
+     * @return
+     */
     @Transactional
     public boolean delete(HttpServletRequest request) {
 
