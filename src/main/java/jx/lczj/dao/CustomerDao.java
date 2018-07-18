@@ -38,8 +38,8 @@ public  interface CustomerDao {
     T_customer loadByPhone(String phone);
 
 
-    @Insert("insert into T_CUSTOMER(VIP,NAME,PHONE,SEX,PWD,BIRTHDAY,FACE) VALUES (#{0},#{1},#{2},#{3},#{4},#{5},#{6})")
-    boolean add(String vip, String name, String phone, String sex, String pwd, String birthday, String face);
+    @Insert("insert into T_CUSTOMER(VIP,NAME,PHONE,SEX,PWD,BIRTHDAY,FACE,VOUCHER) VALUES (#{0},#{1},#{2},#{3},#{4},#{5},#{6},#{7})")
+    boolean add(String vip, String name, String phone, String sex, String pwd, String birthday, String face, int voucher);
 
     /**
      * 编辑更新
