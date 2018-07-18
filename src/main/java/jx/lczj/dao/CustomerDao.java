@@ -69,4 +69,7 @@ public  interface CustomerDao {
      */
     @Update("update T_CUSTOMER set FACE = #{1} WHERE PHONE = #{0}")
     boolean updateFace(String phone,String face);
+
+    @Update("update T_CUSTOMER set VOUCHER =  VOUCHER - #{1} WHERE vip = #{0}")
+    boolean updateVoucher(String customer, int voucher);
 }

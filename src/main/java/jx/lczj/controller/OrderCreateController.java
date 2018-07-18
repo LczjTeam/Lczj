@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * Created by 14260 on 2018/7/15.
@@ -20,15 +21,41 @@ public class OrderCreateController {
     @Resource
     OrderCreateService orderCreateService;
 
+
+
     /**
-     * 创建订单
+     * 通过编号获取订单信息
      * @param request
      * @return
      */
-    @RequestMapping("/create")
+    @RequestMapping("/loadById")
     @ResponseBody
-    public OrderCreateVo add(HttpServletRequest request){
-        return orderCreateService.add(request);
+    public OrderCreateVo loadById(HttpServletRequest request){
+        return orderCreateService.loadById(request);
+    }
+
+
+    /**
+     * 通过状态获取订单信息
+     * @param request
+     * @return
+     */
+    @RequestMapping("/list")
+    @ResponseBody
+    public List<OrderCreateVo> loadList(HttpServletRequest request){
+        return orderCreateService.loadList(request);
+    }
+
+
+    /**
+     * 删除
+     * @param request
+     * @return
+     */
+    @RequestMapping("/delete")
+    @ResponseBody
+    public boolean delete(HttpServletRequest request){
+        return orderCreateService.delete(request);
     }
 
 }

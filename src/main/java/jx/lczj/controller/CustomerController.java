@@ -30,7 +30,6 @@ public class CustomerController {
      * 获取所有会员信息
      * @return
      */
-    @Privilege(value = "会员查询")
     @RequestMapping("/list")
     @ResponseBody
     public List<T_customer>loadCustomer(){
@@ -43,7 +42,6 @@ public class CustomerController {
      * @param phone
      * @return
      */
-    @Privilege(value = "会员查询")
     @RequestMapping("/loadByPhone")
     @ResponseBody
     public T_customer loadByVip(String phone){

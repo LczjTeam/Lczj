@@ -3,6 +3,7 @@ package jx.lczj.dao;
 import jx.lczj.model.T_mywear;
 import jx.lczj.model.T_order;
 import jx.lczj.model.T_orderdetail;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
@@ -27,8 +28,8 @@ public interface OrderCreateDao {
      * @param state
      * @return
      */
-    @Insert("INSERT INTO T_ORDER (\"order\" ,CUSTOMER ,ADDRESS , SURE_TIME ,  STATE ) VALUES ( #{0} , #{1} , #{2} , #{3} , #{4} ) ")
-    boolean addOrder(String order, String customer, String address, Date date, int state);
+    @Insert("INSERT INTO T_ORDER (\"order\" ,CUSTOMER ,ADDRESS , SURE_TIME ,  STATE ,VOUCHER,TOTALFEE) VALUES ( #{0} , #{1} , #{2} , #{3} , #{4} , #{5} , #{6} ) ")
+    boolean addOrder(String order, String customer, String address, Date date, int state, int voucher, int totalfee);
 
     /**
      * 创建详情信息
@@ -56,6 +57,45 @@ public interface OrderCreateDao {
     List<T_mywear> loadDetialByOrder(String order);
 
 
+    /**
+     * 获取所有订单详情
+     * @return
+     */
+    @Select("select * from T_ORDER WHERE CUSTOMER = #{0}")
+    List<T_order> list(String customer);
+
+
+    /**
+     * 获取所有订单详情
+     * @return
+     */
+    @Select("select * from T_ORDER WHERE CUSTOMER = #{0}  AND STATE = #{1}")
+    List<T_order> listByState(String customer,int state);
+
+    /**
+     * 更新订单状态
+     * @param order
+     * @param state
+     * @return
+     */
     @Update("update T_ORDER set STATE = #{1}  WHERE \"order\" = #{0} ")
     int updateState(String order, int state);
+
+    /**
+     * 更新优惠券地址
+     * @param order
+     * @param address
+     * @param voucher
+     * @return
+     */
+    @Update("update T_ORDER set ADDRESS = #{1} ,VOUCHER = #{2}  WHERE \"order\" = #{0} ")
+    boolean update(String order, String address,int voucher);
+
+    /**
+     * 删除
+     * @param order
+     * @return
+     */
+    @Delete("DELETE FROM  T_ORDER WHERE \"order\" = #{0} ")
+    boolean delete(String order);
 }
