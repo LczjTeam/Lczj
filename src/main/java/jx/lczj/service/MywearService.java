@@ -72,212 +72,266 @@ public class MywearService {
      * @return
      */
     @Transactional
-    public boolean add(HttpServletRequest request) {
+    public MywearVo add(HttpServletRequest request) {
+
+        try {
+
+            String mywear;
+
+            mywear = UUID.randomUUID().toString().replace("-", "").substring(0, 2) + System.currentTimeMillis();
+            System.out.println("mywear:" + mywear);
 
 
-        String mywear ;
+            Integer occasion = null;  //场景
+            if (request.getParameter("occasion") != null) {
+                occasion = Integer.parseInt(request.getParameter("occasion"));
+            }
+            System.out.println("occasion:" + occasion);
 
-        mywear = UUID.randomUUID().toString().replace("-","").substring(0,2)+System.currentTimeMillis();
-        System.out.println("mywear:"+mywear);
+            String customer = null; //顾客
+            if (request.getParameter("customer") != null) {
+                customer = request.getParameter("customer");
+            }
+            System.out.println("customer:" + customer);
+
+            Integer color = null; //颜色
+            if (request.getParameter("color") != null) {
+                color = Integer.parseInt(request.getParameter("color"));
+            }
+            System.out.println("color:" + color);
 
 
-        Integer occasion = null;  //场景
-        if(request.getParameter("occasion")!=null){
-            occasion = Integer.parseInt(request.getParameter("occasion"));
+            Integer face = null;//脸型
+            if (request.getParameter("face") != null) {
+                face = Integer.parseInt(request.getParameter("face"));
+            }
+            System.out.println("face:" + face);
+
+            Integer age = null;//脸型
+            if (request.getParameter("age") != null) {
+                age = Integer.parseInt(request.getParameter("age"));
+            }
+            System.out.println("age:" + age);
+
+
+            String goods = null;//镜框
+            if (request.getParameter("goods") != null) {
+                goods = request.getParameter("goods");
+            }
+            System.out.println("goods:" + goods);
+
+
+            Integer pupil = -1;//瞳孔
+            if (request.getParameter("eyesdistance") != null) {
+                pupil = Integer.parseInt(request.getParameter("eyesdistance"));
+            }
+            System.out.println("pupil:" + pupil);
+
+
+            String sex = "1";//性别
+            if (request.getParameter("sex") != null) {
+                sex = request.getParameter("sex");
+            }
+            System.out.println("sex:" + sex);
+
+
+            String selfphoto = "";//自拍照
+            if (request.getParameter("selfphoto") != null) {
+                selfphoto = request.getParameter("selfphoto");
+            }
+            System.out.println("selfphoto:" + selfphoto);
+
+
+            String showphoto = "";//试戴照
+            if (request.getParameter("showphoto") != null) {
+                showphoto = request.getParameter("showphoto");
+            }
+            System.out.println("showphoto:" + showphoto);
+
+
+            Integer deal = 0;//是否成交
+            Integer iscart = 0;//是否添加购物车
+            if (request.getParameter("iscart") != null) {
+                iscart = Integer.parseInt(request.getParameter("iscart"));
+            }
+            System.out.println("iscart:" + iscart);
+
+
+            //添加试戴基本信息
+            boolean ok = mywearDao.add(
+                    mywear,
+                    occasion,
+                    customer,
+                    color,
+                    face,
+                    goods,
+                    pupil,
+                    sex,
+                    selfphoto,
+                    showphoto,
+                    deal,
+                    iscart,
+                    age
+            );
+
+
+            //添加左右镜片参数信息
+
+            String left_type = null;
+            if (request.getParameter("left_type") != null) {
+                left_type = request.getParameter("left_type");
+            }
+            System.out.println("left_type:" + left_type);
+
+
+            String left_eyeglass = null;
+            if (request.getParameter("left") != null) {
+                left_eyeglass = request.getParameter("left");
+            }
+            System.out.println("left_eyeglass:" + left_eyeglass);
+
+
+            Integer left_degress = null;
+            if (request.getParameter("left_ds") != null) {
+                left_degress = Integer.parseInt(request.getParameter("left_ds"));
+            }
+            System.out.println("left_degress:" + left_degress);
+
+
+            Integer left_asdegress = null;
+            if (request.getParameter("left_sg") != null) {
+                left_asdegress = Integer.parseInt(request.getParameter("left_sg"));
+            }
+            System.out.println("left_asdegress:" + left_asdegress);
+
+
+            Float left_axis = null;
+            if (request.getParameter("left_zw") != null) {
+                left_axis = Float.parseFloat(request.getParameter("left_zw"));
+            }
+            System.out.println("left_axis:" + left_axis);
+
+
+            String left_sign = "l";
+
+
+            boolean ok1 = mywearDao.addEyeglass(
+                    mywear,
+                    left_eyeglass,
+                    left_degress,
+                    left_asdegress,
+                    left_axis,
+                    left_sign,
+                    left_type.equals("远视") ? 1 : 0
+
+            );
+
+
+            String right_type = null;
+            if (request.getParameter("right_type") != null) {
+                right_type = request.getParameter("right_type");
+            }
+            System.out.println("right_type :" + right_type);
+
+
+            String right_eyeglass = null;
+            if (request.getParameter("right") != null) {
+                right_eyeglass = request.getParameter("right");
+            }
+            System.out.println("right_eyeglass:" + right_eyeglass);
+
+
+            Integer right_degress = null;
+
+            if (request.getParameter("right_ds") != null) {
+                right_degress = Integer.parseInt(request.getParameter("right_ds"));
+            }
+            System.out.println("right_degress:" + right_degress);
+
+
+            Integer right_asdegress = null;
+            if (request.getParameter("right_sg") != null) {
+                right_asdegress = Integer.parseInt(request.getParameter("right_sg"));
+            }
+            System.out.println("right_asdegress:" + right_asdegress);
+
+
+            Float right_axis = null;
+            if (request.getParameter("right_zw") != null) {
+                right_axis = Float.parseFloat(request.getParameter("right_zw"));
+            }
+            System.out.println("right_axis:" + right_axis);
+
+
+            String right_sign = "r";
+
+
+            boolean ok2 = mywearDao.addEyeglass(
+                    mywear,
+                    right_eyeglass,
+                    right_degress,
+                    right_asdegress,
+                    right_axis,
+                    right_sign,
+                    right_type.equals("远视") ? 1 : 0
+            );
+
+
+            T_mywear t = mywearDao.loadById(mywear);
+
+            MywearVo mvo = new MywearVo();
+            mvo.setT_mywear(t);
+            mvo.setT_color(colorDao.loadByColor(t.getColor()));
+            mvo.setT_face(faceDao.loadByFace(t.getFace()));
+            mvo.setT_occasion(occasionDao.loadById(t.getOccasion()));
+
+            //镜框信息
+            GoodsVo gvo = new GoodsVo();
+            T_goods tg = goodDao.loadById(t.getGoods());
+            gvo.setT_goods(tg);
+            gvo.setT_brand(brandDao.loadById(tg.getBrand()));
+            gvo.setT_categories(categoryDao.loadByGoods(t.getGoods()));
+            gvo.setT_colors(colorDao.loadByGood(t.getGoods()));
+            gvo.setT_attachments(goodDao.loadAttachmentByGood(t.getGoods()));
+            mvo.setGoodsVo(gvo);
+
+            //左眼镜片
+            WearglassVo wvol = new WearglassVo();
+            T_wearglass twl = mywearDao.loadWearglassByMywear(t.getMywear(), "l");
+            wvol.setT_wearglass(twl);
+
+            EyeglassVo evol = new EyeglassVo();
+            T_eyeglass tel = eyeglassDao.loadById(twl.getEyeglass());
+            evol.setT_eyeglass(tel);
+            evol.setT_brand(brandDao.loadById(tel.getBrand()));
+            evol.setT_attachments(eyeglassDao.loadAttachmentByEyeglass(tel.getEyeglass()));
+            evol.setT_efficacy(efficacyDao.loadById(tel.getEfficacy()));
+            evol.setT_mask(maskDao.loadById(tel.getMask()));
+            evol.setT_style(styleDao.loadById(tel.getStyle()));
+            wvol.setEyeglassVo(evol);
+
+            mvo.setLeftEyeglass(wvol);
+
+            //右眼镜片
+            WearglassVo wvor = new WearglassVo();
+            T_wearglass twr = mywearDao.loadWearglassByMywear(t.getMywear(), "r");
+            wvor.setT_wearglass(twr);
+
+            EyeglassVo evor = new EyeglassVo();
+            T_eyeglass ter = eyeglassDao.loadById(twl.getEyeglass());
+            evor.setT_eyeglass(ter);
+            evor.setT_brand(brandDao.loadById(ter.getBrand()));
+            evor.setT_attachments(eyeglassDao.loadAttachmentByEyeglass(ter.getEyeglass()));
+            evor.setT_efficacy(efficacyDao.loadById(ter.getEfficacy()));
+            evor.setT_mask(maskDao.loadById(ter.getMask()));
+            evor.setT_style(styleDao.loadById(ter.getStyle()));
+            wvor.setEyeglassVo(evor);
+            mvo.setRightEyeglass(wvor);
+
+            return mvo;
+        }catch(Exception e){
+            throw new RuntimeException(e.getMessage());
         }
-        System.out.println("occasion:"+occasion);
-
-        String customer = null; //顾客
-        if(request.getParameter("customer")!=null){
-            customer = request.getParameter("customer");
-        }
-        System.out.println("customer:"+customer);
-
-        Integer color= null; //颜色
-        if(request.getParameter("color")!=null){
-            color = Integer.parseInt(request.getParameter("color"));
-        }
-        System.out.println("color:"+color);
-
-
-        Integer face= null;//脸型
-        if(request.getParameter("face")!=null){
-            face = Integer.parseInt(request.getParameter("face"));
-        }
-        System.out.println("face:"+face);
-
-        Integer age= null;//脸型
-        if(request.getParameter("age")!=null){
-            age = Integer.parseInt(request.getParameter("age"));
-        }
-        System.out.println("age:"+age);
-
-
-        String goods= null;//镜框
-        if(request.getParameter("goods")!=null){
-            goods = request.getParameter("goods");
-        }
-        System.out.println("goods:"+goods);
-
-
-        Integer pupil= -1;//瞳孔
-        if(request.getParameter("eyesdistance")!=null){
-            pupil = Integer.parseInt(request.getParameter("eyesdistance"));
-        }
-        System.out.println("pupil:"+pupil);
-
-
-        String sex= "1";//性别
-        if(request.getParameter("sex")!=null){
-            sex = request.getParameter("sex");
-        }
-        System.out.println("sex:"+sex);
-
-
-        String selfphoto= "";//自拍照
-        if(request.getParameter("selfphoto")!=null){
-            selfphoto = request.getParameter("selfphoto");
-        }
-        System.out.println("selfphoto:"+selfphoto);
-
-
-        String showphoto= "";//试戴照
-        if(request.getParameter("showphoto")!=null){
-            showphoto = request.getParameter("showphoto");
-        }
-        System.out.println("showphoto:"+showphoto);
-
-
-        Integer deal= 0;//是否成交
-        Integer iscart= 0;//是否添加购物车
-        if(request.getParameter("iscart")!=null){
-            iscart = Integer.parseInt(request.getParameter("iscart"));
-        }
-        System.out.println("iscart:"+iscart);
-
-
-
-        //添加试戴基本信息
-        boolean ok =  mywearDao.add(
-                mywear,
-                occasion,
-                customer,
-                color,
-                face,
-                goods,
-                pupil,
-                sex,
-                selfphoto,
-                showphoto,
-                deal,
-                iscart,
-                age
-        );
-
-
-        //添加左右镜片参数信息
-
-        String left_type = null;
-        if(request.getParameter("left_type")!=null){
-            left_type = request.getParameter("left_type");
-        }
-        System.out.println("left_type:"+left_type);
-
-
-        String left_eyeglass = null;
-        if(request.getParameter("left")!=null){
-            left_eyeglass = request.getParameter("left");
-        }
-        System.out.println("left_eyeglass:"+left_eyeglass);
-
-
-        Integer left_degress = null;
-        if(request.getParameter("left_ds")!=null){
-            left_degress = Integer.parseInt(request.getParameter("left_ds"));
-        }
-        System.out.println("left_degress:"+left_degress);
-
-
-        Integer left_asdegress = null;
-        if(request.getParameter("left_sg")!=null){
-            left_asdegress = Integer.parseInt(request.getParameter("left_sg"));
-        }
-        System.out.println("left_asdegress:"+left_asdegress);
-
-
-        Float left_axis = null;
-        if(request.getParameter("left_zw")!=null){
-            left_axis = Float.parseFloat(request.getParameter("left_zw"));
-        }
-        System.out.println("left_axis:"+left_axis);
-
-
-        String left_sign = "l";
-
-
-        boolean ok1 = mywearDao.addEyeglass(
-                mywear,
-                left_eyeglass,
-                left_degress,
-                left_asdegress,
-                left_axis,
-                left_sign,
-                left_type.equals("远视") ? 1:0
-
-        );
-
-
-        String right_type = null;
-        if(request.getParameter("right_type")!=null){
-            right_type  = request.getParameter("right_type");
-        }
-        System.out.println("right_type :"+right_type );
-
-
-        String right_eyeglass = null;
-        if(request.getParameter("right")!=null){
-            right_eyeglass = request.getParameter("right");
-        }
-        System.out.println("right_eyeglass:"+right_eyeglass);
-
-
-        Integer right_degress = null;
-
-        if(request.getParameter("right_ds")!=null){
-            right_degress = Integer.parseInt(request.getParameter("right_ds"));
-        }
-        System.out.println("right_degress:"+right_degress);
-
-
-        Integer right_asdegress = null;
-        if(request.getParameter("right_sg")!=null){
-            right_asdegress = Integer.parseInt(request.getParameter("right_sg"));
-        }
-        System.out.println("right_asdegress:"+right_asdegress);
-
-
-        Float right_axis = null;
-        if(request.getParameter("right_zw")!=null){
-            right_axis = Float.parseFloat(request.getParameter("right_zw"));
-        }
-        System.out.println("right_axis:"+right_axis);
-
-
-        String right_sign = "r";
-
-
-        boolean ok2 = mywearDao.addEyeglass(
-                mywear,
-                right_eyeglass,
-                right_degress,
-                right_asdegress,
-                right_axis,
-                right_sign,
-                right_type.equals("远视") ? 1:0
-        );
-
-
-        return true;
     }
 
     /**

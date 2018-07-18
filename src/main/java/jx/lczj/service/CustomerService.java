@@ -1,7 +1,9 @@
 package jx.lczj.service;
 
 import jx.lczj.dao.CustomerDao;
+import jx.lczj.dao.NewCustomerDao;
 import jx.lczj.model.T_customer;
+import jx.lczj.model.T_newcustomer;
 import jx.lczj.utils.HttpRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,6 +19,9 @@ import java.util.UUID;
 public class CustomerService {
     @Resource
     CustomerDao  customerDao;
+
+   @Resource
+    NewCustomerDao newCustomerDao ;
 
 
     /**
@@ -64,13 +69,22 @@ public class CustomerService {
             T_customer t_customer = customerDao.loadByPhone(phone);
             if (t_customer == null) {
                 //String path = request.getSession().getServletContext().getRealPath("customerheads");
+
                 String vip = UUID.randomUUID().toString().replace("-", "");
+                int voucher = 0;
+                T_newcustomer t_newcustomer = newCustomerDao.loadByPhone(phone);
+                if(t_newcustomer!=null){
+                    vip = t_newcustomer.getNewcustomer();
+                    voucher = t_newcustomer.getPrize();
+                    boolean ok = newCustomerDao.update(phone, 1);
+                }
+
                 System.out.println(vip.length());
                 String pwd = phone;
                 String birthday = "";
                 String face = "default_head.png";
                 //String face = vip+System.currentTimeMillis()+".png";
-                boolean ok = customerDao.add(vip, name, phone, sex, pwd, birthday, face);
+                boolean ok = customerDao.add(vip, name, phone, sex, pwd, birthday, face,voucher);
                 t_customer = customerDao.loadByPhone(phone);
                 //HttpRequest.downLoadFromUrl(headurl,face,path);
 
