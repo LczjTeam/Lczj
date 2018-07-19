@@ -10,6 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -270,5 +272,32 @@ public class OrderCreateService {
             throw  new RuntimeException(e.getMessage());
         }
 
+    }
+
+    public List<T_order> searchByTime(String customer, String time) {
+        String start = time.substring(0,10);
+        String end = time.substring(13,23);
+        System.out.println("start:"+start);
+        System.out.println("end:"+end);
+
+        Date start_time = new Date();
+        Date end_time = new Date();
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+        try{
+            start_time = sdf.parse(start);
+            end_time = sdf.parse(end);
+        }catch (ParseException e){
+            e.printStackTrace();
+        }
+
+        int i = start_time.compareTo(end_time);
+        if (i > 0){
+            System.out.println("start_time:"+start_time);
+            System.out.println("end_time:"+end_time);
+        }
+
+        return orderCreateDao.searchByTime(customer,start_time,end_time);
     }
 }
