@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="jx.lczj.model.T_goods" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: 14260
   Date: 2018/7/8
@@ -208,9 +208,9 @@
                                 <div class="item-info-product ">
                                     <h4><a href="Single.jsp">${sp.t_goods.name}</a></h4>
                                     <div class="info-product-price">
-                                        <span class="item_price">${sp.t_goods.price}</span>
+                                        <span class="item_price">￥${sp.t_goods.price}</span>
                                     </div>
-                                    <a href="#" class="item_add single-item hvr-outline-out button2">Add to cart</a>
+
                                 </div>
                             </div>
                         </div>
