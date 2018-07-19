@@ -2,12 +2,10 @@ package jx.lczj.dao;
 
 import jx.lczj.model.T_mywear;
 import jx.lczj.model.T_order;
-import jx.lczj.model.T_orderdetail;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
-import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
@@ -98,4 +96,16 @@ public interface OrderCreateDao {
      */
     @Delete("DELETE FROM  T_ORDER WHERE \"order\" = #{0} ")
     boolean delete(String order);
+
+
+    /**
+     * 查询消费信息
+     * @param customer
+     * @param start_time
+     * @param end_time
+     * @return
+     */
+    @Select("select * from T_order where (customer=#{0} or customer in (select customer from T_customer where phone = #{0} )) and sure_time between #{1} and #{2}")
+    List<T_order> searchByTime(String customer, Date start_time, Date end_time);
+
 }
