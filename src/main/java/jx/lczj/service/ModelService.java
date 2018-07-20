@@ -324,7 +324,7 @@ public class ModelService {
 
 
     /**
-     * 获取模特信息
+     * 根据脸形，年龄，性别推荐模特
      * @return
      */
     @Transactional
