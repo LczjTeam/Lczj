@@ -16,8 +16,8 @@ public class NewCusConstroller {
     //添加新用户
     @RequestMapping("add")
     @ResponseBody
-    public boolean add(String phone){
-        return newCusServices.add(phone);
+    public boolean add(String vip,String phone){
+        return newCusServices.add(vip,phone);
     }
 
 
