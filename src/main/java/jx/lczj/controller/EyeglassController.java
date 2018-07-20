@@ -112,5 +112,7 @@ public class EyeglassController {
     public List<EyeglassVo> eyeglasscommend(String degress,String asdegress){
         int degresss = Integer.parseInt(degress);
         int asdegresss = Integer.parseInt(asdegress);
+        System.out.println(degress);
+        System.out.println(asdegress);
         return eyeglassService.eyeglasscommend(degresss,asdegresss);};
 }
