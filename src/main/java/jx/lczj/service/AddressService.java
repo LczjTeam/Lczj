@@ -19,38 +19,43 @@ import java.util.UUID;
 public class AddressService {
 
     @Resource
-    AddressDao addressDao;
+    AddressDao addressDao ;
 
     /**
      * 添加信息
      * @return
      */
+    @Transactional
     public boolean add(HttpServletRequest request){
         /*String address, String customer, String consignee,String phone,
             String street, String provincename,String cityname,String countyname,
             String isdefault*/
-        String address= UUID.randomUUID().toString().replace("-","").substring(3,6)+""+System.currentTimeMillis();
+        try {
+            String address = UUID.randomUUID().toString().replace("-", "").substring(3, 6) + "" + System.currentTimeMillis();
 
 
-        System.out.println("address:"+address);
-        String customer=request.getParameter("customer");
-        System.out.println("custonmer:"+customer);
-        String consignee=request.getParameter("consignee");
-        System.out.println("consignee:"+consignee);
-        String phone=request.getParameter("phone");
-        System.out.println("phone:"+phone);
-        String street=request.getParameter("street");
-        System.out.println("street:"+street);
-        String provincename=request.getParameter("provincename");
-        System.out.println("provincename:"+provincename);
-        String cityname=request.getParameter("cityname");
-        System.out.println("cityname:"+cityname);
-        String countyname=request.getParameter("countyname");
-        System.out.println("countyname:"+countyname);
-        String isdefault=request.getParameter("isdefault");
-        System.out.println("isdefault:"+isdefault);
+            System.out.println("address:" + address);
+            String customer = request.getParameter("customer");
+            System.out.println("custonmer:" + customer);
+            String consignee = request.getParameter("consignee");
+            System.out.println("consignee:" + consignee);
+            String phone = request.getParameter("phone");
+            System.out.println("phone:" + phone);
+            String street = request.getParameter("street");
+            System.out.println("street:" + street);
+            String provincename = request.getParameter("provincename");
+            System.out.println("provincename:" + provincename);
+            String cityname = request.getParameter("cityname");
+            System.out.println("cityname:" + cityname);
+            String countyname = request.getParameter("countyname");
+            System.out.println("countyname:" + countyname);
+            String isdefault = request.getParameter("isdefault");
+            System.out.println("isdefault:" + isdefault);
 
-        return addressDao.add(address,customer,consignee,phone,street,provincename,cityname,countyname,isdefault);
+            return addressDao.add(address, customer, consignee, phone, street, provincename, cityname, countyname, isdefault);
+        }catch (Exception e){
+            throw  new RuntimeException(e.getMessage());
+        }
     }
 
     /**
@@ -66,29 +71,33 @@ public class AddressService {
      * 更新
      * @return
      */
+    @Transactional
     public boolean update(HttpServletRequest request) {
+        try {
 
+            String address = request.getParameter("address");
+            System.out.println("address:" + address);
+            String customer = request.getParameter("customer");
+            System.out.println("custonmer:" + customer);
+            String consignee = request.getParameter("consignee");
+            System.out.println("consignee:" + consignee);
+            String phone = request.getParameter("phone");
+            System.out.println("phone:" + phone);
+            String street = request.getParameter("street");
+            System.out.println("street:" + street);
+            String provincename = request.getParameter("provincename");
+            System.out.println("provincename:" + provincename);
+            String cityname = request.getParameter("cityname");
+            System.out.println("cityname:" + cityname);
+            String countyname = request.getParameter("countyname");
+            System.out.println("countyname:" + countyname);
+            String isdefault = request.getParameter("isdefault");
+            System.out.println("isdefault:" + isdefault);
 
-        String  address=request.getParameter("address");
-        System.out.println("address:"+address);
-        String customer=request.getParameter("customer");
-        System.out.println("custonmer:"+customer);
-        String consignee=request.getParameter("consignee");
-        System.out.println("consignee:"+consignee);
-        String phone=request.getParameter("phone");
-        System.out.println("phone:"+phone);
-        String street=request.getParameter("street");
-        System.out.println("street:"+street);
-        String provincename=request.getParameter("provincename");
-        System.out.println("provincename:"+provincename);
-        String cityname=request.getParameter("cityname");
-        System.out.println("cityname:"+cityname);
-        String countyname=request.getParameter("countyname");
-        System.out.println("countyname:"+countyname);
-        String isdefault=request.getParameter("isdefault");
-        System.out.println("isdefault:"+isdefault);
-
-        return addressDao.update(address,customer,consignee,phone,street,provincename,cityname,countyname,isdefault);
+            return addressDao.update(address, customer, consignee, phone, street, provincename, cityname, countyname, isdefault);
+        }catch (Exception e) {
+            throw new RuntimeException(e.getMessage());
+        }
     }
 
 
@@ -105,7 +114,9 @@ public class AddressService {
      * @param address
      * @return
      */
+    @Transactional
     public boolean updateDefault(String address,String customer) {
+
         System.out.println("address的值："+address);
         System.out.println("customer的值："+customer);
         try {

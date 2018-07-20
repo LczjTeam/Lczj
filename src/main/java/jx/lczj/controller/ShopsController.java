@@ -70,4 +70,13 @@ public class ShopsController {
     public boolean delete(String shop){
         return shopsServices.delete(shop);
     }
+
+    /**
+     * 按序号加载
+     * @param shop
+     * @return
+     */
+    @RequestMapping("/loadById")
+    @ResponseBody
+    public T_shops loadById(String shop){return shopsServices.loadById(shop);}
 }
