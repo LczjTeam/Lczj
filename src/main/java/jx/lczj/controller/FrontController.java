@@ -64,7 +64,7 @@ public class FrontController {
         System.out.println("-----------------开始----------------");
         System.out.println("获取各种眼镜类型的眼镜"+shops);
         System.out.println("------------------结束---------------");
-        model.addAttribute("shops",shops);
+        model.addAttribute("stores",shops);
 
         return "Fronts/index";
     }
