@@ -323,4 +323,28 @@ public class ModelService {
     }
 
 
+    /**
+     * 获取模特信息
+     * @return
+     */
+    @Transactional
+    public List<ModelVo> modelCommend(String face,String age ,String sex) {
+        int faces = Integer.parseInt(face);
+        int ages = Integer.parseInt(age);
+
+        try {
+            List<ModelVo> mvs = new ArrayList<ModelVo>();
+            List<T_model> mds = modelDao.modelCommend(faces,ages,sex);
+            for (T_model m : mds) {
+                ModelVo mv = new ModelVo();
+                mv.setT_face(faceDao.loadByFace(m.getFace()));
+                mv.setT_model(m);
+                mvs.add(mv);
+            }
+            return mvs;
+        }catch (Exception e){
+            throw  new RuntimeException(e.getMessage());
+        }
+
+    }
 }
