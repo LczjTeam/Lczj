@@ -13,7 +13,7 @@ public interface FaceDao {
      * 加载所有脸型
      * @return
      */
-    @Select("select * FROM T_FACE")
+    @Select("select * FROM T_FACE order by face")
     public List<T_face> loadFace();
 
     /**

@@ -51,4 +51,7 @@ public interface OrderDao {
     //更新订单
     @Update("update T_order set TOTALFEE  = #{1} where \"order\" =#{0}")
     boolean update3(String order, String price);
+
+    @Select("select * from T_ORDER where STATE = #{0} order by sure_time asc ")
+    List<T_order> listAllByState(int state);
 }

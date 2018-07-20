@@ -63,6 +63,8 @@ public class OrderCreateService {
     @Resource
     AddressDao addressDao;
 
+    @Resource
+    CustomerDao customerDao;
 
     /**
      * 通过编号获取订单详情
@@ -80,6 +82,7 @@ public class OrderCreateService {
         orderCreateVo.setT_order(t_order);
 
         orderCreateVo.setT_address(addressDao.loadByAddress(t_order.getAddress()));
+        orderCreateVo.setT_customer(customerDao.loadByVip(t_order.getCustomer()));
 
         List<MywearVo>  orderdetailsVos = new ArrayList<MywearVo>();
         List<T_mywear> t_mywears = orderCreateDao.loadDetialByOrder(order);

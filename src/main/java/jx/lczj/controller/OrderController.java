@@ -1,10 +1,12 @@
 package jx.lczj.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import jx.lczj.model.T_order;
 import jx.lczj.service.OrderService;
 import jx.lczj.viewmodel.OrderCreateVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -39,6 +41,14 @@ public class OrderController {
     @RequestMapping("/list")
     @ResponseBody
     public List<T_order> list(){return orderService.list();};
+
+
+    /**
+     * 获取已支付订单
+     */
+    @RequestMapping("/listHasPay")
+    @ResponseBody
+    public List<T_order> listHasPay(){return orderService.listHasPay();};
 
     /**
      * 更新快递名，运单号
@@ -78,4 +88,6 @@ public class OrderController {
     @ResponseBody
     public boolean update3(String order,String price){
         return orderService.update3(order,price);}
+
+
 }
