@@ -52,4 +52,12 @@ public interface ShopsDao {
      */
     @Delete("delete from T_shops where shop=#{0}")
     boolean delete(String shop);
+
+    /**
+     * 按序号加载
+     * @param shop
+     * @return
+     */
+    @Select("select * from T_shops where shop=#{0}")
+    T_shops loadById(String shop);
 }
