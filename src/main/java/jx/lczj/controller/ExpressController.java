@@ -3,6 +3,7 @@ package jx.lczj.controller;
 import jx.lczj.utils.ExpressUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * Created by 14260 on 2018/7/19.
@@ -19,6 +20,7 @@ public class ExpressController {
     * @return
     */
     @RequestMapping("/loadByInfo")
+    @ResponseBody
     public String loadByInfo(String expCode,String expNo){
         return   ExpressUtil.getOrderTracesByJson(expCode,expNo);
     }

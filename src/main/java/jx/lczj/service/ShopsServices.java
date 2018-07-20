@@ -28,4 +28,8 @@ public class ShopsServices {
     public boolean delete(String shop) {
         return shopsDao.delete(shop);
     }
+
+    public T_shops loadById(String shop) {
+        return shopsDao.loadById(shop);
+    }
 }

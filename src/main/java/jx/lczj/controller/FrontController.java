@@ -64,36 +64,61 @@ public class FrontController {
         System.out.println("-----------------开始----------------");
         System.out.println("获取各种眼镜类型的眼镜"+shops);
         System.out.println("------------------结束---------------");
-        model.addAttribute("shops",shops);
+        model.addAttribute("stores",shops);
 
         return "Fronts/index";
     }
 
     @RequestMapping(value = "/newgoods")
-    public String newgoods(String type,Model model, HttpServletRequest request){
+    public String newgoods(int page,String type,Model model, HttpServletRequest request){
 
         /**
          * 获取眼镜类型
          */
         List<T_category> categories = frontService.loadCategories();
-//        System.out.println("-----------------开始----------------");
-//        System.out.println("获取各种眼镜类型:"+categories);
-//        System.out.println("------------------结束---------------");
+        System.out.println("-----------------开始----------------");
+        System.out.println("获取各种眼镜类型:"+categories);
+        System.out.println("------------------结束---------------");
         model.addAttribute("categories",categories);
 
 
         /**
          * 获取各种眼镜类型的眼镜
          */
-        String category =  type.equals("1")? (""+categories.get(0).getCategory()):type;
-        List<GoodsVo> goods = frontService.loadGoodsByCategory(category);
-//        System.out.println("-----------------开始----------------");
-//        System.out.println("获取各种眼镜类型的眼镜loadShop2:"+goods);
-//        System.out.println("------------------结束---------------");
+        //        System.out.println(start);
+        //        System.out.println(length);
+
+        String category = type.equals("1") ? (""+categories.get(0).getCategory()):type;
+
+        int length = 8;
+        int start = length*(page-1);
+        List<GoodsVo> goodsList = frontService.loadGoodsByCategoryList(category);
+
+        int pagerNum = pagerNum(goodsList.size(),length);
+        model.addAttribute("pagerNum",pagerNum);
+        model.addAttribute("page",page);
+        model.addAttribute("type",type);
+
+
+        List<GoodsVo> goods = frontService.loadGoodsByCategory_pager(start,length,category);
+        int goods_size = goods.size();
+        System.out.println(goods_size);
+        System.out.println("-----------------开始----------------");
+        System.out.println("获取各种眼镜类型的眼镜loadShop2:"+goods);
+        System.out.println("------------------结束---------------");
         model.addAttribute("shops",goods);
 
         return "Fronts/newgoods";
     }
+
+    public int pagerNum(int goodListNum,int length){
+        if (goodListNum%length==0){
+            return goodListNum/length;
+        }else{
+            return goodListNum/length+1;
+        }
+    }
+
     /**
      * 知识百科
      */

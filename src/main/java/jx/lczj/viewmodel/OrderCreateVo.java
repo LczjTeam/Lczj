@@ -1,6 +1,7 @@
 package jx.lczj.viewmodel;
 
 import jx.lczj.model.T_address;
+import jx.lczj.model.T_customer;
 import jx.lczj.model.T_order;
 
 import java.util.List;
@@ -12,16 +13,8 @@ public class OrderCreateVo {
 
     private T_order t_order;
     private T_address t_address;
+    private T_customer t_customer;
     private List<MywearVo> mywearVos;
-
-    @Override
-    public String toString() {
-        return "OrderCreateVo{" +
-                "t_order=" + t_order +
-                ", t_address=" + t_address +
-                ", mywearVos=" + mywearVos +
-                '}';
-    }
 
     public T_order getT_order() {
         return t_order;
@@ -39,11 +32,29 @@ public class OrderCreateVo {
         this.t_address = t_address;
     }
 
+    public T_customer getT_customer() {
+        return t_customer;
+    }
+
+    public void setT_customer(T_customer t_customer) {
+        this.t_customer = t_customer;
+    }
+
     public List<MywearVo> getMywearVos() {
         return mywearVos;
     }
 
     public void setMywearVos(List<MywearVo> mywearVos) {
         this.mywearVos = mywearVos;
+    }
+
+    @Override
+    public String toString() {
+        return "OrderCreateVo{" +
+                "t_order=" + t_order +
+                ", t_address=" + t_address +
+                ", t_customer=" + t_customer +
+                ", mywearVos=" + mywearVos +
+                '}';
     }
 }

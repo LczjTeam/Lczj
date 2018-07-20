@@ -64,12 +64,12 @@
                     <h4>店面信息</h4>
                     <ul>
 
-                        <c:forEach items="${shops}" var="shopAddress">
+                        <c:forEach items="${stores}" var="shopAddress">
                         <li  id="${shopAddress.shop}" data-toggle="tooltip" data-placement="right" title="<div style='width:100px;color:#fda30e ;font-family: 华文楷体;font-size: 14px ;background-color: #4c7671c9;'>
-    <p>店名：${shopAddress.name}</p>
-    <p>地址：${shopAddress.address}</p>
-    <p>电话：${shopAddress.phone}</p>
-    <div>" ><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>地点 : ${shopAddress.name} : ${shopAddress.address}</li>
+                        <p>店名：${shopAddress.name}</p>
+                        <p>地址：${shopAddress.address}</p>
+                        <p>电话：${shopAddress.phone}</p>
+                        <div>" ><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>地点 : ${shopAddress.name} : ${shopAddress.address}</li>
                        <%-- <li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i>Email : <a href="mailto:info@example.com">info@example.com</a></li>
                         <li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>电话 : +1234 567 567</li>--%>
                         <script>
@@ -105,7 +105,7 @@
             <div class="modal-body modal-spa">
                 <div class="login-grids">
                     <div class="login">
-                        <c:forEach items="${shops}" var="shopall">
+                        <c:forEach items="${stores}" var="shopall">
                         <div class="login-bottom">
                            <h3 > <span class="glyphicon glyphicon-home">&nbsp;</span>${shopall.name}</h3>
                             <form>

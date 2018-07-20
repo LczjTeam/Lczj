@@ -2,6 +2,7 @@ package jx.lczj.service;
 
 import jx.lczj.dao.CustomerDao;
 import jx.lczj.dao.NewCustomerDao;
+import jx.lczj.dao.RewardDao;
 import jx.lczj.model.T_customer;
 import jx.lczj.model.T_newcustomer;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,9 +20,12 @@ public class NewCusServices {
     @Autowired
     CustomerDao customerDao;
 
+    @Autowired
+    RewardDao rewardDao;
 
 
-    public boolean add(String phone) {
+
+    public boolean add(String vip,String phone) {
 
         try {
             boolean ok=false;
@@ -31,7 +35,7 @@ public class NewCusServices {
 
                 String newcustomer = UUID.randomUUID().toString().replace("-", "");
                 ok = newCustomerDao.add(newcustomer,phone,new Date(),0,10);
-
+                ok = rewardDao.add(vip,newcustomer,0,new Date(),10);
             }
             return ok;
 

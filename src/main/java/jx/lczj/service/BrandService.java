@@ -5,6 +5,7 @@ import jx.lczj.model.T_brand;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
 import java.util.List;
 
@@ -75,8 +76,14 @@ public class BrandService {
      * 获取镜片信息
      * @return
      */
-    public List<T_brand> loadList1() {
-        return brandDao.loadList1();
+    public List<T_brand> loadList1(HttpServletRequest request) {
+
+        String recommend = request.getParameter("recommend");
+        if(recommend == null) {
+            return brandDao.loadList1();
+        }else{
+            return brandDao.loadListByRecommend();
+        }
     }
 
     /**
