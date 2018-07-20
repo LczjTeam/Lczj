@@ -44,19 +44,27 @@ $(document).ready(function () {
                 var ss =    '<div class="timeline-item " style="margin:10px auto;width: 70%;">'+
                                 '<div class="col-sm-3 ">'+
                                 '快递公司：'+
+                                '</div>'+
+                                '<div class="col-sm-9  no-top-border">'+
+                                    '<p class="m-b-xs"><strong id="expressname">'+data.express+'</strong></p>'+
+                                '</div>'+
                             '</div>'+
-                            '<div class="col-sm-9  no-top-border">'+
-                                '<p class="m-b-xs"><strong id="expressname">'+data.express+'</strong></p>'+
-                                '</div>'+
-                                '</div>'+
-                                '<div class="timeline-item " style="margin:10px auto;width: 70%;">'+
+                            '<div class="timeline-item " style="margin:10px auto;width: 70%;">'+
                                 '<div class="col-sm-3 ">'+
                                 '快递编号：'+
-                            '</div>'+
-                            '<div class="col-sm-9  no-top-border">'+
-                                '<p class="m-b-xs"><strong id="expressid">'+data.expressid+'</strong></p>'+
                                 '</div>'+
-                                '</div>';
+                                '<div class="col-sm-9  no-top-border">'+
+                                    '<p class="m-b-xs"><strong id="expressid">'+data.expressid+'</strong></p>'+
+                                '</div>'+
+                            '</div>'+
+                            '<div class="timeline-item " style="margin:10px auto;width: 70%;">'+
+                                '<div class="col-sm-3 ">'+
+                                '快递状态：'+
+                                '</div>'+
+                                '<div class="col-sm-9  no-top-border">'+
+                                    '<p class="m-b-xs"><strong id="express-state">'+(data.object.State == 2 ?'在途中': (data.object.State == 3 ? '已签收':'问题件' )) +'</strong></p>'+
+                                '</div>'+
+                            '</div>';
                 $('#express-info').html(ss);
 
             }, error: function (data) {
