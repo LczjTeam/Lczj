@@ -108,6 +108,15 @@ public class FrontController {
         System.out.println("------------------结束---------------");
         model.addAttribute("shops",goods);
 
+        /**
+         *获取前三家门店
+         */
+        List<T_shops> shops = frontService.listShop();
+        System.out.println("-----------------开始----------------");
+        System.out.println("获取各种眼镜类型的眼镜"+shops);
+        System.out.println("------------------结束---------------");
+        model.addAttribute("stores",shops);
+
         return "Fronts/newgoods";
     }
 
@@ -132,7 +141,19 @@ public class FrontController {
         List<NewsVo> newsVos = newsService.listitem(c);
        /* System.out.println("知识百科："+newsVos);*/
         model.addAttribute("news",newsVos);
+
+        /**
+         *获取前三家门店
+         */
+        List<T_shops> shops = frontService.listShop();
+        System.out.println("-----------------开始----------------");
+        System.out.println("获取各种眼镜类型的眼镜"+shops);
+        System.out.println("------------------结束---------------");
+        model.addAttribute("stores",shops);
+
         return "Fronts/knowledge";
+
+
     }
 
 }
