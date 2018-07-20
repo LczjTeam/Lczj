@@ -1,5 +1,6 @@
 package jx.lczj.controller;
 
+import jx.lczj.model.T_order;
 import jx.lczj.service.OrderCreateService;
 import jx.lczj.viewmodel.OrderCreateVo;
 import org.springframework.stereotype.Controller;
@@ -21,6 +22,12 @@ public class OrderCreateController {
     @Resource
     OrderCreateService orderCreateService;
 
+
+    @RequestMapping("/searchByTime")
+    @ResponseBody
+    public List<T_order> searchByTime(String customer,String time){
+        return orderCreateService.searchByTime(customer,time);
+    }
 
 
     /**

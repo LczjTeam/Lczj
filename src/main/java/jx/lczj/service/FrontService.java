@@ -1,8 +1,11 @@
 package jx.lczj.service;
 
-import jx.lczj.dao.*;
+import jx.lczj.dao.CategoryDao;
+import jx.lczj.dao.GoodDao;
+import jx.lczj.dao.ShopsDao;
 import jx.lczj.model.T_category;
 import jx.lczj.model.T_goods;
+import jx.lczj.model.T_shops;
 import jx.lczj.viewmodel.GoodsVo;
 import org.springframework.stereotype.Service;
 
@@ -13,10 +16,13 @@ import java.util.List;
 @Service
 public class FrontService {
     @Resource
-    GoodDao goodDao;
+    GoodDao goodDao ;
 
     @Resource
-    CategoryDao categoryDao;
+    CategoryDao categoryDao ;
+
+    @Resource
+    ShopsDao shopsDao;
 
     /**
      * 获取排行前五的眼镜
@@ -40,7 +46,7 @@ public class FrontService {
     }
 
     /**
-     * 通过类别获取全部的眼镜
+     * 获取全部的眼镜
      * @return
      */
     public List<List<GoodsVo>> listGoods(List<T_category> categories) {
@@ -84,33 +90,10 @@ public class FrontService {
     }
 
     /**
-     * 通过眼镜类别获取相应类别的start-end范围的眼镜
-     * @return
-     */
-    public List<GoodsVo> loadGoodsByCategory_pager(int start,int length,String category) {
-
-        try {
-            List<T_goods> list = goodDao.loadGoodsByCategory_pager(start,start+length,Integer.parseInt(category));
-            List<GoodsVo> gvos = new ArrayList<GoodsVo>();
-            for (T_goods t : list) {
-                GoodsVo gvo = new GoodsVo();
-                gvo.setT_goods(t);
-                gvo.setT_categories(categoryDao.loadByGoods(t.getGoods()));
-                gvo.setT_attachments(goodDao.loadAttachmentByGood(t.getGoods()));
-                gvos.add(gvo);
-            }
-            return gvos;
-        }catch (Exception e){
-            throw  new RuntimeException(e.getMessage());
-        }
-
-    }
-
-    /**
      * 通过眼镜类别获取相应类别的全部眼镜
      * @return
      */
-    public List<GoodsVo> loadGoodsByCategoryList(String category) {
+    public List<GoodsVo> loadGoodsByCategory(String category) {
 
         try {
             List<T_goods> list = goodDao.loadGoodsByCategory(Integer.parseInt(category));
@@ -129,4 +112,11 @@ public class FrontService {
 
     }
 
+    /**
+     * 获取前三家门店
+     * @return
+     */
+    public List<T_shops> listShop() {
+        return shopsDao.list1();
+    }
 }
