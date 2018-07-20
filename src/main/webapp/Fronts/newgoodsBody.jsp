@@ -176,13 +176,5 @@
 </div>
 </div>
 
-<%--<script>--%>
-
-    <%--$(function(){--%>
-        <%--$('#start_page a').removeAttr('href');//去掉a标签中的href属性--%>
-        <%--$('.disableCss').removeAttr('onclick');//去掉a标签中的onclick事件--%>
-    <%--});--%>
-
-<%--</script>--%>
 
 
