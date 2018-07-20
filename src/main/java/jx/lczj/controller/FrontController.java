@@ -86,7 +86,7 @@ public class FrontController {
          * 获取各种眼镜类型的眼镜
          */
         //        System.out.println(start);
-//        System.out.println(length);
+        //        System.out.println(length);
 
         String category = type.equals("1") ? (""+categories.get(0).getCategory()):type;
 
