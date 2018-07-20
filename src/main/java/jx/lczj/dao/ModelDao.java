@@ -58,6 +58,13 @@ public interface ModelDao {
     @Update("update T_MODEL set  NAME  = #{1},AGE = #{2},SEX = #{3} ,FACE = #{4} ,PHOTO = #{5} where MODEL = #{0}")
     boolean update(int i, String name, int age, String sex, int face, String fileName);
 
+    /**
+     * 根据脸形，年龄，性别推荐模特
+     * @param face
+     * @param age
+     * @param sex
+     * @return
+     */
     List<T_model> modelCommend(
             @Param("faces") int face,
             @Param("ages") int age,

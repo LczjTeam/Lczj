@@ -3,7 +3,7 @@
 <mapper namespace="jx.lczj.dao.ModelDao">
 
 
-<!-- 根据品牌、功能、价格对镜片进行筛选-->
+<!-- 根据脸形，年龄，性别推荐模特-->
 <select id="modelCommend" resultType="jx.lczj.model.T_model">
    select tm.* from t_model tm,T_AGESECTION ta
    <where>
