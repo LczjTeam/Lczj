@@ -1,10 +1,7 @@
 package jx.lczj.dao;
 
 import jx.lczj.model.T_model;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -60,4 +57,9 @@ public interface ModelDao {
      */
     @Update("update T_MODEL set  NAME  = #{1},AGE = #{2},SEX = #{3} ,FACE = #{4} ,PHOTO = #{5} where MODEL = #{0}")
     boolean update(int i, String name, int age, String sex, int face, String fileName);
+
+    List<T_model> modelCommend(
+            @Param("faces") int face,
+            @Param("ages") int age,
+            @Param("sexes") String sex);
 }

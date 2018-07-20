@@ -90,4 +90,15 @@ public class ModelController {
         return  modelService.update(model,name,sex,face,age,file, request);
 
     }
+
+    /**
+     * 推荐模特
+     * @return
+     */
+    @RequestMapping("/modelCommend")
+    @ResponseBody
+    public List<ModelVo> modelCommend(String face,String age ,String sex){
+        System.out.println(" face:"+ face+" age:"+ age+" sex:"+ sex);
+        return modelService.modelCommend(face,age,sex);
+    }
 }
