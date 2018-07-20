@@ -69,4 +69,7 @@ public interface BrandDao {
      */
     @Select("select * from T_BRAND where TYPE = 1 or TYPE = 0 ")
     List<T_brand> loadList2();
+
+    @Select("select * from T_BRAND where (TYPE = 2 or TYPE = 0) and recommend  = 1 ")
+    List<T_brand> loadListByRecommend();
 }
