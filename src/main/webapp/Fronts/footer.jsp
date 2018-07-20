@@ -105,7 +105,7 @@
             <div class="modal-body modal-spa">
                 <div class="login-grids">
                     <div class="login">
-                        <c:forEach items="${shops}" var="shopall">
+                        <c:forEach items="${stores}" var="shopall">
                         <div class="login-bottom">
                            <h3 > <span class="glyphicon glyphicon-home">&nbsp;</span>${shopall.name}</h3>
                             <form>
