@@ -1,6 +1,7 @@
 package jx.lczj.dao;
 
 import jx.lczj.model.T_newcustomer;
+import jx.lczj.model.T_reward;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
@@ -37,4 +38,30 @@ public interface NewCustomerDao {
      */
     @Select("select * from T_newcustomer where phone=#{0}")
     T_newcustomer loadByPhone(String phone);
+
+    /**
+     * * 通过用户编号获取新用户信息
+     * @param customer
+     * @return
+     */
+    @Select("select * from T_newcustomer where NEWCUSTOMER =#{0}")
+    T_newcustomer loadByNewcustomer(String customer);
+
+    /**
+     * 通过新用户编号获取奖励推荐
+     * @param newcustomer
+     * @return
+     */
+    @Select("select * from T_REWARD where NEWCUSTOMER =#{0}")
+    T_reward loadRewardByNewCustomer(String newcustomer);
+
+
+    /**
+     * 更新新用户状态
+     * @param newcustomer
+     * @param status
+     * @return
+     */
+    @Update("update T_newcustomer set status=#{1} where newcustomer =#{0}")
+    boolean updateStatus(String newcustomer, int status);
 }

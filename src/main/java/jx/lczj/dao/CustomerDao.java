@@ -72,4 +72,8 @@ public  interface CustomerDao {
 
     @Update("update T_CUSTOMER set VOUCHER =  VOUCHER - #{1} WHERE vip = #{0}")
     boolean updateVoucher(String customer, int voucher);
+
+    @Update("update T_CUSTOMER set VOUCHER =  VOUCHER + #{1} WHERE vip = #{0}")
+    boolean updateAddVoucher(String customer, int voucher);
+
 }

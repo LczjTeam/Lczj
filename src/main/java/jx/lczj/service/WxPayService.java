@@ -1,11 +1,10 @@
 package jx.lczj.service;
 
-import jx.lczj.dao.AddressDao;
-import jx.lczj.dao.CustomerDao;
-import jx.lczj.dao.MywearDao;
-import jx.lczj.dao.OrderCreateDao;
+import jx.lczj.dao.*;
 import jx.lczj.model.T_address;
+import jx.lczj.model.T_newcustomer;
 import jx.lczj.model.T_order;
+import jx.lczj.model.T_reward;
 import jx.lczj.utils.WXPayUtil;
 import jx.lczj.viewmodel.Result;
 import org.dom4j.DocumentException;
@@ -32,6 +31,12 @@ public class WxPayService {
 
     @Autowired
     CustomerDao customerDao ;
+
+    @Autowired
+    NewCustomerDao newCustomerDao;
+
+    @Autowired
+    RewardDao rewardDao;
 
     @Autowired
     MywearDao   mywearDao ;
@@ -254,6 +259,25 @@ public class WxPayService {
                 boolean ok = customerDao.updateVoucher(t_order.getCustomer(),t_order.getVoucher());
 
                 int n =  orderCreateDao.updateState(order , 1);
+
+                if(t_order.getVoucher()!=0){
+
+                    /**
+                     * 检测是否被推荐 并获取信息
+                     */
+                    T_newcustomer t_newcustomer = newCustomerDao.loadByNewcustomer(t_order.getCustomer());
+                    if(t_newcustomer.getStatus() != 2){
+                        //获取推荐奖励信息
+                        T_reward t_reward = newCustomerDao.loadRewardByNewCustomer(t_newcustomer.getNewcustomer());
+                        //更新推荐用户奖励
+                        boolean ok1 = customerDao.updateAddVoucher(t_reward.getCustomer(),t_reward.getPrize());
+                        //更新奖励状态
+                        boolean ok2 = rewardDao.update(t_reward.getCustomer(),t_newcustomer.getNewcustomer(),1);
+                        //更新新用户状态
+                        boolean ok3 = newCustomerDao.updateStatus(t_newcustomer.getNewcustomer(),2);
+                    }
+                }
+
                 System.out.println(n);
                 if(n!=1){
                     resXml = "<xml>" + "<return_code><![CDATA[FAIL]]></return_code>"
