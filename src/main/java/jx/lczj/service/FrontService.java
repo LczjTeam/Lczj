@@ -90,10 +90,34 @@ public class FrontService {
     }
 
     /**
+     * 通过眼镜类别获取相应类别的start-end范围的眼镜
+     * @return
+     */
+    public List<GoodsVo> loadGoodsByCategory_pager(int start,int length,String category) {
+
+        try {
+            List<T_goods> list = goodDao.loadGoodsByCategory_pager(start,start+length,Integer.parseInt(category));
+            List<GoodsVo> gvos = new ArrayList<GoodsVo>();
+            for (T_goods t : list) {
+                GoodsVo gvo = new GoodsVo();
+                gvo.setT_goods(t);
+                gvo.setT_categories(categoryDao.loadByGoods(t.getGoods()));
+                gvo.setT_attachments(goodDao.loadAttachmentByGood(t.getGoods()));
+                gvos.add(gvo);
+            }
+            return gvos;
+        }catch (Exception e){
+            throw  new RuntimeException(e.getMessage());
+        }
+
+    }
+
+
+    /**
      * 通过眼镜类别获取相应类别的全部眼镜
      * @return
      */
-    public List<GoodsVo> loadGoodsByCategory(String category) {
+    public List<GoodsVo> loadGoodsByCategoryList(String category) {
 
         try {
             List<T_goods> list = goodDao.loadGoodsByCategory(Integer.parseInt(category));
