@@ -92,7 +92,7 @@ public class ModelController {
     }
 
     /**
-     * 推荐模特
+     * 根据脸形，年龄，性别推荐模特
      * @return
      */
     @RequestMapping("/modelCommend")

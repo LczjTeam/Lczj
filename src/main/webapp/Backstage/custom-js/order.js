@@ -18,7 +18,7 @@ $(document).ready(function () {
     });
 
     $("#order_table_wrapper").find('.row')[0].remove();
-        //查看全部订单
+    //查看全部订单
     var params = {};
     $.ajax({
         async: false,
@@ -56,9 +56,10 @@ $(document).ready(function () {
             return;
         }
     });
-    $("#loading-occasion").css('display', 'none');
+    $("#loading-order").css('display', 'none');
     //初始化时间
     var time = {};
+
     function init() {
         //定义locale汉化插件
         var locale = {
@@ -95,20 +96,19 @@ $(document).ready(function () {
             function (start, end) {
                 $('#daterange-btn span').html(start.format('YYYY-MM-DD') + ' - ' + end.format('YYYY-MM-DD'));
                 time.start = start.format('YYYY-MM-DD');
-                time.end= end.format('YYYY-MM-DD');
+                time.end = end.format('YYYY-MM-DD');
             }
         );
     };
     init();
     //将已有的查询框掩藏
-    $("#order_table_wrapper.row" ).hide();
-
+    $("#order_table_wrapper.row").hide();
 
 
     //通过时间查找查看
     $("#seachByTime").click(function (e) {
 
-       // alert(time.start+":"+time.end);
+        // alert(time.start+":"+time.end);
         $.ajax({
             async: false,
             type: "POST",
@@ -117,7 +117,7 @@ $(document).ready(function () {
             dataType: "json",
             success: function (data) {
                 console.log(JSON.stringify(data, null, 4));
-                if (data!=null) {
+                if (data != null) {
                     table.dataTable().fnClearTable();
                     for (var i = 0; i < data.length; i++) {
 
@@ -131,13 +131,13 @@ $(document).ready(function () {
                         ]);
                     }
                 }
-                if (data == null){
+                if (data == null) {
                     table.dataTable().fnClearTable();
                 }
             },
             error: function (data) {
                 console.log(data);
-             //   alert("数据获取失败 ！");
+                //   alert("数据获取失败 ！");
                 swal({
                     title: "数据获取失败！",
                     text: "",
@@ -154,8 +154,8 @@ $(document).ready(function () {
     });
     //通过订单号
     $("#seachByid").click(function (e) {
-        var seachOrder= {};
-         seachOrder.order = $("#seachValue").val();
+        var seachOrder = {};
+        seachOrder.order = $("#seachValue").val();
         $.ajax({
             async: false,
             type: "POST",
@@ -165,19 +165,19 @@ $(document).ready(function () {
             success: function (data) {
                 console.log(JSON.stringify(data, null, 4));
 
-                   if(data != null){
-                       table.dataTable().fnClearTable();
-                        var itm = data;
-                        table.fnAddData([
-                            itm.order,
-                            itm.sure_time,
-                            itm.voucher,
-                            itm.totalfee,
-                            '<a class="View"  ><i class="fa fa-eye"></i>&nbsp;查看</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="edit"  ><i class="fa fa-edit"></i>&nbsp;编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="delete" ><i class="fa fa-trash"></i>&nbsp;删除</a>'
-                        ]);
-                   }
+                if (data != null) {
+                    table.dataTable().fnClearTable();
+                    var itm = data;
+                    table.fnAddData([
+                        itm.order,
+                        itm.sure_time,
+                        itm.voucher,
+                        itm.totalfee,
+                        '<a class="View"  ><i class="fa fa-eye"></i>&nbsp;查看</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="edit"  ><i class="fa fa-edit"></i>&nbsp;编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="delete" ><i class="fa fa-trash"></i>&nbsp;删除</a>'
+                    ]);
+                }
 
-                if (data == null){
+                if (data == null) {
                     table.dataTable().fnClearTable();
                 }
             },
@@ -203,6 +203,7 @@ $(document).ready(function () {
     var EditRow = -1;
     table.on('click', '.View', function (e) {
         $("#page_order_list").hide();
+        $("#loading-order").css('display', 'block');
         e.preventDefault();
         var nRow = $(this).parents('tr')[0];
         EditRow = nRow;
@@ -233,7 +234,7 @@ $(document).ready(function () {
                     var price = 0;
                     var voucher = item.t_order.voucher;
 
-                    var  str = '';
+                    var str = '';
 
                     for (var i = 0; i < item.mywearVos.length; i++) {
 
@@ -243,10 +244,10 @@ $(document).ready(function () {
                             '                        <tbody>\n' +
                             '                        <tr>\n' +
                             '                            <td class="project-people" style="width:60px;">\n' +
-                            '                                <a href="projects.html"><img alt="image" class="img-circle" src="img/a3.jpg"></a>\n' +
+                            '                                <img alt="image" class="img-circle" src="../goods/'+param.goodsVo.t_attachments[0].path+'">\n' +
                             '                            </td>\n' +
                             '                            <td class="project-title bold">\n' +
-                                                        param.goodsVo.t_goods.name + "(" + param.goodsVo.t_goods.models + ")" + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;颜色:" + param.t_color.name + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;脸型:" + param.t_face.name + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;场景:" + param.t_occasion.name+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;品牌:"+param.goodsVo.t_brand.name+
+                            param.goodsVo.t_goods.name + "(" + param.goodsVo.t_goods.models + ")" + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;颜色:" + param.t_color.name + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;脸型:" + param.t_face.name + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;场景:" + param.t_occasion.name + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;品牌:" + param.goodsVo.t_brand.name +
                             '                                <br/>\n' +
                             '\n' +
                             '                            </td>\n' +
@@ -254,15 +255,15 @@ $(document).ready(function () {
                             '                                <small>数量：1</small>\n' +
                             '                            </td>\n' +
                             '                            <td class="project-completion">\n' +
-                            '                                <small>价格：￥'+param.goodsVo.t_goods.price+'</small>\n' +
+                            '                                <small>价格：￥' + param.goodsVo.t_goods.price + '</small>\n' +
                             '                            </td>\n' +
                             '                        </tr>\n' +
                             '                        <tr>\n' +
                             '                            <td class="project-people " style="width: 60px;">\n' +
-                            '                                <a href="projects.html"><img alt="image" class="img-circle" src="img/a3.jpg"></a>\n' +
+                            '                                <img alt="image" class="img-circle" src="../goods/'+param.leftEyeglass.eyeglassVo.t_attachments[0].path+'">\n' +
                             '                            </td>\n' +
                             '                            <td class="project-title bold">\n' +
-                                                                param.leftEyeglass.eyeglassVo.t_eyeglass.name + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;功能:" + param.leftEyeglass.eyeglassVo.t_efficacy.name + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;样式:" + param.leftEyeglass.eyeglassVo.t_style.name + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;膜层:" + param.leftEyeglass.eyeglassVo.t_mask.name+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;品牌:"+ param.leftEyeglass.eyeglassVo.t_brand.name+
+                            param.leftEyeglass.eyeglassVo.t_eyeglass.name + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;功能:" + param.leftEyeglass.eyeglassVo.t_efficacy.name + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;样式:" + param.leftEyeglass.eyeglassVo.t_style.name + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;膜层:" + param.leftEyeglass.eyeglassVo.t_mask.name + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;品牌:" + param.leftEyeglass.eyeglassVo.t_brand.name +
                             '                                <br/>\n' +
                             '\n' +
                             '                            </td>\n' +
@@ -270,7 +271,7 @@ $(document).ready(function () {
                             '                                <small>数量：1</small>\n' +
                             '                            </td>\n' +
                             '                            <td class="project-completion">\n' +
-                            '                                <small>价格：￥'+param.leftEyeglass.eyeglassVo.t_eyeglass.price+'</small>\n' +
+                            '                                <small>价格：￥' + param.leftEyeglass.eyeglassVo.t_eyeglass.price + '</small>\n' +
                             '                            </td>\n' +
                             '\n' +
                             '                        </tr>\n' +
@@ -279,7 +280,7 @@ $(document).ready(function () {
                             '                                左眼: ' +
                             '                            </td>\n' +
                             '                            <td class="project-title" colspan="3">\n' +
-                            "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + param.leftEyeglass.eyeglassVo.t_eyeglass.name+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;度数:" + param.leftEyeglass.t_wearglass.degress+  "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;散光度数:" + param.leftEyeglass.t_wearglass.asdegress + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;散光轴位:" + param.leftEyeglass.t_wearglass.axis +
+                            "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + param.leftEyeglass.eyeglassVo.t_eyeglass.name + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;度数:" + param.leftEyeglass.t_wearglass.degress + "&nbsp;度" + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;散光度数:" + param.leftEyeglass.t_wearglass.asdegress + "&nbsp;度" + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;散光轴位:" + param.leftEyeglass.t_wearglass.axis + "&nbsp;度" +
                             '                            </td>\n' +
                             '\n' +
                             '                        </tr>\n' +
@@ -288,60 +289,25 @@ $(document).ready(function () {
                             '                                右眼:' +
                             '                            </td>\n' +
                             '                            <td class="project-title" colspan="3">\n' +
-                            "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + param.rightEyeglass.eyeglassVo.t_eyeglass.name+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;度数:" + param.rightEyeglass.t_wearglass.degress + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;散光度数:" + param.rightEyeglass.t_wearglass.asdegress + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;散光轴位:" + param.rightEyeglass.t_wearglass.axis +
+                            "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + param.rightEyeglass.eyeglassVo.t_eyeglass.name + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;度数:" + param.rightEyeglass.t_wearglass.degress + "&nbsp;度" + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;散光度数:" + param.rightEyeglass.t_wearglass.asdegress + "&nbsp;度" + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;散光轴位:" + param.rightEyeglass.t_wearglass.axis + "&nbsp;度" +
                             '                            </td>\n' +
                             '\n' +
-                            '                        </tr>\n'+
+                            '                        </tr>\n' +
                             '                        </tbody>\n' +
                             '                    </table>\n' +
                             '                    <br/>'
 
 
-
-
-/*
-                        //镜框
-                        view_edit_tables.fnAddData([
-                            param.goodsVo.t_goods.name + "(" + param.goodsVo.t_goods.models + ")" + "    颜色：" + param.t_color.name + "    脸型：" + param.t_face.name + "    场景：" + param.t_occasion.name,
-                            param.goodsVo.t_brand.name,
-                            "1",
-                            param.goodsVo.t_goods.price,
-                            param.goodsVo.t_goods.price,
-                        ]);
-
-                        //镜片
-                        view_edit_tables.fnAddData([
-                            "镜片：   " + param.leftEyeglass.eyeglassVo.t_eyeglass.name + "    功能：" + param.leftEyeglass.eyeglassVo.t_efficacy.name + "    样式：" + param.leftEyeglass.eyeglassVo.t_style.name + "    膜层：" + param.leftEyeglass.eyeglassVo.t_mask.name ,
-                            param.leftEyeglass.eyeglassVo.t_brand.name,
-                            "1",
-                            param.leftEyeglass.eyeglassVo.t_eyeglass.price,
-                            param.leftEyeglass.eyeglassVo.t_eyeglass.price,
-
-                        ]);
-                        view_edit_tables.fnAddData([
-                            "左镜片：   " + "    度数：" + param.leftEyeglass.t_wearglass.degress + "    散光度数：" + param.leftEyeglass.t_wearglass.asdegress + "    散光轴位：" + param.leftEyeglass.t_wearglass.axis,
-                            param.leftEyeglass.eyeglassVo.t_brand.name,
-
-                        ]);
-                        //左镜片
-                        view_edit_tables.fnAddData([
-                            "右镜片：   " + "    度数：" + param.rightEyeglass.t_wearglass.degress + "    散光度数：" + param.rightEyeglass.t_wearglass.asdegress + "    散光轴位：" + param.rightEyeglass.t_wearglass.axis,
-                            param.rightEyeglass.eyeglassVo.t_brand.name,
-
-                        ]);
-*/
-
-                        price += param.goodsVo.t_goods.price + param.leftEyeglass.eyeglassVo.t_eyeglass.price ;
+                        price += param.goodsVo.t_goods.price + param.leftEyeglass.eyeglassVo.t_eyeglass.price;
                     }
 
-                   $('#mywearlist').html(str);
+                    $('#mywearlist').html(str);
 
-                    $("#view_edit_price").text("￥"+price);
-                    $("#view_edit_voucher").text("￥"+voucher);
-                    $("#view_edit_lastPrice").text("￥"+ item.t_order.totalfee);
+                    $("#view_edit_price").text("￥" + price);
+                    $("#view_edit_voucher").text("￥" + voucher);
+                    $("#view_edit_lastPrice").text("￥" + item.t_order.totalfee);
 
                 }
-
 
 
             },
@@ -357,12 +323,13 @@ $(document).ready(function () {
                     confirmButtonClass: "btn-success",
                     confirmButtonText: "OK",
                 });
+                return;
             }
 
         });
 
         $("#page_order_view").show();
-
+        $("#loading-order").css('display', 'none');
     });
 
     //返回，将添加界面，关闭，开启List
@@ -386,14 +353,27 @@ $(document).ready(function () {
         $('#order_edit_modal').modal('show')
     });
 
+    /**
+     * 在详情里面去编辑
+     */
+    $("#edit_order").click(function (e) {
+        var order = $("#view_edit_order").text();
+        var price = $("#view_edit_lastPrice").text();
+       // alert(order +":" + price);
+        $('#order_edit_order').val(order);
+        $('#order_edit_price').val(price);
+        $('#order_edit_modal').modal('show');
+
+    });
+
     //修改总计
     $("#btn_edit_save").click(function (e) {
         var nRow = EditRow;
         var delok = true;
         var itm = {};
-        itm.order =   $("#order_edit_order").val();
+        itm.order = $("#order_edit_order").val();
         itm.price = $("#order_edit_price").val();
-         alert(itm.order+"::"+itm.price);
+        alert(itm.order + "::" + itm.price);
         $.ajax({
             async: false,
             url: '../order/update3',
@@ -443,7 +423,6 @@ $(document).ready(function () {
             confirmButtonText: "OK",
         });
     });
-
 
 
     /**
