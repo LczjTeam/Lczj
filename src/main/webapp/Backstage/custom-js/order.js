@@ -90,7 +90,7 @@ $(document).ready(function () {
                     '本月': [moment().startOf('month'), moment().endOf('month')],
                     '上月': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
                 },
-                startDate: moment().subtract(29, 'days'),
+                startDate: moment(),
                 endDate: moment()
             },
             function (start, end) {
@@ -280,7 +280,7 @@ $(document).ready(function () {
                             '                                左眼: ' +
                             '                            </td>\n' +
                             '                            <td class="project-title" colspan="3">\n' +
-                            "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + param.leftEyeglass.eyeglassVo.t_eyeglass.name + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;度数:" + param.leftEyeglass.t_wearglass.degress + "&nbsp;度" + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;散光度数:" + param.leftEyeglass.t_wearglass.asdegress + "&nbsp;度" + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;散光轴位:" + param.leftEyeglass.t_wearglass.axis + "&nbsp;度" +
+                            "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + param.leftEyeglass.eyeglassVo.t_eyeglass.name + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;度数:" + param.leftEyeglass.t_wearglass.degress + "度" + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;散光度数:" + param.leftEyeglass.t_wearglass.asdegress + "度" + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;散光轴位:" + param.leftEyeglass.t_wearglass.axis + "度" +
                             '                            </td>\n' +
                             '\n' +
                             '                        </tr>\n' +
@@ -289,7 +289,7 @@ $(document).ready(function () {
                             '                                右眼:' +
                             '                            </td>\n' +
                             '                            <td class="project-title" colspan="3">\n' +
-                            "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + param.rightEyeglass.eyeglassVo.t_eyeglass.name + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;度数:" + param.rightEyeglass.t_wearglass.degress + "&nbsp;度" + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;散光度数:" + param.rightEyeglass.t_wearglass.asdegress + "&nbsp;度" + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;散光轴位:" + param.rightEyeglass.t_wearglass.axis + "&nbsp;度" +
+                            "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + param.rightEyeglass.eyeglassVo.t_eyeglass.name + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;度数:" + param.rightEyeglass.t_wearglass.degress + "度" + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;散光度数:" + param.rightEyeglass.t_wearglass.asdegress + "度" + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;散光轴位:" + param.rightEyeglass.t_wearglass.axis + "度" +
                             '                            </td>\n' +
                             '\n' +
                             '                        </tr>\n' +
@@ -303,9 +303,9 @@ $(document).ready(function () {
 
                     $('#mywearlist').html(str);
 
-                    $("#view_edit_price").text("￥" + price);
-                    $("#view_edit_voucher").text("￥" + voucher);
-                    $("#view_edit_lastPrice").text("￥" + item.t_order.totalfee);
+                    $("#view_edit_price").text(price);
+                    $("#view_edit_voucher").text(voucher);
+                    $("#view_edit_lastPrice").text(item.t_order.totalfee);
 
                 }
 

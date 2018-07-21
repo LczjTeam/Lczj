@@ -57,7 +57,7 @@
                         <button class="btn" style="background-color: #e8d614;" id="seachByTime">查找</button>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <span style="font-size: 17px"> 通过订单号查询：</span>
-                        <input type="text" id="seachValue" class="input-medium search-query" style="height: 28px;">
+                        <input type="text" id="seachValue" class="input-medium search-query" style="height: 26px;">
                         <button class="btn" style="background-color: #e8d614;" id="seachByid">查找</button>
                     </div>
 
@@ -100,18 +100,18 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <address>
-                            <strong id="view_edit_consignee">liuqian</strong><br>
-                            <h5 id="view_edit_address"></h5>
-                            <h5 id="view_edit_street"></h5>
-                            <span title="Phone">电话：</span> <strong id="view_edit_phone"></strong>
+                            <span class="h3">订单人：</span><strong id="view_edit_consignee" class="h3">liuqian</strong><br>
+                            <span class="h3">地址：</span><span id="view_edit_address" class="h3"></span>
+                            <h4 id="view_edit_street"></h4>
+                            <strong title="Phone" class="h4">电话：</strong> <strong id="view_edit_phone" class="h3"></strong>
                         </address>
                     </div>
 
                     <div class="col-sm-6 text-right">
-                        <h4>订单编号：</h4>
-                        <h4 class="text-navy" id="view_edit_order"></h4>
-                        <p>
-                            <span id="view_edit_sure_time"><strong>日期：</strong> </span>
+                        <h3>订单编号：</h3>
+                        <h3 class="text-navy" id="view_edit_order"></h3>
+                        <p class="h4">
+                            <strong>日期：</strong><span id="view_edit_sure_time"> </span>
                         </p>
                     </div>
                 </div>
@@ -251,24 +251,24 @@
                 <table class="table invoice-total">
                     <tbody>
                     <tr>
-                        <td><strong >总价：</strong>
+                        <td><strong >总价：</strong>￥
                         </td>
                         <td id="view_edit_price"></td>
                     </tr>
                     <tr>
-                        <td><strong>优惠券：</strong>
+                        <td><strong>优惠券：</strong>￥
                         </td>
                         <td id="view_edit_voucher"></td>
                     </tr>
                     <tr>
-                        <td><strong>总计</strong>
+                        <td><strong>总计：</strong>￥
                         </td>
-                        <td id="view_edit_lastPrice"></td>
+                       <td id="view_edit_lastPrice"></td>
                     </tr>
                     </tbody>
                 </table>
                 <div class="text-right">
-                    <button class="btn btn-primary" id="edit_order"><i class="fa fa-dollar"></i> 编辑</button>
+                    <button class="btn btn-primary" id="edit_order"></i> 编辑</button>
                 </div>
 
             </div>
