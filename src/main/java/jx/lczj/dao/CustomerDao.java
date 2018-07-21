@@ -19,11 +19,11 @@ public  interface CustomerDao {
 
     /**
      * 通过vip编号查找会员信息
-     * @param phone
+     * @param vip
      * @return
      */
-    @Select("select * from T_CUSTOMER WHERE PHONE = #{0}")
-    public T_customer loadByVip(String phone);
+    @Select("select * from T_CUSTOMER WHERE vip = #{0}")
+    public T_customer loadByVip(String vip);
 
     /**
      * 重置密码

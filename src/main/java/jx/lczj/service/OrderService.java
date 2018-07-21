@@ -1,10 +1,13 @@
 package jx.lczj.service;
 
+import com.alibaba.fastjson.JSONObject;
 import jx.lczj.dao.*;
 import jx.lczj.model.*;
+import jx.lczj.utils.ExpressUtil;
 import jx.lczj.viewmodel.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Date;
 import java.text.ParseException;
@@ -91,5 +94,36 @@ public class OrderService {
      */
     public boolean update3(String order, String price) {
     return orderDao.update3(order,price);
+    }
+
+    public List<T_order> listHasPay() {
+        return orderDao.listAllByState(1);
+    }
+
+    /**
+     * 通过订单编号获取物流信息
+     * @param order
+     * @return
+     */
+    @Transactional
+    public ExpressVo loadByOrder(String order) {
+
+        try {
+            ExpressVo e = new ExpressVo();
+            T_order t_order = orderDao.listById(order);
+            if(t_order.getExpress()==null || t_order.getExpress().equals("")){
+                return e;
+            }
+
+            String orderTracesByJson = ExpressUtil.getOrderTracesByJson(t_order.getExpress().substring(t_order.getExpress().indexOf('(') + 1, t_order.getExpress().indexOf(')')), t_order.getExpressid());
+
+            Object o = JSONObject.parse(orderTracesByJson);
+            e.setExpress(t_order.getExpress());
+            e.setExpressid(t_order.getExpressid());
+            e.setObject(o);
+            return e;
+        }catch (Exception e){
+            throw  new RuntimeException(e.getMessage());
+        }
     }
 }
