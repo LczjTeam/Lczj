@@ -90,7 +90,7 @@ $(document).ready(function () {
                     '本月': [moment().startOf('month'), moment().endOf('month')],
                     '上月': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
                 },
-                startDate: moment().subtract(29, 'days'),
+                startDate: moment(),
                 endDate: moment()
             },
             function (start, end) {
@@ -303,9 +303,9 @@ $(document).ready(function () {
 
                     $('#mywearlist').html(str);
 
-                    $("#view_edit_price").text("￥" + price);
-                    $("#view_edit_voucher").text("￥" + voucher);
-                    $("#view_edit_lastPrice").text("￥" + item.t_order.totalfee);
+                    $("#view_edit_price").text(price);
+                    $("#view_edit_voucher").text(voucher);
+                    $("#view_edit_lastPrice").text(item.t_order.totalfee);
 
                 }
 
