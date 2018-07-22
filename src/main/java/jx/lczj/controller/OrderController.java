@@ -44,6 +44,13 @@ public class OrderController {
 
 
     /**
+     * 获取已加工订单
+     */
+    @RequestMapping("/listHasCreate")
+    @ResponseBody
+    public List<T_order> listHasCreate(){return orderService.listHasCreate();};
+
+    /**
      * 获取已支付订单
      */
     @RequestMapping("/listHasPay")
@@ -88,6 +95,15 @@ public class OrderController {
     @ResponseBody
     public boolean update3(String order,String price){
         return orderService.update3(order,price);}
+
+
+    /**
+     * 更新总价
+     */
+    @RequestMapping("/update4")
+    @ResponseBody
+    public boolean update4(String order){
+        return orderService.update4(order);}
 
 
 }

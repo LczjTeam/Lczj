@@ -32,8 +32,8 @@ public interface OrderDao {
      * @param expressid
      * @return
      */
-    @Update("update T_order set express=#{1},expressid=#{2} where \"order\" =#{0}")
-    boolean update2(String order, String express, String expressid);
+    @Update("update T_order set express=#{1},expressid=#{2},detailstate = #{3} where \"order\" =#{0}")
+    boolean update2(String order, String express, String expressid, int  detailstate);
 
     /**
      * 获取全部订单
@@ -52,6 +52,13 @@ public interface OrderDao {
     @Update("update T_order set TOTALFEE  = #{1} where \"order\" =#{0}")
     boolean update3(String order, String price);
 
-    @Select("select * from T_ORDER where STATE = #{0} order by sure_time asc ")
+    @Select("select * from T_ORDER where STATE = #{0} and  DETAILSTATE =  0 order by sure_time asc ")
     List<T_order> listAllByState(int state);
+
+
+    @Select("select * from T_ORDER where DETAILSTATE = #{0} order by sure_time asc ")
+    List<T_order> listAllByDetaiLState(int detailstate);
+
+    @Update("update T_order set DETAILSTATE  = #{1} where \"order\" =#{0}")
+    boolean updateDetailState(String order, int detailstate);
 }

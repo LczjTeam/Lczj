@@ -14,7 +14,7 @@ $(document).ready(function () {
         $.ajax({
             async: false,
             type: "POST",
-            url: "../order/listHasCreate",//注意路径
+            url: "../order/listHasPay",//注意路径
             data: params,
             dataType: "json",
             success: function (data) {
@@ -49,7 +49,7 @@ $(document).ready(function () {
     }
     //初始化树
     $('#using_json').data('jstree', false);
-    $("#loading-express").css('display', 'none');
+    $("#loading-deal").css('display', 'none');
     $("#using_json").jstree({
 
         'plugins': ["wholerow", "types"],
@@ -89,12 +89,16 @@ $(document).ready(function () {
                 $("#customer_name").val(showdata.t_customer.name);
                 $("#address_name").val(showdata.t_address.consignee);
                 $("#address_text").val(showdata.t_address.provincename+showdata.t_address.cityname+showdata.t_address.countyname+showdata.t_address.street);
-                $("#order_state").val('已加工');
+                $("#order_state").val('已支付');
+                $("#good_name").val('名称:'+showdata.mywearVos[0].goodsVo.t_goods.name+'\t(品牌:'+showdata.mywearVos[0].goodsVo.t_brand.name+'       颜色:'+showdata.mywearVos[0].t_color.name+'       脸型:'+showdata.mywearVos[0].t_face.name+'       场景:'+showdata.mywearVos[0].t_occasion.name+')');
+                $("#eyeglass_name").val('名称:'+showdata.mywearVos[0].leftEyeglass.eyeglassVo.t_eyeglass.name+'\t(品牌:'+showdata.mywearVos[0].leftEyeglass.eyeglassVo.t_brand.name+'       膜层:'+showdata.mywearVos[0].leftEyeglass.eyeglassVo.t_mask.name+'       设计样式:'+showdata.mywearVos[0].leftEyeglass.eyeglassVo.t_style.name+'       功能:'+showdata.mywearVos[0].leftEyeglass.eyeglassVo.t_efficacy.name+')');
+                $("#eye_left").val('类型:'+(showdata.mywearVos[0].leftEyeglass.t_wearglass.wearglass == 0 ? '近视':'远视' )+'       度数:'+showdata.mywearVos[0].leftEyeglass.t_wearglass.degress +'度       散光度数:'+showdata.mywearVos[0].leftEyeglass.t_wearglass.asdegress +'度       散光轴位:'+showdata.mywearVos[0].leftEyeglass.t_wearglass.axis+'度');
+                $("#eye_right").val('类型:'+(showdata.mywearVos[0].rightEyeglass.t_wearglass.wearglass == 0 ? '近视':'远视' )+'       度数:'+showdata.mywearVos[0].rightEyeglass.t_wearglass.degress +'度       散光度数:'+showdata.mywearVos[0].rightEyeglass.t_wearglass.asdegress +'度       散光轴位:'+showdata.mywearVos[0].rightEyeglass.t_wearglass.axis+'度');
 
-                if(showdata.t_order.express!=null || showdata.t_order.express!='')   $("#express_name").val(showdata.t_order.express);
+                //if(showdata.t_order.deal!=null || showdata.t_order.deal!='')   $("#deal_name").val(showdata.t_order.deal);
 
-                $("#express_id").val('');
-                $("#express_id").val(showdata.t_order.expressid);
+                //$("#deal_id").val('');
+                //$("#deal_id").val(showdata.t_order.dealid);
 
             }, error: function (data) {
                 // console.log(JSON.stringify(data,null,4));
@@ -125,14 +129,12 @@ $(document).ready(function () {
     });
 
     //提交按钮，进行修改
-    $("#btn_alter_express").click(function(e){
+    $("#btn_alter_deal").click(function(e){
         var delok = true;
         var params={};
         params.order = $("#order_code").val();
-        params.express =$('#express_name').val();
-        params.expressid =$('#express_id').val();
 
-        if(params.express =='' || params.title  == '' || params.sort_no  == '' ){
+        if(params.deal =='' || params.title  == '' || params.sort_no  == '' ){
             swal({
                 title: "编号、名称、序号不能为空！",
                 text: "",
@@ -149,7 +151,7 @@ $(document).ready(function () {
         $.ajax({
             async: false,
             type: "POST",
-            url: "../order/update2",//注意路径
+            url: "../order/update4",//注意路径
             data: params,
             dataType: "json",
             success: function (data) {
@@ -189,27 +191,6 @@ $(document).ready(function () {
 
 
     });
-
-
-    $("#btn_search").click(function(){
-        var id = $("#order_code").val();
-        if(id==''){
-            swal({
-                title: "订单编号不能为空！",
-                text: "",
-                type: "warning",
-                allowOutsideClick: true,
-                showConfirmButton: true,
-                showCancelButton: false,
-                confirmButtonClass: "btn-success",
-                confirmButtonText: "OK",
-            });
-            return;
-        }
-        loadByOrder(id);
-    })
-
-
 
 
 

@@ -43,8 +43,9 @@ public class OrderService {
      * @param expressid
      * @return
      */
+    @Transactional
     public boolean update2(String order, String express, String expressid) {
-        return orderDao.update2(order,express,expressid);
+        return orderDao.update2(order,express,expressid,2);
     }
 
     /**
@@ -100,6 +101,10 @@ public class OrderService {
         return orderDao.listAllByState(1);
     }
 
+    public List<T_order> listHasCreate() {
+        return orderDao.listAllByDetaiLState(1);
+    }
+
     /**
      * 通过订单编号获取物流信息
      * @param order
@@ -122,6 +127,16 @@ public class OrderService {
             e.setExpressid(t_order.getExpressid());
             e.setObject(o);
             return e;
+        }catch (Exception e){
+            throw  new RuntimeException(e.getMessage());
+        }
+    }
+
+    @Transactional
+    public boolean update4(String order) {
+        try {
+
+            return orderDao.updateDetailState(order,1);
         }catch (Exception e){
             throw  new RuntimeException(e.getMessage());
         }
