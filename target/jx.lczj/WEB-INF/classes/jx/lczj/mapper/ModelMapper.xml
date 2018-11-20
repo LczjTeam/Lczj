@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+        <!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="jx.lczj.dao.ModelDao">
+
+
+<!-- 根据脸形，年龄，性别推荐模特-->
+<select id="modelCommend" resultType="jx.lczj.model.T_model">
+   select tm.* from t_model tm,T_AGESECTION ta
+   <where>
+      <if test="faces !=null">
+         and face = #{faces}
+      </if>
+      <if test="sexes !=null">
+         and trim(sex) = #{sexes}
+      </if>
+      <if test="ages !=null">
+         and age >= ta.MINAGE and ta.MAXAGE > age and ta.AGESECTION = (select AGESECTION from T_AGESECTION where #{ages} >= MINAGE and MAXAGE > #{ages})
+      </if>
+
+   </where>
+</select>
+
+
+</mapper>

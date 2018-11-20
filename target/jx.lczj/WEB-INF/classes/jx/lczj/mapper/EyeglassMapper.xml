@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+        <!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="jx.lczj.dao.EyeglassDao">
+
+
+<!-- 根据品牌、功能、价格对镜片进行筛选-->
+<select id="eyeglasslist" resultType="jx.lczj.model.T_eyeglass">
+   select * from t_eyeglass
+   <where>
+      <if test="brands !=null">
+         and brand in
+         <foreach collection="brands" item="bd" open="(" separator="," close=")">
+            #{bd}
+         </foreach>
+      </if>
+      <if test="efficacies !=null">
+         and efficacy = #{efficacies}
+      </if>
+      <choose>
+         <when test="low!=null and high!=-1">
+            and (price >= #{low} and  #{high} > price)
+         </when>
+         <otherwise>
+            and price > #{low}
+         </otherwise>
+      </choose>
+
+   </where>
+</select>
+
+   <select id="eyeglasscommend" resultType="jx.lczj.model.T_eyeglass">
+      select s.* from  (select distinct te.* from t_eyeglass te,t_brand tb
+      <where>
+         tb.brand = te.brand
+         <if test="degresss !=null and asdegresss != null">
+            <choose>
+               <when test="400 > degresss and degresss >= 0 and 225 > asdegresss">
+                  and refraction = 1.56
+               </when>
+               <when test="600 > degresss and degresss >= 400 and 225 > asdegresss">
+                  and refraction = 1.61
+               </when>
+               <when test="1000 >= degresss and degresss >= 600 and 225 > asdegresss">
+                  and refraction = 1.67
+               </when>
+               <otherwise>
+                  and refraction = 2
+               </otherwise>
+            </choose>
+         </if>
+         ) s,t_brand td where td.brand = s.brand
+          order by td.recommend DESC
+      </where>
+   </select>
+
+</mapper>

@@ -16,11 +16,15 @@ import java.util.List;
 public class OpenCVUtil {
 
 
-    static  String haarcascade_frontalface = "C:\\OpenCVConfig\\haarcascade_frontalface_default.xml";
-    static  String haarcascade_frontalface_alt = "C:\\OpenCVConfig\\haarcascade_frontalface_alt.xml";
-    static  String haarcascade_eye = "C:\\OpenCVConfig\\haarcascade_eye.xml";
-    static  String haarcascade_eye_tree_eyeglasses = "C:\\OpenCVConfig\\haarcascade_eye_tree_eyeglasses.xml";
+//    static  String haarcascade_frontalface = "C:\\OpenCVConfig\\haarcascade_frontalface_default.xml";
+//    static  String haarcascade_frontalface_alt = "C:\\OpenCVConfig\\haarcascade_frontalface_alt.xml";
+//    static  String haarcascade_eye = "C:\\OpenCVConfig\\haarcascade_eye.xml";
+//    static  String haarcascade_eye_tree_eyeglasses = "C:\\OpenCVConfig\\haarcascade_eye_tree_eyeglasses.xml";
 
+    static  String haarcascade_frontalface = "C:\\opencv\\sources\\data\\haarcascades\\haarcascade_frontalface_default.xml";
+    static  String haarcascade_frontalface_alt = "C:\\opencv\\build\\share\\OpenCV\\haarcascades\\haarcascade_frontalface_alt.xml";
+    static  String haarcascade_eye = "C:\\opencv\\build\\share\\OpenCV\\haarcascades\\haarcascade_eye.xml";
+    static  String haarcascade_eye_tree_eyeglasses = "C:\\opencv\\build\\share\\OpenCV\\haarcascades\\haarcascade_eye_tree_eyeglasses.xml";
 
     /**
      * 画出眼睛的位置

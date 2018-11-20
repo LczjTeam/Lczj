@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+
+    <title>模特</title>
+    <link rel="shortcut icon" href="favicon.ico">
+    <link href="css/bootstrap.min.css?v=3.3.5" rel="stylesheet">
+    <link href="css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+    <!-- Data Tables -->
+    <link href="css/plugins/sweetalert/sweetalert.css" rel="stylesheet">
+    <link href="plugins/bootstrap-switch/css/bootstrap-switch.css" rel="stylesheet">
+    <link href="plugins/bootstrap-fileinput/bootstrap-fileinput.css" rel="stylesheet">
+    <link href="plugins/css/components.css" rel="stylesheet">
+    <link href="plugins/css/plugins.css" rel="stylesheet">
+    <link href="css/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
+    <link href="css/animate.min.css" rel="stylesheet">
+    <link href="css/style.min.css?v=4.0.0" rel="stylesheet"><base target="_blank">
+
+</head>
+
+<body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>模特</small></h5>
+                        <div class="ibox-tools">
+                            <a  data-toggle="modal" data-target="#model_add_modal" >
+                                <i class="fa fa-plus"></i>&nbsp;添加
+                            </a>
+                            <a id="btn_open" style="display: none;">
+                                <i class="fa fa-plus"></i>&nbsp;show
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+
+                        <table id="model_table" class="table table-striped table-bordered table-hover ">
+                            <thead>
+                                <tr>
+
+                                    <th style="width: 14%;">编号</th>
+                                    <th style="width: 14%;">名称</th>
+                                    <th style="width: 14%;">图片</th>
+                                    <th style="width: 14%;">年龄</th>
+                                    <th style="width: 14%;">性别</th>
+                                    <th style="width: 14%;">脸型</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                            <!--<tfoot>
+                                <tr>
+                                    <th>渲染引擎</th>
+                                    <th>浏览器</th>
+                                    <th>平台</th>
+                                    <th>引擎版本</th>
+                                    <th>CSS等级</th>
+                                </tr>
+                            </tfoot>-->
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--模特信息添加-->
+        <div class="modal inmodal" id="model_add_modal" tabindex="-1" color="dialog" aria-hidden="true">
+            <div class="modal-dialog ">
+                <div class="modal-content animated bounceInRight">
+                    <div class="modal-header" style="height:182px;padding-top: 30px;">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">关闭</span>
+                        </button>
+                        <i class="fa fa-laptop modal-icon" style="height: 80px;padding-top: 30px;"></i>
+                        <h4 class="modal-title">模特信息添加</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form id="add_model">
+                        <div class="form-group"><label>编号</label> <input type="text" id="model_add_model" name="model"  placeholder="请输入编号" class="form-control"></div>
+                        <div class="form-group"><label>名称</label> <input type="text" id="model_add_name" name="name" placeholder="请输入名称" class="form-control"></div>
+                        <div class="form-group"><label>年龄</label> <input type="text" id="model_add_age" name="age" placeholder="请输入年龄" class="form-control"></div>
+                        <div class="form-group"><label>性别</label> <select  id="model_add_sex" name="sex"  class="form-control"><option value="1" >男</option><option value="0">女</option></select></div>
+                        <div class="form-group"><label>脸型</label> <select id="model_add_face" name="face" class="form-control"></select></div>
+                        <div class="form-group"><label>图片</label>
+                            <div class="fileinput fileinput-new" data-provides="fileinput">
+                            <div class="fileinput-new thumbnail" style="width: 96px; height: 96px;">
+                                <img id="model_src" src="" alt="" /> </div>
+                            <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 96px; max-height: 96px;"> </div>
+                            <div>
+                                <span class="btn default btn-file">
+                                    <span class="fileinput-new">选择图片</span>
+                                    <span class="fileinput-exists"> 修改 </span>
+                                    <input type="file" name="file"> </span>
+                                <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> 移除 </a>
+                            </div>
+                        </div>
+
+                        </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
+                        <a id="btn_add_save" class="btn btn-primary">添加</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--模特信息修改-->
+        <div class="modal inmodal" id="model_edit_modal" tabindex="-1" color="dialog" aria-hidden="true">
+            <div class="modal-dialog ">
+                <div class="modal-content animated bounceInRight">
+                    <div class="modal-header" style="height:182px;padding-top: 30px;">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">关闭</span>
+                        </button>
+                        <i class="fa fa-laptop modal-icon" style="height: 80px;padding-top: 30px;"></i>
+                        <h4 class="modal-title">模特信息修改</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form id="model_edit_form">
+                            <div class="form-group"><label>编号</label> <input type="text" readonly id="model_edit_model" name="model"  placeholder="请输入编号" class="form-control"></div>
+                            <div class="form-group"><label>名称</label> <input type="text" id="model_edit_name" name="name" placeholder="请输入名称" class="form-control"></div>
+                            <div class="form-group"><label>年龄</label> <input type="text" id="model_edit_age" name="age" placeholder="请输入年龄" class="form-control"></div>
+                            <div class="form-group"><label>性别</label> <select  id="model_edit_sex" name="sex"  class="form-control"><option value="1">男</option><option value="0">女</option></select></div>
+                            <div class="form-group"><label>脸型</label> <select id="model_edit_face" name="face" class="form-control"></select></div>
+                            <div class="form-group"><label>图片</label>
+                            <div class="fileinput fileinput-new" data-provides="fileinput">
+                                <div  class="fileinput-new thumbnail" style="width: 96px; height: 96px;">
+                                    <img id="edit_img" src="" alt="" />
+                                </div>
+                                <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 96px; max-height: 96px;"> </div>
+                                <div>
+                                <span class="btn default btn-file">
+                                    <span class="fileinput-new">选择模特图片</span>
+                                    <span class="fileinput-exists"> 修改 </span>
+                                    <input type="file" id="edit_file" name="file"> </span>
+                                    <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> 移除 </a>
+                                </div>
+                            </div>
+                    </div></form>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
+                        <a id="btn_edit_save" class="btn btn-primary">保存</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+    <div class="spiner-example" id="loading-model">
+        <div class="sk-spinner sk-spinner-wave">
+            <div class="sk-rect1"></div>
+            <div class="sk-rect2"></div>
+            <div class="sk-rect3"></div>
+            <div class="sk-rect4"></div>
+            <div class="sk-rect5"></div>
+        </div>
+    </div>
+
+    <script src="js/jquery.min.js?v=2.1.4"></script>
+    <script src="js/bootstrap.min.js?v=3.3.5"></script>
+    <script src="js/plugins/jeditable/jquery.jeditable.js"></script>
+    <script src="js/plugins/dataTables/jquery.dataTables.js"></script>
+    <script src="js/plugins/dataTables/dataTables.bootstrap.js"></script>
+    <script src="js/plugins/sweetalert/sweetalert.min.js"></script>
+    <script src="plugins/bootstrap-switch/js/bootstrap-switch.js"></script>
+    <script src="plugins/bootstrap-fileinput/bootstrap-fileinput.js"></script>
+    <script src="js/content.min.js?v=1.0.0"></script>
+    <!--custom-js-->
+    <script src="custom-js/model.js"></script>
+
+
+
+
+</body>
+
+</html>

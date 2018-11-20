@@ -1,0 +1,2528 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="Oracle">
+  <database-model serializer="dbm" rdbms="ORACLE" format-version="4.4">
+    <root id="1"/>
+    <schema id="2" parent="1" name="VISION">
+      <ObjectId>86</ObjectId>
+      <IntrospectionTimestamp>2018-08-20.19:51:48</IntrospectionTimestamp>
+      <CreatedTimestamp>2018-06-08.11:02:20</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-22.08:10:12</ModifiedTimestamp>
+      <CommentsHash>377837525944098</CommentsHash>
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </schema>
+    <schema id="3" parent="1" name="PUBLIC">
+      <ObjectId>1</ObjectId>
+    </schema>
+    <schema id="4" parent="1" name="SYS">
+      <ObjectId>0</ObjectId>
+    </schema>
+    <schema id="5" parent="1" name="SYSTEM">
+      <ObjectId>5</ObjectId>
+    </schema>
+    <schema id="6" parent="1" name="OUTLN">
+      <ObjectId>9</ObjectId>
+    </schema>
+    <schema id="7" parent="1" name="DIP">
+      <ObjectId>14</ObjectId>
+    </schema>
+    <schema id="8" parent="1" name="ORACLE_OCM">
+      <ObjectId>21</ObjectId>
+    </schema>
+    <schema id="9" parent="1" name="DBSNMP">
+      <ObjectId>30</ObjectId>
+    </schema>
+    <schema id="10" parent="1" name="APPQOSSYS">
+      <ObjectId>31</ObjectId>
+    </schema>
+    <schema id="11" parent="1" name="WMSYS">
+      <ObjectId>32</ObjectId>
+    </schema>
+    <schema id="12" parent="1" name="EXFSYS">
+      <ObjectId>42</ObjectId>
+    </schema>
+    <schema id="13" parent="1" name="CTXSYS">
+      <ObjectId>43</ObjectId>
+    </schema>
+    <schema id="14" parent="1" name="XDB">
+      <ObjectId>45</ObjectId>
+    </schema>
+    <schema id="15" parent="1" name="ANONYMOUS">
+      <ObjectId>46</ObjectId>
+    </schema>
+    <schema id="16" parent="1" name="ORDSYS">
+      <ObjectId>53</ObjectId>
+    </schema>
+    <schema id="17" parent="1" name="ORDDATA">
+      <ObjectId>54</ObjectId>
+    </schema>
+    <schema id="18" parent="1" name="ORDPLUGINS">
+      <ObjectId>55</ObjectId>
+    </schema>
+    <schema id="19" parent="1" name="SI_INFORMTN_SCHEMA">
+      <ObjectId>56</ObjectId>
+    </schema>
+    <schema id="20" parent="1" name="MDSYS">
+      <ObjectId>57</ObjectId>
+    </schema>
+    <schema id="21" parent="1" name="OLAPSYS">
+      <ObjectId>61</ObjectId>
+    </schema>
+    <schema id="22" parent="1" name="MDDATA">
+      <ObjectId>65</ObjectId>
+    </schema>
+    <schema id="23" parent="1" name="SPATIAL_WFS_ADMIN_USR">
+      <ObjectId>67</ObjectId>
+    </schema>
+    <schema id="24" parent="1" name="SPATIAL_CSW_ADMIN_USR">
+      <ObjectId>70</ObjectId>
+    </schema>
+    <schema id="25" parent="1" name="SYSMAN">
+      <ObjectId>72</ObjectId>
+    </schema>
+    <schema id="26" parent="1" name="MGMT_VIEW">
+      <ObjectId>74</ObjectId>
+    </schema>
+    <schema id="27" parent="1" name="FLOWS_FILES">
+      <ObjectId>75</ObjectId>
+    </schema>
+    <schema id="28" parent="1" name="APEX_PUBLIC_USER">
+      <ObjectId>76</ObjectId>
+    </schema>
+    <schema id="29" parent="1" name="APEX_030200">
+      <ObjectId>78</ObjectId>
+    </schema>
+    <schema id="30" parent="1" name="OWBSYS">
+      <ObjectId>79</ObjectId>
+    </schema>
+    <schema id="31" parent="1" name="OWBSYS_AUDIT">
+      <ObjectId>83</ObjectId>
+    </schema>
+    <schema id="32" parent="1" name="SCOTT">
+      <ObjectId>84</ObjectId>
+    </schema>
+    <schema id="33" parent="1" name="VISIONTEST">
+      <ObjectId>87</ObjectId>
+    </schema>
+    <schema id="34" parent="1" name="XS$NULL">
+      <ObjectId>2147483638</ObjectId>
+    </schema>
+    <table id="35" parent="2" name="T_ADDRESS">
+      <ObjectId>76852</ObjectId>
+      <CreatedTimestamp>2018-07-08.12:01:31</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-08.12:01:37</ModifiedTimestamp>
+      <TemporaryPreserve>1</TemporaryPreserve>
+    </table>
+    <table id="36" parent="2" name="T_ADMIN">
+      <ObjectId>73793</ObjectId>
+      <Comment>系统用户</Comment>
+      <CreatedTimestamp>2018-06-08.11:02:20</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-08.11:02:20</ModifiedTimestamp>
+      <TemporaryPreserve>1</TemporaryPreserve>
+    </table>
+    <table id="37" parent="2" name="T_AGESECTION">
+      <ObjectId>75056</ObjectId>
+      <CreatedTimestamp>2018-06-20.21:42:44</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-20.21:42:44</ModifiedTimestamp>
+      <TemporaryPreserve>1</TemporaryPreserve>
+    </table>
+    <table id="38" parent="2" name="T_ATTACHMENT">
+      <ObjectId>75058</ObjectId>
+      <CreatedTimestamp>2018-06-20.21:42:45</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-20.21:42:45</ModifiedTimestamp>
+      <TemporaryPreserve>1</TemporaryPreserve>
+    </table>
+    <table id="39" parent="2" name="T_BRAND">
+      <ObjectId>75060</ObjectId>
+      <Comment>眼镜品牌</Comment>
+      <CreatedTimestamp>2018-06-20.21:42:45</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-15.09:50:11</ModifiedTimestamp>
+      <TemporaryPreserve>1</TemporaryPreserve>
+    </table>
+    <table id="40" parent="2" name="T_CATEGORY">
+      <ObjectId>75062</ObjectId>
+      <Comment>眼镜类别</Comment>
+      <CreatedTimestamp>2018-06-20.21:42:46</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-20.21:42:46</ModifiedTimestamp>
+      <TemporaryPreserve>1</TemporaryPreserve>
+    </table>
+    <table id="41" parent="2" name="T_CITY">
+      <ObjectId>76855</ObjectId>
+      <CreatedTimestamp>2018-07-08.12:01:31</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-08.12:01:37</ModifiedTimestamp>
+      <TemporaryPreserve>1</TemporaryPreserve>
+    </table>
+    <table id="42" parent="2" name="T_COLOR">
+      <ObjectId>75064</ObjectId>
+      <Comment>眼镜的颜色样式</Comment>
+      <CreatedTimestamp>2018-06-20.21:42:46</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-20.21:42:46</ModifiedTimestamp>
+      <TemporaryPreserve>1</TemporaryPreserve>
+    </table>
+    <table id="43" parent="2" name="T_COUNTY">
+      <ObjectId>76858</ObjectId>
+      <CreatedTimestamp>2018-07-08.12:01:32</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-08.12:01:37</ModifiedTimestamp>
+      <TemporaryPreserve>1</TemporaryPreserve>
+    </table>
+    <table id="44" parent="2" name="T_CUSTOMER">
+      <ObjectId>76861</ObjectId>
+      <CreatedTimestamp>2018-07-08.12:01:32</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-15.11:26:14</ModifiedTimestamp>
+      <TemporaryPreserve>1</TemporaryPreserve>
+    </table>
+    <table id="45" parent="2" name="T_EFFICACY">
+      <ObjectId>76525</ObjectId>
+      <Comment>镜片功能：防紫外线、防辐射、防蓝光</Comment>
+      <CreatedTimestamp>2018-07-05.08:56:57</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-05.08:56:57</ModifiedTimestamp>
+      <TemporaryPreserve>1</TemporaryPreserve>
+    </table>
+    <table id="46" parent="2" name="T_EYEGLASS">
+      <ObjectId>76527</ObjectId>
+      <CreatedTimestamp>2018-07-05.09:01:49</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-15.09:25:24</ModifiedTimestamp>
+      <TemporaryPreserve>1</TemporaryPreserve>
+    </table>
+    <table id="47" parent="2" name="T_EYEGLASSATTACHMENT">
+      <ObjectId>76641</ObjectId>
+      <CreatedTimestamp>2018-07-06.17:05:32</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-06.18:12:47</ModifiedTimestamp>
+      <TemporaryPreserve>1</TemporaryPreserve>
+    </table>
+    <table id="48" parent="2" name="T_FACE">
+      <ObjectId>75066</ObjectId>
+      <CreatedTimestamp>2018-06-20.21:42:47</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-20.21:42:47</ModifiedTimestamp>
+      <TemporaryPreserve>1</TemporaryPreserve>
+    </table>
+    <table id="49" parent="2" name="T_GOODS">
+      <ObjectId>75068</ObjectId>
+      <Comment>眼镜信息</Comment>
+      <CreatedTimestamp>2018-06-20.21:42:47</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-15.08:57:05</ModifiedTimestamp>
+      <TemporaryPreserve>1</TemporaryPreserve>
+    </table>
+    <table id="50" parent="2" name="T_GOODSATTACHMENT">
+      <ObjectId>75072</ObjectId>
+      <CreatedTimestamp>2018-06-20.21:42:49</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-20.21:44:17</ModifiedTimestamp>
+      <TemporaryPreserve>1</TemporaryPreserve>
+    </table>
+    <table id="51" parent="2" name="T_GOODSCATEGORY">
+      <ObjectId>76435</ObjectId>
+      <CreatedTimestamp>2018-07-04.08:58:53</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-04.08:58:54</ModifiedTimestamp>
+      <TemporaryPreserve>1</TemporaryPreserve>
+    </table>
+    <table id="52" parent="2" name="T_GOODSCOLOR">
+      <ObjectId>75076</ObjectId>
+      <CreatedTimestamp>2018-06-20.21:42:50</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-20.21:42:58</ModifiedTimestamp>
+      <TemporaryPreserve>1</TemporaryPreserve>
+    </table>
+    <table id="53" parent="2" name="T_MASK">
+      <ObjectId>76534</ObjectId>
+      <CreatedTimestamp>2018-07-05.09:03:20</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-05.09:03:20</ModifiedTimestamp>
+      <TemporaryPreserve>1</TemporaryPreserve>
+    </table>
+    <table id="54" parent="2" name="T_MENU">
+      <ObjectId>73795</ObjectId>
+      <Comment>系统功能菜单</Comment>
+      <CreatedTimestamp>2018-06-08.11:02:38</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-08.11:02:38</ModifiedTimestamp>
+      <TemporaryPreserve>1</TemporaryPreserve>
+    </table>
+    <table id="55" parent="2" name="T_MODEL">
+      <ObjectId>75080</ObjectId>
+      <CreatedTimestamp>2018-06-20.21:42:51</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-20.21:42:58</ModifiedTimestamp>
+      <TemporaryPreserve>1</TemporaryPreserve>
+    </table>
+    <table id="56" parent="2" name="T_MYWEAR">
+      <ObjectId>76863</ObjectId>
+      <CreatedTimestamp>2018-07-08.12:01:33</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-15.22:59:07</ModifiedTimestamp>
+      <TemporaryPreserve>1</TemporaryPreserve>
+    </table>
+    <table id="57" parent="2" name="T_NEWCUSTOMER">
+      <ObjectId>77659</ObjectId>
+      <CreatedTimestamp>2018-07-15.18:29:51</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-15.18:29:51</ModifiedTimestamp>
+      <TemporaryPreserve>1</TemporaryPreserve>
+    </table>
+    <table id="58" parent="2" name="T_NEWS">
+      <ObjectId>75053</ObjectId>
+      <CreatedTimestamp>2018-06-20.18:00:39</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-13.09:16:10</ModifiedTimestamp>
+      <TemporaryPreserve>1</TemporaryPreserve>
+    </table>
+    <table id="59" parent="2" name="T_NEWS_FILES">
+      <ObjectId>75054</ObjectId>
+      <CreatedTimestamp>2018-06-20.21:24:04</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-20.21:24:04</ModifiedTimestamp>
+      <TemporaryPreserve>1</TemporaryPreserve>
+    </table>
+    <table id="60" parent="2" name="T_OCCASION">
+      <ObjectId>75083</ObjectId>
+      <CreatedTimestamp>2018-06-20.21:42:51</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-21.15:26:49</ModifiedTimestamp>
+      <TemporaryPreserve>1</TemporaryPreserve>
+    </table>
+    <table id="61" parent="2" name="T_ORDER">
+      <ObjectId>76870</ObjectId>
+      <CreatedTimestamp>2018-07-08.12:01:34</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-22.08:10:12</ModifiedTimestamp>
+      <TemporaryPreserve>1</TemporaryPreserve>
+    </table>
+    <table id="62" parent="2" name="T_ORDERDETAIL">
+      <ObjectId>76874</ObjectId>
+      <CreatedTimestamp>2018-07-08.12:01:35</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-08.12:01:38</ModifiedTimestamp>
+      <TemporaryPreserve>1</TemporaryPreserve>
+    </table>
+    <table id="63" parent="2" name="T_PARAMETER">
+      <ObjectId>77661</ObjectId>
+      <CreatedTimestamp>2018-07-15.18:29:51</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-15.18:29:51</ModifiedTimestamp>
+      <TemporaryPreserve>1</TemporaryPreserve>
+    </table>
+    <table id="64" parent="2" name="T_PROVINCE">
+      <ObjectId>76878</ObjectId>
+      <CreatedTimestamp>2018-07-08.12:01:36</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-08.12:01:36</ModifiedTimestamp>
+      <TemporaryPreserve>1</TemporaryPreserve>
+    </table>
+    <table id="65" parent="2" name="T_REWARD">
+      <ObjectId>77662</ObjectId>
+      <CreatedTimestamp>2018-07-15.18:29:52</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-15.18:29:52</ModifiedTimestamp>
+      <TemporaryPreserve>1</TemporaryPreserve>
+    </table>
+    <table id="66" parent="2" name="T_ROLE">
+      <ObjectId>73797</ObjectId>
+      <Comment>系统角色</Comment>
+      <CreatedTimestamp>2018-06-08.11:02:50</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-08.11:02:50</ModifiedTimestamp>
+      <TemporaryPreserve>1</TemporaryPreserve>
+    </table>
+    <table id="67" parent="2" name="T_ROLE_MENU">
+      <ObjectId>73799</ObjectId>
+      <CreatedTimestamp>2018-06-08.11:02:50</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-08.11:02:53</ModifiedTimestamp>
+      <TemporaryPreserve>1</TemporaryPreserve>
+    </table>
+    <table id="68" parent="2" name="T_SERVICES">
+      <ObjectId>77645</ObjectId>
+      <Comment>客户服务中心</Comment>
+      <CreatedTimestamp>2018-07-15.11:47:30</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-15.11:47:30</ModifiedTimestamp>
+      <TemporaryPreserve>1</TemporaryPreserve>
+    </table>
+    <table id="69" parent="2" name="T_SHOPS">
+      <ObjectId>77647</ObjectId>
+      <CreatedTimestamp>2018-07-15.11:47:31</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-15.15:07:38</ModifiedTimestamp>
+      <TemporaryPreserve>1</TemporaryPreserve>
+    </table>
+    <table id="70" parent="2" name="T_STYLE">
+      <ObjectId>76536</ObjectId>
+      <Comment>镜片的工艺样式，包括非球面、双非球面、环焦、渐进多焦点</Comment>
+      <CreatedTimestamp>2018-07-05.09:03:30</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-05.09:03:30</ModifiedTimestamp>
+      <TemporaryPreserve>1</TemporaryPreserve>
+    </table>
+    <table id="71" parent="2" name="T_SUITABLEAGE">
+      <ObjectId>75085</ObjectId>
+      <CreatedTimestamp>2018-06-20.21:42:51</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-20.21:42:58</ModifiedTimestamp>
+      <TemporaryPreserve>1</TemporaryPreserve>
+    </table>
+    <table id="72" parent="2" name="T_SUITABLEFACE">
+      <ObjectId>75089</ObjectId>
+      <CreatedTimestamp>2018-06-20.21:42:52</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-20.21:42:59</ModifiedTimestamp>
+      <TemporaryPreserve>1</TemporaryPreserve>
+    </table>
+    <table id="73" parent="2" name="T_SUITABLEOCCASION">
+      <ObjectId>75093</ObjectId>
+      <CreatedTimestamp>2018-06-20.21:42:53</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-20.21:44:23</ModifiedTimestamp>
+      <TemporaryPreserve>1</TemporaryPreserve>
+    </table>
+    <table id="74" parent="2" name="T_USER_ROLE">
+      <ObjectId>73803</ObjectId>
+      <CreatedTimestamp>2018-06-08.11:02:51</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-08.11:02:53</ModifiedTimestamp>
+      <TemporaryPreserve>1</TemporaryPreserve>
+    </table>
+    <table id="75" parent="2" name="T_WEARGLASS">
+      <ObjectId>76880</ObjectId>
+      <CreatedTimestamp>2018-07-08.12:01:36</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-15.22:55:13</ModifiedTimestamp>
+      <TemporaryPreserve>1</TemporaryPreserve>
+    </table>
+    <column id="76" parent="35" name="ADDRESS">
+      <Position>1</Position>
+      <DataType>VARCHAR2(16)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="77" parent="35" name="CUSTOMER">
+      <Position>2</Position>
+      <DataType>VARCHAR2(32)|0</DataType>
+    </column>
+    <column id="78" parent="35" name="CONSIGNEE">
+      <Position>3</Position>
+      <DataType>VARCHAR2(64)|0</DataType>
+    </column>
+    <column id="79" parent="35" name="PHONE">
+      <Position>4</Position>
+      <DataType>VARCHAR2(16)|0</DataType>
+    </column>
+    <column id="80" parent="35" name="STREET">
+      <Position>5</Position>
+      <DataType>VARCHAR2(64)|0</DataType>
+    </column>
+    <column id="81" parent="35" name="PROVINCENAME">
+      <Position>6</Position>
+      <DataType>VARCHAR2(32)|0</DataType>
+    </column>
+    <column id="82" parent="35" name="CITYNAME">
+      <Position>7</Position>
+      <DataType>VARCHAR2(32)|0</DataType>
+    </column>
+    <column id="83" parent="35" name="COUNTYNAME">
+      <Position>8</Position>
+      <DataType>VARCHAR2(64)|0</DataType>
+    </column>
+    <column id="84" parent="35" name="ISDEFAULT">
+      <Position>9</Position>
+      <Comment>y-默认,n-不是默认</Comment>
+      <DataType>CHAR(1)|0</DataType>
+    </column>
+    <index id="85" parent="35" name="PK_T_ADDRESS">
+      <ObjectId>76853</ObjectId>
+      <CreatedTimestamp>2018-07-08.12:01:31</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-08.12:01:31</ModifiedTimestamp>
+      <TablespaceName>VISION_DATA</TablespaceName>
+      <ColNames>ADDRESS</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="86" parent="35" name="FK_BELONG_VIP">
+      <ObjectId>76854</ObjectId>
+      <CreatedTimestamp>2018-07-08.12:01:31</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-08.12:01:31</ModifiedTimestamp>
+      <TablespaceName>VISION_DATA</TablespaceName>
+      <ColNames>CUSTOMER</ColNames>
+    </index>
+    <key id="87" parent="35" name="PK_T_ADDRESS">
+      <ModifiedTimestamp>2018-07-08.12:01:31</ModifiedTimestamp>
+      <ColNames>ADDRESS</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>PK_T_ADDRESS</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="88" parent="35" name="FK_T_ADDRESS_T_CUSTOMER">
+      <ModifiedTimestamp>2018-07-08.12:01:37</ModifiedTimestamp>
+      <ColNames>CUSTOMER</ColNames>
+      <RefSchemaName>VISION</RefSchemaName>
+      <RefTableName>T_CUSTOMER</RefTableName>
+      <RefKeyName>PK_T_CUSTOMER</RefKeyName>
+      <OnDelete>restrict</OnDelete>
+    </foreign-key>
+    <column id="89" parent="36" name="ADMIN">
+      <Position>1</Position>
+      <DataType>VARCHAR2(8)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="90" parent="36" name="NAME">
+      <Position>2</Position>
+      <DataType>VARCHAR2(64)|0</DataType>
+    </column>
+    <column id="91" parent="36" name="PWD">
+      <Position>3</Position>
+      <DataType>VARCHAR2(16)|0</DataType>
+      <DefaultExpression>&apos;123456&apos;</DefaultExpression>
+    </column>
+    <column id="92" parent="36" name="ISVALID">
+      <Position>4</Position>
+      <Comment>账号是否失效：1-no,0-yes,默认有效</Comment>
+      <DataType>VARCHAR2(1)|0</DataType>
+      <DefaultExpression>&apos;1&apos;</DefaultExpression>
+    </column>
+    <index id="93" parent="36" name="PK_T_ADMIN">
+      <ObjectId>73794</ObjectId>
+      <CreatedTimestamp>2018-06-08.11:02:20</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-08.11:02:20</ModifiedTimestamp>
+      <TablespaceName>VISION_DATA</TablespaceName>
+      <ColNames>ADMIN</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="94" parent="36" name="PK_T_ADMIN">
+      <ModifiedTimestamp>2018-06-08.11:02:20</ModifiedTimestamp>
+      <ColNames>ADMIN</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>PK_T_ADMIN</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <column id="95" parent="37" name="AGESECTION">
+      <Position>1</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="96" parent="37" name="NAME">
+      <Position>2</Position>
+      <DataType>VARCHAR2(64)|0</DataType>
+    </column>
+    <column id="97" parent="37" name="MINAGE">
+      <Position>3</Position>
+      <DataType>NUMBER(*)|0</DataType>
+    </column>
+    <column id="98" parent="37" name="MAXAGE">
+      <Position>4</Position>
+      <DataType>NUMBER(*)|0</DataType>
+    </column>
+    <index id="99" parent="37" name="PK_T_AGESECTION">
+      <ObjectId>75057</ObjectId>
+      <CreatedTimestamp>2018-06-20.21:42:44</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-20.21:42:44</ModifiedTimestamp>
+      <TablespaceName>VISION_DATA</TablespaceName>
+      <ColNames>AGESECTION</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="100" parent="37" name="PK_T_AGESECTION">
+      <ModifiedTimestamp>2018-06-20.21:42:44</ModifiedTimestamp>
+      <ColNames>AGESECTION</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>PK_T_AGESECTION</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <column id="101" parent="38" name="ATTACHMENT">
+      <Position>1</Position>
+      <DataType>VARCHAR2(16)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="102" parent="38" name="NAME">
+      <Position>2</Position>
+      <DataType>VARCHAR2(64)|0</DataType>
+    </column>
+    <column id="103" parent="38" name="PATH">
+      <Position>3</Position>
+      <DataType>VARCHAR2(128)|0</DataType>
+    </column>
+    <column id="104" parent="38" name="TYPE">
+      <Position>4</Position>
+      <Comment>p-图片,w-Word文档,x-Excel文档</Comment>
+      <DataType>CHAR(1)|0</DataType>
+    </column>
+    <index id="105" parent="38" name="PK_T_ATTACHMENT">
+      <ObjectId>75059</ObjectId>
+      <CreatedTimestamp>2018-06-20.21:42:45</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-20.21:42:45</ModifiedTimestamp>
+      <TablespaceName>VISION_DATA</TablespaceName>
+      <ColNames>ATTACHMENT</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="106" parent="38" name="PK_T_ATTACHMENT">
+      <ModifiedTimestamp>2018-06-20.21:42:45</ModifiedTimestamp>
+      <ColNames>ATTACHMENT</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>PK_T_ATTACHMENT</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <column id="107" parent="39" name="BRAND">
+      <Position>1</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="108" parent="39" name="NAME">
+      <Position>2</Position>
+      <DataType>VARCHAR2(64)|0</DataType>
+    </column>
+    <column id="109" parent="39" name="COMPANY">
+      <Position>3</Position>
+      <DataType>VARCHAR2(64)|0</DataType>
+    </column>
+    <column id="110" parent="39" name="TYPE">
+      <Position>4</Position>
+      <Comment>品牌类型：0-通用，1-镜框，2-镜片</Comment>
+      <DataType>NUMBER(*)|0</DataType>
+      <DefaultExpression>0
+</DefaultExpression>
+    </column>
+    <column id="111" parent="39" name="RECOMMEND">
+      <Position>5</Position>
+      <Comment>0-默认不推荐,1-推荐</Comment>
+      <DataType>NUMBER(*)|0</DataType>
+      <DefaultExpression>0
+</DefaultExpression>
+    </column>
+    <index id="112" parent="39" name="PK_T_BRAND">
+      <ObjectId>75061</ObjectId>
+      <CreatedTimestamp>2018-06-20.21:42:45</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-20.21:42:45</ModifiedTimestamp>
+      <TablespaceName>VISION_DATA</TablespaceName>
+      <ColNames>BRAND</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="113" parent="39" name="PK_T_BRAND">
+      <ModifiedTimestamp>2018-06-20.21:42:45</ModifiedTimestamp>
+      <ColNames>BRAND</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>PK_T_BRAND</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <column id="114" parent="40" name="CATEGORY">
+      <Position>1</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="115" parent="40" name="NAME">
+      <Position>2</Position>
+      <DataType>VARCHAR2(64)|0</DataType>
+    </column>
+    <index id="116" parent="40" name="PK_T_CATEGORY">
+      <ObjectId>75063</ObjectId>
+      <CreatedTimestamp>2018-06-20.21:42:46</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-20.21:42:46</ModifiedTimestamp>
+      <TablespaceName>VISION_DATA</TablespaceName>
+      <ColNames>CATEGORY</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="117" parent="40" name="PK_T_CATEGORY">
+      <ModifiedTimestamp>2018-06-20.21:42:46</ModifiedTimestamp>
+      <ColNames>CATEGORY</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>PK_T_CATEGORY</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <column id="118" parent="41" name="CITY">
+      <Position>1</Position>
+      <DataType>VARCHAR2(6)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="119" parent="41" name="PROVINCE">
+      <Position>2</Position>
+      <DataType>VARCHAR2(6)|0</DataType>
+    </column>
+    <column id="120" parent="41" name="NAME">
+      <Position>3</Position>
+      <DataType>VARCHAR2(128)|0</DataType>
+    </column>
+    <index id="121" parent="41" name="PK_T_CITY">
+      <ObjectId>76856</ObjectId>
+      <CreatedTimestamp>2018-07-08.12:01:31</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-08.12:01:31</ModifiedTimestamp>
+      <TablespaceName>VISION_DATA</TablespaceName>
+      <ColNames>CITY</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="122" parent="41" name="FK_CITY_PROVINCE">
+      <ObjectId>76857</ObjectId>
+      <CreatedTimestamp>2018-07-08.12:01:32</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-08.12:01:32</ModifiedTimestamp>
+      <TablespaceName>VISION_DATA</TablespaceName>
+      <ColNames>PROVINCE</ColNames>
+    </index>
+    <key id="123" parent="41" name="PK_T_CITY">
+      <ModifiedTimestamp>2018-07-08.12:01:31</ModifiedTimestamp>
+      <ColNames>CITY</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>PK_T_CITY</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="124" parent="41" name="FK_T_CITY_T_PROVINCE">
+      <ModifiedTimestamp>2018-07-08.12:01:37</ModifiedTimestamp>
+      <ColNames>PROVINCE</ColNames>
+      <RefSchemaName>VISION</RefSchemaName>
+      <RefTableName>T_PROVINCE</RefTableName>
+      <RefKeyName>PK_T_PROVINCE</RefKeyName>
+      <OnDelete>restrict</OnDelete>
+    </foreign-key>
+    <column id="125" parent="42" name="COLOR">
+      <Position>1</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="126" parent="42" name="NAME">
+      <Position>2</Position>
+      <DataType>VARCHAR2(64)|0</DataType>
+    </column>
+    <column id="127" parent="42" name="RGB">
+      <Position>3</Position>
+      <Comment>颜色的rgb值，色块图片路径，128位长度</Comment>
+      <DataType>CHAR(128)|0</DataType>
+    </column>
+    <index id="128" parent="42" name="PK_T_COLOR">
+      <ObjectId>75065</ObjectId>
+      <CreatedTimestamp>2018-06-20.21:42:46</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-20.21:42:46</ModifiedTimestamp>
+      <TablespaceName>VISION_DATA</TablespaceName>
+      <ColNames>COLOR</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="129" parent="42" name="PK_T_COLOR">
+      <ModifiedTimestamp>2018-06-20.21:42:46</ModifiedTimestamp>
+      <ColNames>COLOR</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>PK_T_COLOR</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <column id="130" parent="43" name="COUNTY">
+      <Position>1</Position>
+      <DataType>VARCHAR2(6)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="131" parent="43" name="CITY">
+      <Position>2</Position>
+      <DataType>VARCHAR2(6)|0</DataType>
+    </column>
+    <column id="132" parent="43" name="NAME">
+      <Position>3</Position>
+      <DataType>VARCHAR2(128)|0</DataType>
+    </column>
+    <index id="133" parent="43" name="PK_T_COUNTY">
+      <ObjectId>76859</ObjectId>
+      <CreatedTimestamp>2018-07-08.12:01:32</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-08.12:01:32</ModifiedTimestamp>
+      <TablespaceName>VISION_DATA</TablespaceName>
+      <ColNames>COUNTY</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="134" parent="43" name="FK_COUNTY_CITY">
+      <ObjectId>76860</ObjectId>
+      <CreatedTimestamp>2018-07-08.12:01:32</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-08.12:01:32</ModifiedTimestamp>
+      <TablespaceName>VISION_DATA</TablespaceName>
+      <ColNames>CITY</ColNames>
+    </index>
+    <key id="135" parent="43" name="PK_T_COUNTY">
+      <ModifiedTimestamp>2018-07-08.12:01:32</ModifiedTimestamp>
+      <ColNames>COUNTY</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>PK_T_COUNTY</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="136" parent="43" name="FK_T_COUNTY_T_CITY">
+      <ModifiedTimestamp>2018-07-08.12:01:37</ModifiedTimestamp>
+      <ColNames>CITY</ColNames>
+      <RefSchemaName>VISION</RefSchemaName>
+      <RefTableName>T_CITY</RefTableName>
+      <RefKeyName>PK_T_CITY</RefKeyName>
+      <OnDelete>restrict</OnDelete>
+    </foreign-key>
+    <column id="137" parent="44" name="VIP">
+      <Position>1</Position>
+      <DataType>VARCHAR2(32)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="138" parent="44" name="NAME">
+      <Position>2</Position>
+      <DataType>VARCHAR2(128)|0</DataType>
+    </column>
+    <column id="139" parent="44" name="PHONE">
+      <Position>3</Position>
+      <DataType>VARCHAR2(16)|0</DataType>
+    </column>
+    <column id="140" parent="44" name="SEX">
+      <Position>4</Position>
+      <Comment>m-男，f-女</Comment>
+      <DataType>VARCHAR2(2)|0</DataType>
+    </column>
+    <column id="141" parent="44" name="PWD">
+      <Position>5</Position>
+      <DataType>VARCHAR2(16)|0</DataType>
+    </column>
+    <column id="142" parent="44" name="BIRTHDAY">
+      <Position>6</Position>
+      <Comment>yyyy-mm-dd</Comment>
+      <DataType>VARCHAR2(10)|0</DataType>
+    </column>
+    <column id="143" parent="44" name="FACE">
+      <Position>7</Position>
+      <DataType>VARCHAR2(64)|0</DataType>
+    </column>
+    <column id="144" parent="44" name="VOUCHER">
+      <Position>8</Position>
+      <Comment>优惠卷余额，默认为0，推荐新会员时余额增加，此优惠卷可用于支付</Comment>
+      <DataType>NUMBER(*)|0</DataType>
+      <DefaultExpression>0
+</DefaultExpression>
+    </column>
+    <index id="145" parent="44" name="PK_T_CUSTOMER">
+      <ObjectId>76862</ObjectId>
+      <CreatedTimestamp>2018-07-08.12:01:32</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-08.12:01:32</ModifiedTimestamp>
+      <TablespaceName>VISION_DATA</TablespaceName>
+      <ColNames>VIP</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="146" parent="44" name="PK_T_CUSTOMER">
+      <ModifiedTimestamp>2018-07-08.12:01:32</ModifiedTimestamp>
+      <ColNames>VIP</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>PK_T_CUSTOMER</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <column id="147" parent="45" name="EFFICACY">
+      <Position>1</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="148" parent="45" name="NAME">
+      <Position>2</Position>
+      <DataType>VARCHAR2(64)|0</DataType>
+    </column>
+    <index id="149" parent="45" name="PK_T_EFFICACY">
+      <ObjectId>76526</ObjectId>
+      <CreatedTimestamp>2018-07-05.08:56:57</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-05.08:56:57</ModifiedTimestamp>
+      <TablespaceName>VISION_DATA</TablespaceName>
+      <ColNames>EFFICACY</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="150" parent="45" name="PK_T_EFFICACY">
+      <ModifiedTimestamp>2018-07-05.08:56:57</ModifiedTimestamp>
+      <ColNames>EFFICACY</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>PK_T_EFFICACY</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <column id="151" parent="46" name="EYEGLASS">
+      <Position>1</Position>
+      <DataType>VARCHAR2(16)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="152" parent="46" name="EFFICACY">
+      <Position>2</Position>
+      <DataType>NUMBER(*)|0</DataType>
+    </column>
+    <column id="153" parent="46" name="BRAND">
+      <Position>3</Position>
+      <DataType>NUMBER(*)|0</DataType>
+    </column>
+    <column id="154" parent="46" name="MASK">
+      <Position>4</Position>
+      <DataType>NUMBER(*)|0</DataType>
+    </column>
+    <column id="155" parent="46" name="STYLE">
+      <Position>5</Position>
+      <DataType>NUMBER(*)|0</DataType>
+    </column>
+    <column id="156" parent="46" name="REFRACTION">
+      <Position>6</Position>
+      <DataType>NUMBER(4,2)|0</DataType>
+    </column>
+    <column id="157" parent="46" name="PRICE">
+      <Position>7</Position>
+      <DataType>NUMBER(4)|0</DataType>
+    </column>
+    <column id="158" parent="46" name="NAME">
+      <Position>8</Position>
+      <DataType>VARCHAR2(64)|0</DataType>
+    </column>
+    <column id="159" parent="46" name="DETAILPHOTO">
+      <Position>9</Position>
+      <Comment>详情图片</Comment>
+      <DataType>VARCHAR2(128)|0</DataType>
+    </column>
+    <index id="160" parent="46" name="PK_T_EYECLASS">
+      <ObjectId>76538</ObjectId>
+      <CreatedTimestamp>2018-07-05.15:25:00</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-05.15:25:00</ModifiedTimestamp>
+      <TablespaceName>VISION_DATA</TablespaceName>
+      <ColNames>EYEGLASS</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="161" parent="46" name="FK_EYECLASS_EFFICACY_T_EFFICAC">
+      <ObjectId>76530</ObjectId>
+      <CreatedTimestamp>2018-07-05.09:02:13</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-05.09:02:13</ModifiedTimestamp>
+      <TablespaceName>VISION_DATA</TablespaceName>
+      <ColNames>EFFICACY</ColNames>
+    </index>
+    <index id="162" parent="46" name="FK_EYECLASS_BRAND_T_BRAND">
+      <ObjectId>76532</ObjectId>
+      <CreatedTimestamp>2018-07-05.09:02:39</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-05.09:02:39</ModifiedTimestamp>
+      <TablespaceName>VISION_DATA</TablespaceName>
+      <ColNames>BRAND</ColNames>
+    </index>
+    <index id="163" parent="46" name="FK_EYECLASS_MASK_T_MASK">
+      <ObjectId>76533</ObjectId>
+      <CreatedTimestamp>2018-07-05.09:02:44</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-05.09:02:44</ModifiedTimestamp>
+      <TablespaceName>VISION_DATA</TablespaceName>
+      <ColNames>MASK</ColNames>
+    </index>
+    <index id="164" parent="46" name="FK_EYECLASS_STYLE_T_STYLE">
+      <ObjectId>76529</ObjectId>
+      <CreatedTimestamp>2018-07-05.09:02:07</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-05.09:02:07</ModifiedTimestamp>
+      <TablespaceName>VISION_DATA</TablespaceName>
+      <ColNames>STYLE</ColNames>
+    </index>
+    <key id="165" parent="46" name="PK_T_EYECLASS">
+      <ModifiedTimestamp>2018-07-05.15:25:00</ModifiedTimestamp>
+      <ColNames>EYEGLASS</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>PK_T_EYECLASS</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="166" parent="46" name="FK_T_EYECLASS_T_EFFICACY">
+      <ModifiedTimestamp>2018-07-05.09:04:18</ModifiedTimestamp>
+      <ColNames>EFFICACY</ColNames>
+      <RefSchemaName>VISION</RefSchemaName>
+      <RefTableName>T_EFFICACY</RefTableName>
+      <RefKeyName>PK_T_EFFICACY</RefKeyName>
+      <OnDelete>restrict</OnDelete>
+    </foreign-key>
+    <foreign-key id="167" parent="46" name="FK_T_EYECLASS_T_BRAND">
+      <ModifiedTimestamp>2018-07-05.09:04:17</ModifiedTimestamp>
+      <ColNames>BRAND</ColNames>
+      <RefSchemaName>VISION</RefSchemaName>
+      <RefTableName>T_BRAND</RefTableName>
+      <RefKeyName>PK_T_BRAND</RefKeyName>
+      <OnDelete>restrict</OnDelete>
+    </foreign-key>
+    <foreign-key id="168" parent="46" name="FK_T_EYECLASS_T_MASK">
+      <ModifiedTimestamp>2018-07-05.09:04:18</ModifiedTimestamp>
+      <ColNames>MASK</ColNames>
+      <RefSchemaName>VISION</RefSchemaName>
+      <RefTableName>T_MASK</RefTableName>
+      <RefKeyName>PK_T_MASK</RefKeyName>
+      <OnDelete>restrict</OnDelete>
+    </foreign-key>
+    <foreign-key id="169" parent="46" name="FK_T_EYECLASS_T_STYLE">
+      <ModifiedTimestamp>2018-07-05.09:04:18</ModifiedTimestamp>
+      <ColNames>STYLE</ColNames>
+      <RefSchemaName>VISION</RefSchemaName>
+      <RefTableName>T_STYLE</RefTableName>
+      <RefKeyName>PK_T_STYLE</RefKeyName>
+      <OnDelete>restrict</OnDelete>
+    </foreign-key>
+    <column id="170" parent="47" name="EYEGLASS">
+      <Position>1</Position>
+      <DataType>VARCHAR2(16)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="171" parent="47" name="ATTACHMENT">
+      <Position>2</Position>
+      <DataType>VARCHAR2(16)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="172" parent="47" name="SN">
+      <Position>3</Position>
+      <Comment>默认0号附件图片是用于智能配镜</Comment>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="173" parent="47" name="PK_T_EYEGLASSATTACHMENT">
+      <ObjectId>76649</ObjectId>
+      <CreatedTimestamp>2018-07-06.18:12:47</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-06.18:12:47</ModifiedTimestamp>
+      <TablespaceName>VISION_DATA</TablespaceName>
+      <ColNames>ATTACHMENT
+EYEGLASS</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="174" parent="47" name="FK_EYEGLASSATTACHMENT_EYECLA">
+      <ObjectId>76643</ObjectId>
+      <CreatedTimestamp>2018-07-06.17:05:45</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-06.17:05:45</ModifiedTimestamp>
+      <TablespaceName>VISION_DATA</TablespaceName>
+      <ColNames>EYEGLASS</ColNames>
+    </index>
+    <index id="175" parent="47" name="FK_EYEGLASSATTACHMENT_ATTAC">
+      <ObjectId>76644</ObjectId>
+      <CreatedTimestamp>2018-07-06.17:05:45</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-06.17:05:45</ModifiedTimestamp>
+      <TablespaceName>VISION_DATA</TablespaceName>
+      <ColNames>ATTACHMENT</ColNames>
+    </index>
+    <key id="176" parent="47" name="PK_T_EYEGLASSATTACHMENT">
+      <ModifiedTimestamp>2018-07-06.18:12:47</ModifiedTimestamp>
+      <ColNames>ATTACHMENT
+EYEGLASS</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>PK_T_EYEGLASSATTACHMENT</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="177" parent="47" name="FK_EYEGLASSATTACHMENT_EYEGLASS">
+      <ModifiedTimestamp>2018-07-06.17:06:07</ModifiedTimestamp>
+      <ColNames>EYEGLASS</ColNames>
+      <RefSchemaName>VISION</RefSchemaName>
+      <RefTableName>T_EYEGLASS</RefTableName>
+      <RefKeyName>PK_T_EYECLASS</RefKeyName>
+      <OnDelete>restrict</OnDelete>
+    </foreign-key>
+    <foreign-key id="178" parent="47" name="FK_EYEGLASSATTACHMENT_ATTA">
+      <ModifiedTimestamp>2018-07-06.17:06:07</ModifiedTimestamp>
+      <ColNames>ATTACHMENT</ColNames>
+      <RefSchemaName>VISION</RefSchemaName>
+      <RefTableName>T_ATTACHMENT</RefTableName>
+      <RefKeyName>PK_T_ATTACHMENT</RefKeyName>
+      <OnDelete>restrict</OnDelete>
+    </foreign-key>
+    <column id="179" parent="48" name="FACE">
+      <Position>1</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="180" parent="48" name="NAME">
+      <Position>2</Position>
+      <DataType>VARCHAR2(64)|0</DataType>
+    </column>
+    <column id="181" parent="48" name="PHOTO">
+      <Position>3</Position>
+      <DataType>VARCHAR2(128)|0</DataType>
+    </column>
+    <index id="182" parent="48" name="PK_T_FACE">
+      <ObjectId>75067</ObjectId>
+      <CreatedTimestamp>2018-06-20.21:42:47</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-20.21:42:47</ModifiedTimestamp>
+      <TablespaceName>VISION_DATA</TablespaceName>
+      <ColNames>FACE</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="183" parent="48" name="PK_T_FACE">
+      <ModifiedTimestamp>2018-06-20.21:42:47</ModifiedTimestamp>
+      <ColNames>FACE</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>PK_T_FACE</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <column id="184" parent="49" name="GOODS">
+      <Position>1</Position>
+      <Comment>可以采取固定编码形式，编写统一长度</Comment>
+      <DataType>VARCHAR2(16)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="185" parent="49" name="BRAND">
+      <Position>2</Position>
+      <DataType>NUMBER(*)|0</DataType>
+    </column>
+    <column id="186" parent="49" name="NAME">
+      <Position>3</Position>
+      <DataType>VARCHAR2(64)|0</DataType>
+    </column>
+    <column id="187" parent="49" name="MODELS">
+      <Position>4</Position>
+      <DataType>VARCHAR2(16)|0</DataType>
+    </column>
+    <column id="188" parent="49" name="WIDTH">
+      <Position>5</Position>
+      <Comment>单位为mm</Comment>
+      <DataType>NUMBER(*)|0</DataType>
+    </column>
+    <column id="189" parent="49" name="HEIGHT">
+      <Position>6</Position>
+      <Comment>单位为mm</Comment>
+      <DataType>NUMBER(*)|0</DataType>
+    </column>
+    <column id="190" parent="49" name="SPACE">
+      <Position>7</Position>
+      <Comment>单位为mm</Comment>
+      <DataType>NUMBER(*)|0</DataType>
+    </column>
+    <column id="191" parent="49" name="LENGTH">
+      <Position>8</Position>
+      <Comment>单位为mm</Comment>
+      <DataType>NUMBER(*)|0</DataType>
+    </column>
+    <column id="192" parent="49" name="MAX_WIDTH">
+      <Position>9</Position>
+      <Comment>单位为mm</Comment>
+      <DataType>NUMBER(*)|0</DataType>
+    </column>
+    <column id="193" parent="49" name="SUITABLE_SEX">
+      <Position>10</Position>
+      <Comment>0-通用，1-男，2-女</Comment>
+      <DataType>NUMBER(*)|0</DataType>
+    </column>
+    <column id="194" parent="49" name="PRICE">
+      <Position>11</Position>
+      <DataType>NUMBER(4)|0</DataType>
+    </column>
+    <column id="195" parent="49" name="DETAILPHOTO">
+      <Position>12</Position>
+      <Comment>详情图片</Comment>
+      <DataType>VARCHAR2(128)|0</DataType>
+    </column>
+    <index id="196" parent="49" name="PK_T_GOODS">
+      <ObjectId>75069</ObjectId>
+      <CreatedTimestamp>2018-06-20.21:42:47</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-20.21:42:47</ModifiedTimestamp>
+      <TablespaceName>VISION_DATA</TablespaceName>
+      <ColNames>GOODS</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="197" parent="49" name="FK_GOODS_BELONG_BRAND">
+      <ObjectId>75070</ObjectId>
+      <CreatedTimestamp>2018-06-20.21:42:48</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-20.21:42:48</ModifiedTimestamp>
+      <TablespaceName>VISION_DATA</TablespaceName>
+      <ColNames>BRAND</ColNames>
+    </index>
+    <key id="198" parent="49" name="PK_T_GOODS">
+      <ModifiedTimestamp>2018-06-20.21:42:47</ModifiedTimestamp>
+      <ColNames>GOODS</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>PK_T_GOODS</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="199" parent="49" name="FK_T_GOODS_T_BRAND">
+      <ModifiedTimestamp>2018-06-20.21:42:54</ModifiedTimestamp>
+      <ColNames>BRAND</ColNames>
+      <RefSchemaName>VISION</RefSchemaName>
+      <RefTableName>T_BRAND</RefTableName>
+      <RefKeyName>PK_T_BRAND</RefKeyName>
+      <OnDelete>restrict</OnDelete>
+    </foreign-key>
+    <column id="200" parent="50" name="ATTACHMENT">
+      <Position>1</Position>
+      <DataType>VARCHAR2(16)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="201" parent="50" name="GOODS">
+      <Position>2</Position>
+      <Comment>可以采取固定编码形式，编写统一长度</Comment>
+      <DataType>VARCHAR2(16)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="202" parent="50" name="SN">
+      <Position>3</Position>
+      <Comment>默认0号附件图片是用于智能配镜</Comment>
+      <DataType>NUMBER(*)|0</DataType>
+    </column>
+    <index id="203" parent="50" name="PK_T_GOODSATTACHMENT">
+      <ObjectId>75073</ObjectId>
+      <CreatedTimestamp>2018-06-20.21:42:49</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-20.21:42:49</ModifiedTimestamp>
+      <TablespaceName>VISION_DATA</TablespaceName>
+      <ColNames>ATTACHMENT
+GOODS</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="204" parent="50" name="FK_GOODSATTACHMENT_ATTACHMEN">
+      <ObjectId>75074</ObjectId>
+      <CreatedTimestamp>2018-06-20.21:42:49</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-20.21:42:49</ModifiedTimestamp>
+      <TablespaceName>VISION_DATA</TablespaceName>
+      <ColNames>ATTACHMENT</ColNames>
+    </index>
+    <index id="205" parent="50" name="FK_GOODSATTACHMENT_GOODS">
+      <ObjectId>75075</ObjectId>
+      <CreatedTimestamp>2018-06-20.21:42:49</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-20.21:42:49</ModifiedTimestamp>
+      <TablespaceName>VISION_DATA</TablespaceName>
+      <ColNames>GOODS</ColNames>
+    </index>
+    <key id="206" parent="50" name="PK_T_GOODSATTACHMENT">
+      <ModifiedTimestamp>2018-06-20.21:42:49</ModifiedTimestamp>
+      <ColNames>ATTACHMENT
+GOODS</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>PK_T_GOODSATTACHMENT</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="207" parent="50" name="FK_GOODSATTACHMENT_ATTACHMENT">
+      <ModifiedTimestamp>2018-06-20.21:44:17</ModifiedTimestamp>
+      <ColNames>ATTACHMENT</ColNames>
+      <RefSchemaName>VISION</RefSchemaName>
+      <RefTableName>T_ATTACHMENT</RefTableName>
+      <RefKeyName>PK_T_ATTACHMENT</RefKeyName>
+      <OnDelete>restrict</OnDelete>
+    </foreign-key>
+    <foreign-key id="208" parent="50" name="FK_T_GOODSATTACHMENT_T_GOODS">
+      <ModifiedTimestamp>2018-06-20.21:42:57</ModifiedTimestamp>
+      <ColNames>GOODS</ColNames>
+      <RefSchemaName>VISION</RefSchemaName>
+      <RefTableName>T_GOODS</RefTableName>
+      <RefKeyName>PK_T_GOODS</RefKeyName>
+      <OnDelete>restrict</OnDelete>
+    </foreign-key>
+    <column id="209" parent="51" name="CATEGORY">
+      <Position>1</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="210" parent="51" name="GOODS">
+      <Position>2</Position>
+      <DataType>VARCHAR2(16)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="211" parent="51" name="PK_T_GOODSCATEGORY">
+      <ObjectId>76436</ObjectId>
+      <CreatedTimestamp>2018-07-04.08:58:53</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-04.08:58:53</ModifiedTimestamp>
+      <TablespaceName>VISION_DATA</TablespaceName>
+      <ColNames>CATEGORY
+GOODS</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="212" parent="51" name="FK_GOODSCATEGORY_CATEGORY">
+      <ObjectId>76437</ObjectId>
+      <CreatedTimestamp>2018-07-04.08:58:54</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-04.08:58:54</ModifiedTimestamp>
+      <TablespaceName>VISION_DATA</TablespaceName>
+      <ColNames>CATEGORY</ColNames>
+    </index>
+    <index id="213" parent="51" name="FK_GOODSCATEGORY_GOODS">
+      <ObjectId>76438</ObjectId>
+      <CreatedTimestamp>2018-07-04.08:58:54</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-04.08:58:54</ModifiedTimestamp>
+      <TablespaceName>VISION_DATA</TablespaceName>
+      <ColNames>GOODS</ColNames>
+    </index>
+    <key id="214" parent="51" name="PK_T_GOODSCATEGORY">
+      <ModifiedTimestamp>2018-07-04.08:58:53</ModifiedTimestamp>
+      <ColNames>CATEGORY
+GOODS</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>PK_T_GOODSCATEGORY</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <column id="215" parent="52" name="COLOR">
+      <Position>1</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="216" parent="52" name="GOODS">
+      <Position>2</Position>
+      <Comment>可以采取固定编码形式，编写统一长度</Comment>
+      <DataType>VARCHAR2(16)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="217" parent="52" name="PK_T_GOODSCOLOR">
+      <ObjectId>75077</ObjectId>
+      <CreatedTimestamp>2018-06-20.21:42:50</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-20.21:42:50</ModifiedTimestamp>
+      <TablespaceName>VISION_DATA</TablespaceName>
+      <ColNames>COLOR
+GOODS</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="218" parent="52" name="FK_GOODSCOLOR_COLOR">
+      <ObjectId>75078</ObjectId>
+      <CreatedTimestamp>2018-06-20.21:42:50</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-20.21:42:50</ModifiedTimestamp>
+      <TablespaceName>VISION_DATA</TablespaceName>
+      <ColNames>COLOR</ColNames>
+    </index>
+    <index id="219" parent="52" name="FK_GOODSCOLOR2_T_GOODS">
+      <ObjectId>75079</ObjectId>
+      <CreatedTimestamp>2018-06-20.21:42:50</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-20.21:42:50</ModifiedTimestamp>
+      <TablespaceName>VISION_DATA</TablespaceName>
+      <ColNames>GOODS</ColNames>
+    </index>
+    <key id="220" parent="52" name="PK_T_GOODSCOLOR">
+      <ModifiedTimestamp>2018-06-20.21:42:50</ModifiedTimestamp>
+      <ColNames>COLOR
+GOODS</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>PK_T_GOODSCOLOR</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="221" parent="52" name="FK_T_GOODSCOLOR_T_COLOR">
+      <ModifiedTimestamp>2018-06-20.21:42:57</ModifiedTimestamp>
+      <ColNames>COLOR</ColNames>
+      <RefSchemaName>VISION</RefSchemaName>
+      <RefTableName>T_COLOR</RefTableName>
+      <RefKeyName>PK_T_COLOR</RefKeyName>
+      <OnDelete>restrict</OnDelete>
+    </foreign-key>
+    <foreign-key id="222" parent="52" name="FK_T_GOODSCOLOR_T_GOODS">
+      <ModifiedTimestamp>2018-06-20.21:42:58</ModifiedTimestamp>
+      <ColNames>GOODS</ColNames>
+      <RefSchemaName>VISION</RefSchemaName>
+      <RefTableName>T_GOODS</RefTableName>
+      <RefKeyName>PK_T_GOODS</RefKeyName>
+      <OnDelete>restrict</OnDelete>
+    </foreign-key>
+    <column id="223" parent="53" name="MASK">
+      <Position>1</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="224" parent="53" name="NAME">
+      <Position>2</Position>
+      <DataType>VARCHAR2(64)|0</DataType>
+    </column>
+    <index id="225" parent="53" name="PK_T_MASK">
+      <ObjectId>76535</ObjectId>
+      <CreatedTimestamp>2018-07-05.09:03:20</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-05.09:03:20</ModifiedTimestamp>
+      <TablespaceName>VISION_DATA</TablespaceName>
+      <ColNames>MASK</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="226" parent="53" name="PK_T_MASK">
+      <ModifiedTimestamp>2018-07-05.09:03:20</ModifiedTimestamp>
+      <ColNames>MASK</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>PK_T_MASK</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <column id="227" parent="54" name="MENU">
+      <Position>1</Position>
+      <DataType>VARCHAR2(2)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="228" parent="54" name="TITLE">
+      <Position>2</Position>
+      <DataType>VARCHAR2(32)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="229" parent="54" name="PARENTS">
+      <Position>3</Position>
+      <DataType>VARCHAR2(2)|0</DataType>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <column id="230" parent="54" name="URL">
+      <Position>4</Position>
+      <Comment>操作权限所对象ui的url</Comment>
+      <DataType>VARCHAR2(64)|0</DataType>
+      <DefaultExpression>&apos;&apos;</DefaultExpression>
+    </column>
+    <column id="231" parent="54" name="METHOD">
+      <Position>5</Position>
+      <Comment>操作权限所对象action的方法</Comment>
+      <DataType>VARCHAR2(64)|0</DataType>
+      <DefaultExpression>&apos;&apos;</DefaultExpression>
+    </column>
+    <column id="232" parent="54" name="SORT_NO">
+      <Position>6</Position>
+      <Comment>操作权限在同级菜单中的排序</Comment>
+      <DataType>NUMBER(*)|0</DataType>
+      <DefaultExpression>0</DefaultExpression>
+    </column>
+    <column id="233" parent="54" name="VISIBLE">
+      <Position>7</Position>
+      <Comment>是否显示,0-不显示，1-显示</Comment>
+      <DataType>NUMBER(*)|0</DataType>
+      <DefaultExpression>1</DefaultExpression>
+    </column>
+    <column id="234" parent="54" name="CSS">
+      <Position>8</Position>
+      <DataType>VARCHAR2(32)|0</DataType>
+      <DefaultExpression>&apos;&apos;</DefaultExpression>
+    </column>
+    <index id="235" parent="54" name="PK_T_MENU">
+      <ObjectId>73796</ObjectId>
+      <CreatedTimestamp>2018-06-08.11:02:38</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-08.11:02:38</ModifiedTimestamp>
+      <TablespaceName>VISION_DATA</TablespaceName>
+      <ColNames>MENU</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="236" parent="54" name="PK_T_MENU">
+      <ModifiedTimestamp>2018-06-08.11:02:38</ModifiedTimestamp>
+      <ColNames>MENU</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>PK_T_MENU</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <column id="237" parent="55" name="MODEL">
+      <Position>1</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="238" parent="55" name="FACE">
+      <Position>2</Position>
+      <DataType>NUMBER(*)|0</DataType>
+    </column>
+    <column id="239" parent="55" name="NAME">
+      <Position>3</Position>
+      <DataType>VARCHAR2(64)|0</DataType>
+    </column>
+    <column id="240" parent="55" name="AGE">
+      <Position>4</Position>
+      <DataType>NUMBER(*)|0</DataType>
+    </column>
+    <column id="241" parent="55" name="SEX">
+      <Position>5</Position>
+      <DataType>CHAR(8)|0</DataType>
+    </column>
+    <column id="242" parent="55" name="PHOTO">
+      <Position>6</Position>
+      <DataType>VARCHAR2(128)|0</DataType>
+    </column>
+    <index id="243" parent="55" name="PK_T_MODEL">
+      <ObjectId>75081</ObjectId>
+      <CreatedTimestamp>2018-06-20.21:42:51</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-20.21:42:51</ModifiedTimestamp>
+      <TablespaceName>VISION_DATA</TablespaceName>
+      <ColNames>MODEL</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="244" parent="55" name="FK_MODEL_BELONG_FACE_T_FACE">
+      <ObjectId>75082</ObjectId>
+      <CreatedTimestamp>2018-06-20.21:42:51</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-20.21:42:51</ModifiedTimestamp>
+      <TablespaceName>VISION_DATA</TablespaceName>
+      <ColNames>FACE</ColNames>
+    </index>
+    <key id="245" parent="55" name="PK_T_MODEL">
+      <ModifiedTimestamp>2018-06-20.21:42:51</ModifiedTimestamp>
+      <ColNames>MODEL</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>PK_T_MODEL</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="246" parent="55" name="FK_T_MODEL_T_FACE">
+      <ModifiedTimestamp>2018-06-20.21:42:58</ModifiedTimestamp>
+      <ColNames>FACE</ColNames>
+      <RefSchemaName>VISION</RefSchemaName>
+      <RefTableName>T_FACE</RefTableName>
+      <RefKeyName>PK_T_FACE</RefKeyName>
+      <OnDelete>restrict</OnDelete>
+    </foreign-key>
+    <column id="247" parent="56" name="MYWEAR">
+      <Position>1</Position>
+      <DataType>VARCHAR2(16)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="248" parent="56" name="OCCASION">
+      <Position>2</Position>
+      <DataType>NUMBER(*)|0</DataType>
+    </column>
+    <column id="249" parent="56" name="CUSTOMER">
+      <Position>3</Position>
+      <DataType>VARCHAR2(32)|0</DataType>
+    </column>
+    <column id="250" parent="56" name="COLOR">
+      <Position>4</Position>
+      <DataType>NUMBER(*)|0</DataType>
+    </column>
+    <column id="251" parent="56" name="FACE">
+      <Position>5</Position>
+      <DataType>NUMBER(*)|0</DataType>
+    </column>
+    <column id="252" parent="56" name="GOODS">
+      <Position>6</Position>
+      <Comment>可以采取固定编码形式，编写统一长度</Comment>
+      <DataType>VARCHAR2(16)|0</DataType>
+    </column>
+    <column id="253" parent="56" name="PUPIL">
+      <Position>7</Position>
+      <Comment>单位：mm</Comment>
+      <DataType>NUMBER(*)|0</DataType>
+    </column>
+    <column id="254" parent="56" name="SEX">
+      <Position>8</Position>
+      <Comment>m-男，f-女</Comment>
+      <DataType>VARCHAR2(2)|0</DataType>
+    </column>
+    <column id="255" parent="56" name="SELFPHOTO">
+      <Position>9</Position>
+      <DataType>VARCHAR2(128)|0</DataType>
+    </column>
+    <column id="256" parent="56" name="SHOWPHOTO">
+      <Position>10</Position>
+      <DataType>VARCHAR2(128)|0</DataType>
+    </column>
+    <column id="257" parent="56" name="DEAL">
+      <Position>11</Position>
+      <Comment>0-未成效,1-成交</Comment>
+      <DataType>NUMBER(*)|0</DataType>
+    </column>
+    <column id="258" parent="56" name="ISCART">
+      <Position>12</Position>
+      <Comment>0-否,1-是</Comment>
+      <DataType>NUMBER(*)|0</DataType>
+    </column>
+    <column id="259" parent="56" name="AGE">
+      <Position>13</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <DefaultExpression>18
+</DefaultExpression>
+    </column>
+    <column id="260" parent="56" name="FRAMEPRICE">
+      <Position>14</Position>
+      <Comment>镜框售价</Comment>
+      <DataType>NUMBER(5)|0</DataType>
+    </column>
+    <column id="261" parent="56" name="GLASSPRICE">
+      <Position>15</Position>
+      <Comment>镜片售价</Comment>
+      <DataType>NUMBER(5)|0</DataType>
+    </column>
+    <column id="262" parent="56" name="order">
+      <Position>16</Position>
+      <DataType>VARCHAR2(24)|0</DataType>
+    </column>
+    <index id="263" parent="56" name="PK_T_MYWEAR">
+      <ObjectId>76864</ObjectId>
+      <CreatedTimestamp>2018-07-08.12:01:33</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-08.12:01:33</ModifiedTimestamp>
+      <TablespaceName>VISION_DATA</TablespaceName>
+      <ColNames>MYWEAR</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="264" parent="56" name="FK_MYWEAR_OCCASION">
+      <ObjectId>76869</ObjectId>
+      <CreatedTimestamp>2018-07-08.12:01:34</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-08.12:01:34</ModifiedTimestamp>
+      <TablespaceName>VISION_DATA</TablespaceName>
+      <ColNames>OCCASION</ColNames>
+    </index>
+    <index id="265" parent="56" name="FK_CUSTOMER_MYWEAR">
+      <ObjectId>76865</ObjectId>
+      <CreatedTimestamp>2018-07-08.12:01:33</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-08.12:01:33</ModifiedTimestamp>
+      <TablespaceName>VISION_DATA</TablespaceName>
+      <ColNames>CUSTOMER</ColNames>
+    </index>
+    <index id="266" parent="56" name="FK_MYWEAR_COLOR">
+      <ObjectId>76868</ObjectId>
+      <CreatedTimestamp>2018-07-08.12:01:34</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-08.12:01:34</ModifiedTimestamp>
+      <TablespaceName>VISION_DATA</TablespaceName>
+      <ColNames>COLOR</ColNames>
+    </index>
+    <index id="267" parent="56" name="FK_MYWEAR_FACE">
+      <ObjectId>76866</ObjectId>
+      <CreatedTimestamp>2018-07-08.12:01:34</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-08.12:01:34</ModifiedTimestamp>
+      <TablespaceName>VISION_DATA</TablespaceName>
+      <ColNames>FACE</ColNames>
+    </index>
+    <index id="268" parent="56" name="FK_MYWEAR_GOODS">
+      <ObjectId>76867</ObjectId>
+      <CreatedTimestamp>2018-07-08.12:01:34</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-08.12:01:34</ModifiedTimestamp>
+      <TablespaceName>VISION_DATA</TablespaceName>
+      <ColNames>GOODS</ColNames>
+    </index>
+    <key id="269" parent="56" name="PK_T_MYWEAR">
+      <ModifiedTimestamp>2018-07-08.12:01:33</ModifiedTimestamp>
+      <ColNames>MYWEAR</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>PK_T_MYWEAR</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="270" parent="56" name="FK_T_MYWEAR_T_OCCASION">
+      <ModifiedTimestamp>2018-07-08.12:01:38</ModifiedTimestamp>
+      <ColNames>OCCASION</ColNames>
+      <RefSchemaName>VISION</RefSchemaName>
+      <RefTableName>T_OCCASION</RefTableName>
+      <RefKeyName>PK_T_OCCASION</RefKeyName>
+      <OnDelete>restrict</OnDelete>
+    </foreign-key>
+    <foreign-key id="271" parent="56" name="FK_T_MYWEAR_T_CUSTOMER">
+      <ModifiedTimestamp>2018-07-08.12:01:37</ModifiedTimestamp>
+      <ColNames>CUSTOMER</ColNames>
+      <RefSchemaName>VISION</RefSchemaName>
+      <RefTableName>T_CUSTOMER</RefTableName>
+      <RefKeyName>PK_T_CUSTOMER</RefKeyName>
+      <OnDelete>restrict</OnDelete>
+    </foreign-key>
+    <foreign-key id="272" parent="56" name="FK_T_MYWEAR_T_COLOR">
+      <ModifiedTimestamp>2018-07-08.12:01:37</ModifiedTimestamp>
+      <ColNames>COLOR</ColNames>
+      <RefSchemaName>VISION</RefSchemaName>
+      <RefTableName>T_COLOR</RefTableName>
+      <RefKeyName>PK_T_COLOR</RefKeyName>
+      <OnDelete>restrict</OnDelete>
+    </foreign-key>
+    <foreign-key id="273" parent="56" name="FK_T_MYWEAR_T_FACE">
+      <ModifiedTimestamp>2018-07-08.12:01:38</ModifiedTimestamp>
+      <ColNames>FACE</ColNames>
+      <RefSchemaName>VISION</RefSchemaName>
+      <RefTableName>T_FACE</RefTableName>
+      <RefKeyName>PK_T_FACE</RefKeyName>
+      <OnDelete>restrict</OnDelete>
+    </foreign-key>
+    <foreign-key id="274" parent="56" name="FK_T_MYWEAR_T_GOODS">
+      <ModifiedTimestamp>2018-07-08.12:01:38</ModifiedTimestamp>
+      <ColNames>GOODS</ColNames>
+      <RefSchemaName>VISION</RefSchemaName>
+      <RefTableName>T_GOODS</RefTableName>
+      <RefKeyName>PK_T_GOODS</RefKeyName>
+      <OnDelete>restrict</OnDelete>
+    </foreign-key>
+    <foreign-key id="275" parent="56" name="SYS_C0013011">
+      <NameSurrogate>1</NameSurrogate>
+      <ModifiedTimestamp>2018-07-15.22:59:07</ModifiedTimestamp>
+      <ColNames>order</ColNames>
+      <RefSchemaName>VISION</RefSchemaName>
+      <RefTableName>T_ORDER</RefTableName>
+      <RefKeyName>PK_T_ORDER</RefKeyName>
+      <OnDelete>restrict</OnDelete>
+    </foreign-key>
+    <column id="276" parent="57" name="NEWCUSTOMER">
+      <Position>1</Position>
+      <DataType>VARCHAR2(32)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="277" parent="57" name="PHONE">
+      <Position>2</Position>
+      <DataType>VARCHAR2(32)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="278" parent="57" name="INS_TIME">
+      <Position>3</Position>
+      <DataType>DATE|0</DataType>
+    </column>
+    <column id="279" parent="57" name="STATUS">
+      <Position>4</Position>
+      <Comment>新客户状态：0-新邀请,1-注册,2-已经购物</Comment>
+      <DataType>NUMBER(*)|0</DataType>
+    </column>
+    <column id="280" parent="57" name="PRIZE">
+      <Position>5</Position>
+      <Comment>推荐好友得到的优惠卷值</Comment>
+      <DataType>NUMBER(*)|0</DataType>
+    </column>
+    <index id="281" parent="57" name="PK_T_NEWCUSTOMER">
+      <ObjectId>77660</ObjectId>
+      <CreatedTimestamp>2018-07-15.18:29:51</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-15.18:29:51</ModifiedTimestamp>
+      <TablespaceName>VISION_DATA</TablespaceName>
+      <ColNames>NEWCUSTOMER</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="282" parent="57" name="PK_T_NEWCUSTOMER">
+      <ModifiedTimestamp>2018-07-15.18:29:51</ModifiedTimestamp>
+      <ColNames>NEWCUSTOMER</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>PK_T_NEWCUSTOMER</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <column id="283" parent="58" name="CODE">
+      <Position>1</Position>
+      <DataType>VARCHAR2(24)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="284" parent="58" name="TITLE">
+      <Position>2</Position>
+      <DataType>VARCHAR2(1024)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;null&apos;</DefaultExpression>
+    </column>
+    <column id="285" parent="58" name="ISSUE_DATE">
+      <Position>3</Position>
+      <Comment>发布日期</Comment>
+      <DataType>DATE|0</DataType>
+      <DefaultExpression>sysdate</DefaultExpression>
+    </column>
+    <column id="286" parent="58" name="AUTHOR">
+      <Position>4</Position>
+      <Comment>发布人</Comment>
+      <DataType>VARCHAR2(8)|0</DataType>
+    </column>
+    <column id="287" parent="58" name="KEYWORD">
+      <Position>5</Position>
+      <Comment>关键词</Comment>
+      <DataType>VARCHAR2(1024)|0</DataType>
+    </column>
+    <column id="288" parent="58" name="FILENAME">
+      <Position>6</Position>
+      <Comment>新闻稿件文件名</Comment>
+      <DataType>VARCHAR2(1024)|0</DataType>
+    </column>
+    <column id="289" parent="58" name="ITEMS">
+      <Position>7</Position>
+      <Comment>新闻类别：0-乐潮之镜，1-眼镜二三事</Comment>
+      <DataType>NUMBER(2)|0</DataType>
+    </column>
+    <column id="290" parent="58" name="TOP">
+      <Position>8</Position>
+      <Comment>置顶</Comment>
+      <DataType>CHAR(1)|0</DataType>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <column id="291" parent="58" name="PUBLISH">
+      <Position>9</Position>
+      <Comment>是否对外发布</Comment>
+      <DataType>CHAR(1)|0</DataType>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <column id="292" parent="58" name="PHOTO">
+      <Position>10</Position>
+      <Comment>用途图片新闻的图片路径</Comment>
+      <DataType>VARCHAR2(124)|0</DataType>
+    </column>
+    <index id="293" parent="58" name="SYS_C0011602">
+      <ObjectId>75115</ObjectId>
+      <NameSurrogate>1</NameSurrogate>
+      <CreatedTimestamp>2018-06-20.22:04:51</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-20.22:04:51</ModifiedTimestamp>
+      <TablespaceName>VISION_DATA</TablespaceName>
+      <ColNames>CODE</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="294" parent="58" name="SYS_C0011602">
+      <NameSurrogate>1</NameSurrogate>
+      <ModifiedTimestamp>2018-06-20.22:04:51</ModifiedTimestamp>
+      <ColNames>CODE</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>SYS_C0011602</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="295" parent="58" name="FK_NEWS_AUTHOR">
+      <ModifiedTimestamp>2018-06-20.21:23:07</ModifiedTimestamp>
+      <ColNames>AUTHOR</ColNames>
+      <RefSchemaName>VISION</RefSchemaName>
+      <RefTableName>T_ADMIN</RefTableName>
+      <RefKeyName>PK_T_ADMIN</RefKeyName>
+      <OnDelete>restrict</OnDelete>
+    </foreign-key>
+    <column id="296" parent="59" name="NEWS">
+      <Position>1</Position>
+      <Comment>新闻记录号</Comment>
+      <DataType>VARCHAR2(24)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="297" parent="59" name="FILENAME">
+      <Position>2</Position>
+      <Comment>新闻稿件中图片路径</Comment>
+      <DataType>VARCHAR2(1024)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="298" parent="59" name="PK_NEWS_FILES_ALL">
+      <ObjectId>75055</ObjectId>
+      <CreatedTimestamp>2018-06-20.21:24:04</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-20.21:24:04</ModifiedTimestamp>
+      <TablespaceName>VISION_DATA</TablespaceName>
+      <ColNames>NEWS
+FILENAME</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="299" parent="59" name="PK_NEWS_FILES_ALL">
+      <ModifiedTimestamp>2018-06-20.21:24:04</ModifiedTimestamp>
+      <ColNames>NEWS
+FILENAME</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>PK_NEWS_FILES_ALL</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <column id="300" parent="60" name="OCCASION">
+      <Position>1</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="301" parent="60" name="NAME">
+      <Position>2</Position>
+      <DataType>VARCHAR2(64)|0</DataType>
+    </column>
+    <column id="302" parent="60" name="PHOTO">
+      <Position>3</Position>
+      <DataType>VARCHAR2(128)|0</DataType>
+    </column>
+    <index id="303" parent="60" name="PK_T_OCCASION">
+      <ObjectId>75084</ObjectId>
+      <CreatedTimestamp>2018-06-20.21:42:51</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-20.21:42:51</ModifiedTimestamp>
+      <TablespaceName>VISION_DATA</TablespaceName>
+      <ColNames>OCCASION</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="304" parent="60" name="PK_T_OCCASION">
+      <ModifiedTimestamp>2018-06-20.21:42:51</ModifiedTimestamp>
+      <ColNames>OCCASION</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>PK_T_OCCASION</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <column id="305" parent="61" name="order">
+      <Position>1</Position>
+      <DataType>VARCHAR2(24)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="306" parent="61" name="CUSTOMER">
+      <Position>2</Position>
+      <DataType>VARCHAR2(32)|0</DataType>
+    </column>
+    <column id="307" parent="61" name="ADDRESS">
+      <Position>3</Position>
+      <DataType>VARCHAR2(16)|0</DataType>
+    </column>
+    <column id="308" parent="61" name="SURE_TIME">
+      <Position>4</Position>
+      <DataType>DATE|0</DataType>
+    </column>
+    <column id="309" parent="61" name="STATE">
+      <Position>5</Position>
+      <Comment>0-待付款，1-待收货，2-待评价，3-已完成；</Comment>
+      <DataType>NUMBER(*)|0</DataType>
+    </column>
+    <column id="310" parent="61" name="EXPRESS">
+      <Position>6</Position>
+      <Comment>快递名称</Comment>
+      <DataType>VARCHAR2(64)|0</DataType>
+    </column>
+    <column id="311" parent="61" name="EXPRESSID">
+      <Position>7</Position>
+      <Comment>快递编号</Comment>
+      <DataType>VARCHAR2(32)|0</DataType>
+    </column>
+    <column id="312" parent="61" name="VOUCHER">
+      <Position>8</Position>
+      <Comment>本订单使用多少优惠卷支付</Comment>
+      <DataType>NUMBER(*)|0</DataType>
+      <DefaultExpression>0
+</DefaultExpression>
+    </column>
+    <column id="313" parent="61" name="GOODSSTAR">
+      <Position>9</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <DefaultExpression>3
+</DefaultExpression>
+    </column>
+    <column id="314" parent="61" name="SERVICESTAR">
+      <Position>10</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <DefaultExpression>3
+</DefaultExpression>
+    </column>
+    <column id="315" parent="61" name="EXPRESSSTAR">
+      <Position>11</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <DefaultExpression>3
+</DefaultExpression>
+    </column>
+    <column id="316" parent="61" name="COMMENTS">
+      <Position>12</Position>
+      <DataType>VARCHAR2(128)|0</DataType>
+    </column>
+    <column id="317" parent="61" name="TOTALFEE">
+      <Position>13</Position>
+      <Comment>表示订单总价</Comment>
+      <DataType>NUMBER(*)|0</DataType>
+      <DefaultExpression>0</DefaultExpression>
+    </column>
+    <column id="318" parent="61" name="DETAILSTATE">
+      <Position>14</Position>
+      <Comment>详细状态：0-已支付，1-加工中，2-已发货</Comment>
+      <DataType>NUMBER(*)|0</DataType>
+      <DefaultExpression>0</DefaultExpression>
+    </column>
+    <index id="319" parent="61" name="PK_T_ORDER">
+      <ObjectId>76871</ObjectId>
+      <CreatedTimestamp>2018-07-08.12:01:34</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-08.12:01:34</ModifiedTimestamp>
+      <TablespaceName>VISION_DATA</TablespaceName>
+      <ColNames>order</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="320" parent="61" name="FK_CUSTOMER_ORDER">
+      <ObjectId>76873</ObjectId>
+      <CreatedTimestamp>2018-07-08.12:01:35</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-08.12:01:35</ModifiedTimestamp>
+      <TablespaceName>VISION_DATA</TablespaceName>
+      <ColNames>CUSTOMER</ColNames>
+    </index>
+    <index id="321" parent="61" name="FK_ORDER_ADDRESS">
+      <ObjectId>76872</ObjectId>
+      <CreatedTimestamp>2018-07-08.12:01:35</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-08.12:01:35</ModifiedTimestamp>
+      <TablespaceName>VISION_DATA</TablespaceName>
+      <ColNames>ADDRESS</ColNames>
+    </index>
+    <key id="322" parent="61" name="PK_T_ORDER">
+      <ModifiedTimestamp>2018-07-08.12:01:34</ModifiedTimestamp>
+      <ColNames>order</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>PK_T_ORDER</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="323" parent="61" name="FK_T_ORDER_T_CUSTOMER">
+      <ModifiedTimestamp>2018-07-08.12:01:38</ModifiedTimestamp>
+      <ColNames>CUSTOMER</ColNames>
+      <RefSchemaName>VISION</RefSchemaName>
+      <RefTableName>T_CUSTOMER</RefTableName>
+      <RefKeyName>PK_T_CUSTOMER</RefKeyName>
+      <OnDelete>restrict</OnDelete>
+    </foreign-key>
+    <foreign-key id="324" parent="61" name="FK_T_ORDER_T_ADDRESS">
+      <ModifiedTimestamp>2018-07-08.12:01:38</ModifiedTimestamp>
+      <ColNames>ADDRESS</ColNames>
+      <RefSchemaName>VISION</RefSchemaName>
+      <RefTableName>T_ADDRESS</RefTableName>
+      <RefKeyName>PK_T_ADDRESS</RefKeyName>
+      <OnDelete>restrict</OnDelete>
+    </foreign-key>
+    <column id="325" parent="62" name="order">
+      <Position>1</Position>
+      <DataType>VARCHAR2(24)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="326" parent="62" name="MYWEAR">
+      <Position>2</Position>
+      <DataType>VARCHAR2(16)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="327" parent="62" name="GOODSSTAR">
+      <Position>3</Position>
+      <DataType>NUMBER(*)|0</DataType>
+    </column>
+    <column id="328" parent="62" name="SERVICESTAR">
+      <Position>4</Position>
+      <DataType>NUMBER(*)|0</DataType>
+    </column>
+    <column id="329" parent="62" name="EXPRESSSTAR">
+      <Position>5</Position>
+      <DataType>NUMBER(*)|0</DataType>
+    </column>
+    <column id="330" parent="62" name="COMMENTS">
+      <Position>6</Position>
+      <DataType>VARCHAR2(128)|0</DataType>
+    </column>
+    <index id="331" parent="62" name="PK_T_ORDERDETAIL">
+      <ObjectId>76875</ObjectId>
+      <CreatedTimestamp>2018-07-08.12:01:35</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-08.12:01:35</ModifiedTimestamp>
+      <TablespaceName>VISION_DATA</TablespaceName>
+      <ColNames>order
+MYWEAR</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="332" parent="62" name="FK_ORDERDETAIL">
+      <ObjectId>76876</ObjectId>
+      <CreatedTimestamp>2018-07-08.12:01:36</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-08.12:01:36</ModifiedTimestamp>
+      <TablespaceName>VISION_DATA</TablespaceName>
+      <ColNames>order</ColNames>
+    </index>
+    <index id="333" parent="62" name="FK_ORDERDETAIL2">
+      <ObjectId>76877</ObjectId>
+      <CreatedTimestamp>2018-07-08.12:01:36</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-08.12:01:36</ModifiedTimestamp>
+      <TablespaceName>VISION_DATA</TablespaceName>
+      <ColNames>MYWEAR</ColNames>
+    </index>
+    <key id="334" parent="62" name="PK_T_ORDERDETAIL">
+      <ModifiedTimestamp>2018-07-08.12:01:35</ModifiedTimestamp>
+      <ColNames>order
+MYWEAR</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>PK_T_ORDERDETAIL</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="335" parent="62" name="FK_T_ORDERDETAIL_T_ORDER">
+      <ModifiedTimestamp>2018-07-08.12:01:38</ModifiedTimestamp>
+      <ColNames>order</ColNames>
+      <RefSchemaName>VISION</RefSchemaName>
+      <RefTableName>T_ORDER</RefTableName>
+      <RefKeyName>PK_T_ORDER</RefKeyName>
+      <OnDelete>restrict</OnDelete>
+    </foreign-key>
+    <foreign-key id="336" parent="62" name="FK_T_ORDERDETAIL_T_MYWEAR">
+      <ModifiedTimestamp>2018-07-08.12:01:38</ModifiedTimestamp>
+      <ColNames>MYWEAR</ColNames>
+      <RefSchemaName>VISION</RefSchemaName>
+      <RefTableName>T_MYWEAR</RefTableName>
+      <RefKeyName>PK_T_MYWEAR</RefKeyName>
+      <OnDelete>restrict</OnDelete>
+    </foreign-key>
+    <column id="337" parent="63" name="DEADLINE">
+      <Position>1</Position>
+      <Comment>推荐的好友在指定时间内未完成注册将自动删除</Comment>
+      <DataType>NUMBER(*)|0</DataType>
+    </column>
+    <column id="338" parent="63" name="PRIZE">
+      <Position>2</Position>
+      <Comment>推荐好友得到的优惠卷值</Comment>
+      <DataType>NUMBER(*)|0</DataType>
+    </column>
+    <column id="339" parent="64" name="PROVINCE">
+      <Position>1</Position>
+      <DataType>VARCHAR2(6)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="340" parent="64" name="NAME">
+      <Position>2</Position>
+      <DataType>VARCHAR2(128)|0</DataType>
+    </column>
+    <index id="341" parent="64" name="PK_T_PROVINCE">
+      <ObjectId>76879</ObjectId>
+      <CreatedTimestamp>2018-07-08.12:01:36</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-08.12:01:36</ModifiedTimestamp>
+      <TablespaceName>VISION_DATA</TablespaceName>
+      <ColNames>PROVINCE</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="342" parent="64" name="PK_T_PROVINCE">
+      <ModifiedTimestamp>2018-07-08.12:01:36</ModifiedTimestamp>
+      <ColNames>PROVINCE</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>PK_T_PROVINCE</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <column id="343" parent="65" name="CUSTOMER">
+      <Position>1</Position>
+      <DataType>VARCHAR2(32)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="344" parent="65" name="NEWCUSTOMER">
+      <Position>2</Position>
+      <DataType>VARCHAR2(32)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="345" parent="65" name="PRIZE">
+      <Position>3</Position>
+      <Comment>推荐好友得到的优惠卷值</Comment>
+      <DataType>NUMBER(*)|0</DataType>
+    </column>
+    <column id="346" parent="65" name="INS_TIME">
+      <Position>4</Position>
+      <DataType>DATE|0</DataType>
+    </column>
+    <column id="347" parent="65" name="STATUS">
+      <Position>5</Position>
+      <Comment>新客户状态：0-新邀请,1-注册,2-已经购物</Comment>
+      <DataType>NUMBER(*)|0</DataType>
+    </column>
+    <index id="348" parent="65" name="PK_T_REWARD">
+      <ObjectId>77663</ObjectId>
+      <CreatedTimestamp>2018-07-15.18:29:52</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-15.18:29:52</ModifiedTimestamp>
+      <TablespaceName>VISION_DATA</TablespaceName>
+      <ColNames>CUSTOMER
+NEWCUSTOMER</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="349" parent="65" name="FK_T_REWARD_T_CUSTOMER">
+      <ObjectId>77664</ObjectId>
+      <CreatedTimestamp>2018-07-15.18:29:52</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-15.18:29:52</ModifiedTimestamp>
+      <TablespaceName>VISION_DATA</TablespaceName>
+      <ColNames>CUSTOMER</ColNames>
+    </index>
+    <index id="350" parent="65" name="FK_T_REWARD_T_NEWCUSTOMER">
+      <ObjectId>77665</ObjectId>
+      <CreatedTimestamp>2018-07-15.18:29:52</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-15.18:29:52</ModifiedTimestamp>
+      <TablespaceName>VISION_DATA</TablespaceName>
+      <ColNames>NEWCUSTOMER</ColNames>
+    </index>
+    <key id="351" parent="65" name="PK_T_REWARD">
+      <ModifiedTimestamp>2018-07-15.18:29:52</ModifiedTimestamp>
+      <ColNames>CUSTOMER
+NEWCUSTOMER</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>PK_T_REWARD</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="352" parent="65" name="FK_REWARD_CUSTOMER">
+      <ModifiedTimestamp>2018-07-15.18:29:52</ModifiedTimestamp>
+      <ColNames>CUSTOMER</ColNames>
+      <RefSchemaName>VISION</RefSchemaName>
+      <RefTableName>T_CUSTOMER</RefTableName>
+      <RefKeyName>PK_T_CUSTOMER</RefKeyName>
+      <OnDelete>restrict</OnDelete>
+    </foreign-key>
+    <foreign-key id="353" parent="65" name="FK_REWARD_NEWCUSTOMER">
+      <ModifiedTimestamp>2018-07-15.18:29:52</ModifiedTimestamp>
+      <ColNames>NEWCUSTOMER</ColNames>
+      <RefSchemaName>VISION</RefSchemaName>
+      <RefTableName>T_NEWCUSTOMER</RefTableName>
+      <RefKeyName>PK_T_NEWCUSTOMER</RefKeyName>
+      <OnDelete>restrict</OnDelete>
+    </foreign-key>
+    <column id="354" parent="66" name="ROLE">
+      <Position>1</Position>
+      <DataType>VARCHAR2(16)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="355" parent="66" name="NAME">
+      <Position>2</Position>
+      <DataType>VARCHAR2(32)|0</DataType>
+    </column>
+    <index id="356" parent="66" name="PK_T_ROLE">
+      <ObjectId>73798</ObjectId>
+      <CreatedTimestamp>2018-06-08.11:02:50</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-08.11:02:50</ModifiedTimestamp>
+      <TablespaceName>VISION_DATA</TablespaceName>
+      <ColNames>ROLE</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="357" parent="66" name="PK_T_ROLE">
+      <ModifiedTimestamp>2018-06-08.11:02:50</ModifiedTimestamp>
+      <ColNames>ROLE</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>PK_T_ROLE</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <column id="358" parent="67" name="MENU">
+      <Position>1</Position>
+      <DataType>VARCHAR2(2)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="359" parent="67" name="ROLE">
+      <Position>2</Position>
+      <DataType>VARCHAR2(16)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="360" parent="67" name="PK_T_ROLE_MENU">
+      <ObjectId>73800</ObjectId>
+      <CreatedTimestamp>2018-06-08.11:02:50</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-08.11:02:50</ModifiedTimestamp>
+      <TablespaceName>VISION_DATA</TablespaceName>
+      <ColNames>MENU
+ROLE</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="361" parent="67" name="FK_ROLE_MENU_T_MENU">
+      <ObjectId>73801</ObjectId>
+      <CreatedTimestamp>2018-06-08.11:02:51</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-08.11:02:51</ModifiedTimestamp>
+      <TablespaceName>VISION_DATA</TablespaceName>
+      <ColNames>MENU</ColNames>
+    </index>
+    <index id="362" parent="67" name="FK_ROLE_MENU_T_ROLE">
+      <ObjectId>73802</ObjectId>
+      <CreatedTimestamp>2018-06-08.11:02:51</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-08.11:02:51</ModifiedTimestamp>
+      <TablespaceName>VISION_DATA</TablespaceName>
+      <ColNames>ROLE</ColNames>
+    </index>
+    <key id="363" parent="67" name="PK_T_ROLE_MENU">
+      <ModifiedTimestamp>2018-06-08.11:02:50</ModifiedTimestamp>
+      <ColNames>MENU
+ROLE</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>PK_T_ROLE_MENU</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="364" parent="67" name="FK_T_ROLE_MENU_T_MENU">
+      <ModifiedTimestamp>2018-06-08.11:02:52</ModifiedTimestamp>
+      <ColNames>MENU</ColNames>
+      <RefSchemaName>VISION</RefSchemaName>
+      <RefTableName>T_MENU</RefTableName>
+      <RefKeyName>PK_T_MENU</RefKeyName>
+      <OnDelete>restrict</OnDelete>
+    </foreign-key>
+    <foreign-key id="365" parent="67" name="FK_T_ROLE_MENU_T_ROLE">
+      <ModifiedTimestamp>2018-06-08.11:02:53</ModifiedTimestamp>
+      <ColNames>ROLE</ColNames>
+      <RefSchemaName>VISION</RefSchemaName>
+      <RefTableName>T_ROLE</RefTableName>
+      <RefKeyName>PK_T_ROLE</RefKeyName>
+      <OnDelete>restrict</OnDelete>
+    </foreign-key>
+    <column id="366" parent="68" name="WEIXIN">
+      <Position>1</Position>
+      <DataType>VARCHAR2(32)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="367" parent="68" name="COMPANY">
+      <Position>2</Position>
+      <DataType>VARCHAR2(64)|0</DataType>
+    </column>
+    <index id="368" parent="68" name="PK_T_SERVICES">
+      <ObjectId>77646</ObjectId>
+      <CreatedTimestamp>2018-07-15.11:47:30</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-15.11:47:30</ModifiedTimestamp>
+      <TablespaceName>VISION_DATA</TablespaceName>
+      <ColNames>WEIXIN</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="369" parent="68" name="PK_T_SERVICES">
+      <ModifiedTimestamp>2018-07-15.11:47:30</ModifiedTimestamp>
+      <ColNames>WEIXIN</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>PK_T_SERVICES</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <column id="370" parent="69" name="SHOP">
+      <Position>1</Position>
+      <DataType>VARCHAR2(8)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="371" parent="69" name="SERVICES">
+      <Position>2</Position>
+      <DataType>VARCHAR2(32)|0</DataType>
+    </column>
+    <column id="372" parent="69" name="NAME">
+      <Position>3</Position>
+      <DataType>VARCHAR2(64)|0</DataType>
+    </column>
+    <column id="373" parent="69" name="ADDRESS">
+      <Position>4</Position>
+      <DataType>VARCHAR2(128)|0</DataType>
+    </column>
+    <column id="374" parent="69" name="PHONE">
+      <Position>5</Position>
+      <DataType>VARCHAR2(32)|0</DataType>
+    </column>
+    <column id="375" parent="69" name="POS_X">
+      <Position>6</Position>
+      <DataType>NUMBER(8,4)|0</DataType>
+    </column>
+    <column id="376" parent="69" name="POS_Y">
+      <Position>7</Position>
+      <DataType>NUMBER(8,4)|0</DataType>
+    </column>
+    <column id="377" parent="69" name="ORDERS">
+      <Position>8</Position>
+      <Comment>决定分店在客户中的排序</Comment>
+      <DataType>NUMBER(*)|0</DataType>
+    </column>
+    <index id="378" parent="69" name="PK_T_SHOPS">
+      <ObjectId>77648</ObjectId>
+      <CreatedTimestamp>2018-07-15.11:47:31</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-15.11:47:31</ModifiedTimestamp>
+      <TablespaceName>VISION_DATA</TablespaceName>
+      <ColNames>SHOP</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="379" parent="69" name="FK_SHOPS_SERVICES">
+      <ObjectId>77649</ObjectId>
+      <CreatedTimestamp>2018-07-15.11:47:31</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-15.11:47:31</ModifiedTimestamp>
+      <TablespaceName>VISION_DATA</TablespaceName>
+      <ColNames>SERVICES</ColNames>
+    </index>
+    <key id="380" parent="69" name="PK_T_SHOPS">
+      <ModifiedTimestamp>2018-07-15.11:47:31</ModifiedTimestamp>
+      <ColNames>SHOP</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>PK_T_SHOPS</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="381" parent="69" name="FK_SHOPS_SERVICES">
+      <ModifiedTimestamp>2018-07-15.11:47:31</ModifiedTimestamp>
+      <ColNames>SERVICES</ColNames>
+      <RefSchemaName>VISION</RefSchemaName>
+      <RefTableName>T_SERVICES</RefTableName>
+      <RefKeyName>PK_T_SERVICES</RefKeyName>
+      <OnDelete>restrict</OnDelete>
+    </foreign-key>
+    <column id="382" parent="70" name="STYLE">
+      <Position>1</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="383" parent="70" name="NAME">
+      <Position>2</Position>
+      <DataType>VARCHAR2(64)|0</DataType>
+    </column>
+    <index id="384" parent="70" name="PK_T_STYLE">
+      <ObjectId>76537</ObjectId>
+      <CreatedTimestamp>2018-07-05.09:03:30</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-05.09:03:30</ModifiedTimestamp>
+      <TablespaceName>VISION_DATA</TablespaceName>
+      <ColNames>STYLE</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="385" parent="70" name="PK_T_STYLE">
+      <ModifiedTimestamp>2018-07-05.09:03:30</ModifiedTimestamp>
+      <ColNames>STYLE</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>PK_T_STYLE</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <column id="386" parent="71" name="GOODS">
+      <Position>1</Position>
+      <Comment>可以采取固定编码形式，编写统一长度</Comment>
+      <DataType>VARCHAR2(16)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="387" parent="71" name="AGESECTION">
+      <Position>2</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="388" parent="71" name="PK_T_SUITABLEAGE">
+      <ObjectId>75086</ObjectId>
+      <CreatedTimestamp>2018-06-20.21:42:52</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-20.21:42:52</ModifiedTimestamp>
+      <TablespaceName>VISION_DATA</TablespaceName>
+      <ColNames>GOODS
+AGESECTION</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="389" parent="71" name="FK_SUITABLEAGE_T_GOODS">
+      <ObjectId>75087</ObjectId>
+      <CreatedTimestamp>2018-06-20.21:42:52</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-20.21:42:52</ModifiedTimestamp>
+      <TablespaceName>VISION_DATA</TablespaceName>
+      <ColNames>GOODS</ColNames>
+    </index>
+    <index id="390" parent="71" name="FK_SUITABLEAGE2_T_AGESECTION">
+      <ObjectId>75088</ObjectId>
+      <CreatedTimestamp>2018-06-20.21:42:52</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-20.21:42:52</ModifiedTimestamp>
+      <TablespaceName>VISION_DATA</TablespaceName>
+      <ColNames>AGESECTION</ColNames>
+    </index>
+    <key id="391" parent="71" name="PK_T_SUITABLEAGE">
+      <ModifiedTimestamp>2018-06-20.21:42:52</ModifiedTimestamp>
+      <ColNames>GOODS
+AGESECTION</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>PK_T_SUITABLEAGE</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="392" parent="71" name="FK_T_SUITABLEAGE_T_GOODS">
+      <ModifiedTimestamp>2018-06-20.21:42:58</ModifiedTimestamp>
+      <ColNames>GOODS</ColNames>
+      <RefSchemaName>VISION</RefSchemaName>
+      <RefTableName>T_GOODS</RefTableName>
+      <RefKeyName>PK_T_GOODS</RefKeyName>
+      <OnDelete>restrict</OnDelete>
+    </foreign-key>
+    <foreign-key id="393" parent="71" name="FK_T_SUITABLEAGE_T_AGESECTION">
+      <ModifiedTimestamp>2018-06-20.21:42:58</ModifiedTimestamp>
+      <ColNames>AGESECTION</ColNames>
+      <RefSchemaName>VISION</RefSchemaName>
+      <RefTableName>T_AGESECTION</RefTableName>
+      <RefKeyName>PK_T_AGESECTION</RefKeyName>
+      <OnDelete>restrict</OnDelete>
+    </foreign-key>
+    <column id="394" parent="72" name="GOODS">
+      <Position>1</Position>
+      <Comment>可以采取固定编码形式，编写统一长度</Comment>
+      <DataType>VARCHAR2(16)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="395" parent="72" name="FACE">
+      <Position>2</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="396" parent="72" name="PK_T_SUITABLEFACE">
+      <ObjectId>75090</ObjectId>
+      <CreatedTimestamp>2018-06-20.21:42:52</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-20.21:42:52</ModifiedTimestamp>
+      <TablespaceName>VISION_DATA</TablespaceName>
+      <ColNames>GOODS
+FACE</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="397" parent="72" name="FK_SUITABLEFACE_T_GOODS">
+      <ObjectId>75091</ObjectId>
+      <CreatedTimestamp>2018-06-20.21:42:53</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-20.21:42:53</ModifiedTimestamp>
+      <TablespaceName>VISION_DATA</TablespaceName>
+      <ColNames>GOODS</ColNames>
+    </index>
+    <index id="398" parent="72" name="FK_SUITABLEFACE2_T_FACE">
+      <ObjectId>75092</ObjectId>
+      <CreatedTimestamp>2018-06-20.21:42:53</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-20.21:42:53</ModifiedTimestamp>
+      <TablespaceName>VISION_DATA</TablespaceName>
+      <ColNames>FACE</ColNames>
+    </index>
+    <key id="399" parent="72" name="PK_T_SUITABLEFACE">
+      <ModifiedTimestamp>2018-06-20.21:42:52</ModifiedTimestamp>
+      <ColNames>GOODS
+FACE</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>PK_T_SUITABLEFACE</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="400" parent="72" name="FK_T_SUITABLEFACE_T_GOODS">
+      <ModifiedTimestamp>2018-06-20.21:42:59</ModifiedTimestamp>
+      <ColNames>GOODS</ColNames>
+      <RefSchemaName>VISION</RefSchemaName>
+      <RefTableName>T_GOODS</RefTableName>
+      <RefKeyName>PK_T_GOODS</RefKeyName>
+      <OnDelete>restrict</OnDelete>
+    </foreign-key>
+    <foreign-key id="401" parent="72" name="FK_T_SUITABLEFACE_T_FACE">
+      <ModifiedTimestamp>2018-06-20.21:42:59</ModifiedTimestamp>
+      <ColNames>FACE</ColNames>
+      <RefSchemaName>VISION</RefSchemaName>
+      <RefTableName>T_FACE</RefTableName>
+      <RefKeyName>PK_T_FACE</RefKeyName>
+      <OnDelete>restrict</OnDelete>
+    </foreign-key>
+    <column id="402" parent="73" name="GOODS">
+      <Position>1</Position>
+      <Comment>可以采取固定编码形式，编写统一长度</Comment>
+      <DataType>VARCHAR2(16)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="403" parent="73" name="OCCASION">
+      <Position>2</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="404" parent="73" name="PK_T_SUITABLEOCCASION">
+      <ObjectId>75094</ObjectId>
+      <CreatedTimestamp>2018-06-20.21:42:53</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-20.21:42:53</ModifiedTimestamp>
+      <TablespaceName>VISION_DATA</TablespaceName>
+      <ColNames>GOODS
+OCCASION</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="405" parent="73" name="FK_SUITABLEOCCASION_T_GOODS">
+      <ObjectId>75095</ObjectId>
+      <CreatedTimestamp>2018-06-20.21:42:54</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-20.21:42:54</ModifiedTimestamp>
+      <TablespaceName>VISION_DATA</TablespaceName>
+      <ColNames>GOODS</ColNames>
+    </index>
+    <index id="406" parent="73" name="FK_SUITABLEOCCASION2_T_OCCASIO">
+      <ObjectId>75096</ObjectId>
+      <CreatedTimestamp>2018-06-20.21:42:54</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-20.21:42:54</ModifiedTimestamp>
+      <TablespaceName>VISION_DATA</TablespaceName>
+      <ColNames>OCCASION</ColNames>
+    </index>
+    <key id="407" parent="73" name="PK_T_SUITABLEOCCASION">
+      <ModifiedTimestamp>2018-06-20.21:42:53</ModifiedTimestamp>
+      <ColNames>GOODS
+OCCASION</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>PK_T_SUITABLEOCCASION</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="408" parent="73" name="FK_T_SUITABLEOCCASION_T_GOODS">
+      <ModifiedTimestamp>2018-06-20.21:42:59</ModifiedTimestamp>
+      <ColNames>GOODS</ColNames>
+      <RefSchemaName>VISION</RefSchemaName>
+      <RefTableName>T_GOODS</RefTableName>
+      <RefKeyName>PK_T_GOODS</RefKeyName>
+      <OnDelete>restrict</OnDelete>
+    </foreign-key>
+    <foreign-key id="409" parent="73" name="FK_SUITABLEOCCASION_OCCASION">
+      <ModifiedTimestamp>2018-06-20.21:44:23</ModifiedTimestamp>
+      <ColNames>OCCASION</ColNames>
+      <RefSchemaName>VISION</RefSchemaName>
+      <RefTableName>T_OCCASION</RefTableName>
+      <RefKeyName>PK_T_OCCASION</RefKeyName>
+      <OnDelete>restrict</OnDelete>
+    </foreign-key>
+    <column id="410" parent="74" name="ROLE">
+      <Position>1</Position>
+      <DataType>VARCHAR2(16)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="411" parent="74" name="ADMIN">
+      <Position>2</Position>
+      <DataType>VARCHAR2(8)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="412" parent="74" name="PK_T_USER_ROLE">
+      <ObjectId>73804</ObjectId>
+      <CreatedTimestamp>2018-06-08.11:02:51</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-08.11:02:51</ModifiedTimestamp>
+      <TablespaceName>VISION_DATA</TablespaceName>
+      <ColNames>ROLE
+ADMIN</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="413" parent="74" name="FK_USER_ROLE_T_ROLE">
+      <ObjectId>73805</ObjectId>
+      <CreatedTimestamp>2018-06-08.11:02:52</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-08.11:02:52</ModifiedTimestamp>
+      <TablespaceName>VISION_DATA</TablespaceName>
+      <ColNames>ROLE</ColNames>
+    </index>
+    <index id="414" parent="74" name="FK_USER_ROLE_T_ADMIN">
+      <ObjectId>73806</ObjectId>
+      <CreatedTimestamp>2018-06-08.11:02:52</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-08.11:02:52</ModifiedTimestamp>
+      <TablespaceName>VISION_DATA</TablespaceName>
+      <ColNames>ADMIN</ColNames>
+    </index>
+    <key id="415" parent="74" name="PK_T_USER_ROLE">
+      <ModifiedTimestamp>2018-06-08.11:02:51</ModifiedTimestamp>
+      <ColNames>ROLE
+ADMIN</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>PK_T_USER_ROLE</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="416" parent="74" name="FK_T_USER_ROLE_T_ROLE">
+      <ModifiedTimestamp>2018-06-08.11:02:53</ModifiedTimestamp>
+      <ColNames>ROLE</ColNames>
+      <RefSchemaName>VISION</RefSchemaName>
+      <RefTableName>T_ROLE</RefTableName>
+      <RefKeyName>PK_T_ROLE</RefKeyName>
+      <OnDelete>restrict</OnDelete>
+    </foreign-key>
+    <foreign-key id="417" parent="74" name="FK_T_USER_ROLE_T_ADMIN">
+      <ModifiedTimestamp>2018-06-08.11:02:53</ModifiedTimestamp>
+      <ColNames>ADMIN</ColNames>
+      <RefSchemaName>VISION</RefSchemaName>
+      <RefTableName>T_ADMIN</RefTableName>
+      <RefKeyName>PK_T_ADMIN</RefKeyName>
+      <OnDelete>restrict</OnDelete>
+    </foreign-key>
+    <column id="418" parent="75" name="MYWEAR">
+      <Position>1</Position>
+      <DataType>VARCHAR2(16)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="419" parent="75" name="EYEGLASS">
+      <Position>2</Position>
+      <DataType>VARCHAR2(16)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="420" parent="75" name="DEGRESS">
+      <Position>3</Position>
+      <DataType>NUMBER(*)|0</DataType>
+    </column>
+    <column id="421" parent="75" name="ASDEGRESS">
+      <Position>4</Position>
+      <DataType>NUMBER(*)|0</DataType>
+    </column>
+    <column id="422" parent="75" name="AXIS">
+      <Position>5</Position>
+      <DataType>NUMBER(5,2)|0</DataType>
+    </column>
+    <column id="423" parent="75" name="SIGN">
+      <Position>6</Position>
+      <Comment>l-左眼，r-右眼</Comment>
+      <DataType>CHAR(1)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="424" parent="75" name="WEARGLASS">
+      <Position>7</Position>
+      <Comment>0-近视,1-远视</Comment>
+      <DataType>NUMBER(*)|0</DataType>
+      <DefaultExpression>0
+</DefaultExpression>
+    </column>
+    <index id="425" parent="75" name="PK_T_WEARGLASS">
+      <ObjectId>77153</ObjectId>
+      <CreatedTimestamp>2018-07-10.22:16:32</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-10.22:16:32</ModifiedTimestamp>
+      <TablespaceName>VISION_DATA</TablespaceName>
+      <ColNames>MYWEAR
+EYEGLASS
+SIGN</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="426" parent="75" name="FK_WEARGLASS">
+      <ObjectId>76882</ObjectId>
+      <CreatedTimestamp>2018-07-08.12:01:37</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-08.12:01:37</ModifiedTimestamp>
+      <TablespaceName>VISION_DATA</TablespaceName>
+      <ColNames>MYWEAR</ColNames>
+    </index>
+    <index id="427" parent="75" name="FK_WEARGLASS2">
+      <ObjectId>76883</ObjectId>
+      <CreatedTimestamp>2018-07-08.12:01:37</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-08.12:01:37</ModifiedTimestamp>
+      <TablespaceName>VISION_DATA</TablespaceName>
+      <ColNames>EYEGLASS</ColNames>
+    </index>
+    <key id="428" parent="75" name="PK_T_WEARGLASS">
+      <ModifiedTimestamp>2018-07-10.22:16:32</ModifiedTimestamp>
+      <ColNames>MYWEAR
+EYEGLASS
+SIGN</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>PK_T_WEARGLASS</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="429" parent="75" name="FK_T_WEARGLASS_T_MYWEAR">
+      <ModifiedTimestamp>2018-07-08.12:01:39</ModifiedTimestamp>
+      <ColNames>MYWEAR</ColNames>
+      <RefSchemaName>VISION</RefSchemaName>
+      <RefTableName>T_MYWEAR</RefTableName>
+      <RefKeyName>PK_T_MYWEAR</RefKeyName>
+      <OnDelete>restrict</OnDelete>
+    </foreign-key>
+  </database-model>
+</dataSource>

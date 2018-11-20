@@ -1,0 +1,22 @@
+.ms-container{
+    margin: 20px auto;
+    text-align: left;
+    height:300px;
+    width:400px;
+}
+.ms-selectable{
+    height:280px;
+}
+.ms-selection{
+    height:280px;
+}
+
+.ms-list{
+    min-height:280px;
+}
+
+
+.ms-optgroup-label > span{
+    font-size: 15px;
+    font-weight: bold;
+}
